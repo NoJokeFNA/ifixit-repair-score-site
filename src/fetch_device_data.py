@@ -11,6 +11,7 @@ from time import perf_counter
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 import tqdm
+
 from ifixit_api_client import IFixitAPIClient
 
 # Configure logging
@@ -71,7 +72,7 @@ def _is_metadata_key(key: str) -> bool:
 
 def _collect_leaf_device_names(
     node: JsonValue, excluded_keys: Set[str] | None = None
-) -> Iterable[str]:
+) -> Iterable[str]:  # noqa: C901 - Tree traversal branches kept explicit for clarity
     """Yields leaf device names under a node.
 
     A leaf device is represented by:
@@ -112,7 +113,7 @@ def _find_and_collect_for_targets(
     node: JsonValue,
     target_categories: Iterable[str],
     exclude_map: Dict[str, Set[str]] | None = None,
-) -> Dict[str, List[str]]:
+) -> Dict[str, List[str]]:  # noqa: C901 - Intentional complexity to keep single-pass traversal
     """Finds target categories in the tree and collects all leaf devices under them.
 
     Scans the entire structure. When a key matches a target category, all descendant
@@ -258,7 +259,8 @@ def _normalize_key(s: str) -> str:
     return _to_ifixit_title(s).lower()
 
 
-def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, str]]]:
+def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
+    str, List[Dict[str, str]]]:  # noqa: C901 - Pagination, batching, and sorting kept in one unit for performance
     """Fetches all teardown guides from iFixit API, grouped by category.
 
     Iteratively retrieves guides from offset=0 until no more entries are found,
@@ -372,7 +374,7 @@ def print_device_data(
     client: IFixitAPIClient,
     devices: List[str],
     output_file: Optional[str] = None,
-) -> None:
+) -> None:  # noqa: C901 - Orchestrates concurrency, rate limiting, retries, and output
     """Fetches and prints device repairability scores and guide URLs concurrently."""
     logger.info("Fetching teardown guides for matching...")
     teardown_guides = fetch_teardown_guides(client)
@@ -439,12 +441,25 @@ def print_device_data(
                     None,
                 )
                 repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
-                return device_name, ifixit_title, repairability_score, manufacturer, repair_link, None
+                return (
+                    device_name,
+                    ifixit_title,
+                    repairability_score,
+                    manufacturer,
+                    repair_link,
+                    None,
+                )
             except Exception as e:
                 response = getattr(e, "response", None)
                 status_code = getattr(response, "status_code", None) if response else None
-                retry_after = getattr(response, "headers", {}).get("Retry-After") if response else None
-                sleep_s = float(retry_after) if retry_after else base_backoff * (2 ** attempt)
+                retry_after = (
+                    getattr(response, "headers", {}).get("Retry-After")
+                    if response
+                    else None
+                )
+                sleep_s = (
+                    float(retry_after) if retry_after else base_backoff * (2 ** attempt)
+                )
                 if status_code in {429, 500, 502, 503, 504} and attempt < max_retries - 1:
                     time.sleep(sleep_s)
                     continue
@@ -537,9 +552,20 @@ def main() -> None:
 
     Builds the devices_with_scores.json from iFixit data using in-memory category traversal.
     """
-    parser = argparse.ArgumentParser(description="Fetch iFixit device data")
-    parser.add_argument("--categories", nargs="+", default=["iPhone", "Android Phone"], help="Categories to fetch")
-    parser.add_argument("--scores-output", default="devices_with_scores.json", help="Output file for scores")
+    parser = argparse.ArgumentParser(
+        description="Fetch iFixit device data"
+    )
+    parser.add_argument(
+        "--categories",
+        nargs="+",
+        default=["iPhone", "Android Phone"],
+        help="Categories to fetch",
+    )
+    parser.add_argument(
+        "--scores-output",
+        default="devices_with_scores.json",
+        help="Output file for scores",
+    )
     args = parser.parse_args()
 
     client = IFixitAPIClient(log_level=log_level, proxy=False, raise_for_status=False)
