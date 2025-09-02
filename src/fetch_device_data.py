@@ -8,7 +8,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, Iterable, List, Optional, Set, Tuple, TypeAlias
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 import tqdm
 from ifixit_api_client import IFixitAPIClient
@@ -30,7 +30,7 @@ class Suppress404Filter(logging.Filter):
 logging.basicConfig(level=log_level)
 logging.getLogger("ifixit_api_client").addFilter(Suppress404Filter())
 
-JsonValue: TypeAlias = Dict[str, "JsonValue"] | List["JsonValue"] | str | int | float | bool | None
+type JsonValue = Dict[str, "JsonValue"] | List["JsonValue"] | str | int | float | bool | None
 
 
 def write_json_atomic(path: str, data: object) -> None:
@@ -69,7 +69,9 @@ def _is_metadata_key(key: str) -> bool:
     return key in metadata_keys
 
 
-def _collect_leaf_device_names(node: JsonValue, excluded_keys: Set[str] | None = None) -> Iterable[str]:
+def _collect_leaf_device_names(
+    node: JsonValue, excluded_keys: Set[str] | None = None
+) -> Iterable[str]:
     """Yields leaf device names under a node.
 
     A leaf device is represented by:
@@ -140,7 +142,7 @@ def _find_and_collect_for_targets(
                     if value is None:
                         leaves.append(key)
                     collected[key].extend(leaves)
-                if isinstance(value, (dict, list)):
+                if isinstance(value, dict | list):
                     dfs(value)
         elif isinstance(current, list):
             for item in current:
@@ -292,18 +294,23 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, s
             guides = client.get_guides(params=page_params)
             page_results: Dict[str, List[Dict[str, str]]] = {}
             for guide in guides:
-                if guide.get("url") is None or guide.get("category") is None or guide.get("title") is None:
+                if (
+                    guide.get("url") is None
+                    or guide.get("category") is None
+                    or guide.get("title") is None
+                ):
                     continue
                 category = guide["category"]
                 if category not in page_results:
                     page_results[category] = []
-                page_results[category].append({
-                    "title": guide["title"],
-                    "url": guide["url"]
-                })
+                page_results[category].append(
+                    {
+                        "title": guide["title"],
+                        "url": guide["url"],
+                    }
+                )
             return page_results
         except Exception as e:
-            status = getattr(getattr(e, "response", None), "status_code", None)
             logger.error("Failed to fetch offset %d: %s", page_offset, e)
             return {}
 
@@ -424,7 +431,11 @@ def print_device_data(
                 data = client.get_category(device_name=ifixit_title, params=None)
                 repairability_score = data.get("repairability_score")
                 manufacturer = next(
-                    (entry.get("value") for entry in data.get("info", []) if entry.get("name") == "Device Brand"),
+                    (
+                        entry.get("value")
+                        for entry in data.get("info", [])
+                        if entry.get("name") == "Device Brand"
+                    ),
                     None,
                 )
                 repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
@@ -464,8 +475,12 @@ def print_device_data(
             results.append(fut.result())
 
     # Partition and sort results
-    with_score = [(n, t, s, b, l) for n, t, s, b, l, err in results if s is not None]
-    without_score = [(n, t) for n, t, s, b, l, err in results if s is None]
+    with_score = [
+        (n, t, s, brand, link_)
+        for n, t, s, brand, link_, err in results
+        if s is not None
+    ]
+    without_score = [(n, t) for n, t, s, _brand, _link, err in results if s is None]
     with_score.sort(key=lambda x: x[0])
 
     # Output results
@@ -475,19 +490,23 @@ def print_device_data(
             print(f"- {name} ({title})")
 
     print("\nRepairability scores for devices:")
-    for name, title, score, brand, link in with_score:
+    for name, title, score, _brand, _link in with_score:
         teardown_urls = teardown_guides.get(_normalize_key(name), [])
         if teardown_urls:
+            titles_and_urls = [f"{g['title']}: {g['url']}" for g in teardown_urls]
             print(
-                f"- {name} ({title}): {score}, Teardown URLs: {[g['title'] + ': ' + g['url'] for g in teardown_urls]}")
+                f"- {name} ({title}): {score}, Teardown URLs: {titles_and_urls}"
+            )
         else:
             print(f"- {name} ({title}): {score}, No teardown URLs found")
 
     print("\nSummary:")
     print(f"- Devices with a repairability score: {len(with_score)}")
     print(f"- Total devices processed: {len(results)}")
-    print(
-        f"- Devices with matched teardown URLs: {sum(1 for name, _, _, _, _ in with_score if _normalize_key(name) in teardown_guides)}")
+    matched = sum(
+        1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides
+    )
+    print(f"- Devices with matched teardown URLs: {matched}")
 
     if output_file:
         try:
