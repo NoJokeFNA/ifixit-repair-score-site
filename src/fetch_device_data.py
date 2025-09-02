@@ -72,92 +72,81 @@ def _is_metadata_key(key: str) -> bool:
 
 def _collect_leaf_device_names(
     node: JsonValue, excluded_keys: Set[str] | None = None
-) -> Iterable[str]:  # noqa: C901 - Tree traversal branches kept explicit for clarity
+) -> Iterable[str]:
     """Yields leaf device names under a node.
 
     A leaf device is represented by:
       - A dict entry with value None: {"Asus ROG Phone 6": None}
       - A string inside a list: {"Some Series": ["Model A", "Model B"]}
       - Nested dicts are traversed recursively.
-
-    Args:
-        node: The current JSON-like node (dict, list, etc.).
-        excluded_keys: Set of keys (category names) to exclude entirely.
-
-    Yields:
-        Leaf device names as strings.
     """
-    excluded_keys = excluded_keys or set()
-    if isinstance(node, dict):
-        for key, value in node.items():
-            if _is_metadata_key(key) or key in excluded_keys:
+    excluded = excluded_keys or set()
+
+    def from_dict(d: Dict[str, JsonValue]) -> Iterable[str]:
+        for k, v in d.items():
+            if _is_metadata_key(k) or k in excluded:
                 continue
-            if value is None:
-                yield key
-            elif isinstance(value, dict):
-                yield from _collect_leaf_device_names(value, excluded_keys)
-            elif isinstance(value, list):
-                for item in value:
-                    if isinstance(item, dict):
-                        yield from _collect_leaf_device_names(item, excluded_keys)
-                    elif isinstance(item, str):
-                        yield item
-                    elif item is None:
-                        yield key
+            if v is None:
+                yield k
+            elif isinstance(v, dict):
+                yield from from_dict(v)
+            elif isinstance(v, list):
+                yield from from_list(v, parent_key=k)
+
+    def from_list(items: List[JsonValue], parent_key: Optional[str] = None) -> Iterable[str]:
+        for it in items:
+            if isinstance(it, dict):
+                yield from _collect_leaf_device_names(it, excluded)
+            elif isinstance(it, str):
+                yield it
+            elif it is None and parent_key is not None:
+                yield parent_key
+
+    if isinstance(node, dict):
+        yield from from_dict(node)
     elif isinstance(node, list):
-        for item in node:
-            yield from _collect_leaf_device_names(item, excluded_keys)
+        yield from from_list(node)
 
 
 def _find_and_collect_for_targets(
     node: JsonValue,
     target_categories: Iterable[str],
     exclude_map: Dict[str, Set[str]] | None = None,
-) -> Dict[str, List[str]]:  # noqa: C901 - Intentional complexity to keep single-pass traversal
-    """Finds target categories in the tree and collects all leaf devices under them.
+) -> Dict[str, List[str]]:
+    """Find target categories in the tree and collect leaf devices under them."""
+    targets: Set[str] = set(target_categories)
+    out: Dict[str, List[str]] = {t: [] for t in targets}
+    excludes = exclude_map or {}
 
-    Scans the entire structure. When a key matches a target category, all descendant
-    leaves are collected, respecting category-specific exclusions.
-
-    Args:
-        node: The root node of the hierarchy.
-        target_categories: Category names to search for.
-        exclude_map: Mapping of target_category -> set of subtree keys to exclude.
-
-    Returns:
-        Dictionary mapping target category to sorted list of leaf device names.
-    """
-    targets_set: Set[str] = set(target_categories)
-    collected: Dict[str, List[str]] = {t: [] for t in targets_set}
-    exclude_map = exclude_map or {}
+    def handle_match(cat: str, value: JsonValue) -> None:
+        excluded = excludes.get(cat, set())
+        leaves = list(_collect_leaf_device_names(value, excluded_keys=excluded))
+        if value is None:
+            leaves.append(cat)
+        out[cat].extend(leaves)
 
     def dfs(current: JsonValue) -> None:
         if isinstance(current, dict):
-            for key, value in current.items():
-                if _is_metadata_key(key):
+            for k, v in current.items():
+                if _is_metadata_key(k):
                     continue
-                if key in targets_set:
-                    logger.debug("Found target category: %s", key)
-                    excluded = exclude_map.get(key, set())
-                    leaves = list(_collect_leaf_device_names(value, excluded_keys=excluded))
-                    if value is None:
-                        leaves.append(key)
-                    collected[key].extend(leaves)
-                if isinstance(value, dict | list):
-                    dfs(value)
+                if k in targets:
+                    logger.debug("Found target category: %s", k)
+                    handle_match(k, v)
+                if isinstance(v, (dict, list)):
+                    dfs(v)
         elif isinstance(current, list):
             for item in current:
                 dfs(item)
 
     dfs(node)
 
-    # Deduplicate and sort results
-    for category in collected:
+    for category in out:
         seen: Set[str] = set()
-        unique_ordered = [x for x in collected[category] if not (x in seen or seen.add(x))]
-        collected[category] = sorted(unique_ordered)
+        unique_ordered = [x for x in out[category] if not (x in seen or seen.add(x))]
+        out[category] = sorted(unique_ordered)
 
-    return collected
+    return out
 
 
 def collect_child_devices(
@@ -260,7 +249,7 @@ def _normalize_key(s: str) -> str:
 
 
 def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
-    str, List[Dict[str, str]]]:  # noqa: C901 - Pagination, batching, and sorting kept in one unit for performance
+    str, List[Dict[str, str]]]:
     """Fetches all teardown guides from iFixit API, grouped by category.
 
     Iteratively retrieves guides from offset=0 until no more entries are found,
@@ -316,6 +305,12 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
             logger.error("Failed to fetch offset %d: %s", page_offset, e)
             return {}
 
+    def extend_map(dst: Dict[str, List[Dict[str, str]]], src: Dict[str, List[Dict[str, str]]]) -> None:
+        for category, guides in src.items():
+            if category not in dst:
+                dst[category] = []
+            dst[category].extend(guides)
+
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         while True:
             offsets = list(range(offset, offset + batch_size * max_workers, batch_size))
@@ -329,42 +324,37 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
                 unit="page",
                 dynamic_ncols=True,
             ):
-                page_guides = future.result()
                 with lock:
-                    for category, guides in page_guides.items():
-                        if category not in page_results:
-                            page_results[category] = []
-                        page_results[category].extend(guides)
+                    extend_map(page_results, future.result())
 
             if not page_results:
                 break
 
             with lock:
-                for category, guides in page_results.items():
-                    if category not in results:
-                        results[category] = []
-                    results[category].extend(guides)
+                extend_map(results, page_results)
 
             offset += batch_size * max_workers
             logger.debug("Processed batch, new offset: %d", offset)
 
-    # Sort guides for each category, prioritizing main teardown
-    for category in results:
+    def sort_guides_for_category(category: str, guides: List[Dict[str, str]]) -> List[Dict[str, str]]:
         main_teardown = None
-        sub_teardowns = []
-        for guide in results[category]:
-            if is_main_teardown(category, guide["title"]):
-                main_teardown = guide
+        sub_teardowns: List[Dict[str, str]] = []
+        for g in guides:
+            if is_main_teardown(category, g["title"]):
+                main_teardown = g
             else:
-                sub_teardowns.append(guide)
-        # Sort sub_teardowns by title for consistency
+                sub_teardowns.append(g)
         sub_teardowns.sort(key=lambda x: x["title"])
-        results[category] = ([main_teardown] if main_teardown else []) + sub_teardowns
+        return ([main_teardown] if main_teardown else []) + sub_teardowns
+
+    # Sort guides for each category, prioritizing main teardown
+    for category in list(results.keys()):
+        results[category] = sort_guides_for_category(category, results[category])
 
     # Build normalized lookup to make matching resilient
-    normalized_results: Dict[str, List[Dict[str, str]]] = {}
-    for category, guides in results.items():
-        normalized_results[_normalize_key(category)] = guides
+    normalized_results: Dict[str, List[Dict[str, str]]] = {
+        _normalize_key(category): guides for category, guides in results.items()
+    }
 
     logger.info("Fetched %d categories with teardown guides", len(results))
     return normalized_results
@@ -374,31 +364,29 @@ def print_device_data(
     client: IFixitAPIClient,
     devices: List[str],
     output_file: Optional[str] = None,
-) -> None:  # noqa: C901 - Orchestrates concurrency, rate limiting, retries, and output
+) -> None:
     """Fetches and prints device repairability scores and guide URLs concurrently."""
     logger.info("Fetching teardown guides for matching...")
     teardown_guides = fetch_teardown_guides(client)
 
-    # Deduplicate while preserving order
-    seen: Set[str] = set()
-    unique_devices = [d for d in devices if not (d in seen or seen.add(d))]
+    def dedupe(seq: List[str]) -> List[str]:
+        seen: Set[str] = set()
+        return [d for d in seq if not (d in seen or seen.add(d))]
 
+    unique_devices = dedupe(devices)
     if not unique_devices:
         print("No devices provided.")
         return
 
     class _RateLimiter:
         """Token-bucket rate limiter for controlling API request rate."""
-
         def __init__(self, rate_per_sec: int, burst: Optional[int] = None) -> None:
             self.rate = max(1, rate_per_sec)
             self.capacity = burst if burst is not None else self.rate
             self._tokens: float = float(self.capacity)
             self._last: float = perf_counter()
             self._lock = __import__("threading").Lock()
-
         def acquire(self) -> None:
-            """Acquire a token, blocking if necessary."""
             wait_time = 0.0
             with self._lock:
                 now = perf_counter()
@@ -407,25 +395,21 @@ def print_device_data(
                 self._tokens = min(self.capacity, self._tokens + elapsed * self.rate)
                 if self._tokens < 1.0:
                     wait_time = (1.0 - self._tokens) / self.rate
-                    # Don't sleep while holding the lock
                 else:
                     self._tokens -= 1.0
                     return
             if wait_time > 0.0:
                 time.sleep(wait_time)
-            # Re-acquire a token after sleeping
             with self._lock:
                 now = perf_counter()
                 elapsed = now - self._last
                 self._last = now
                 self._tokens = min(self.capacity, self._tokens + elapsed * self.rate)
-                # Guaranteed to have at least 1 token here
                 self._tokens -= 1.0
 
     def _fetch_score(
         device_name: str, max_retries: int = 3, base_backoff: float = 0.75
     ) -> Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]:
-        """Fetches a single device's score with retries."""
         ifixit_title = _to_ifixit_title(device_name)
         for attempt in range(max_retries):
             try:
@@ -457,9 +441,7 @@ def print_device_data(
                     if response
                     else None
                 )
-                sleep_s = (
-                    float(retry_after) if retry_after else base_backoff * (2 ** attempt)
-                )
+                sleep_s = float(retry_after) if retry_after else base_backoff * (2 ** attempt)
                 if status_code in {429, 500, 502, 503, 504} and attempt < max_retries - 1:
                     time.sleep(sleep_s)
                     continue
@@ -472,6 +454,18 @@ def print_device_data(
                 )
                 return device_name, ifixit_title, None, None, None, str(e)
         return device_name, ifixit_title, None, None, None, "Max retries exceeded"
+
+    def partition_results(
+        rows: List[Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]]
+    ) -> Tuple[List[Tuple[str, str, Optional[float], Optional[str], Optional[str]]], List[Tuple[str, str]]]:
+        with_score = [
+            (n, t, s, brand, link_)
+            for n, t, s, brand, link_, err in rows
+            if s is not None
+        ]
+        without_score = [(n, t) for n, t, s, _brand, _link, err in rows if s is None]
+        with_score.sort(key=lambda x: x[0])
+        return with_score, without_score
 
     max_workers = 8
     requests_per_second = 4
@@ -489,39 +483,28 @@ def print_device_data(
         ):
             results.append(fut.result())
 
-    # Partition and sort results
-    with_score = [
-        (n, t, s, brand, link_)
-        for n, t, s, brand, link_, err in results
-        if s is not None
-    ]
-    without_score = [(n, t) for n, t, s, _brand, _link, err in results if s is None]
-    with_score.sort(key=lambda x: x[0])
+    with_score, without_score = partition_results(results)
 
-    # Output results
-    if without_score:
-        print("\nDevices without a repairability score (or failed to fetch):")
-        for name, title in sorted(without_score, key=lambda x: x[0]):
-            print(f"- {name} ({title})")
+    def print_outputs() -> None:
+        if without_score:
+            print("\nDevices without a repairability score (or failed to fetch):")
+            for name, title in sorted(without_score, key=lambda x: x[0]):
+                print(f"- {name} ({title})")
+        print("\nRepairability scores for devices:")
+        for name, title, score, _brand, _link in with_score:
+            teardown_urls = teardown_guides.get(_normalize_key(name), [])
+            if teardown_urls:
+                titles_and_urls = [f"{g['title']}: {g['url']}" for g in teardown_urls]
+                print(f"- {name} ({title}): {score}, Teardown URLs: {titles_and_urls}")
+            else:
+                print(f"- {name} ({title}): {score}, No teardown URLs found")
+        print("\nSummary:")
+        print(f"- Devices with a repairability score: {len(with_score)}")
+        print(f"- Total devices processed: {len(results)}")
+        matched = sum(1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides)
+        print(f"- Devices with matched teardown URLs: {matched}")
 
-    print("\nRepairability scores for devices:")
-    for name, title, score, _brand, _link in with_score:
-        teardown_urls = teardown_guides.get(_normalize_key(name), [])
-        if teardown_urls:
-            titles_and_urls = [f"{g['title']}: {g['url']}" for g in teardown_urls]
-            print(
-                f"- {name} ({title}): {score}, Teardown URLs: {titles_and_urls}"
-            )
-        else:
-            print(f"- {name} ({title}): {score}, No teardown URLs found")
-
-    print("\nSummary:")
-    print(f"- Devices with a repairability score: {len(with_score)}")
-    print(f"- Total devices processed: {len(results)}")
-    matched = sum(
-        1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides
-    )
-    print(f"- Devices with matched teardown URLs: {matched}")
+    print_outputs()
 
     if output_file:
         try:
