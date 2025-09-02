@@ -43,10 +43,12 @@ jobs:
         working-directory: gh-pages
         run: |
           set -e
-          if ! git diff --quiet -- devices_with_scores.json; then
+          # Stage the file (works for both new and modified files)
+          git add devices_with_scores.json || true
+          # Commit only if something is staged
+          if ! git diff --cached --quiet -- devices_with_scores.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add devices_with_scores.json
             ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
             git commit -m "chore(gh-pages): update devices_with_scores.json ${ts}"
             git push
