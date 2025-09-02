@@ -1,0 +1,27 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+extend-select = [
+  "E", "F", "W",
+  "I",
+  "UP",
+  "B",
+  "SIM",
+  "C90",
+]
+ignore = [
+  "E203",
+  "D203", "D212",
+]
+fix = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

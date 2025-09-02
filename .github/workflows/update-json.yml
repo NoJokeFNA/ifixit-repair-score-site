@@ -1,0 +1,167 @@
+name: Update device scores JSON
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "07 22 * * *" # 22:07 UTC
+    - cron: "07 23 * * *" # 23:07 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-json-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name:
+          Guard: run only at midnight Europe/Berlin
+        id: guard
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          now = datetime.now(ZoneInfo("Europe/Berlin"))
+          print("should_run=" + str(now.hour == 0).lower())
+          PY
+
+      - name: Stop if not midnight in Europe/Berlin
+        if: steps.guard.outputs.should_run != 'true'
+        run: |
+          echo "Not midnight in Europe/Berlin. Exiting successfully."
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Generate JSON
+        run: |
+          set -euo pipefail
+          python fetch_device_data.py
+
+      - name: Validate JSON (structure + schema)
+        run: |
+          python - <<'PY'
+          import json, sys, pathlib
+          from typing import Any, Dict, List
+          p = pathlib.Path("devices_with_scores.json")
+          if not p.exists():
+              print("devices_with_scores.json not found.", file=sys.stderr)
+              sys.exit(1)
+          try:
+              data = json.loads(p.read_text(encoding="utf-8"))
+          except Exception as e:
+              print(f"Invalid JSON: {e}", file=sys.stderr)
+              sys.exit(1)
+          if not isinstance(data, list):
+              print("Root must be a list.", file=sys.stderr)
+              sys.exit(1)
+          # Lightweight schema checks without extra deps
+          def check_item(i: int, d: Dict[str, Any]) -> List[str]:
+              errs=[]
+              def req_str(key): 
+                  v=d.get(key, None)
+                  if v is None or not isinstance(v, str) or not v.strip():
+                      errs.append(f"[{i}] '{key}' must be non-empty string.")
+              def req_int_opt_none(key):
+                  v=d.get(key, None)
+                  if v is not None and not isinstance(v, int):
+                      errs.append(f"[{i}] '{key}' must be int or null.")
+              def opt_str_or_null(key):
+                  v=d.get(key, None)
+                  if v is not None and not isinstance(v, str):
+                      errs.append(f"[{i}] '{key}' must be string or null.")
+              def list_teardowns():
+                  v=d.get("teardown_urls", None)
+                  if v is None:
+                      return
+                  if not isinstance(v, list):
+                      errs.append(f"[{i}] 'teardown_urls' must be a list.")
+                      return
+                  for j,t in enumerate(v):
+                      if not isinstance(t, dict):
+                          errs.append(f"[{i}] teardown_urls[{j}] must be object.")
+                          continue
+                      if "title" in t and t["title"] is not None and not isinstance(t["title"], str):
+                          errs.append(f"[{i}] teardown_urls[{j}].title must be string or null.")
+                      if "url" not in t or not isinstance(t["url"], str) or not t["url"].startswith("http"):
+                          errs.append(f"[{i}] teardown_urls[{j}].url must be http(s) string.")
+              req_str("name")
+              req_str("title")
+              req_int_opt_none("repairability_score")
+              opt_str_or_null("brand")
+              req_str("link")
+              list_teardowns()
+              return errs
+          errors=[]
+          for i, d in enumerate(data):
+              if not isinstance(d, dict):
+                  errors.append(f"[{i}] item must be object.")
+                  continue
+              errors.extend(check_item(i, d))
+          if errors:
+              print("Schema validation failed:\n" + "\n".join(errors), file=sys.stderr)
+              sys.exit(1)
+          print("Validation OK.")
+          PY
+
+      - name: Commit changes (if any)
+        id: commit
+        run: |
+          set -e
+          if git status --porcelain | grep -q 'devices_with_scores.json'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add devices_with_scores.json
+            ts=$(date -u +"%Y-%m-%d")
+            git commit -m "chore(data): update devices_with_scores.json (${ts})"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.commit.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message:
+            chore(data): update devices_with_scores.json
+          title: "chore(data): update devices_with_scores.json"
+          body: |
+            Automated data update.
+            - Source: fetch_device_data.py
+            - Validation: structure and lightweight schema checks
+          branch: ci/update-json
+          delete-branch: true
+          labels: |
+            automated
+            data-update
+          signoff: false
