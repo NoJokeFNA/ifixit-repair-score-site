@@ -339,6 +339,11 @@ function toggleSort(key) {
 }
 
 function renderTable() {
+    // Close any open teardown portal before re-rendering table to avoid orphaned overlays
+    const existingPortal = document.querySelector('.teardown-portal');
+    if (existingPortal) { existingPortal.remove(); }
+    document.querySelectorAll('.teardown-toggle[aria-expanded="true"]').forEach(t => t.setAttribute('aria-expanded','false'));
+
     // Update active filter chips and save lastFiltered for exports
     let data = getFilteredData();
     data = sortData(data);
