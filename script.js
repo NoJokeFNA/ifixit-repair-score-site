@@ -1,6 +1,42 @@
+// Filter out noisy extension-related unhandled promise rejections seen in some browsers
+// e.g., "Could not establish connection. Receiving end does not exist." which is not caused by our app.
+window.addEventListener('unhandledrejection', (e) => {
+    try {
+        const msg = (e && e.reason && (e.reason.message || e.reason.toString())) || '';
+        if (typeof msg === 'string' && msg.includes('Could not establish connection') && msg.includes('Receiving end does not exist')) {
+            e.preventDefault();
+            // Optional: keep console clean but allow debugging if needed
+            if (typeof console !== 'undefined' && console.debug) {
+                console.debug('[ignored] extension unhandledrejection:', msg);
+            }
+        }
+    } catch (_) { /* no-op */ }
+});
+
 let devicesData = [];
 let currentSort = {key: 'name', direction: 'asc'};
 let myChart = null;
+let chartJsReady = null;
+function loadChartJsIdle() {
+    if (typeof Chart !== 'undefined') return Promise.resolve(true);
+    if (chartJsReady) return chartJsReady;
+    chartJsReady = new Promise((resolve) => {
+        const start = () => {
+            const s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+            s.async = true;
+            s.onload = () => resolve(true);
+            s.onerror = () => resolve(false);
+            document.head.appendChild(s);
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(start, {timeout: 3000});
+        } else {
+            setTimeout(start, 100);
+        }
+    });
+    return chartJsReady;
+}
 
 const TAG_PRIORITY = {
     starred: 0,
@@ -87,7 +123,9 @@ async function loadData() {
         renderTable();
         populateBrandFilter();
         try {
-            renderChart(devicesData);
+            if (typeof Chart !== 'undefined') {
+                renderChart(devicesData);
+            }
         } catch (e) {
             console.error('Chart rendering failed with cached data:', e);
             chartError.classList.remove('hidden');
@@ -101,7 +139,7 @@ async function loadData() {
         localStorage.setItem('devicesData', JSON.stringify(devicesData));
         renderTable();
         populateBrandFilter();
-        renderChart(devicesData);
+        if (typeof Chart !== 'undefined') { renderChart(devicesData); }
     } catch (error) {
         console.error('Data fetch failed:', error);
         tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center text-rose-500">Failed to load data</td></tr>';
@@ -275,8 +313,8 @@ function populateTable(data) {
     }
     document.addEventListener('click', clickOutsideHandler);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closePortal(); }});
-    window.addEventListener('scroll', () => { if (teardownPortalOpenFor) positionPortalRelativeToToggle(teardownPortalOpenFor); }, true);
-    window.addEventListener('resize', () => { if (teardownPortalOpenFor) positionPortalRelativeToToggle(teardownPortalOpenFor); });
+    window.addEventListener('scroll', () => { if (teardownPortalOpenFor) positionPortalRelativeToToggle(teardownPortalOpenFor); }, {capture:true, passive:true});
+    window.addEventListener('resize', () => { if (teardownPortalOpenFor) positionPortalRelativeToToggle(teardownPortalOpenFor); }, {passive:true});
 
     tbody.querySelectorAll('tr').forEach((row, index) => {
         row.addEventListener('keydown', (e) => {
@@ -477,7 +515,9 @@ let P = [];
 function resizeBG() {
     bg.width = innerWidth;
     bg.height = innerHeight;
-    P = Array.from({length: 60}, () => ({
+    const isSmall = innerWidth < 640;
+    const count = prefersReducedMotion ? 0 : (isSmall ? 28 : 60);
+    P = Array.from({length: count}, () => ({
         x: Math.random() * bg.width,
         y: Math.random() * bg.height,
         r: Math.random() * 2 + 1.2,
@@ -503,23 +543,25 @@ function tickBG() {
         if (p.x < 0 || p.x > bg.width) p.dx *= -1;
         if (p.y < 0 || p.y > bg.height) p.dy *= -1;
     });
-    P.forEach((p1, i) => {
-        P.slice(i + 1).forEach(p2 => {
-            const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-            if (dist < 100) {
-                g.beginPath();
-                g.moveTo(p1.x, p1.y);
-                g.lineTo(p2.x, p2.y);
-                g.stroke();
-            }
+    if (innerWidth >= 768) {
+        P.forEach((p1, i) => {
+            P.slice(i + 1).forEach(p2 => {
+                const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                if (dist < 100) {
+                    g.beginPath();
+                    g.moveTo(p1.x, p1.y);
+                    g.lineTo(p2.x, p2.y);
+                    g.stroke();
+                }
+            });
         });
-    });
+    }
     if (animateBG) {
         bgRafId = requestAnimationFrame(tickBG);
     }
 }
 
-addEventListener('resize', resizeBG);
+addEventListener('resize', resizeBG, {passive:true});
 resizeBG();
 
 function startBG() {
@@ -643,6 +685,12 @@ function renderActiveFiltersChip() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Load Chart.js during an idle period to improve FCP/TBT
+    loadChartJsIdle().then(() => {
+        if (devicesData && devicesData.length) {
+            try { renderChart(window.lastFiltered || devicesData); } catch (_) {}
+        }
+    });
     updateFileAge();
     queryToState();
     loadData();

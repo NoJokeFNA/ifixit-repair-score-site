@@ -288,14 +288,46 @@ tr[tabindex="0"]:focus {
 }
 
 @media (max-width: 640px) {
-    #fileAge {
-        right: 2rem;
-    }
+    /* Footer meta placement */
+    #fileAge { right: 2rem; }
 
-    .teardown-dropdown {
-        min-width: 150px;
-        max-width: 90vw;
+    /* Dropdown sizing on small screens */
+    .teardown-dropdown { min-width: 150px; max-width: 90vw; }
+
+    /* Header adjustments */
+    header .container { grid-template-columns: 1fr !important; }
+    header h1 { font-size: 1.6rem; line-height: 1.2; }
+    header .glass-card { padding: 0.75rem; }
+
+    /* Card paddings */
+    .glass-card.chart-section, .glass-card.table-section { padding: 1rem !important; }
+
+    /* Chart height */
+    figure[style] { height: 320px !important; }
+
+    /* Controls stack and wrap */
+    .table-section .flex.flex-col.sm\:flex-row { gap: 0.5rem; }
+    #searchInput, #brandFilter {
+        width: 100%;
     }
+    .table-section .flex.items-center.gap-2 { flex-wrap: wrap; }
+
+    /* Table typography and spacing */
+    table thead th { padding: 0.5rem 0.75rem !important; font-size: 10px; }
+    #deviceTable td { padding: 0.5rem 0.75rem !important; font-size: 0.9rem; }
+
+    /* Allow long text to wrap on mobile */
+    #deviceTable td, #deviceTable th { white-space: normal; }
+
+    /* Portal dropdown max height on phones */
+    .teardown-portal, .teardown-dropdown { max-height: 70vh; }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .glass-card.chart-section, .glass-card.table-section { padding: 1.25rem !important; }
+    figure[style] { height: 400px !important; }
+    table thead th { font-size: 11px; }
 }
 
 /* Ensure table wrapper allows dropdowns to overlay without adding vertical scrollbar */

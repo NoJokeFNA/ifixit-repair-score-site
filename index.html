@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>iFixit Repairability Scores — Dev Dashboard</title>
     <meta name="description" content="Interactive dashboard of iFixit repairability scores with searchable, filterable device table and score distribution chart.">
-    <meta property="og:title" content="iFixit Repairability Scores — Dev Dashboard">
+    <meta property="og:title" content="iFixit Repairability Scores — Developer Dashboard">
     <meta property="og:description" content="Explore repairability scores, filter by brand, and view teardowns. Export CSV/JSON and share deep links.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="favicon.png">
@@ -13,9 +13,13 @@
     <meta name="twitter:title" content="iFixit Repairability Scores — Dev Dashboard">
     <meta name="twitter:description" content="Explore repairability scores, filter by brand, and view teardowns.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
@@ -177,6 +181,6 @@
 <!-- Portal root for overlay dropdowns -->
 <div id="portal-root"></div>
 
-<script src="script.js"></script>
+<script defer src="script.js"></script>
 </body>
 </html>
