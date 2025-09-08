@@ -285,6 +285,10 @@
     "teardown_urls": [
       {
         "title": "iPhone 13 Pro Teardown",
+        "url": "https://www.ifixit.com/Teardown/iPhone+13+Pro+Teardown/144928"
+      },
+      {
+        "title": "iPhone 13 Pro Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+13+Pro+Teardown/145019"
       },
       {
@@ -428,6 +432,10 @@
     "teardown_urls": [
       {
         "title": "iPhone 4 Teardown",
+        "url": "https://www.ifixit.com/Teardown/iPhone+4+Teardown/3130"
+      },
+      {
+        "title": "iPhone 4 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4+Teardown/73133"
       },
       {
@@ -478,6 +486,10 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+5+Teardown/42582"
       },
       {
+        "title": "iPhone 5 Teardown",
+        "url": "https://www.ifixit.com/Teardown/iPhone+5+Teardown/10525"
+      },
+      {
         "title": "Apple A6 Teardown",
         "url": "https://www.ifixit.com/Teardown/Apple+A6+Teardown/10528"
       }
@@ -516,6 +528,14 @@
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_6",
     "teardown_urls": [
+      {
+        "title": "iPhone 6 Teardown",
+        "url": "https://www.ifixit.com/Teardown/iPhone+6+Teardown/29213"
+      },
+      {
+        "title": "iPhone 6 Teardown",
+        "url": "https://www.ifixit.com/Teardown/iPhone+6+Teardown/29224"
+      },
       {
         "title": "iPhone 6 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6+Teardown/131237"
@@ -972,6 +992,10 @@
     "teardown_urls": [
       {
         "title": "Nexus 6P Teardown",
+        "url": "https://www.ifixit.com/Teardown/Nexus+6P+Teardown/51660"
+      },
+      {
+        "title": "Nexus 6P Teardown",
         "url": "https://www.ifixit.com/Teardown/Nexus+6P+Teardown/53965"
       }
     ]
@@ -1127,6 +1151,10 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Mate_30_Pro",
     "teardown_urls": [
+      {
+        "title": "Huawei Mate 30 Pro Teardown",
+        "url": "https://www.ifixit.com/Teardown/Huawei+Mate+30+Pro+Teardown/127743"
+      },
       {
         "title": "Huawei Mate 30 Pro Teardown",
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+30+Pro+Teardown/129894"
@@ -1320,6 +1348,10 @@
     "brand": "LG",
     "link": "https://www.ifixit.com/Device/Nexus_5X",
     "teardown_urls": [
+      {
+        "title": "Nexus 5X Teardown",
+        "url": "https://www.ifixit.com/Teardown/Nexus+5X+Teardown/51318"
+      },
       {
         "title": "Nexus 5X Teardown",
         "url": "https://www.ifixit.com/Teardown/Nexus+5X+Teardown/54403"
@@ -1822,6 +1854,14 @@
     "teardown_urls": [
       {
         "title": "Samsung Galaxy S II Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/5861"
+      },
+      {
+        "title": "Samsung Galaxy S II Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/72990"
+      },
+      {
+        "title": "Samsung Galaxy S II Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/73002"
       }
     ]
@@ -1833,6 +1873,10 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S_III",
     "teardown_urls": [
+      {
+        "title": "Samsung Galaxy S III Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+III+Teardown/9391"
+      },
       {
         "title": "Samsung Galaxy S III Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+III+Teardown/73106"
@@ -2000,6 +2044,10 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S6",
     "teardown_urls": [
+      {
+        "title": "Samsung Galaxy S6 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S6+Teardown/38636"
+      },
       {
         "title": "Samsung Galaxy S6 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S6+Teardown/39174"
