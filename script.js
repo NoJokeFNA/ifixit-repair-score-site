@@ -605,8 +605,11 @@ async function updateFileAge() {
             else if (diffMin > 0) ageStr = `${diffMin} minute(s)`;
             else ageStr = 'less than 1 minute';
             const fa = document.getElementById('fileAge');
+            const fullTitle = `Last datasource update: ${ageStr} ago (${fileDate.toLocaleString()})`;
             fa.textContent = `Last datasource update: ${ageStr} ago`;
-            fa.setAttribute('title', `Last datasource update: ${ageStr} ago (${fileDate.toLocaleString()})`);
+            fa.setAttribute('title', fullTitle);
+            const footerMeta = document.querySelector('footer .container .text-center');
+            if (footerMeta) { footerMeta.setAttribute('title', fullTitle); }
         } else {
             document.getElementById('fileAge').textContent = 'File age not available';
         }
