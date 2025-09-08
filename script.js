@@ -701,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Density toggle
     const densityBtn = document.getElementById('densityToggle');
     function applyDensityFromStorage() {
-        const mode = localStorage.getItem('density') || 'comfortable';
+        const mode = localStorage.getItem('density') || 'compact';
         const body = document.body;
         if (mode === 'compact') { body.classList.add('compact-rows'); densityBtn.textContent = 'Density: Compact'; }
         else { body.classList.remove('compact-rows'); densityBtn.textContent = 'Density: Comfortable'; }
