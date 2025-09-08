@@ -12,16 +12,15 @@
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
 
-<header class="bg-slate-950/80 py-10 border-b border-slate-800 shadow-2xl">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<header class="bg-slate-950/80 py-6 border-b border-slate-800 shadow-2xl">
+    <div class="container mx-auto px-6 grid gap-4 md:grid-cols-3 items-start">
         <div>
             <h1 class="text-4xl font-bold neon-glow">iFixit Repairability Scores</h1>
-            <p class="mt-2 text-cyan-400 font-mono">Developer Dashboard Edition</p>
+            <p class="mt-1 text-cyan-400 font-mono text-sm">Developer Dashboard Edition</p>
         </div>
-        <div class="glass-card p-4 text-gray-200 max-w-md">
-            <p class="text-sm mb-2"><strong>The officially unofficial listing of iFixit's repairability scores.</strong>
-            </p>
-            <p class="text-xs">
+        <div class="glass-card p-3 text-gray-200">
+            <p class="text-sm font-semibold mb-1">The officially unofficial listing of iFixit's repairability scores.</p>
+            <p class="text-xs leading-relaxed">
                 Inspired by
                 <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores" target="_blank"
                    class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
@@ -29,13 +28,15 @@
                    class="text-cyan-400 underline">the original webpage</a>.
                 Rewritten with latest data.
             </p>
-            <div class="mt-3 text-[11.5px] leading-relaxed text-slate-300 font-mono">
-                <span class="inline-flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-                    <span>Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and inspect teardown links labeled Featured, Community, and Archived.</span>
-                </span>
-                <div class="mt-2 h-px bg-gradient-to-r from-cyan-400/40 via-violet-400/30 to-transparent"></div>
+        </div>
+        <div class="glass-card p-3 text-gray-200">
+            <div class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                <p class="text-[12px] leading-snug text-slate-200 font-mono">
+                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and inspect teardown links labeled Featured, Community, and Archived.
+                </p>
             </div>
+            <div class="mt-2 h-px bg-gradient-to-r from-cyan-400/40 via-violet-400/30 to-transparent"></div>
         </div>
     </div>
 </header>
