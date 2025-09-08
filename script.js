@@ -16,6 +16,7 @@ window.addEventListener('unhandledrejection', (e) => {
 let devicesData = [];
 let currentSort = {key: 'name', direction: 'asc'};
 let myChart = null;
+let lastUpdateFullTitle = '';
 let chartJsReady = null;
 function loadChartJsIdle() {
     if (typeof Chart !== 'undefined') return Promise.resolve(true);
@@ -606,15 +607,18 @@ async function updateFileAge() {
             else ageStr = 'less than 1 minute';
             const fa = document.getElementById('fileAge');
             const fullTitle = `Last datasource update: ${ageStr} ago (${fileDate.toLocaleString()})`;
+            lastUpdateFullTitle = fullTitle;
             fa.textContent = `Last datasource update: ${ageStr} ago`;
             fa.setAttribute('title', fullTitle);
             const footerMeta = document.querySelector('footer .container .text-center');
             if (footerMeta) { footerMeta.setAttribute('title', fullTitle); }
         } else {
             document.getElementById('fileAge').textContent = 'File age not available';
+            lastUpdateFullTitle = 'Last datasource update: not available';
         }
     } catch (e) {
         document.getElementById('fileAge').textContent = 'File age not available';
+        lastUpdateFullTitle = 'Last datasource update: not available';
     }
 }
 
@@ -702,6 +706,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const debouncedRender = debounce(() => { renderTable(); stateToQuery(); }, 300);
     document.getElementById('searchInput').addEventListener('input', debouncedRender);
     document.getElementById('brandFilter').addEventListener('change', () => { renderTable(); stateToQuery(); });
+
+    // Mobile info icon tooltip
+    (function setupMobileInfo() {
+        const btn = document.getElementById('fileAgeInfoBtn');
+        if (!btn) return;
+        // Hide button on wider screens via CSS; ensure ARIA
+        btn.setAttribute('aria-haspopup', 'dialog');
+        btn.setAttribute('aria-expanded', 'false');
+        let tip = null;
+        function ensureTip() {
+            if (tip) return tip;
+            tip = document.createElement('div');
+            tip.className = 'mobile-info-tooltip';
+            tip.setAttribute('role','dialog');
+            tip.setAttribute('aria-modal','false');
+            document.body.appendChild(tip);
+            return tip;
+        }
+        function positionTip() {
+            const t = ensureTip();
+            t.textContent = lastUpdateFullTitle || (document.getElementById('fileAge')?.getAttribute('title') || 'Last datasource update: not available');
+            const rect = btn.getBoundingClientRect();
+            const margin = 8;
+            let top = rect.top - t.offsetHeight - margin;
+            if (top < 8) top = rect.bottom + margin;
+            let left = Math.min(Math.max(8, rect.left), window.innerWidth - t.offsetWidth - 8);
+            t.style.top = `${Math.max(8, top)}px`;
+            t.style.left = `${left}px`;
+        }
+        function openTip() {
+            const t = ensureTip();
+            t.classList.add('show');
+            positionTip();
+            btn.setAttribute('aria-expanded','true');
+        }
+        function closeTip() {
+            if (!tip) return;
+            tip.classList.remove('show');
+            btn.setAttribute('aria-expanded','false');
+        }
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (tip && tip.classList.contains('show')) closeTip(); else openTip();
+        });
+        document.addEventListener('click', (e) => {
+            if (tip && tip.classList.contains('show')) {
+                if (!e.target.closest('.mobile-info-tooltip') && e.target !== btn) closeTip();
+            }
+        });
+        window.addEventListener('resize', () => { if (tip && tip.classList.contains('show')) positionTip(); }, {passive:true});
+    })();
 
     // Density toggle
     const densityBtn = document.getElementById('densityToggle');

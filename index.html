@@ -15,11 +15,40 @@
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css"/>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind built via PostCSS/GitHub Actions: include compiled CSS -->
+    <link rel="preload" href="dist/tailwind.css" as="style">
+    <link rel="stylesheet" href="dist/tailwind.css">
+    <script>
+        (function(){
+            try {
+                // For localhost development, always use Play CDN for convenience
+                var isLocalhost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+                if (isLocalhost) {
+                    var s1 = document.createElement('script');
+                    s1.src = 'https://cdn.tailwindcss.com';
+                    document.head.appendChild(s1);
+                    return;
+                }
+                // On deployed environments, prefer compiled CSS; fallback to CDN only if missing
+                var href = 'dist/tailwind.css';
+                fetch(href, {method:'HEAD'}).then(function(res){
+                    if(!res || !res.ok){
+                        var s = document.createElement('script');
+                        s.src = 'https://cdn.tailwindcss.com';
+                        document.head.appendChild(s);
+                    }
+                }).catch(function(){
+                    var s = document.createElement('script');
+                    s.src = 'https://cdn.tailwindcss.com';
+                    document.head.appendChild(s);
+                });
+            } catch(e) {
+                var s = document.createElement('script');
+                s.src = 'https://cdn.tailwindcss.com';
+                document.head.appendChild(s);
+            }
+        })();
+    </script>
 </head>
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
@@ -125,12 +154,12 @@
                     <option value="">All manufacturers</option>
                 </select>
                 <div class="flex items-center gap-2">
-                    <button id="copyLink" class="px-3 py-2 rounded-lg bg-slate-800 text-gray-100 hover:bg-cyan-400 hover:text-black transition" title="Copy link to this view">Copy link</button>
-                    <button id="exportCsv" class="px-3 py-2 rounded-lg bg-slate-800 text-gray-100 hover:bg-cyan-400 hover:text-black transition" title="Export current table as CSV">Export CSV</button>
-                    <button id="exportJson" class="px-3 py-2 rounded-lg bg-slate-800 text-gray-100 hover:bg-cyan-400 hover:text-black transition" title="Export current table as JSON">Export JSON</button>
-                    <button id="densityToggle" class="px-3 py-2 rounded-lg bg-slate-800 text-gray-100 hover:bg-cyan-400 hover:text-black transition" title="Toggle row density">Density: Compact</button>
+                    <button id="copyLink" class="px-3 py-2 btn-neon transition" title="Copy link to this view">Copy link</button>
+                    <button id="exportCsv" class="px-3 py-2 btn-neon transition" title="Export current table as CSV">Export CSV</button>
+                    <button id="exportJson" class="px-3 py-2 btn-neon transition" title="Export current table as JSON">Export JSON</button>
+                    <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density: Compact</button>
                     <button id="resetFilters"
-                            class="px-4 py-2 rounded-lg bg-slate-800 text-gray-100 hover:bg-cyan-400 hover:text-black transition">
+                            class="px-4 py-2 btn-neon transition">
                         Reset
                     </button>
                 </div>
@@ -175,6 +204,12 @@
     <div class="container mx-auto px-6 flex items-center justify-center text-sm font-mono relative">
         <div class="text-center">Data from iFixit API · Built with Tailwind + Chart.js · Neon Dark · Version 1.0.2</div>
         <div id="fileAge" class="absolute right-2 text-sm text-gray-500 font-mono"></div>
+        <button id="fileAgeInfoBtn" aria-label="Show last datasource update" class="mobile-info-btn" type="button" title="Last datasource update">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="rgba(8,145,178,0.18)" stroke="rgba(103,232,249,0.45)" stroke-width="1.5"/>
+                <path d="M12 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm-1.2 4.3c0-.44.36-.8.8-.8h.8c.44 0 .8.36.8.8V17c0 .44-.36.8-.8.8h-.8a.8.8 0 0 1-.8-.8v-5.5Z" fill="#67e8f9"/>
+            </svg>
+        </button>
     </div>
 </footer>
 

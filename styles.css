@@ -113,6 +113,24 @@ tr[tabindex="0"]:focus {
     padding-bottom: 0.35rem !important;
 }
 
+/* Buttons: neon outline variant aligning with design */
+.btn-neon {
+    background: rgba(15,23,42,0.6);
+    color: #e2e8f0;
+    border: 1px solid rgba(103,232,249,0.35);
+    border-radius: 12px;
+    box-shadow: 0 0 0 0 rgba(34,211,238,0.0);
+    transition: box-shadow .18s ease, transform .12s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn-neon:hover {
+    background: rgba(8,145,178,0.15);
+    color: #0b1324;
+    border-color: rgba(103,232,249,0.55);
+    box-shadow: 0 0 14px rgba(34,211,238,0.45);
+}
+.btn-neon:active { transform: translateY(1px); }
+.btn-neon:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(34,211,238,0.6), 0 0 0 6px rgba(34,211,238,0.2); }
+
 /* Score filter chip */
 #activeFilters {
     display: none;
@@ -154,6 +172,27 @@ tr[tabindex="0"]:focus {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* Mobile info tooltip bubble */
+.mobile-info-tooltip {
+    position: fixed;
+    z-index: 1100;
+    background: rgba(30, 41, 59, 0.95);
+    color: #cbd5e1;
+    border: 1px solid rgba(103, 232, 249, 0.25);
+    border-radius: 12px;
+    padding: 10px 12px;
+    max-width: 85vw;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45), 0 0 18px rgba(34,211,238,0.06);
+    font-size: 12px;
+    display: none;
+}
+.mobile-info-tooltip.show { display: block; }
+
+/* Info button hidden by default (desktop/tablet) */
+.mobile-info-btn { display: none; position: absolute; bottom: 0; border-radius: 9999px; box-shadow: 0 6px 16px rgba(0,0,0,0.35), 0 0 10px rgba(34,211,238,0.15); transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+.mobile-info-btn:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.45), 0 0 16px rgba(34,211,238,0.28); transform: translateY(-1px); }
+.mobile-info-btn:active { transform: translateY(0); }
 
 .teardown-dropdown {
     position: absolute;
@@ -294,6 +333,9 @@ tr[tabindex="0"]:focus {
 @media (max-width: 640px) {
     /* Footer meta placement */
     #fileAge { display: none; }
+    /* Show small floating info button on mobile */
+    .mobile-info-btn { display: inline-flex; align-items:center; justify-content:center; width: 30px; height: 30px; line-height: 1; margin-left: 8px; background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(2,6,23,0.85)); border: 1px solid rgba(103,232,249,0.35); color: #67e8f9; position: absolute; right: 0.75rem; }
+    .mobile-info-btn svg { filter: drop-shadow(0 0 6px rgba(34,211,238,0.35)); }
 
     /* Dropdown sizing on small screens */
     .teardown-dropdown { min-width: 150px; max-width: 90vw; }

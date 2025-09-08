@@ -1,0 +1,80 @@
+name: Build Tailwind CSS
+
+on:
+  push:
+    branches: [ main, master, gh-pages ]
+  pull_request:
+    branches: [ main, master, gh-pages ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Tailwind and PostCSS toolchain
+        run: |
+          npm init -y
+          npm install --save-dev tailwindcss postcss autoprefixer
+          npx tailwindcss init -p
+
+      - name: Create Tailwind input if absent
+        shell: bash
+        run: |
+          mkdir -p src
+          if [ ! -f src/tailwind.css ]; then
+            cat > src/tailwind.css << 'EOC'
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+            EOC
+          fi
+
+      - name: Generate tailwind.config.js content
+        shell: bash
+        run: |
+          cat > tailwind.config.js << 'EOT'
+          /** @type {import('tailwindcss').Config} */
+          module.exports = {
+            content: [
+              './index.html',
+              './script.js',
+            ],
+            theme: {
+              extend: {},
+            },
+            plugins: [],
+          };
+          EOT
+
+      - name: Build Tailwind CSS (minified)
+        run: |
+          npx tailwindcss -c tailwind.config.js -i ./src/tailwind.css -o ./dist/tailwind.css --minify
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-assets
+          path: |
+            dist/tailwind.css
+
+  deploy-preview:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-assets
+          path: dist
+
+      - name: List files
+        run: ls -la dist
