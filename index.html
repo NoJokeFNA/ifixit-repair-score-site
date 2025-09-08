@@ -15,40 +15,6 @@
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css"/>
-    <!-- Tailwind built via PostCSS/GitHub Actions: include compiled CSS -->
-    <link rel="preload" href="dist/tailwind.css" as="style">
-    <link rel="stylesheet" href="dist/tailwind.css">
-    <script>
-        (function(){
-            try {
-                // For localhost development, always use Play CDN for convenience
-                var isLocalhost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
-                if (isLocalhost) {
-                    var s1 = document.createElement('script');
-                    s1.src = 'https://cdn.tailwindcss.com';
-                    document.head.appendChild(s1);
-                    return;
-                }
-                // On deployed environments, prefer compiled CSS; fallback to CDN only if missing
-                var href = 'dist/tailwind.css';
-                fetch(href, {method:'HEAD'}).then(function(res){
-                    if(!res || !res.ok){
-                        var s = document.createElement('script');
-                        s.src = 'https://cdn.tailwindcss.com';
-                        document.head.appendChild(s);
-                    }
-                }).catch(function(){
-                    var s = document.createElement('script');
-                    s.src = 'https://cdn.tailwindcss.com';
-                    document.head.appendChild(s);
-                });
-            } catch(e) {
-                var s = document.createElement('script');
-                s.src = 'https://cdn.tailwindcss.com';
-                document.head.appendChild(s);
-            }
-        })();
-    </script>
 </head>
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
