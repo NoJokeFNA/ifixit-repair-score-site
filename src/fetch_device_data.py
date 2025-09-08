@@ -292,11 +292,16 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
                 ):
                     continue
                 category = guide["category"]
+                # Mark archived guides in the title.
+                flags = guide.get("flags", []) or []
+                title = guide["title"]
+                if "GUIDE_ARCHIVED" in flags:
+                    title = f"{title} (Archived)"
                 if category not in page_results:
                     page_results[category] = []
                 page_results[category].append(
                     {
-                        "title": guide["title"],
+                        "title": title,
                         "url": guide["url"],
                     }
                 )
@@ -337,15 +342,38 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
             logger.debug("Processed batch, new offset: %d", offset)
 
     def sort_guides_for_category(category: str, guides: List[Dict[str, str]]) -> List[Dict[str, str]]:
-        main_teardown = None
-        sub_teardowns: List[Dict[str, str]] = []
+        """Sort teardown guides for a category.
+
+        Keeps all main teardowns (matching "<category> Teardown"), deduplicates by (title, url),
+        and returns mains first followed by the remaining guides sorted by title.
+
+        Args:
+            category: The category name.
+            guides: The list of guides for the category.
+
+        Returns:
+            A list of deduplicated guides with mains first.
+        """
+        mains: List[Dict[str, str]] = []
+        subs: List[Dict[str, str]] = []
+        seen: Set[Tuple[str, str]] = set()
+
         for g in guides:
-            if is_main_teardown(category, g["title"]):
-                main_teardown = g
+            title = g.get("title")
+            url = g.get("url")
+            if not title or not url:
+                continue
+            key = (title, url)
+            if key in seen:
+                continue
+            seen.add(key)
+            if is_main_teardown(category, title):
+                mains.append(g)
             else:
-                sub_teardowns.append(g)
-        sub_teardowns.sort(key=lambda x: x["title"])
-        return ([main_teardown] if main_teardown else []) + sub_teardowns
+                subs.append(g)
+
+        subs.sort(key=lambda x: x["title"])
+        return mains + subs
 
     # Sort guides for each category, prioritizing main teardown
     for category in list(results.keys()):
@@ -424,6 +452,7 @@ def print_device_data(
                     ),
                     None,
                 )
+
                 repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
                 return (
                     device_name,
@@ -551,7 +580,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    client = IFixitAPIClient(log_level=log_level, proxy=False, raise_for_status=False)
+    client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
     exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
 
     # Fetch child devices in memory
