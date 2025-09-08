@@ -2,6 +2,79 @@ let devicesData = [];
 let currentSort = {key: 'name', direction: 'asc'};
 let myChart = null;
 
+const TAG_PRIORITY = {
+    starred: 0,
+    user_contributed: 1,
+    archived: 2
+};
+
+function sortTags(tags = []) {
+    return [...tags].sort((a, b) => (TAG_PRIORITY[a] ?? 999) - (TAG_PRIORITY[b] ?? 999));
+}
+
+function isArchivedTeardown(t) {
+    return Array.isArray(t.tags) && t.tags.includes('archived');
+}
+
+function sortTeardowns(teardowns = []) {
+    const withIndex = teardowns.map((t, i) => ({ t, i }));
+    withIndex.sort((a, b) => {
+        const aArchived = isArchivedTeardown(a.t) ? 1 : 0;
+        const bArchived = isArchivedTeardown(b.t) ? 1 : 0;
+        if (aArchived !== bArchived) return aArchived - bArchived;
+        return a.i - b.i;
+    });
+    return withIndex.map(x => x.t);
+}
+
+function tagBadge(tag) {
+    switch (tag) {
+        case 'starred':
+            return '<span title="Featured Guide" class="inline-flex items-center gap-1 rounded-full bg-blue-900/40 text-blue-300 px-2 py-0.5 border border-blue-700/40 text-[10px] uppercase tracking-wide">Featured</span>';
+        case 'user_contributed':
+            return '<span title="Community-Contributed Guide" class="inline-flex items-center gap-1 rounded-full bg-yellow-900/30 text-yellow-300 px-2 py-0.5 border border-yellow-700/30 text-[10px] uppercase tracking-wide">Community</span>';
+        case 'archived':
+            return '<span title="Archived Guide" class="inline-flex items-center gap-1 rounded-full bg-amber-900/30 text-amber-300 px-2 py-0.5 border border-amber-700/30 text-[10px] uppercase tracking-wide">Archived</span>';
+        default:
+            return '';
+    }
+}
+
+function tagBadgeTiny(tag) {
+    switch (tag) {
+        case 'starred':
+            return '<span title="Featured Guide" class="inline-flex items-center rounded bg-blue-900/40 text-blue-300 px-1.5 py-0 border border-blue-700/40 text-[9px] uppercase tracking-wide">Featured</span>';
+        case 'user_contributed':
+            return '<span title="Community-Contributed Guide" class="inline-flex items-center rounded bg-yellow-900/30 text-yellow-300 px-1.5 py-0 border border-yellow-700/30 text-[9px] uppercase tracking-wide">Community</span>';
+        case 'archived':
+            return '<span title="Archived Guide" class="inline-flex items-center rounded bg-amber-900/30 text-amber-300 px-1.5 py-0 border border-amber-700/30 text-[9px] uppercase tracking-wide">Archived</span>';
+        default:
+            return '';
+    }
+}
+
+function aggregateTeardownTags(teardownUrls = []) {
+    const set = new Set();
+    teardownUrls.forEach(td => (td.tags || []).forEach(t => set.add(t)));
+    return sortTags([...set]);
+}
+
+function renderTeardownLinks(teardownUrls = []) {
+    if (!teardownUrls || teardownUrls.length === 0) return '<span class="text-gray-500">—</span>';
+    const sortedTeardowns = sortTeardowns(teardownUrls);
+    return sortedTeardowns.map(td => {
+        const tags = sortTags(td.tags || []);
+        const badges = tags.map(tagBadge).filter(Boolean).join(' ');
+        const archivedClasses = tags.includes('archived') ? 'opacity-80' : '';
+        return `
+            <div class="flex items-start gap-2 ${archivedClasses}">
+                <a href="${td.url}" target="_blank" class="text-cyan-400 underline hover:text-cyan-300">${td.title}</a>
+                <div class="flex flex-wrap gap-1 mt-0.5">${badges}</div>
+            </div>
+        `;
+    }).join('');
+}
+
 async function loadData() {
     const tbody = document.getElementById('deviceTable');
     const chartError = document.getElementById('chartError');
@@ -87,9 +160,16 @@ function populateTable(data) {
 
         let teardownHtml = '—';
         if (d.teardown_urls && d.teardown_urls.length > 0) {
-            teardownHtml = `<span class="teardown-toggle" data-index="${index}">[Teardowns]<span class="teardown-count"> x${d.teardown_urls.length}</span></span>
+            // Badges direkt neben dem Toggle (aggregiert über alle Teardowns)
+            const aggTags = aggregateTeardownTags(d.teardown_urls);
+            const toggleBadges = aggTags.map(tagBadgeTiny).join(' ');
+            teardownHtml = `
+            <span class="teardown-toggle inline-flex items-center gap-2" data-index="${index}">
+                <span>[Teardowns]<span class="teardown-count"> x${d.teardown_urls.length}</span></span>
+                <span class="inline-flex flex-wrap gap-1">${toggleBadges}</span>
+            </span>
             <div class="teardown-dropdown" data-index="${index}">
-                ${d.teardown_urls.map(g => `<a href="${g.url}" target="_blank">${g.title}</a>`).join('')}
+                ${renderTeardownLinks(d.teardown_urls)}
             </div>`;
         }
 
