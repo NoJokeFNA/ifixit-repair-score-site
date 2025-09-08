@@ -17,7 +17,7 @@ function isArchivedTeardown(t) {
 }
 
 function sortTeardowns(teardowns = []) {
-    const withIndex = teardowns.map((t, i) => ({ t, i }));
+    const withIndex = teardowns.map((t, i) => ({t, i}));
     withIndex.sort((a, b) => {
         const aArchived = isArchivedTeardown(a.t) ? 1 : 0;
         const bArchived = isArchivedTeardown(b.t) ? 1 : 0;
@@ -65,12 +65,12 @@ function renderTeardownLinks(teardownUrls = []) {
     return sortedTeardowns.map(td => {
         const tags = sortTags(td.tags || []);
         const badges = tags.map(tagBadge).filter(Boolean).join(' ');
-        const archivedClasses = tags.includes('archived') ? 'opacity-80' : '';
+        const archivedClass = tags.includes('archived') ? 'archived' : '';
         return `
-            <div class="flex items-start gap-2 ${archivedClasses}">
-                <a href="${td.url}" target="_blank" class="text-cyan-400 underline hover:text-cyan-300">${td.title}</a>
-                <div class="flex flex-wrap gap-1 mt-0.5">${badges}</div>
-            </div>
+            <a href="${td.url}" target="_blank" class="teardown-item ${archivedClass}">
+                <span class="teardown-title">${td.title}</span>
+                <span class="teardown-badges">${badges}</span>
+            </a>
         `;
     }).join('');
 }
@@ -218,6 +218,7 @@ function populateTable(data) {
             }
         });
     });
+
 }
 
 function badge(score) {
