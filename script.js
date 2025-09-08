@@ -218,7 +218,6 @@ function populateTable(data) {
             }
         });
     });
-
 }
 
 function badge(score) {

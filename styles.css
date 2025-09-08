@@ -131,7 +131,7 @@ tr[tabindex="0"]:focus {
     border-left: inherit;
     border-top: inherit;
     transform: rotate(45deg);
-    filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.15));
 }
 
 .teardown-dropdown.show {
@@ -181,15 +181,18 @@ tr[tabindex="0"]:focus {
 .teardown-dropdown::-webkit-scrollbar {
     width: 8px;
 }
+
 .teardown-dropdown::-webkit-scrollbar-track {
     background: transparent;
 }
+
 .teardown-dropdown::-webkit-scrollbar-thumb {
-    background: rgba(148,163,184,0.25);
+    background: rgba(148, 163, 184, 0.25);
     border-radius: 8px;
 }
+
 .teardown-dropdown::-webkit-scrollbar-thumb:hover {
-    background: rgba(148,163,184,0.38);
+    background: rgba(148, 163, 184, 0.38);
 }
 
 .teardown-cell {

@@ -50,20 +50,46 @@
                 <h2 class="text-2xl font-semibold text-violet-300 font-mono">Device Details</h2>
                 <span id="deviceCount" class="text-sm text-cyan-400 font-mono"></span>
             </div>
-            <div class="flex flex-wrap items-center gap-2 mb-4 text-xs">
-                <span class="text-gray-400 mr-2">Tags:</span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-blue-900/40 text-blue-300 px-2 py-1 border border-blue-700/40">
-                    <span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
-                    Featured
-                </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-yellow-900/30 text-yellow-300 px-2 py-1 border border-yellow-700/30">
-                    <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
-                    Community
-                </span>
-                <span class="inline-flex items-center gap-1 rounded-full bg-amber-900/30 text-amber-300 px-2 py-1 border border-amber-700/30">
-                    <span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
-                    Archived
-                </span>
+            <div class="mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs uppercase tracking-wider text-slate-400">Tags</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="rounded-2xl bg-slate-900/40 border border-blue-500/30 p-4 shadow-[0_0_20px_rgba(59,130,246,0.12)]">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></span>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-blue-900/40 text-blue-300 px-2 py-0.5 border border-blue-700/40 text-[10px] uppercase tracking-wide">Featured</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></span>
+                        </div>
+                        <p class="text-[12px] leading-snug text-slate-300">
+                            Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.
+                        </p>
+                        <div class="mt-3 h-px bg-gradient-to-r from-blue-500/40 via-blue-400/20 to-transparent"></div>
+                    </div>
+                    <div class="rounded-2xl bg-slate-900/40 border border-yellow-500/25 p-4 shadow-[0_0_20px_rgba(234,179,8,0.10)]">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></span>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-yellow-900/30 text-yellow-300 px-2 py-0.5 border border-yellow-700/30 text-[10px] uppercase tracking-wide">Community</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></span>
+                        </div>
+                        <p class="text-[12px] leading-snug text-slate-300">
+                            Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.
+                        </p>
+                        <div class="mt-3 h-px bg-gradient-to-r from-yellow-400/40 via-yellow-300/20 to-transparent"></div>
+                    </div>
+                    <div class="rounded-2xl bg-slate-900/40 border border-amber-500/25 p-4 shadow-[0_0_20px_rgba(245,158,11,0.10)]">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
+                            <span class="inline-flex items-center gap-1 rounded-full bg-amber-900/30 text-amber-300 px-2 py-0.5 border border-amber-700/30 text-[10px] uppercase tracking-wide">Archived</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
+                        </div>
+                        <p class="text-[12px] leading-snug text-slate-300">
+                            Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.
+                        </p>
+                        <div class="mt-3 h-px bg-gradient-to-r from-amber-400/40 via-amber-300/20 to-transparent"></div>
+                    </div>
+                </div>
             </div>
             <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">
                 <input type="text"
