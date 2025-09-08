@@ -11,7 +11,6 @@ from time import perf_counter
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 import tqdm
-
 from ifixit_api_client import IFixitAPIClient
 
 # Configure logging
@@ -248,42 +247,40 @@ def _normalize_key(s: str) -> str:
     return _to_ifixit_title(s).lower()
 
 
-def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
-    str, List[Dict[str, str]]]:
-    """Fetches all teardown guides from iFixit API, grouped by category.
+def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, object]]]:
+    """Fetch all teardown guides grouped by category.
 
-    Iteratively retrieves guides from offset=0 until no more entries are found,
-    collecting teardown_url (str), title (str), and category (str) in a thread-safe manner.
-    Returns a dictionary mapping categories to lists of teardown guides, with the main
-    teardown (matching '<category> Teardown') as the first entry if available.
+    Retrieves guides with pagination and groups them by category. Each guide keeps its
+    title, url, and derived tags from iFixit flags. Dedupe is performed later by (title, url).
 
     Args:
         client: The IFixitAPIClient instance.
 
     Returns:
-        Dictionary mapping category to list of {'title': str, 'url': str}.
+        A dictionary mapping normalized categories to a list of guide dicts:
+        {'title': str, 'url': str, 'tags': List[str]}.
     """
     params = {"filter": "teardown", "limit": 200}
-    results: Dict[str, List[Dict[str, str]]] = {}
+    results: Dict[str, List[Dict[str, object]]] = {}
     lock = __import__("threading").Lock()
     offset = 0
     max_workers = 8
     batch_size = 200
 
     def is_main_teardown(category: str, title: str) -> bool:
-        """Checks if the guide title matches '<category> Teardown' pattern."""
+        """Check if the guide title matches '<category> Teardown' pattern."""
         normalized_category = _to_ifixit_title(category).lower()
         normalized_title = _to_ifixit_title(title).lower()
         expected_title = f"{normalized_category}_teardown"
         return normalized_title == expected_title
 
-    def fetch_page(page_offset: int) -> Dict[str, List[Dict[str, str]]]:
-        """Fetches a single page of guides for the given offset."""
+    def fetch_page(page_offset: int) -> Dict[str, List[Dict[str, object]]]:
+        """Fetch a single page of guides for the given offset."""
         try:
             page_params = params.copy()
             page_params["offset"] = page_offset
             guides = client.get_guides(params=page_params)
-            page_results: Dict[str, List[Dict[str, str]]] = {}
+            page_results: Dict[str, List[Dict[str, object]]] = {}
             for guide in guides:
                 if (
                     guide.get("url") is None
@@ -292,17 +289,24 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
                 ):
                     continue
                 category = guide["category"]
-                # Mark archived guides in the title.
-                flags = guide.get("flags", []) or []
-                title = guide["title"]
-                if "GUIDE_ARCHIVED" in flags:
-                    title = f"{title} (Archived)"
+                raw_flags = guide.get("flags", []) or []
+
+                # Build tags from flags (lowercase, stable set).
+                tags: List[str] = []
+                if "GUIDE_ARCHIVED" in raw_flags:
+                    tags.append("archived")
+                if "GUIDE_STARRED" in raw_flags:
+                    tags.append("starred")
+                if "GUIDE_USER_CONTRIBUTED" in raw_flags:
+                    tags.append("user_contributed")
+
                 if category not in page_results:
                     page_results[category] = []
                 page_results[category].append(
                     {
-                        "title": title,
+                        "title": guide["title"],
                         "url": guide["url"],
+                        "tags": tags,
                     }
                 )
             return page_results
@@ -310,7 +314,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
             logger.error("Failed to fetch offset %d: %s", page_offset, e)
             return {}
 
-    def extend_map(dst: Dict[str, List[Dict[str, str]]], src: Dict[str, List[Dict[str, str]]]) -> None:
+    def extend_map(dst: Dict[str, List[Dict[str, object]]], src: Dict[str, List[Dict[str, object]]]) -> None:
         for category, guides in src.items():
             if category not in dst:
                 dst[category] = []
@@ -320,7 +324,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
         while True:
             offsets = list(range(offset, offset + batch_size * max_workers, batch_size))
             futures = {executor.submit(fetch_page, off): off for off in offsets}
-            page_results: Dict[str, List[Dict[str, str]]] = {}
+            page_results: Dict[str, List[Dict[str, object]]] = {}
 
             for future in tqdm.tqdm(
                 as_completed(futures),
@@ -341,46 +345,68 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[
             offset += batch_size * max_workers
             logger.debug("Processed batch, new offset: %d", offset)
 
-    def sort_guides_for_category(category: str, guides: List[Dict[str, str]]) -> List[Dict[str, str]]:
-        """Sort teardown guides for a category.
+    def _tag_priority(tags: List[str]) -> int:
+        """Return priority rank based on tags: starred < user_contributed < others."""
+        if "starred" in tags:
+            return 0
+        if "user_contributed" in tags:
+            return 1
+        return 2
 
-        Keeps all main teardowns (matching "<category> Teardown"), deduplicates by (title, url),
-        and returns mains first followed by the remaining guides sorted by title.
+    def sort_guides_for_category(category: str, guides: List[Dict[str, object]]) -> List[Dict[str, object]]:
+        """Sort guides with the following rules.
+
+        - Archived guides are always at the bottom (regardless of other flags).
+        - Among non-archived, main teardowns (matching '<category> Teardown') come first.
+        - Within the same bucket, 'starred' comes before 'user_contributed', then others.
+        - Final tiebreakers: title (case-insensitive), then url.
+        - Dedupe by (title, url).
 
         Args:
             category: The category name.
-            guides: The list of guides for the category.
+            guides: Guides for the category.
 
         Returns:
-            A list of deduplicated guides with mains first.
+            A stable, deduplicated, and sorted list of guides.
         """
-        mains: List[Dict[str, str]] = []
-        subs: List[Dict[str, str]] = []
+        # Dedupe by (title, url).
         seen: Set[Tuple[str, str]] = set()
-
+        unique: List[Dict[str, object]] = []
         for g in guides:
-            title = g.get("title")
-            url = g.get("url")
+            title = str(g.get("title", "") or "").strip()
+            url = str(g.get("url", "") or "").strip()
             if not title or not url:
                 continue
             key = (title, url)
             if key in seen:
                 continue
             seen.add(key)
-            if is_main_teardown(category, title):
-                mains.append(g)
-            else:
-                subs.append(g)
+            # Ensure tags list exists.
+            tags = g.get("tags") or []
+            g["tags"] = list(tags) if isinstance(tags, list) else []
+            unique.append(g)
 
-        subs.sort(key=lambda x: x["title"])
-        return mains + subs
+        def key_fn(g: Dict[str, object]) -> Tuple[int, int, int, str, str]:
+            title = str(g["title"])
+            url = str(g["url"])
+            tags = list(g.get("tags", []))
+            archived_bucket = 1 if "archived" in tags else 0  # archived last
+            # Main bucket only matters for non-archived.
+            main_bucket = 1
+            if archived_bucket == 0 and is_main_teardown(category, title):
+                main_bucket = 0
+            tag_rank = _tag_priority(tags) if archived_bucket == 0 else 2
+            return archived_bucket, main_bucket, tag_rank, title.lower(), url
 
-    # Sort guides for each category, prioritizing main teardown
+        unique.sort(key=key_fn)
+        return unique
+
+    # Sort guides for each category.
     for category in list(results.keys()):
         results[category] = sort_guides_for_category(category, results[category])
 
-    # Build normalized lookup to make matching resilient
-    normalized_results: Dict[str, List[Dict[str, str]]] = {
+    # Build normalized lookup to make matching resilient.
+    normalized_results: Dict[str, List[Dict[str, object]]] = {
         _normalize_key(category): guides for category, guides in results.items()
     }
 
@@ -408,12 +434,14 @@ def print_device_data(
 
     class _RateLimiter:
         """Token-bucket rate limiter for controlling API request rate."""
+
         def __init__(self, rate_per_sec: int, burst: Optional[int] = None) -> None:
             self.rate = max(1, rate_per_sec)
             self.capacity = burst if burst is not None else self.rate
             self._tokens: float = float(self.capacity)
             self._last: float = perf_counter()
             self._lock = __import__("threading").Lock()
+
         def acquire(self) -> None:
             wait_time = 0.0
             with self._lock:
@@ -521,9 +549,13 @@ def print_device_data(
                 print(f"- {name} ({title})")
         print("\nRepairability scores for devices:")
         for name, title, score, _brand, _link in with_score:
-            teardown_urls = teardown_guides.get(_normalize_key(name), [])
-            if teardown_urls:
-                titles_and_urls = [f"{g['title']}: {g['url']}" for g in teardown_urls]
+            teardown_items = teardown_guides.get(_normalize_key(name), [])
+            if teardown_items:
+                # Include tags for visibility in console output.
+                titles_and_urls = [
+                    f"{g['title']} ({', '.join(g.get('tags', []))}) : {g['url']}"
+                    for g in teardown_items
+                ]
                 print(f"- {name} ({title}): {score}, Teardown URLs: {titles_and_urls}")
             else:
                 print(f"- {name} ({title}): {score}, No teardown URLs found")
@@ -545,9 +577,13 @@ def print_device_data(
                     "brand": brand,
                     "link": link,
                     "teardown_urls": [
-                        {"title": guide["title"], "url": guide["url"]}
+                        {
+                            "title": guide["title"],
+                            "url": guide["url"],
+                            "tags": guide.get("tags", []),
+                        }
                         for guide in teardown_guides.get(_normalize_key(name), [])
-                    ]
+                    ],
                 }
                 for name, title, score, brand, link in with_score
             ]
