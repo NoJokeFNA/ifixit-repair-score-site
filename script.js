@@ -41,6 +41,31 @@ function loadChartJsIdle() {
     return chartJsReady;
 }
 
+let chartModuleReady = null;
+function loadChartModuleIdle() {
+    if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') return Promise.resolve(true);
+    if (chartModuleReady) return chartModuleReady;
+    chartModuleReady = new Promise(async (resolve) => {
+        // Ensure Chart.js is loaded first
+        try { await loadChartJsIdle(); } catch (_) {}
+        const start = () => {
+            if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') { resolve(true); return; }
+            const s = document.createElement('script');
+            s.src = 'chart-module.js';
+            s.async = true;
+            s.onload = () => resolve(true);
+            s.onerror = () => resolve(false);
+            document.head.appendChild(s);
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(start, {timeout: 3000});
+        } else {
+            setTimeout(start, 100);
+        }
+    });
+    return chartModuleReady;
+}
+
 const TAG_PRIORITY = {
     starred: 0,
     user_contributed: 1,
@@ -147,9 +172,11 @@ async function loadData() {
         renderTable();
         populateBrandFilter();
         try {
-            if (typeof Chart !== 'undefined') {
-                renderChart(devicesData);
-            }
+            loadChartModuleIdle().then(() => {
+                if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+                    window.ChartModule.renderChart(devicesData);
+                }
+            });
         } catch (e) {
             console.error('Chart rendering failed with cached data:', e);
             chartError.classList.remove('hidden');
@@ -163,7 +190,11 @@ async function loadData() {
         localStorage.setItem('devicesData', JSON.stringify(devicesData));
         renderTable();
         populateBrandFilter();
-        if (typeof Chart !== 'undefined') { renderChart(devicesData); }
+        loadChartModuleIdle().then(() => {
+            if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+                window.ChartModule.renderChart(devicesData);
+            }
+        });
     } catch (error) {
         console.error('Data fetch failed:', error);
         tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-rose-500">Failed to load data</td></tr>';
@@ -332,24 +363,31 @@ function populateTable(data) {
         const portal = ensurePortal();
         const rect = toggle.getBoundingClientRect();
         const margin = 8;
-        let top = rect.bottom + margin;
-        let left = rect.left + 0; // align left edges
-        // Temporarily show to measure width
+        // Defer show + measurement to next frames to avoid forced reflow
         portal.style.visibility = 'hidden';
-        portal.classList.add('show');
-        const portalWidth = portal.offsetWidth || 320;
-        const portalHeight = portal.offsetHeight || 200;
-        // Clamp to viewport
-        if (left + portalWidth + 8 > window.innerWidth) {
-            left = Math.max(8, window.innerWidth - portalWidth - 8);
-        }
-        if (top + portalHeight + 8 > window.innerHeight) {
-            const altTop = rect.top - margin - portalHeight;
-            if (altTop > 8) top = altTop;
-        }
-        portal.style.top = `${Math.max(8, top)}px`;
-        portal.style.left = `${left}px`;
-        portal.style.visibility = '';
+        requestAnimationFrame(() => {
+            // Show offscreen first to get accurate size
+            portal.classList.add('show');
+            portal.style.top = '-9999px';
+            portal.style.left = '0px';
+            requestAnimationFrame(() => {
+                const portalWidth = portal.offsetWidth || 320;
+                const portalHeight = portal.offsetHeight || 200;
+                let top = rect.bottom + margin;
+                let left = rect.left; // align left edges
+                // Clamp to viewport
+                if (left + portalWidth + 8 > window.innerWidth) {
+                    left = Math.max(8, window.innerWidth - portalWidth - 8);
+                }
+                if (top + portalHeight + 8 > window.innerHeight) {
+                    const altTop = rect.top - margin - portalHeight;
+                    if (altTop > 8) top = altTop;
+                }
+                portal.style.top = `${Math.max(8, top)}px`;
+                portal.style.left = `${left}px`;
+                portal.style.visibility = '';
+            });
+        });
     }
     function openPortal(toggle, html) {
         // Close any existing
@@ -512,14 +550,16 @@ function renderTable() {
     window.lastFiltered = data.slice();
     renderActiveFiltersChip();
     injectStructuredData(window.lastFiltered);
-    if (typeof Chart !== 'undefined') {
+    loadChartModuleIdle().then(() => {
         try {
-            renderChart(data);
+            if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+                window.ChartModule.renderChart(data);
+            }
         } catch (e) {
             console.error('Chart rendering failed:', e);
             document.getElementById('chartError').classList.remove('hidden');
         }
-    }
+    });
     updateSortIndicators();
 }
 
@@ -555,113 +595,28 @@ function applyTheme() {
         btn.setAttribute('title', stored ? 'Toggle color theme' : 'Following system; click to choose');
     }
     // Re-render chart with new palette if present
-    try { if (typeof Chart !== 'undefined' && (window.lastFiltered || devicesData).length) { renderChart(window.lastFiltered || devicesData); } } catch (_) {}
+    try {
+        const data = window.lastFiltered || devicesData || [];
+        if (data.length) {
+            loadChartModuleIdle().then(() => {
+                if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+                    window.ChartModule.renderChart(data);
+                }
+            });
+        }
+    } catch (_) {}
 }
 
 function renderChart(data) {
-    const chartError = document.getElementById('chartError');
-    chartError.classList.add('hidden');
-
-    if (!data || data.length === 0) {
-        chartError.textContent = 'No data available for chart';
-        chartError.classList.remove('hidden');
-        return;
-    }
-
-    const buckets = Array(11).fill(0);
-    data.forEach(d => {
-        const s = d.repairability_score;
-        if (Number.isInteger(s) && s >= 0 && s <= 10) buckets[s]++;
-    });
-
-    const ctx = document.getElementById('repairabilityChart').getContext('2d');
-    if (!ctx) {
-        chartError.textContent = 'Chart canvas not found';
-        chartError.classList.remove('hidden');
-        return;
-    }
-
-    if (myChart) myChart.destroy();
-
-    const isLight = document.body.classList.contains('theme-light');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 460);
-    gradient.addColorStop(0, isLight ? 'rgba(2,132,199,0.95)' : 'rgba(6,182,212,0.95)');
-    gradient.addColorStop(1, isLight ? 'rgba(124,58,237,0.95)' : 'rgba(139,92,246,0.95)');
-
-    const total = data.length;
-    myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-            datasets: [{
-                data: buckets,
-                backgroundColor: gradient,
-                borderRadius: 14,
-                barPercentage: 0.65,
-                categoryPercentage: 0.8
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {display: false},
-                tooltip: {
-                    backgroundColor: isLight ? '#ffffff' : '#0f172a',
-                    titleColor: isLight ? '#0ea5e9' : '#67e8f9',
-                    bodyColor: isLight ? '#0f172a' : '#ffffff',
-                    cornerRadius: 10,
-                    padding: 12,
-                    borderColor: isLight ? '#0ea5e9' : '#67e8f9',
-                    borderWidth: 1,
-                    callbacks: {
-                        label: (ctx) => {
-                            const count = ctx.raw ?? 0;
-                            const pct = total ? ((count / total) * 100).toFixed(1) : '0.0';
-                            return ` Count: ${count} (${pct}%)`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: {display: false},
-                    ticks: {color: isLight ? '#475569' : '#94a3b8'},
-                    title: {
-                        display: true,
-                        text: 'Repairability Score',
-                        color: isLight ? '#0ea5e9' : '#67e8f9',
-                        font: {size: 14, weight: 'bold'}
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {stepSize: 1, color: isLight ? '#475569' : '#94a3b8'},
-                    grid: {color: isLight ? 'rgba(15,23,42,0.06)' : 'rgba(255,255,255,0.05)'},
-                    title: {
-                        display: true,
-                        text: 'Device count',
-                        color: isLight ? '#0ea5e9' : '#67e8f9',
-                        font: {size: 14, weight: 'bold'}
-                    }
-                }
-            },
-            animation: {duration: prefersReducedMotion ? 0 : 1200, easing: 'easeOutExpo'},
-            onClick: (event, elements) => {
-                if (elements.length) {
-                    const score = elements[0].index;
-                    document.getElementById('searchInput').value = '';
-                    document.getElementById('brandFilter').value = '';
-                    document.getElementById('scoreFilter')?.remove();
-                    const scoreFilter = document.createElement('input');
-                    scoreFilter.type = 'hidden';
-                    scoreFilter.id = 'scoreFilter';
-                    scoreFilter.value = score;
-                    document.getElementById('deviceTable').parentElement.appendChild(scoreFilter);
-                    renderTable();
-                    stateToQuery();
-                    notifyAction(`Filtered by score ${score}. ${window.lastFiltered?.length ?? ''} results.`);
-                }
+    // Lightweight shim to preserve API; defers to lazy-loaded chart module
+    loadChartModuleIdle().then(() => {
+        if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+            try {
+                window.ChartModule.renderChart(data);
+            } catch (e) {
+                console.error('Chart rendering failed:', e);
+                const chartError = document.getElementById('chartError');
+                if (chartError) chartError.classList.remove('hidden');
             }
         }
     });
@@ -871,10 +826,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Long-press or right-click could reset to system in future if desired; not implemented now.
     }
-    // Load Chart.js during an idle period to improve FCP/TBT
-    loadChartJsIdle().then(() => {
-        if (devicesData && devicesData.length) {
-            try { renderChart(window.lastFiltered || devicesData); } catch (_) {}
+    // Load Chart + chart module during idle; render only when we have data
+    loadChartModuleIdle().then(() => {
+        const data = window.lastFiltered || devicesData;
+        if (data && data.length && window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+            try { window.ChartModule.renderChart(data); } catch (_) {}
         }
     });
     updateFileAge();
@@ -918,17 +874,26 @@ document.addEventListener('DOMContentLoaded', () => {
         function positionTip() {
             const t = ensureTip();
             t.textContent = lastUpdateFullTitle || (document.getElementById('fileAge')?.getAttribute('title') || 'Last datasource update: not available');
-            const rect = btn.getBoundingClientRect();
-            const margin = 8;
-            let top = rect.top - t.offsetHeight - margin;
-            if (top < 8) top = rect.bottom + margin;
-            let left = Math.min(Math.max(8, rect.left), window.innerWidth - t.offsetWidth - 8);
-            t.style.top = `${Math.max(8, top)}px`;
-            t.style.left = `${left}px`;
+            // Two-phase show and measure to avoid forced reflow
+            t.style.visibility = 'hidden';
+            requestAnimationFrame(() => {
+                t.classList.add('show');
+                t.style.top = '-9999px';
+                t.style.left = '0px';
+                requestAnimationFrame(() => {
+                    const rect = btn.getBoundingClientRect();
+                    const margin = 8;
+                    let top = rect.top - t.offsetHeight - margin;
+                    if (top < 8) top = rect.bottom + margin;
+                    let left = Math.min(Math.max(8, rect.left), window.innerWidth - t.offsetWidth - 8);
+                    t.style.top = `${Math.max(8, top)}px`;
+                    t.style.left = `${left}px`;
+                    t.style.visibility = '';
+                });
+            });
         }
         function openTip() {
-            const t = ensureTip();
-            t.classList.add('show');
+            ensureTip();
             positionTip();
             btn.setAttribute('aria-expanded','true');
         }
@@ -967,6 +932,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function openExportMenu() {
         closeExportMenu();
+        // Read trigger geometry before any DOM writes to avoid forced reflow
+        const rect = exportBtn.getBoundingClientRect();
         const portalRoot = document.getElementById('portal-root') || document.body;
         exportPortal = document.createElement('div');
         exportPortal.className = 'actions-menu';
@@ -976,7 +943,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" role="menuitem" data-action="json">Export JSON</button>
         `;
         portalRoot.appendChild(exportPortal);
-        const rect = exportBtn.getBoundingClientRect();
         exportPortal.style.position = 'fixed';
         exportPortal.style.top = `${rect.bottom + 6}px`;
         exportPortal.style.left = `${Math.min(rect.left, window.innerWidth - 220)}px`;

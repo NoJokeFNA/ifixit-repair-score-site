@@ -4,20 +4,23 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>iFixit Repairability Scores — Dev Dashboard</title>
-    <meta name="description" content="Interactive dashboard of iFixit repairability scores with searchable, filterable device table and score distribution chart.">
+    <meta name="description"
+          content="Interactive dashboard of iFixit repairability scores with searchable, filterable device table and score distribution chart.">
     <link rel="canonical" href="/index.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta property="og:title" content="iFixit Repairability Scores — Developer Dashboard">
-    <meta property="og:description" content="Explore repairability scores, filter by brand, and view teardowns. Export CSV/JSON and share deep links.">
+    <meta property="og:description"
+          content="Explore repairability scores, filter by brand, and view teardowns. Export CSV/JSON and share deep links.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="favicon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="iFixit Repairability Scores — Dev Dashboard">
+    <meta name="twitter:title" content="iFixit Repairability Scores — Developer Dashboard">
     <meta name="twitter:description" content="Explore repairability scores, filter by brand, and view teardowns.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link href="styles.css" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+          rel="stylesheet">
 </head>
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
@@ -32,7 +35,8 @@
             <div class="flex items-start gap-2">
                 <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
                 <div>
-                    <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's repairability scores.</p>
+                    <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's
+                        repairability scores.</p>
                     <p class="header-info-text">
                         Inspired by
                         <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores" target="_blank"
@@ -49,7 +53,8 @@
             <div class="flex items-start gap-2">
                 <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
                 <p class="header-info-text">
-                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and inspect teardown links labeled Featured, Community, and Archived.
+                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
+                    inspect teardown links labeled Featured, Community, and Archived.
                 </p>
             </div>
             <div class="mt-2 header-info-divider"></div>
@@ -62,8 +67,12 @@
         <div class="glass-card chart-section p-10 w-full max-w-6xl mx-auto">
             <h2 class="text-2xl font-semibold mb-6 text-cyan-300 font-mono">Score Distribution</h2>
             <figure style="height: 460px;">
-                <canvas id="repairabilityChart" class="w-full h-full" aria-label="Histogram of repairability scores from 0 to 10 showing device counts per score" role="img"></canvas>
-                <figcaption id="chartCaption" class="sr-only">Histogram of device repairability scores (0–10). Y-axis: device count.</figcaption>
+                <canvas id="repairabilityChart" class="w-full h-full"
+                        aria-label="Histogram of repairability scores from 0 to 10 showing device counts per score"
+                        role="img"></canvas>
+                <figcaption id="chartCaption" class="sr-only">Histogram of device repairability scores (0–10). Y-axis:
+                    device count.
+                </figcaption>
                 <div id="chartError" class="chart-error hidden" role="alert">Failed to load chart</div>
             </figure>
         </div>
@@ -82,16 +91,22 @@
                 </div>
                 <ul class="difficulty-chips flex flex-wrap gap-3 tags-legend" role="list">
                     <li class="difficulty-item">
-                        <span class="chip chip-featured" title="Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
-                        <p class="chip-desc">Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.</p>
+                        <span class="chip chip-featured"
+                              title="Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
+                        <p class="chip-desc">Featured Guide — This guide has been found to be exceptionally cool by the
+                            iFixit staff.</p>
                     </li>
                     <li class="difficulty-item">
-                        <span class="chip chip-community" title="Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
-                        <p class="chip-desc">Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.</p>
+                        <span class="chip chip-community"
+                              title="Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
+                        <p class="chip-desc">Community-Contributed Guide — An awesome member of our community made this
+                            guide. It was not created by iFixit staff.</p>
                     </li>
                     <li class="difficulty-item">
-                        <span class="chip chip-archived" title="Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
-                        <p class="chip-desc">Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.</p>
+                        <span class="chip chip-archived"
+                              title="Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
+                        <p class="chip-desc">Archived Guide — This guide is retained solely for historical purposes. Use
+                            the updated version of the guide to perform your repair.</p>
                     </li>
                 </ul>
                 <!-- Difficulty Levels Legend -->
@@ -102,20 +117,26 @@
                     </div>
                     <ul class="difficulty-chips flex flex-wrap gap-3" role="list">
                         <li class="difficulty-item">
-                            <span class="chip chip-vd" title="Requires disassembling almost all of the device. Not recommended for non-professionals.">Very Difficult</span>
-                            <p class="chip-desc">Requires disassembling almost all of the device. Not recommended for non-professionals.</p>
+                            <span class="chip chip-vd"
+                                  title="Requires disassembling almost all of the device. Not recommended for non-professionals.">Very Difficult</span>
+                            <p class="chip-desc">Requires disassembling almost all of the device. Not recommended for
+                                non-professionals.</p>
                         </li>
                         <li class="difficulty-item">
                             <span class="chip chip-d" title="Requires significant disassembly and repair knowledge.">Difficult</span>
                             <p class="chip-desc">Requires significant disassembly and repair knowledge.</p>
                         </li>
                         <li class="difficulty-item">
-                            <span class="chip chip-m" title="Requires some disassembly, additional tools, and basic repair knowledge.">Moderate</span>
-                            <p class="chip-desc">Requires some disassembly, additional tools, and basic repair knowledge.</p>
+                            <span class="chip chip-m"
+                                  title="Requires some disassembly, additional tools, and basic repair knowledge.">Moderate</span>
+                            <p class="chip-desc">Requires some disassembly, additional tools, and basic repair
+                                knowledge.</p>
                         </li>
                         <li class="difficulty-item">
-                            <span class="chip chip-e" title="Requires minimal disassembly, requires only Phillips or flat-head screwdriver.">Easy</span>
-                            <p class="chip-desc">Requires minimal disassembly, requires only Phillips or flat-head screwdriver.</p>
+                            <span class="chip chip-e"
+                                  title="Requires minimal disassembly, requires only Phillips or flat-head screwdriver.">Easy</span>
+                            <p class="chip-desc">Requires minimal disassembly, requires only Phillips or flat-head
+                                screwdriver.</p>
                         </li>
                         <li class="difficulty-item">
                             <span class="chip chip-ve" title="Does not require opening device.">Very Easy</span>
@@ -137,10 +158,17 @@
                     <option value="">All manufacturers</option>
                 </select>
                 <div class="flex items-center gap-2">
-                    <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu" aria-expanded="false" title="Export data">Export ▾</button>
-                    <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density: Compact</button>
-                    <button id="resetFilters" class="px-3 py-2 btn-neon transition" title="Reset all filters">Reset</button>
-                    <button id="themeToggle" class="px-3 py-2 btn-neon transition theme-switch" role="switch" aria-checked="false" title="Toggle color theme">Theme</button>
+                    <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu"
+                            aria-expanded="false" title="Export data">Export ▾
+                    </button>
+                    <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density:
+                        Compact
+                    </button>
+                    <button id="resetFilters" class="px-3 py-2 btn-neon transition" title="Reset all filters">Reset
+                    </button>
+                    <button id="themeToggle" class="px-3 py-2 btn-neon transition theme-switch" role="switch"
+                            aria-checked="false" title="Toggle color theme">Theme
+                    </button>
                 </div>
             </div>
             <div id="activeFilters" class="mb-3 items-center gap-2"></div>
@@ -149,7 +177,8 @@
                     <caption class="sr-only">Device repairability scores table</caption>
                     <thead class="bg-slate-800/80 sticky top-0 z-10">
                     <tr>
-                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase"><span class="sr-only">Select</span></th>
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase"><span
+                                class="sr-only">Select</span></th>
                         <th scope="col" data-sort-key="name" role="button" tabindex="0" aria-sort="none"
                             class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
                             Device <span class="sort-icon inline-block ml-1"></span>
@@ -194,10 +223,13 @@
     <div class="container mx-auto px-6 flex items-center justify-center text-sm font-mono relative">
         <div class="text-center">Data from iFixit API · Built with Tailwind + Chart.js · Neon Dark · Version 0.0.4</div>
         <div id="fileAge" class="absolute right-2 text-sm text-gray-500 font-mono"></div>
-        <button id="fileAgeInfoBtn" aria-label="Show last datasource update" class="mobile-info-btn" type="button" title="Last datasource update">
+        <button id="fileAgeInfoBtn" aria-label="Show last datasource update" class="mobile-info-btn" type="button"
+                title="Last datasource update">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="rgba(8,145,178,0.18)" stroke="rgba(103,232,249,0.45)" stroke-width="1.5"/>
-                <path d="M12 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm-1.2 4.3c0-.44.36-.8.8-.8h.8c.44 0 .8.36.8.8V17c0 .44-.36.8-.8.8h-.8a.8.8 0 0 1-.8-.8v-5.5Z" fill="#67e8f9"/>
+                <circle cx="12" cy="12" r="10" fill="rgba(8,145,178,0.18)" stroke="rgba(103,232,249,0.45)"
+                        stroke-width="1.5"/>
+                <path d="M12 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm-1.2 4.3c0-.44.36-.8.8-.8h.8c.44 0 .8.36.8.8V17c0 .44-.36.8-.8.8h-.8a.8.8 0 0 1-.8-.8v-5.5Z"
+                      fill="#67e8f9"/>
             </svg>
         </button>
     </div>
