@@ -748,35 +748,88 @@ if (!prefersReducedMotion) {
 }
 
 async function updateFileAge() {
+    function fmtAge(fromDate) {
+        const now = new Date();
+        const diffMs = now - fromDate;
+        const diffMin = Math.floor(diffMs / 60000);
+        const diffH = Math.floor(diffMin / 60);
+        const diffD = Math.floor(diffH / 24);
+        if (diffD > 0) return `${diffD} day(s)`;
+        if (diffH > 0) return `${diffH} hour(s)`;
+        if (diffMin > 0) return `${diffMin} minute(s)`;
+        return 'less than 1 minute';
+    }
+    async function setAge(dateObj, sourceLabel) {
+        const ageStr = fmtAge(dateObj);
+        const fa = document.getElementById('fileAge');
+        const fullTitle = `Last datasource update: ${ageStr} ago (${dateObj.toLocaleString()})${sourceLabel ? ` — via ${sourceLabel}` : ''}`;
+        lastUpdateFullTitle = fullTitle;
+        if (fa) {
+            fa.textContent = `Last datasource update: ${ageStr} ago`;
+            fa.setAttribute('title', fullTitle);
+        }
+        const footerMeta = document.querySelector('footer .container .text-center');
+        if (footerMeta) { footerMeta.setAttribute('title', fullTitle); }
+    }
+    function setUnavailable() {
+        const fa = document.getElementById('fileAge');
+        if (fa) fa.textContent = 'File age not available';
+        lastUpdateFullTitle = 'Last datasource update: not available';
+    }
+    // Detect if running on GitHub Pages and repo slug, for API fallback
+    function inferRepo() {
+        try {
+            const host = location.hostname.toLowerCase();
+            const path = location.pathname.replace(/^\/+|\/+$/g,'');
+            // user/organization pages: <user>.github.io/<repo>/...
+            if (host.endsWith('github.io')) {
+                const parts = path.split('/').filter(Boolean);
+                if (parts.length > 0) return `${host.split('.')[0]}/${parts[0]}`;
+            }
+            // project pages: custom domain still maps under repo path? Not reliably inferable.
+            return null;
+        } catch (_) { return null; }
+    }
+    async function fetchCommitDateViaGitHubAPI() {
+        const slug = inferRepo();
+        if (!slug) return null;
+        const url = `https://api.github.com/repos/${slug}/commits?path=devices_with_scores.json&per_page=1`;
+        try {
+            const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+            if (!res.ok) return null;
+            const arr = await res.json();
+            const iso = arr?.[0]?.commit?.committer?.date || arr?.[0]?.commit?.author?.date;
+            if (!iso) return null;
+            return new Date(iso);
+        } catch(_) { return null; }
+    }
     try {
-        const res = await fetch('devices_with_scores.json', {method: 'HEAD'});
+        // 1) Try server Last-Modified via HEAD (fast and cheap)
+        const res = await fetch('devices_with_scores.json', { method: 'HEAD', cache: 'no-store' });
         const lastModified = res.headers.get('Last-Modified');
         if (lastModified) {
             const fileDate = new Date(lastModified);
-            const now = new Date();
-            const diffMs = now - fileDate;
-            const diffMin = Math.floor(diffMs / 60000);
-            const diffH = Math.floor(diffMin / 60);
-            const diffD = Math.floor(diffH / 24);
-            let ageStr = '';
-            if (diffD > 0) ageStr = `${diffD} day(s)`;
-            else if (diffH > 0) ageStr = `${diffH} hour(s)`;
-            else if (diffMin > 0) ageStr = `${diffMin} minute(s)`;
-            else ageStr = 'less than 1 minute';
-            const fa = document.getElementById('fileAge');
-            const fullTitle = `Last datasource update: ${ageStr} ago (${fileDate.toLocaleString()})`;
-            lastUpdateFullTitle = fullTitle;
-            fa.textContent = `Last datasource update: ${ageStr} ago`;
-            fa.setAttribute('title', fullTitle);
-            const footerMeta = document.querySelector('footer .container .text-center');
-            if (footerMeta) { footerMeta.setAttribute('title', fullTitle); }
-        } else {
-            document.getElementById('fileAge').textContent = 'File age not available';
-            lastUpdateFullTitle = 'Last datasource update: not available';
+            // Guard: Some CDNs return "now" or very fresh time regardless of file
+            const ageStr = fmtAge(fileDate);
+            const looksSuspicious = /less than 1 minute|0 minute/.test(ageStr);
+            if (!looksSuspicious) {
+                await setAge(fileDate, 'HTTP Last-Modified');
+                return;
+            }
+            // Fall through to API if suspicious
         }
+        // 2) GitHub API fallback: latest commit touching the JSON file
+        const apiDate = await fetchCommitDateViaGitHubAPI();
+        if (apiDate) { await setAge(apiDate, 'GitHub commit'); return; }
+        // 3) As a final attempt, GET the JSON with no-cache and use Age/Date headers if any
+        try {
+            const getRes = await fetch('devices_with_scores.json', { cache: 'no-store' });
+            const hDate = getRes.headers.get('Last-Modified') || getRes.headers.get('Date');
+            if (hDate) { await setAge(new Date(hDate), 'HTTP Date'); return; }
+        } catch(_) {}
+        setUnavailable();
     } catch (e) {
-        document.getElementById('fileAge').textContent = 'File age not available';
-        lastUpdateFullTitle = 'Last datasource update: not available';
+        setUnavailable();
     }
 }
 
