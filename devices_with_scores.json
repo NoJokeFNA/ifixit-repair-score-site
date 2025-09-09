@@ -11,7 +11,8 @@
         "url": "https://www.ifixit.com/Teardown/Amazon+Fire+Phone+Teardown/27458",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -35,7 +36,8 @@
         "url": "https://www.ifixit.com/Teardown/Fairphone+1+Teardown/20527",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -51,7 +53,8 @@
         "url": "https://www.ifixit.com/Teardown/Fairphone+2+Teardown/52523",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -67,7 +70,8 @@
         "url": "https://www.ifixit.com/Teardown/Fairphone+3+Teardown/125573",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -131,7 +135,8 @@
         "url": "https://www.ifixit.com/Teardown/Meizu+MX6+Teardown/65393",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -155,7 +160,8 @@
         "url": "https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -211,7 +217,8 @@
         "url": "https://www.ifixit.com/Teardown/Wiko+Pulp+4G+Teardown/64584",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -225,7 +232,8 @@
       {
         "title": "iPhone 11 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+11+Teardown/126192",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -239,12 +247,14 @@
       {
         "title": "iPhone 11 Pro Max Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+11+Pro+Max+Teardown/126000",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 11 Pro Max Connector ID",
         "url": "https://www.ifixit.com/Guide/iPhone+11+Pro+Max+Connector+ID/173388",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -261,7 +271,8 @@
         "tags": [
           "starred",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -277,7 +288,8 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+12+and+12+Pro+Teardown/137669",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -291,7 +303,8 @@
       {
         "title": "iPhone 12 Pro Max Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+12+Pro+Max+Teardown/138640",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -307,7 +320,8 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+12+mini+Teardown/138505",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -323,19 +337,22 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+13+Pro+Teardown/144928",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 13 Pro Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+13+Pro+Teardown/145019",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 13 Pro Full Chip ID",
         "url": "https://www.ifixit.com/Guide/iPhone+13+Pro+Full+Chip+ID/144993",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -381,7 +398,8 @@
       {
         "title": "iPhone 15 Pro Max Chip ID",
         "url": "https://www.ifixit.com/Guide/iPhone+15+Pro+Max+Chip+ID/165320",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -395,7 +413,8 @@
       {
         "title": "iPhone 16 Chip ID",
         "url": "https://www.ifixit.com/Guide/iPhone+16+Chip+ID/177222",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -417,7 +436,8 @@
       {
         "title": "iPhone 16 Pro Chip ID",
         "url": "https://www.ifixit.com/Guide/iPhone+16+Pro+Chip+ID/177358",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -439,7 +459,8 @@
       {
         "title": "iPhone 1st Generation Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+1st+Generation+Teardown/599",
-        "tags": []
+        "tags": [],
+        "difficulty": "Very easy"
       }
     ]
   },
@@ -453,7 +474,8 @@
       {
         "title": "iPhone 3G Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+3G+Teardown/600",
-        "tags": []
+        "tags": [],
+        "difficulty": "Very easy"
       }
     ]
   },
@@ -467,7 +489,8 @@
       {
         "title": "iPhone 3GS Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+3GS+Teardown/817",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -481,17 +504,20 @@
       {
         "title": "iPhone 4 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4+Teardown/3130",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 4 Gyroscope Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4+Gyroscope+Teardown/3156",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 4 Microphone Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4+Microphone+Teardown/3473",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 4 Teardown",
@@ -499,7 +525,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -513,7 +540,8 @@
       {
         "title": "iPhone 4 Verizon Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4+Verizon+Teardown/4693",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -527,7 +555,8 @@
       {
         "title": "iPhone 4S Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+4S+Teardown/6610",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -541,12 +570,14 @@
       {
         "title": "iPhone 5 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+5+Teardown/10525",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Apple A6 Teardown",
         "url": "https://www.ifixit.com/Teardown/Apple+A6+Teardown/10528",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 5 Teardown",
@@ -554,7 +585,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -568,7 +600,8 @@
       {
         "title": "iPhone 5c Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+5c+Teardown/17382",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -584,7 +617,8 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+5S+Teardown+by+X-ray/29326",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -600,19 +634,22 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+6+Teardown/131237",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 6 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6+Teardown/29213",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Apple iPhone 6 Teardown by X-ray",
         "url": "https://www.ifixit.com/Teardown/Apple+iPhone+6+Teardown+by+X-ray/29640",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 6 Teardown",
@@ -620,7 +657,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -634,19 +672,22 @@
       {
         "title": "iPhone 6 Plus Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6+Plus+Teardown/29206",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Smontaggio iPhone 6 Plus (Italiano)",
         "url": "https://www.ifixit.com/Guide/Smontaggio+iPhone+6+Plus+(Italiano)/29211",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 6 Plus 拆解",
         "url": "https://www.ifixit.com/Guide/iPhone+6+Plus+%E6%8B%86%E8%A7%A3/29208",
         "tags": [
           "archived"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -660,12 +701,14 @@
       {
         "title": "iPhone 6s Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6s+Teardown/48170",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "iPhone 6s Display Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6s+Display+Teardown/49951",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -679,7 +722,8 @@
       {
         "title": "iPhone 6s Plus Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+6s+Plus+Teardown/48171",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -695,7 +739,8 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+7+Teardown/67382",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -709,7 +754,8 @@
       {
         "title": "iPhone 7 Plus Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+7+Plus+Teardown/67384",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -723,7 +769,8 @@
       {
         "title": "iPhone 8 Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+8+Teardown/97481",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -737,7 +784,8 @@
       {
         "title": "iPhone 8 Plus Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+8+Plus+Teardown/97482",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -751,7 +799,8 @@
       {
         "title": "iPhone SE Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+SE+Teardown/60902",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -767,7 +816,8 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+SE+2020+Teardown/133066",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -781,7 +831,8 @@
       {
         "title": "iPhone X Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+X+Teardown/98975",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -795,7 +846,8 @@
       {
         "title": "iPhone XR Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+XR+Teardown/114123",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -809,7 +861,8 @@
       {
         "title": "iPhone XS and XS Max Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+XS+and+XS+Max+Teardown/113021",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -839,7 +892,8 @@
       {
         "title": "Essential Phone Teardown",
         "url": "https://www.ifixit.com/Teardown/Essential+Phone+Teardown/96764",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -861,7 +915,8 @@
       {
         "title": "Google Pixel 2 XL Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+2+XL+Teardown/98093",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -875,7 +930,8 @@
       {
         "title": "Google Pixel 3 Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+3+Teardown/113763",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -889,7 +945,8 @@
       {
         "title": "Google Pixel 3 XL Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+3+XL+Teardown/113656",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -903,7 +960,8 @@
       {
         "title": "Google Pixel 3a Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+3a+Teardown/123256",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -917,7 +975,8 @@
       {
         "title": "Google Pixel 3a XL Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+3a+XL+Teardown/123297",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -939,7 +998,8 @@
       {
         "title": "Google Pixel 4 XL Teardown",
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+4+XL+Teardown/127320",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1065,7 +1125,8 @@
       {
         "title": "Google Pixel 9 Pro XL Chip ID",
         "url": "https://www.ifixit.com/Guide/Google+Pixel+9+Pro+XL+Chip+ID/176196",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1089,7 +1150,8 @@
         "url": "https://www.ifixit.com/Teardown/Google+Pixel+XL+Teardown/71237",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1105,7 +1167,8 @@
         "url": "https://www.ifixit.com/Teardown/Nexus+6P+Teardown/51660",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Nexus 6P Teardown",
@@ -1113,7 +1176,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1129,7 +1193,8 @@
         "url": "https://www.ifixit.com/Teardown/Project+Tango+Teardown/23835",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1161,7 +1226,8 @@
         "url": "https://www.ifixit.com/Teardown/HTC+One+Teardown/13494",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1177,7 +1243,8 @@
         "url": "https://www.ifixit.com/Teardown/HTC+One+(M8)+Teardown/23615",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1193,7 +1260,8 @@
         "url": "https://www.ifixit.com/Teardown/HTC+One+M9+Teardown/39166",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1223,7 +1291,8 @@
       {
         "title": "HTC Surround Teardown",
         "url": "https://www.ifixit.com/Teardown/HTC+Surround+Teardown/4469",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1247,7 +1316,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+10+Pro+Teardown/100096",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1263,7 +1333,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+20+Pro+Teardown/114159",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1279,7 +1350,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+20+X+5G+Teardown/124808",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1295,14 +1367,16 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+30+Pro+Teardown/127743",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Huawei Mate 30 Pro Teardown",
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+30+Pro+Teardown/129894",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1318,7 +1392,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+40+Pro+Teardown/138729",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1334,14 +1409,16 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+8+Teardown/64819",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "How to reassemble Huawei Mate 8?",
         "url": "https://www.ifixit.com/Guide/How+to+reassemble+Huawei+Mate+8-/64920",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1355,7 +1432,8 @@
       {
         "title": "Huawei Mate 9 Teardown",
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+9+Teardown/98335",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1371,7 +1449,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+Mate+Xs+Teardown/132809",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1387,7 +1466,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+P20+Pro+Teardown/104605",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1403,7 +1483,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+P30+Pro+Teardown/122028",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1419,7 +1500,8 @@
         "url": "https://www.ifixit.com/Teardown/Huawei+P9+Teardown/62348",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Huawei P9 Teardown Complete",
@@ -1427,7 +1509,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1449,7 +1532,8 @@
       {
         "title": "LG G4 Teardown",
         "url": "https://www.ifixit.com/Teardown/LG+G4+Teardown/42705",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1463,7 +1547,8 @@
       {
         "title": "LG G5 Teardown",
         "url": "https://www.ifixit.com/Teardown/LG+G5+Teardown/61205",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1487,7 +1572,8 @@
         "url": "https://www.ifixit.com/Teardown/LG+G7+ThinQ+Teardown/110419",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1501,7 +1587,8 @@
       {
         "title": "Nexus 4 Teardown",
         "url": "https://www.ifixit.com/Teardown/Nexus+4+Teardown/11781",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1517,7 +1604,8 @@
         "url": "https://www.ifixit.com/Teardown/Nexus+5+Teardown/19016",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1533,7 +1621,8 @@
         "url": "https://www.ifixit.com/Teardown/Nexus+5X+Teardown/51318",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Nexus 5X Teardown",
@@ -1541,7 +1630,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1558,7 +1648,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1572,7 +1663,8 @@
       {
         "title": "Motorola Atrix 4G Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Atrix+4G+Teardown/4964",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1586,7 +1678,8 @@
       {
         "title": "Motorola Droid 3 Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Droid+3+Teardown/6108",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1600,7 +1693,8 @@
       {
         "title": "Motorola Droid 4 Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Droid+4+Teardown/7759",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1614,7 +1708,8 @@
       {
         "title": "Motorola Droid Bionic Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Droid+Bionic+Teardown/6449",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1636,7 +1731,8 @@
       {
         "title": "Motorola Droid RAZR Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Droid+RAZR+Teardown/7048",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1650,7 +1746,8 @@
       {
         "title": "Motorola Moto X Teardown",
         "url": "https://www.ifixit.com/Teardown/Motorola+Moto+X+Teardown/16867",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1674,7 +1771,8 @@
         "url": "https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1690,7 +1788,8 @@
         "url": "https://www.ifixit.com/Teardown/Nexus+6+Teardown/32877",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1706,7 +1805,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+2+Teardown/45352",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1722,7 +1822,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+5+Teardown/94173",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1738,7 +1839,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+6+Teardown/109826",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1754,7 +1856,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+6T+Teardown/115698",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1770,7 +1873,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+7+Pro+Teardown/123656",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1786,7 +1890,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+7T+Teardown/127509",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1802,7 +1907,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+8+Pro+Teardown/133351",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1818,7 +1924,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+Nord+Teardown/135734",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1834,7 +1941,8 @@
         "url": "https://www.ifixit.com/Teardown/OnePlus+One+Teardown/26484",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1848,7 +1956,8 @@
       {
         "title": "Galaxy Note10+ Teardown",
         "url": "https://www.ifixit.com/Teardown/Galaxy+Note10++Teardown/125616",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1862,7 +1971,8 @@
       {
         "title": "Nexus S Teardown",
         "url": "https://www.ifixit.com/Teardown/Nexus+S+Teardown/4365",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1876,7 +1986,8 @@
       {
         "title": "Samsung Epic 4G Touch Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Epic+4G+Touch+Teardown/6481",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1892,7 +2003,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+A51+Teardown/131053",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1906,7 +2018,8 @@
       {
         "title": "Samsung Galaxy Alpha Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Alpha+Teardown/29604",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1922,7 +2035,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Centura+Teardown/44393",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1938,7 +2052,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1954,7 +2069,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+J6+Teardown/112383",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1968,7 +2084,8 @@
       {
         "title": "Samsung Galaxy Nexus Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Nexus+Teardown/7182",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -1992,7 +2109,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note+20+and+Note+20+Ultra+Teardown/136102",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2008,7 +2126,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note+3+Teardown/19209",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2024,7 +2143,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note+Fan+Edition+Teardown/95451",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2048,7 +2168,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note10++5G+Teardown/125590",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2064,7 +2185,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note7+Teardown/66389",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2080,7 +2202,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note8+Teardown/97071",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2094,7 +2217,8 @@
       {
         "title": "Samsung Galaxy Note9 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Note9+Teardown/112412",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2108,7 +2232,8 @@
       {
         "title": "Samsung Galaxy S 4G Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+4G+Teardown/4977",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2124,21 +2249,24 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/5861",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S II Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/72990",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S II Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+II+Teardown/73002",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2154,12 +2282,14 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+III+Teardown/73106",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S III Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+III+Teardown/9391",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2173,7 +2303,8 @@
       {
         "title": "Samsung Galaxy S10 and S10e Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S10+and+S10e+Teardown/120331",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2187,7 +2318,8 @@
       {
         "title": "Samsung Galaxy S10+ Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S10++Teardown/120436",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2211,7 +2343,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S20+Ultra+Teardown/131607",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2227,7 +2360,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S21+Teardown/140337",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2243,7 +2377,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S21+Ultra+Teardown/141188",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2257,12 +2392,14 @@
       {
         "title": "Samsung Galaxy S22 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S22+Teardown/148710",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S22 Chip ID",
         "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S22+Chip+ID/148072",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2276,7 +2413,8 @@
       {
         "title": "Samsung Galaxy S22 Ultra Chip ID",
         "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S22+Ultra+Chip+ID/148073",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2290,7 +2428,8 @@
       {
         "title": "Samsung Galaxy S4 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S4+Teardown/13947",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2304,14 +2443,16 @@
       {
         "title": "Samsung Galaxy S5 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S5+Teardown/24016",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S5 camera Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S5+camera+Teardown/53645",
         "tags": [
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2335,7 +2476,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S5+Mini+Teardown/27579",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2349,7 +2491,8 @@
       {
         "title": "Samsung Galaxy S6 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S6+Teardown/39174",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       },
       {
         "title": "Samsung Galaxy S6 Teardown",
@@ -2357,7 +2500,8 @@
         "tags": [
           "archived",
           "user_contributed"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2371,7 +2515,8 @@
       {
         "title": "Samsung Galaxy S6 Edge Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S6+Edge+Teardown/39158",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2385,7 +2530,8 @@
       {
         "title": "Samsung Galaxy S7 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S7+Teardown/56686",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2399,7 +2545,8 @@
       {
         "title": "Samsung Galaxy S7 Edge Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S7+Edge+Teardown/56845",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2413,7 +2560,8 @@
       {
         "title": "Samsung Galaxy S8 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S8+Teardown/87136",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2429,7 +2577,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S8++Teardown/87086",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2443,7 +2592,8 @@
       {
         "title": "Samsung Galaxy S9 Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S9+Teardown/104322",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2457,7 +2607,8 @@
       {
         "title": "Samsung Galaxy S9+ Teardown",
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S9++Teardown/104308",
-        "tags": []
+        "tags": [],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2473,7 +2624,8 @@
         "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
@@ -2497,7 +2649,8 @@
         "url": "https://www.ifixit.com/Teardown/Xiaomi+Mi+11+Teardown/141047",
         "tags": [
           "starred"
-        ]
+        ],
+        "difficulty": "Moderate"
       }
     ]
   },
