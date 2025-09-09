@@ -1713,7 +1713,7 @@ body.theme-light #themeToggle.theme-switch::after {
 /* Unified header info box and responsive readability tweaks */
 .header-info .header-info-text {
   /* keep default sans-serif; scale slightly with viewport */
-  font-size: clamp(0.9rem, 0.85rem + 0.12vw, 1rem);
+  font-size: clamp(0.82rem, 0.76rem + 0.10vw, 0.94rem);
   line-height: 1.5;
 }
 .header-info-divider {
@@ -1756,7 +1756,7 @@ body.theme-light #themeToggle.theme-switch::after {
   header .header-info { padding: 0.75rem; }
   header .header-info .header-info-text {
     /* Smaller upper cap on ultrawide; gentler viewport scaling */
-    font-size: clamp(0.9rem, 0.82rem + 0.08vw, 0.98rem);
+    font-size: clamp(0.82rem, 0.74rem + 0.06vw, 0.92rem);
   }
 }
 
