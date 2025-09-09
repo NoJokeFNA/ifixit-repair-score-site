@@ -1123,7 +1123,7 @@ body.theme-light .actions-menu button:hover { background: rgba(2,132,199,0.10); 
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal; /* allow wrapping for full names */
 }
 .teardown-badges {
   display: flex;

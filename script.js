@@ -106,7 +106,15 @@ function renderTeardownLinks(teardownUrls = []) {
         const badges = tags.map(tagBadge).filter(Boolean).join(' ');
         const archivedClass = tags.includes('archived') ? 'archived' : '';
         const difficulty = (td.difficulty || '').toString().trim();
-        const difficultyHtml = difficulty ? `<span class="teardown-difficulty text-gray-400 text-xs">Difficulty: ${difficulty}</span>` : '';
+        const diffMap = {
+            'very difficult': 'chip-vd',
+            'difficult': 'chip-d',
+            'moderate': 'chip-m',
+            'easy': 'chip-e',
+            'very easy': 'chip-ve'
+        };
+        const diffClass = diffMap[difficulty.toLowerCase()] || '';
+        const difficultyHtml = difficulty ? `<span class="teardown-difficulty chip ${diffClass}" title="${difficulty}">${difficulty}</span>` : '';
         const ariaLabel = `${td.title}${difficulty ? ` - Difficulty: ${difficulty}` : ''}`;
         return `
             <a href="${td.url}" target="_blank" class="teardown-item ${archivedClass}" aria-label="${ariaLabel}">
@@ -237,7 +245,7 @@ function populateTable(data) {
             const ddId = `td-dd-${index}`;
             teardownHtml = `
             <span class="teardown-toggle inline-flex items-center gap-2" data-index="${index}" role="button" tabindex="0" aria-expanded="false" aria-controls="${ddId}">
-                <span>[Teardowns]<span class="teardown-count"> x${d.teardown_urls.length}</span></span>
+                <span>Teardowns<span class="teardown-count"> (${d.teardown_urls.length})</span></span>
                 <span class="inline-flex flex-wrap gap-1">${toggleBadges}</span>
             </span>
             <div class="teardown-dropdown" id="${ddId}" data-index="${index}">
