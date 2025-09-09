@@ -1892,8 +1892,16 @@ input.cmp:checked::before {
 .chip-ve { color: #c4b5fd; }
 .chip-ve::before { background: #8b5cf6; }
 
+/* Tag chips using same design */
+.chip-featured { color: #93c5fd; }
+.chip-community { color: #fde68a; }
+.chip-archived { color: #fcd34d; }
+
 /* Chip + description layout */
 .difficulty-item { display: inline-flex; flex-direction: column; gap: 4px; padding: 4px 6px; border-radius: 12px; }
 .difficulty-item .chip { align-self: flex-start; }
 .chip-desc { font-size: 0.9rem; line-height: 1.25; color: #a7b2c3; max-width: 240px; }
 .theme-light .chip-desc { color: #475569; }
+
+/* Make chip have a glowing dot before using its current color */
+.chip::before { background: currentColor; }
