@@ -105,9 +105,13 @@ function renderTeardownLinks(teardownUrls = []) {
         const tags = sortTags(td.tags || []);
         const badges = tags.map(tagBadge).filter(Boolean).join(' ');
         const archivedClass = tags.includes('archived') ? 'archived' : '';
+        const difficulty = (td.difficulty || '').toString().trim();
+        const difficultyHtml = difficulty ? `<span class="teardown-difficulty text-gray-400 text-xs">Difficulty: ${difficulty}</span>` : '';
+        const ariaLabel = `${td.title}${difficulty ? ` - Difficulty: ${difficulty}` : ''}`;
         return `
-            <a href="${td.url}" target="_blank" class="teardown-item ${archivedClass}">
+            <a href="${td.url}" target="_blank" class="teardown-item ${archivedClass}" aria-label="${ariaLabel}">
                 <span class="teardown-title">${td.title}</span>
+                ${difficultyHtml}
                 <span class="teardown-badges">${badges}</span>
             </a>
         `;

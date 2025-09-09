@@ -1106,8 +1106,8 @@ body.theme-light .actions-menu button:hover { background: rgba(2,132,199,0.10); 
 .teardown-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 14px;
   padding: 8px 12px;
   color: #cbd5e1;
   text-decoration: none;
@@ -1813,3 +1813,51 @@ input.cmp::before {
 input.cmp:checked::before {
   background: radial-gradient(circle at 50% 50%, #67e8f9 0%, #06b6d4 60%, transparent 61%);
 }
+
+
+/* Teardown difficulty label */
+.teardown-difficulty {
+  flex: 0 0 auto;
+  margin-left: 8px;
+  margin-right: auto; /* push badges far right to create clear space */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  color: #a5b4fc; /* indigo-300-ish, subtle */
+  font-size: 0.6875rem; /* ~11px */
+  line-height: 1;
+  white-space: nowrap;
+  background: rgba(148, 163, 184, 0.12); /* slate-400 @ 12% */
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+.teardown-difficulty::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #67e8f9; /* cyan-300 */
+  box-shadow: 0 0 6px rgba(103, 232, 249, 0.7);
+}
+/* Light theme adjustments */
+.theme-light .teardown-difficulty {
+  color: #0369a1; /* sky-800-ish */
+  background: rgba(15, 23, 42, 0.06); /* light subtle */
+  border-color: rgba(15, 23, 42, 0.12);
+}
+.theme-light .teardown-difficulty::before {
+  background: #0ea5e9; /* sky-500 */
+  box-shadow: 0 0 5px rgba(14, 165, 233, 0.55);
+}
+/* Ensure badges are aligned to the far right */
+.teardown-badges { margin-left: auto; }
+
+/* Difficulty legend—tone it down */
+.difficulty-legend .grid { gap: 10px; }
+.difficulty-legend h3 { font-size: 0.85rem; margin-bottom: 2px; color: #67e8f9; }
+.theme-light .difficulty-legend h3 { color: #0ea5e9; }
+.difficulty-legend p { font-size: 0.72rem; color: #a7b2c3; }
+.theme-light .difficulty-legend p { color: #475569; }
+.difficulty-legend .grid > div { padding: 10px; border-color: rgba(148,163,184,0.22); }
+.theme-light .difficulty-legend .grid > div { background: rgba(15,23,42,0.03); border-color: rgba(15,23,42,0.12); }
