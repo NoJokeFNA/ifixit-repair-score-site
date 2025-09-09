@@ -14,6 +14,8 @@ window.addEventListener('unhandledrejection', (e) => {
 });
 
 let devicesData = [];
+const MAX_COMPARE = 5;
+let selectedForCompare = new Set();
 let currentSort = {key: 'name', direction: 'asc'};
 let myChart = null;
 let lastUpdateFullTitle = '';
@@ -115,7 +117,16 @@ function renderTeardownLinks(teardownUrls = []) {
 async function loadData() {
     const tbody = document.getElementById('deviceTable');
     const chartError = document.getElementById('chartError');
-    tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center"><span class="loading-spinner"></span> Loading...</td></tr>';
+    // Polished skeleton placeholder rows
+    tbody.innerHTML = Array.from({length: 8}).map(() => `
+      <tr class="skeleton-row">
+        <td class="px-4 py-4"><span class="skeleton-box sm"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box lg"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box md"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box md"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box sm"></span></td>
+      </tr>
+    `).join('');
     chartError.classList.add('hidden');
 
     const cachedData = localStorage.getItem('devicesData');
@@ -143,7 +154,7 @@ async function loadData() {
         if (typeof Chart !== 'undefined') { renderChart(devicesData); }
     } catch (error) {
         console.error('Data fetch failed:', error);
-        tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center text-rose-500">Failed to load data</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-rose-500">Failed to load data</td></tr>';
         chartError.classList.remove('hidden');
     }
 }
@@ -184,10 +195,25 @@ function sortData(data) {
 }
 
 function populateTable(data) {
+    const drawer = document.getElementById('compareDrawer');
+    const countEl = document.getElementById('compareCount');
+    function refreshDrawer(warn = false) {
+        const n = selectedForCompare.size;
+        if (countEl) countEl.textContent = `${n}/${MAX_COMPARE} selected`;
+        if (drawer) {
+            drawer.classList.toggle('hidden', n === 0);
+            if (warn) {
+                drawer.classList.add('warn');
+                setTimeout(() => drawer.classList.remove('warn'), 800);
+            }
+        }
+        const btn = document.getElementById('compareBtn');
+        if (btn) btn.disabled = n < 2;
+    }
     const tbody = document.getElementById('deviceTable');
     tbody.innerHTML = '';
     if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center text-gray-500">No devices found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No devices found</td></tr>';
         return;
     }
 
@@ -197,6 +223,7 @@ function populateTable(data) {
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-800/70 transition';
         tr.tabIndex = 0;
+        const selId = `${d.name}__${d.brand ?? ''}`;
 
         let teardownHtml = '—';
         if (d.teardown_urls && d.teardown_urls.length > 0) {
@@ -215,6 +242,9 @@ function populateTable(data) {
         }
 
         tr.innerHTML = `
+                <td class="px-4 py-4">
+                    <input type="checkbox" class="cmp" aria-label="Select ${d.name} for comparison" ${selectedForCompare.has(selId) ? 'checked' : ''}>
+                </td>
                 <td class="px-6 py-4 font-medium">
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
                 </td>
@@ -225,9 +255,52 @@ function populateTable(data) {
                         ${d.repairability_score ?? '—'}/10
                     </span>
                 </td>`;
+        // wire checkbox
+        setTimeout(() => {
+            const cb = tr.querySelector('input.cmp');
+            if (cb) {
+                cb.addEventListener('change', () => {
+                    if (cb.checked) {
+                        if (selectedForCompare.size >= MAX_COMPARE) {
+                            // Revert and warn
+                            cb.checked = false;
+                            notifyAction(`You can compare up to ${MAX_COMPARE} devices. Deselect one to add another.`);
+                            // Visible inline warning in drawer
+                            try {
+                                const drawer = document.getElementById('compareDrawer');
+                                if (drawer) {
+                                    let msg = drawer.querySelector('#compareMsg');
+                                    if (!msg) {
+                                        msg = document.createElement('span');
+                                        msg.id = 'compareMsg';
+                                        msg.className = 'msg';
+                                        const spacer = drawer.querySelector('.spacer');
+                                        if (spacer && spacer.parentElement) {
+                                            spacer.parentElement.insertBefore(msg, spacer);
+                                        } else {
+                                            drawer.appendChild(msg);
+                                        }
+                                    }
+                                    msg.textContent = `You can compare up to ${MAX_COMPARE} devices.`;
+                                    msg.classList.add('show');
+                                    setTimeout(() => msg && msg.classList && msg.classList.remove('show'), 2500);
+                                }
+                            } catch(_) {}
+                            refreshDrawer(true);
+                            return;
+                        }
+                        selectedForCompare.add(selId);
+                    } else {
+                        selectedForCompare.delete(selId);
+                    }
+                    refreshDrawer();
+                });
+            }
+        }, 0);
         tbody.appendChild(tr);
     });
 
+    refreshDrawer();
     document.getElementById('deviceCount').textContent = `${data.length} Devices`;
 
     // Portal-based dropdown handling to avoid table scrollbars
@@ -375,6 +448,43 @@ function toggleSort(key) {
         currentSort.direction = 'asc';
     }
     renderTable();
+    const dirLabel = currentSort.direction === 'asc' ? 'ascending' : 'descending';
+    const keyLabel = key === 'repairability_score' ? 'Score' :
+                     key === 'brand' ? 'Manufacturer' :
+                     key === 'teardown' ? 'Teardown' : 'Device';
+    notifyAction(`Sorted by ${keyLabel}, ${dirLabel}. ${window.lastFiltered?.length ?? ''} results.`);
+}
+
+function injectStructuredData(list) {
+    try {
+        const max = 25;
+        const items = (list || []).slice(0, max).map((d, i) => ({
+            '@type':'ListItem',
+            position: i+1,
+            url: d.link || location.href,
+            item: {
+                '@type':'Product',
+                name: d.name,
+                brand: d.brand ? { '@type':'Brand', name: d.brand } : undefined,
+                url: d.link || undefined,
+                aggregateRating: Number.isFinite(d.repairability_score) ? {
+                    '@type':'AggregateRating',
+                    ratingValue: String(d.repairability_score),
+                    ratingCount: 1,
+                    bestRating: '10',
+                    worstRating: '0'
+                } : undefined
+            }
+        }));
+        const json = {
+            '@context':'https://schema.org',
+            '@type':'ItemList',
+            itemListElement: items
+        };
+        let el = document.getElementById('jsonLd');
+        if (!el) { el = document.createElement('script'); el.type='application/ld+json'; el.id='jsonLd'; document.head.appendChild(el);} 
+        el.textContent = JSON.stringify(json);
+    } catch(_) {}
 }
 
 function renderTable() {
@@ -389,6 +499,7 @@ function renderTable() {
     populateTable(data);
     window.lastFiltered = data.slice();
     renderActiveFiltersChip();
+    injectStructuredData(window.lastFiltered);
     if (typeof Chart !== 'undefined') {
         try {
             renderChart(data);
@@ -537,6 +648,7 @@ function renderChart(data) {
                     document.getElementById('deviceTable').parentElement.appendChild(scoreFilter);
                     renderTable();
                     stateToQuery();
+                    notifyAction(`Filtered by score ${score}. ${window.lastFiltered?.length ?? ''} results.`);
                 }
             }
         }
@@ -756,9 +868,23 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFileAge();
     queryToState();
     loadData();
-    const debouncedRender = debounce(() => { renderTable(); stateToQuery(); }, 300);
+    const debouncedRender = debounce(() => {
+        renderTable();
+        stateToQuery();
+        const q = document.getElementById('searchInput').value.trim();
+        if (q) {
+            notifyAction(`Search applied: “${q}”. ${window.lastFiltered?.length ?? ''} results.`);
+        } else {
+            notifyAction(`${window.lastFiltered?.length ?? ''} results.`);
+        }
+    }, 300);
     document.getElementById('searchInput').addEventListener('input', debouncedRender);
-    document.getElementById('brandFilter').addEventListener('change', () => { renderTable(); stateToQuery(); });
+    document.getElementById('brandFilter').addEventListener('change', () => {
+        renderTable();
+        stateToQuery();
+        const brand = document.getElementById('brandFilter').value || 'All manufacturers';
+        notifyAction(`Filtered by ${brand}. ${window.lastFiltered?.length ?? ''} results.`);
+    });
 
     // Mobile info icon tooltip
     (function setupMobileInfo() {
@@ -869,6 +995,7 @@ document.addEventListener('DOMContentLoaded', () => {
         exportBtn.addEventListener('click', (e) => { e.stopPropagation(); if (exportBtn.getAttribute('aria-expanded') === 'true') closeExportMenu(); else openExportMenu(); });
     }
 
+
     // Density toggle and Reset
     const densityBtn = document.getElementById('densityToggle');
     if (densityBtn) {
@@ -891,13 +1018,61 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('brandFilter').value = '';
             document.getElementById('scoreFilter')?.remove();
             currentSort = {key:'name', direction:'asc'};
+            selectedForCompare.clear();
             renderTable();
             stateToQuery();
             notifyAction('Filters reset');
         });
     }
 
-    // Auto wide layout for ultrawide screens
+
+
+    // Comparison drawer buttons
+        const cmpBtn = document.getElementById('compareBtn');
+        const clearCmp = document.getElementById('clearCompare');
+        function selectedRows() {
+            const ids = [...selectedForCompare];
+            const all = window.lastFiltered || getFilteredData();
+            const byId = (d) => `${d.name}__${d.brand ?? ''}`;
+            return all.filter(d => ids.includes(byId(d))).slice(0, 5);
+        }
+        function buildCompareModal(items) {
+            let modal = document.getElementById('compareModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'compareModal';
+                modal.className = 'compare-modal';
+                document.body.appendChild(modal);
+            }
+            const content = `
+              <div class="glass-card p-4" style="max-width:90vw;max-height:85vh;overflow:auto">
+                <div class="flex justify-between items-center mb-3">
+                  <h3 class="text-xl font-semibold text-cyan-300 font-mono">Compare devices (${items.length})</h3>
+                  <button id="cmpClose" class="btn-neon px-3 py-1">Close</button>
+                </div>
+                <div class="grid" style="grid-template-columns: repeat(${items.length}, minmax(220px, 1fr)); gap: 12px;">
+                  ${items.map(it => `
+                    <article class="compare-card">
+                      <div class="text-sm text-slate-400">${it.brand ?? '—'}</div>
+                      <div class="text-lg font-semibold text-cyan-300 mb-1">${it.name}</div>
+                      <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.repairability_score)}">${it.repairability_score ?? '—'}/10</span></div>
+                      <div class="text-sm mb-2"><a href="${it.link}" target="_blank" class="text-cyan-400 underline">iFixit page</a></div>
+                      <div class="text-sm">Teardowns:</div>
+                      <div class="mt-1 space-y-1">${renderTeardownLinks(it.teardown_urls || [])}</div>
+                    </article>
+                  `).join('')}
+                </div>
+              </div>`;
+            modal.innerHTML = content;
+            modal.classList.add('show');
+            modal.addEventListener('click', (e) => { if (e.target.id === 'cmpClose' || e.target === modal) { modal.classList.remove('show'); } });
+            document.addEventListener('keydown', function esc(e){ if (e.key==='Escape'){ modal.classList.remove('show'); document.removeEventListener('keydown', esc);} });
+        }
+        if (cmpBtn) cmpBtn.addEventListener('click', () => { const items = selectedRows(); if (selectedForCompare.size > MAX_COMPARE) { notifyAction(`You can compare up to ${MAX_COMPARE} devices. Showing the first ${MAX_COMPARE}.`); }
+                    if (items.length >= 2) { buildCompareModal(items); } else { notifyAction('Select at least 2 devices to compare.'); } });
+        if (clearCmp) clearCmp.addEventListener('click', () => { selectedForCompare.clear(); renderTable(); notifyAction('Selection cleared'); });
+
+        // Auto wide layout for ultrawide screens
     function applyWideLayoutAuto() {
         const shouldWide = window.innerWidth >= 1920; // 2K and above
         document.body.classList.toggle('layout-wide', shouldWide);
