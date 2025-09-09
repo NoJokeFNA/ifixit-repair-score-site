@@ -43,7 +43,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --container-6xl: 72rem;
+    --container-6xl: 90rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
@@ -985,6 +985,30 @@ tr[tabindex="0"]:focus {
 #activeFilters.show {
   display: flex;
 }
+.actions-menu {
+  position: fixed;
+  min-width: 200px;
+  background: rgba(15,23,42,0.96);
+  color: #e2e8f0;
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  padding: 6px;
+  z-index: 60;
+}
+body.theme-light .actions-menu { background: rgba(255,255,255,0.98); color: #0f172a; border-color: rgba(2,132,199,0.25); box-shadow: 0 8px 28px rgba(2,132,199,0.12); }
+.actions-menu button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.actions-menu button:hover { background: rgba(103,232,249,0.12); color: #67e8f9; }
+body.theme-light .actions-menu button:hover { background: rgba(2,132,199,0.10); color: #0ea5e9; }
 .filter-chip {
   display: inline-flex;
   align-items: center;
@@ -1532,5 +1556,173 @@ tr[tabindex="0"]:focus {
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
     }
+  }
+}
+
+@media (min-width: 1440px) {
+  html { font-size: 17px; }
+}
+
+/* Light theme overrides */
+body.theme-light { color: #0f172a; }
+body.theme-light.bg-slate-900 { background-color: #f8fafc; }
+body.theme-light .bg-slate-950\/80 { background-color: rgba(255,255,255,0.85); border-color: #e2e8f0; }
+body.theme-light .bg-slate-800 { background-color: #ffffff; }
+body.theme-light .bg-slate-800\/80 { background-color: rgba(241,245,249,0.85); }
+body.theme-light .text-gray-100, body.theme-light .text-gray-200, body.theme-light .text-gray-300 { color: #0f172a; }
+body.theme-light .text-slate-200, body.theme-light .text-slate-300, body.theme-light .text-slate-400 { color: #334155; }
+body.theme-light .divide-slate-800 > :not(:last-child),
+body.theme-light .divide-slate-700 > :not(:last-child) { border-color: #e2e8f0; }
+body.theme-light thead.bg-slate-800\/80 { background-color: rgba(241,245,249,0.85); }
+body.theme-light #deviceTable tr:hover { background: rgba(148,163,184,0.25); box-shadow: 0 0 12px rgba(2,132,199,0.25); }
+body.theme-light .glass-card { background: rgba(255,255,255,0.75); border-color: rgba(148,163,184,0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(0,0,0,0.02); }
+body.theme-light .glass-card.chart-section { box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 15px rgba(2,132,199,0.08), inset 0 1px 0 rgba(0,0,0,0.02); }
+body.theme-light .glass-card.chart-section:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 35px rgba(2,132,199,0.25), inset 0 1px 0 rgba(0,0,0,0.02); }
+body.theme-light .glass-card.table-section { box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 15px rgba(139,92,246,0.08), inset 0 1px 0 rgba(0,0,0,0.02); }
+body.theme-light .glass-card.table-section:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 35px rgba(139,92,246,0.25), inset 0 1px 0 rgba(0,0,0,0.02); }
+body.theme-light .btn-neon { background: rgba(255,255,255,0.85); color: #0f172a; border-color: rgba(2,132,199,0.35); }
+body.theme-light .btn-neon:hover { background: rgba(2,132,199,0.12); color: #0f172a; border-color: rgba(2,132,199,0.55); box-shadow: 0 0 14px rgba(2,132,199,0.35); }
+body.theme-light .chart-error { color: #b91c1c; }
+
+/* Inputs/selects in light */
+body.theme-light input#searchInput,
+body.theme-light select#brandFilter {
+  background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1;
+}
+body.theme-light input#searchInput:focus,
+body.theme-light select#brandFilter:focus {
+  outline: none; box-shadow: 0 0 0 2px rgba(2,132,199,0.35);
+}
+
+/* Footer header borders in light */
+body.theme-light header, body.theme-light footer { border-color: #e2e8f0; }
+
+/* Light theme: improve tag badges and info boxes readability */
+body.theme-light .bg-blue-900\/40 { background-color: rgba(2,132,199,0.10); }
+body.theme-light .bg-yellow-900\/30 { background-color: rgba(234,179,8,0.12); }
+body.theme-light .bg-amber-900\/30 { background-color: rgba(245,158,11,0.12); }
+body.theme-light .text-blue-300 { color: #075985; }
+body.theme-light .text-yellow-300 { color: #854d0e; }
+body.theme-light .text-amber-300 { color: #92400e; }
+body.theme-light .border-blue-700\/40 { border-color: rgba(2,132,199,0.35); }
+body.theme-light .border-yellow-700\/30 { border-color: rgba(234,179,8,0.35); }
+body.theme-light .border-amber-700\/30 { border-color: rgba(245,158,11,0.35); }
+
+/* Make the three explanation boxes brighter in light */
+body.theme-light .rounded-2xl.bg-slate-900\/40 { background: #ffffff; border-color: rgba(2,132,199,0.25); }
+body.theme-light .rounded-2xl.bg-slate-900\/40 p { color: #334155; }
+
+/* Ultrawide containers: widen max width progressively */
+@media (min-width: 1920px) {
+  :root { --container-6xl: 100rem; }
+}
+@media (min-width: 2560px) {
+  :root { --container-6xl: 120rem; }
+}
+
+/* Ultra-wide layout option: expand further and reduce side gutters */
+body.layout-wide .max-w-6xl { max-width: min(var(--container-uw, 140rem), 92vw); }
+@media (min-width: 1920px) {
+  :root { --container-uw: 130rem; }
+}
+@media (min-width: 2560px) {
+  :root { --container-uw: 150rem; }
+}
+@media (min-width: 3200px) {
+  :root { --container-uw: 160rem; }
+}
+
+
+/* Theme slider switch */
+#themeToggle.theme-switch {
+  position: relative;
+  width: 64px;
+  height: 30px;
+  padding: 0;
+  font-size: 0; /* hide inner text visually */
+}
+#themeToggle.theme-switch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(8,145,178,0.15);
+  border: 1px solid rgba(103,232,249,0.35);
+}
+#themeToggle.theme-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: #67e8f9;
+  box-shadow: 0 0 10px rgba(34,211,238,0.5);
+  transition: left .18s ease, background .18s ease, box-shadow .18s ease;
+}
+#themeToggle.theme-switch[data-mode="dark"]::after {
+  left: calc(100% - 27px);
+  background: #22d3ee;
+  box-shadow: 0 0 12px rgba(34,211,238,0.75);
+}
+/* light theme adjustments for the switch */
+body.theme-light #themeToggle.theme-switch::before {
+  background: rgba(2,132,199,0.10);
+  border-color: rgba(2,132,199,0.35);
+}
+body.theme-light #themeToggle.theme-switch::after {
+  background: #0ea5e9;
+  box-shadow: 0 0 8px rgba(14,165,233,0.45);
+}
+
+
+/* Unified header info box and responsive readability tweaks */
+.header-info .header-info-text {
+  /* keep default sans-serif; scale slightly with viewport */
+  font-size: clamp(0.9rem, 0.85rem + 0.12vw, 1rem);
+  line-height: 1.5;
+}
+.header-info-divider {
+  height: 1px;
+  background-image: linear-gradient(90deg, rgba(34,211,238,0.4), rgba(139,92,246,0.3), transparent);
+}
+
+/* Tags legend paragraph text: scale up subtly on large screens */
+.tags-legend p {
+  font-size: clamp(0.8rem, 0.78rem + 0.15vw, 0.95rem);
+  line-height: 1.4;
+}
+
+/* Tiny tag badges: bump size on very large viewports (not theme-dependent) */
+@media (min-width: 1920px) {
+  .tags-legend .text-\[10px\], .tags-legend .text-\[9px\],
+  .teardown-badges .text-\[10px\], .teardown-badges .text-\[9px\] {
+    font-size: 11.5px !important;
+  }
+}
+@media (min-width: 2560px) {
+  .tags-legend .text-\[10px\], .tags-legend .text-\[9px\],
+  .teardown-badges .text-\[10px\], .teardown-badges .text-\[9px\] {
+    font-size: 12.5px !important;
+  }
+}
+
+
+/* Header size refinements for large screens */
+@media (min-width: 1440px) {
+  /* Slimmer header vertical padding */
+  header { padding-top: 1rem; padding-bottom: 1rem; }
+  /* More modest title size and glow */
+  header h1.neon-glow {
+    font-size: 2rem; /* ~32px at 16px root; ~36px at 18px root */
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(34,211,238,0.5);
+  }
+  /* Tighter info cards in header */
+  header .header-info { padding: 0.75rem; }
+  header .header-info .header-info-text {
+    /* Smaller upper cap on ultrawide; gentler viewport scaling */
+    font-size: clamp(0.9rem, 0.82rem + 0.08vw, 0.98rem);
   }
 }

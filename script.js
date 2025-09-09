@@ -402,6 +402,39 @@ function renderTable() {
 
 const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// THEME MANAGEMENT
+function getSystemPrefersDark() {
+    try { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (_) { return false; }
+}
+function getStoredTheme() {
+    // Only explicit user choice 'light' | 'dark' is stored. If null, follow system.
+    const v = localStorage.getItem('theme');
+    return (v === 'light' || v === 'dark') ? v : null;
+}
+function computeActiveTheme() {
+    const pref = getStoredTheme();
+    if (pref === 'light') return 'light';
+    if (pref === 'dark') return 'dark';
+    // No explicit preference: follow OS
+    return getSystemPrefersDark() ? 'dark' : 'light';
+}
+function applyTheme() {
+    const active = computeActiveTheme();
+    document.body.classList.toggle('theme-light', active === 'light');
+    document.body.classList.toggle('theme-dark', active === 'dark');
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+        const stored = getStoredTheme();
+        btn.setAttribute('data-mode', active);
+        btn.setAttribute('aria-checked', active === 'dark' ? 'true' : 'false');
+        const label = 'Toggle theme: ' + active + (stored ? '' : ' (following system)');
+        btn.setAttribute('aria-label', label);
+        btn.setAttribute('title', stored ? 'Toggle color theme' : 'Following system; click to choose');
+    }
+    // Re-render chart with new palette if present
+    try { if (typeof Chart !== 'undefined' && (window.lastFiltered || devicesData).length) { renderChart(window.lastFiltered || devicesData); } } catch (_) {}
+}
+
 function renderChart(data) {
     const chartError = document.getElementById('chartError');
     chartError.classList.add('hidden');
@@ -427,9 +460,10 @@ function renderChart(data) {
 
     if (myChart) myChart.destroy();
 
+    const isLight = document.body.classList.contains('theme-light');
     const gradient = ctx.createLinearGradient(0, 0, 0, 460);
-    gradient.addColorStop(0, 'rgba(6,182,212,0.95)');
-    gradient.addColorStop(1, 'rgba(139,92,246,0.95)');
+    gradient.addColorStop(0, isLight ? 'rgba(2,132,199,0.95)' : 'rgba(6,182,212,0.95)');
+    gradient.addColorStop(1, isLight ? 'rgba(124,58,237,0.95)' : 'rgba(139,92,246,0.95)');
 
     const total = data.length;
     myChart = new Chart(ctx, {
@@ -450,12 +484,12 @@ function renderChart(data) {
             plugins: {
                 legend: {display: false},
                 tooltip: {
-                    backgroundColor: '#0f172a',
-                    titleColor: '#67e8f9',
-                    bodyColor: '#fff',
+                    backgroundColor: isLight ? '#ffffff' : '#0f172a',
+                    titleColor: isLight ? '#0ea5e9' : '#67e8f9',
+                    bodyColor: isLight ? '#0f172a' : '#ffffff',
                     cornerRadius: 10,
                     padding: 12,
-                    borderColor: '#67e8f9',
+                    borderColor: isLight ? '#0ea5e9' : '#67e8f9',
                     borderWidth: 1,
                     callbacks: {
                         label: (ctx) => {
@@ -469,22 +503,22 @@ function renderChart(data) {
             scales: {
                 x: {
                     grid: {display: false},
-                    ticks: {color: '#94a3b8'},
+                    ticks: {color: isLight ? '#475569' : '#94a3b8'},
                     title: {
                         display: true,
                         text: 'Repairability Score',
-                        color: '#67e8f9',
+                        color: isLight ? '#0ea5e9' : '#67e8f9',
                         font: {size: 14, weight: 'bold'}
                     }
                 },
                 y: {
                     beginAtZero: true,
-                    ticks: {stepSize: 1, color: '#94a3b8'},
-                    grid: {color: 'rgba(255,255,255,0.05)'},
+                    ticks: {stepSize: 1, color: isLight ? '#475569' : '#94a3b8'},
+                    grid: {color: isLight ? 'rgba(15,23,42,0.06)' : 'rgba(255,255,255,0.05)'},
                     title: {
                         display: true,
                         text: 'Device count',
-                        color: '#67e8f9',
+                        color: isLight ? '#0ea5e9' : '#67e8f9',
                         font: {size: 14, weight: 'bold'}
                     }
                 }
@@ -694,6 +728,25 @@ function renderActiveFiltersChip() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme: initialize according to preference and set up listeners
+    applyTheme();
+    const mm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (mm && mm.addEventListener) {
+        // Only react to system changes when no explicit user choice is stored
+        mm.addEventListener('change', () => { if (!getStoredTheme()) applyTheme(); });
+    }
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const curr = getStoredTheme();
+            // Toggle only between light and dark; clicking sets explicit preference
+            const next = curr === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', next);
+            applyTheme();
+            notifyAction(`Theme set to ${next}`);
+        });
+        // Long-press or right-click could reset to system in future if desired; not implemented now.
+    }
     // Load Chart.js during an idle period to improve FCP/TBT
     loadChartJsIdle().then(() => {
         if (devicesData && devicesData.length) {
@@ -758,37 +811,103 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => { if (tip && tip.classList.contains('show')) positionTip(); }, {passive:true});
     })();
 
-    // Density toggle
-    const densityBtn = document.getElementById('densityToggle');
+    // Density management (now via actions menu)
     function applyDensityFromStorage() {
         const mode = localStorage.getItem('density') || 'compact';
         const body = document.body;
-        if (mode === 'compact') { body.classList.add('compact-rows'); densityBtn.textContent = 'Density: Compact'; }
-        else { body.classList.remove('compact-rows'); densityBtn.textContent = 'Density: Comfortable'; }
+        if (mode === 'compact') { body.classList.add('compact-rows'); }
+        else { body.classList.remove('compact-rows'); }
     }
-    densityBtn.addEventListener('click', () => {
-        const curr = localStorage.getItem('density') || 'comfortable';
-        const next = curr === 'compact' ? 'comfortable' : 'compact';
-        localStorage.setItem('density', next);
-        applyDensityFromStorage();
-        notifyAction(`Density set to ${next}`);
-    });
     applyDensityFromStorage();
 
-    // Copy link
-    document.getElementById('copyLink').addEventListener('click', async () => {
-        stateToQuery();
-        try {
-            await navigator.clipboard.writeText(location.href);
-            notifyAction('Link copied to clipboard');
-        } catch (e) {
-            notifyAction('Failed to copy link');
-        }
-    });
+    // Export popover (CSV / JSON)
+    const exportBtn = document.getElementById('exportBtn');
+    let exportPortal = null;
+    function closeExportMenu() {
+        if (exportPortal) { exportPortal.remove(); exportPortal = null; }
+        if (exportBtn) exportBtn.setAttribute('aria-expanded','false');
+    }
+    function openExportMenu() {
+        closeExportMenu();
+        const portalRoot = document.getElementById('portal-root') || document.body;
+        exportPortal = document.createElement('div');
+        exportPortal.className = 'actions-menu';
+        exportPortal.setAttribute('role','menu');
+        exportPortal.innerHTML = `
+            <button type="button" role="menuitem" data-action="csv">Export CSV</button>
+            <button type="button" role="menuitem" data-action="json">Export JSON</button>
+        `;
+        portalRoot.appendChild(exportPortal);
+        const rect = exportBtn.getBoundingClientRect();
+        exportPortal.style.position = 'fixed';
+        exportPortal.style.top = `${rect.bottom + 6}px`;
+        exportPortal.style.left = `${Math.min(rect.left, window.innerWidth - 220)}px`;
+        exportBtn.setAttribute('aria-expanded','true');
+        exportPortal.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const action = btn.getAttribute('data-action');
+            if (action === 'csv') exportCsv();
+            if (action === 'json') exportJson();
+            closeExportMenu();
+        });
+        setTimeout(() => {
+            const onDocClick = (ev) => {
+                if (!exportPortal) return;
+                if (!ev.target.closest('.actions-menu') && ev.target !== exportBtn) {
+                    closeExportMenu();
+                    document.removeEventListener('click', onDocClick);
+                    document.removeEventListener('keydown', onKey);
+                }
+            };
+            const onKey = (ev) => { if (ev.key === 'Escape') { closeExportMenu(); document.removeEventListener('click', onDocClick); document.removeEventListener('keydown', onKey);} };
+            document.addEventListener('click', onDocClick);
+            document.addEventListener('keydown', onKey);
+        }, 0);
+    }
+    if (exportBtn) {
+        exportBtn.addEventListener('click', (e) => { e.stopPropagation(); if (exportBtn.getAttribute('aria-expanded') === 'true') closeExportMenu(); else openExportMenu(); });
+    }
 
-    // Export CSV
+    // Density toggle and Reset
+    const densityBtn = document.getElementById('densityToggle');
+    if (densityBtn) {
+        densityBtn.addEventListener('click', () => {
+            const curr = localStorage.getItem('density') || 'comfortable';
+            const next = curr === 'compact' ? 'comfortable' : 'compact';
+            localStorage.setItem('density', next);
+            applyDensityFromStorage();
+            densityBtn.textContent = `Density: ${next.charAt(0).toUpperCase()}${next.slice(1)}`;
+            notifyAction(`Density set to ${next}`);
+        });
+        // initialize label
+        const current = localStorage.getItem('density') || 'compact';
+        densityBtn.textContent = `Density: ${current.charAt(0).toUpperCase()}${current.slice(1)}`;
+    }
+    const resetBtn = document.getElementById('resetFilters');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('brandFilter').value = '';
+            document.getElementById('scoreFilter')?.remove();
+            currentSort = {key:'name', direction:'asc'};
+            renderTable();
+            stateToQuery();
+            notifyAction('Filters reset');
+        });
+    }
+
+    // Auto wide layout for ultrawide screens
+    function applyWideLayoutAuto() {
+        const shouldWide = window.innerWidth >= 1920; // 2K and above
+        document.body.classList.toggle('layout-wide', shouldWide);
+    }
+    applyWideLayoutAuto();
+    window.addEventListener('resize', () => { applyWideLayoutAuto(); }, {passive:true});
+
+    // Export helpers used by actions menu
     function toCsvRow(fields) { return fields.map(v => '"' + String(v ?? '').replaceAll('"','""') + '"').join(','); }
-    document.getElementById('exportCsv').addEventListener('click', () => {
+    function exportCsv() {
         const rows = window.lastFiltered || getFilteredData();
         const header = ['name','brand','repairability_score','link'];
         const lines = [toCsvRow(header)];
@@ -800,10 +919,8 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         URL.revokeObjectURL(a.href);
         notifyAction('CSV exported');
-    });
-
-    // Export JSON
-    document.getElementById('exportJson').addEventListener('click', () => {
+    }
+    function exportJson() {
         const rows = window.lastFiltered || getFilteredData();
         const blob = new Blob([JSON.stringify(rows, null, 2)], {type:'application/json'});
         const a = document.createElement('a');
@@ -812,16 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         URL.revokeObjectURL(a.href);
         notifyAction('JSON exported');
-    });
-
-    document.getElementById('resetFilters').addEventListener('click', () => {
-        document.getElementById('searchInput').value = '';
-        document.getElementById('brandFilter').value = '';
-        document.getElementById('scoreFilter')?.remove();
-        currentSort = {key: 'name', direction: 'asc'};
-        stateToQuery();
-        loadData();
-    });
+    }
     document.querySelectorAll('th[data-sort-key]').forEach(th => {
         th.addEventListener('click', () => { toggleSort(th.dataset.sortKey); stateToQuery(); });
         th.addEventListener('keydown', (e) => {

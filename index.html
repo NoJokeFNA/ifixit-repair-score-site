@@ -24,25 +24,31 @@
             <h1 class="text-4xl font-bold neon-glow">iFixit Repairability Scores</h1>
             <p class="mt-1 text-cyan-400 font-mono text-sm">Developer Dashboard Edition</p>
         </div>
-        <div class="glass-card p-3 text-gray-200">
-            <p class="text-sm font-semibold mb-1">The officially unofficial listing of iFixit's repairability scores.</p>
-            <p class="text-xs leading-relaxed">
-                Inspired by
-                <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores" target="_blank"
-                   class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
-                <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
-                   class="text-cyan-400 underline">the original webpage</a>.
-                Rewritten with latest data.
-            </p>
-        </div>
-        <div class="glass-card p-3 text-gray-200">
+        <div class="glass-card p-4 text-gray-200 header-info">
             <div class="flex items-start gap-2">
                 <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
-                <p class="text-[12px] leading-snug text-slate-200 font-mono">
+                <div>
+                    <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's repairability scores.</p>
+                    <p class="header-info-text">
+                        Inspired by
+                        <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores" target="_blank"
+                           class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
+                        <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
+                           class="text-cyan-400 underline">the original webpage</a>.
+                        Rewritten with latest data.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-2 header-info-divider"></div>
+        </div>
+        <div class="glass-card p-4 text-gray-200 header-info">
+            <div class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                <p class="header-info-text">
                     Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and inspect teardown links labeled Featured, Community, and Archived.
                 </p>
             </div>
-            <div class="mt-2 h-px bg-gradient-to-r from-cyan-400/40 via-violet-400/30 to-transparent"></div>
+            <div class="mt-2 header-info-divider"></div>
         </div>
     </div>
 </header>
@@ -70,7 +76,7 @@
                     <span class="text-xs uppercase tracking-wider text-slate-400">Tags</span>
                     <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 tags-legend">
                     <div class="rounded-2xl bg-slate-900/40 border border-blue-500/30 p-4 shadow-[0_0_20px_rgba(59,130,246,0.12)]">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></span>
@@ -119,14 +125,10 @@
                     <option value="">All manufacturers</option>
                 </select>
                 <div class="flex items-center gap-2">
-                    <button id="copyLink" class="px-3 py-2 btn-neon transition" title="Copy link to this view">Copy link</button>
-                    <button id="exportCsv" class="px-3 py-2 btn-neon transition" title="Export current table as CSV">Export CSV</button>
-                    <button id="exportJson" class="px-3 py-2 btn-neon transition" title="Export current table as JSON">Export JSON</button>
+                    <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu" aria-expanded="false" title="Export data">Export ▾</button>
                     <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density: Compact</button>
-                    <button id="resetFilters"
-                            class="px-4 py-2 btn-neon transition">
-                        Reset
-                    </button>
+                    <button id="resetFilters" class="px-3 py-2 btn-neon transition" title="Reset all filters">Reset</button>
+                    <button id="themeToggle" class="px-3 py-2 btn-neon transition theme-switch" role="switch" aria-checked="false" title="Toggle color theme">Theme</button>
                 </div>
             </div>
             <div id="activeFilters" class="mb-3 items-center gap-2"></div>
