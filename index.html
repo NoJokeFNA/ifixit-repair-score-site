@@ -118,28 +118,23 @@
                         <span class="text-xs uppercase tracking-wider text-slate-400">Difficulty Levels</span>
                         <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="rounded-2xl bg-slate-900/40 border border-slate-700/40 p-4">
-                            <h3 class="text-sm font-semibold text-cyan-300 mb-1">Very Difficult</h3>
-                            <p class="text-[12px] leading-snug text-slate-300">Requires disassembling almost all of the device. Not recommended for non-professionals.</p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-900/40 border border-slate-700/40 p-4">
-                            <h3 class="text-sm font-semibold text-cyan-300 mb-1">Difficult</h3>
-                            <p class="text-[12px] leading-snug text-slate-300">Requires significant disassembly and repair knowledge.</p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-900/40 border border-slate-700/40 p-4">
-                            <h3 class="text-sm font-semibold text-cyan-300 mb-1">Moderate</h3>
-                            <p class="text-[12px] leading-snug text-slate-300">Requires some disassembly, additional tools, and basic repair knowledge.</p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-900/40 border border-slate-700/40 p-4">
-                            <h3 class="text-sm font-semibold text-cyan-300 mb-1">Easy</h3>
-                            <p class="text-[12px] leading-snug text-slate-300">Requires minimal disassembly, requires only Phillips or flat-head screwdriver.</p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-900/40 border border-slate-700/40 p-4">
-                            <h3 class="text-sm font-semibold text-cyan-300 mb-1">Very Easy</h3>
-                            <p class="text-[12px] leading-snug text-slate-300">Does not require opening device.</p>
-                        </div>
-                    </div>
+                    <ul class="difficulty-chips flex flex-wrap gap-2" role="list">
+                        <li>
+                            <span class="chip chip-vd" title="Requires disassembling almost all of the device. Not recommended for non-professionals.">Very Difficult</span>
+                        </li>
+                        <li>
+                            <span class="chip chip-d" title="Requires significant disassembly and repair knowledge.">Difficult</span>
+                        </li>
+                        <li>
+                            <span class="chip chip-m" title="Requires some disassembly, additional tools, and basic repair knowledge.">Moderate</span>
+                        </li>
+                        <li>
+                            <span class="chip chip-e" title="Requires minimal disassembly, requires only Phillips or flat-head screwdriver.">Easy</span>
+                        </li>
+                        <li>
+                            <span class="chip chip-ve" title="Does not require opening device.">Very Easy</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">

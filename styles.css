@@ -1853,11 +1853,41 @@ input.cmp:checked::before {
 /* Ensure badges are aligned to the far right */
 .teardown-badges { margin-left: auto; }
 
-/* Difficulty legend—tone it down */
-.difficulty-legend .grid { gap: 10px; }
-.difficulty-legend h3 { font-size: 0.85rem; margin-bottom: 2px; color: #67e8f9; }
-.theme-light .difficulty-legend h3 { color: #0ea5e9; }
-.difficulty-legend p { font-size: 0.72rem; color: #a7b2c3; }
-.theme-light .difficulty-legend p { color: #475569; }
-.difficulty-legend .grid > div { padding: 10px; border-color: rgba(148,163,184,0.22); }
-.theme-light .difficulty-legend .grid > div { background: rgba(15,23,42,0.03); border-color: rgba(15,23,42,0.12); }
+/* Difficulty legend — compact chips */
+.difficulty-legend { margin-top: 1rem; }
+.difficulty-chips { list-style: none; padding: 0; margin: 0; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  line-height: 1;
+  border: 1px solid rgba(148,163,184,0.22);
+  background: rgba(15,23,42,0.55);
+  color: #c7d2fe; /* indigo-200 */
+  box-shadow: 0 0 0 0 rgba(34,211,238,0);
+  transition: transform .08s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  box-shadow: 0 0 6px currentColor;
+}
+.chip:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.25); border-color: rgba(103,232,249,0.35); }
+.theme-light .chip { background: rgba(15,23,42,0.06); color: #0f172a; border-color: rgba(15,23,42,0.18); }
+
+/* Specific tones for each level */
+.chip-vd { color: #fca5a5; }
+.chip-vd::before { background: #ef4444; }
+.chip-d { color: #fbbf24; }
+.chip-d::before { background: #f59e0b; }
+.chip-m { color: #67e8f9; }
+.chip-m::before { background: #22d3ee; }
+.chip-e { color: #86efac; }
+.chip-e::before { background: #10b981; }
+.chip-ve { color: #c4b5fd; }
+.chip-ve::before { background: #8b5cf6; }
