@@ -1919,6 +1919,11 @@ input.cmp:checked::before {
 .chip-community { color: #fde68a; }
 .chip-archived { color: #fcd34d; }
 
+/* Pair Easy + Very Easy together when space allows */
+.difficulty-pair { display: inline-flex; flex-wrap: nowrap; gap: 12px; align-items: flex-start; }
+/* On very narrow screens, allow the pair to stack so the layout doesn't overflow */
+@media (max-width: 480px) { .difficulty-pair { flex-wrap: wrap; } }
+
 /* Chip + description layout */
 .difficulty-item { display: inline-flex; flex-direction: column; gap: 4px; padding: 4px 6px; border-radius: 12px; }
 .difficulty-item .chip { align-self: flex-start; }
@@ -1943,3 +1948,8 @@ input.cmp:checked::before {
 
 /* Header info paragraphs get nicer rhythm */
 .header-info .header-info-text { line-height: 1.6; }
+
+/* Keep difficulty chips on one line on wider screens when space allows */
+@media (min-width: 640px) {
+  .difficulty-legend .difficulty-chips { flex-wrap: nowrap; }
+}
