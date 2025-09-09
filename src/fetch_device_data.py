@@ -307,6 +307,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
                         "title": guide["title"],
                         "url": guide["url"],
                         "tags": tags,
+                        "difficulty": guide.get("difficulty"),
                     }
                 )
             return page_results
@@ -581,6 +582,7 @@ def print_device_data(
                             "title": guide["title"],
                             "url": guide["url"],
                             "tags": guide.get("tags", []),
+                            "difficulty": guide.get("difficulty"),
                         }
                         for guide in teardown_guides.get(_normalize_key(name), [])
                     ],
