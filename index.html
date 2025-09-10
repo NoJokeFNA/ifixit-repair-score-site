@@ -158,18 +158,9 @@
                     <option value="">All manufacturers</option>
                 </select>
                 <div class="flex items-center gap-3">
-                    <div class="flex flex-col -mt-1">
-                        <div class="relative">
-                            <label class="flex items-center gap-2 text-sm text-slate-300 noscore-toggle" aria-haspopup="true">
-                                <input type="checkbox" id="includeNoScore" class="cmp" aria-label="Show all devices" aria-describedby="noscoreHelp"/>
-                                <span class="inline-flex items-center gap-1">
-                                    <span class="attention-icon" aria-hidden="true">❗</span>
-                                    <span>Show all devices</span>
-                                </span>
-                            </label>
-                            <div class="noscore-tooltip" role="tooltip">Shows ~1,700 devices; most have no repairability score.</div>
-                        </div>
-                        <div id="noscoreHelp" class="sr-only">Shows ~1,700 devices; most have no repairability score.</div>
+                    <div class="segmented" role="group" aria-label="Device listing scope">
+                        <button type="button" id="segScored" class="px-3 py-2 btn-neon transition seg-left" aria-pressed="true">Scored only</button>
+                        <button type="button" id="segAll" class="px-3 py-2 btn-neon transition seg-right" aria-pressed="false">All devices</button>
                     </div>
                     <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu"
                             aria-expanded="false" title="Export data">Export ▾

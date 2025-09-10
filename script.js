@@ -848,8 +848,15 @@ function queryToState() {
         if (key) currentSort.key = key;
         if (dir === 'asc' || dir === 'desc') currentSort.direction = dir;
     }
-    const cb = document.getElementById('includeNoScore');
-    if (cb) cb.checked = !!noscore;
+    let cb = document.getElementById('includeNoScore');
+    if (!cb) {
+        cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = 'includeNoScore';
+        cb.className = 'sr-only';
+        document.body.appendChild(cb);
+    }
+    cb.checked = !!noscore;
 }
 
 function notifyAction(msg) {
@@ -864,8 +871,8 @@ function renderActiveFiltersChip() {
     if (!wrap) return;
     const score = document.getElementById('scoreFilter')?.value;
     wrap.innerHTML = '';
+    let any = false;
     if (score !== undefined && score !== null && score !== '') {
-        wrap.classList.add('show');
         const chip = document.createElement('div');
         chip.className = 'filter-chip';
         chip.innerHTML = `<span>Score: ${score}</span><button type="button" aria-label="Clear score filter">✕</button>`;
@@ -876,9 +883,14 @@ function renderActiveFiltersChip() {
             notifyAction('Score filter cleared');
         });
         wrap.appendChild(chip);
-    } else {
-        wrap.classList.remove('show');
+        any = true;
     }
+    const includeNo = document.getElementById('includeNoScore')?.checked === true;
+    if (includeNo) {
+        // Per request, do not show a chip for "All devices" anymore.
+        // Keep 'any' unchanged; we no longer toggle based on includeNo.
+    }
+    wrap.classList.toggle('show', any);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -933,45 +945,46 @@ document.addEventListener('DOMContentLoaded', () => {
         const brand = document.getElementById('brandFilter').value || 'All manufacturers';
         notifyAction(`Filtered by ${brand}. ${window.lastFiltered?.length ?? ''} results.`);
     });
-    const includeNoScoreCb = document.getElementById('includeNoScore');
-    if (includeNoScoreCb) {
-        const label = includeNoScoreCb.closest('label.noscore-toggle');
-        const wrapper = label && label.parentElement; // this is the .relative wrapper
 
-        const addSuppression = () => { if (wrapper) wrapper.classList.add('tooltip-suppressed'); };
-        const removeSuppression = () => { if (wrapper) wrapper.classList.remove('tooltip-suppressed'); };
-
-        // Suppress tooltip on pointer-based interactions so it hides immediately after click
-        if (label) {
-            // Start suppression on pointer/mouse down to block :hover/:focus-within
-            label.addEventListener('pointerdown', () => { addSuppression(); });
-            label.addEventListener('mousedown', () => { addSuppression(); });
-            // When pointer leaves the label area, allow tooltip again
-            label.addEventListener('pointerleave', () => { removeSuppression(); });
-            label.addEventListener('mouseleave', () => { removeSuppression(); });
-            // Touch: add on touchstart; remove shortly after touchend to avoid sticky state
-            label.addEventListener('touchstart', () => { addSuppression(); }, { passive: true });
-            label.addEventListener('touchend', () => { setTimeout(removeSuppression, 250); }, { passive: true });
+    // Segmented control wiring: Scored only | All devices
+    function setSegmentState(includeNo) {
+        // ensure hidden state element exists
+        let cb = document.getElementById('includeNoScore');
+        if (!cb) {
+            cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.id = 'includeNoScore';
+            cb.className = 'sr-only';
+            document.body.appendChild(cb);
         }
+        cb.checked = !!includeNo;
+        const btnScored = document.getElementById('segScored');
+        const btnAll = document.getElementById('segAll');
+        if (btnScored && btnAll) {
+            btnScored.classList.toggle('is-active', !includeNo);
+            btnAll.classList.toggle('is-active', includeNo);
+            btnScored.setAttribute('aria-pressed', (!includeNo).toString());
+            btnAll.setAttribute('aria-pressed', (!!includeNo).toString());
+        }
+    }
 
-        // On mouse click, blur to clear focus-within; keep suppression until pointer leaves
-        const handleMouseClick = (e) => {
-            if (e.detail !== 0) { // true mouse interaction
-                addSuppression();
-                includeNoScoreCb.blur();
-                if (label && typeof label.blur === 'function') label.blur();
-                // removal happens on pointerleave/mouseleave; keep a longer safety timeout
-                setTimeout(removeSuppression, 2000);
-            }
-        };
-        includeNoScoreCb.addEventListener('click', handleMouseClick);
-        if (label) label.addEventListener('click', handleMouseClick);
-        // Change handler updates the table without reloading the chart
-        includeNoScoreCb.addEventListener('change', () => {
-            // Including devices without score should not affect the score distribution chart
+    const btnScored = document.getElementById('segScored');
+    const btnAll = document.getElementById('segAll');
+    if (btnScored && btnAll) {
+        // initialize from URL/hidden state post queryToState
+        const initial = document.getElementById('includeNoScore')?.checked === true;
+        setSegmentState(initial);
+        btnScored.addEventListener('click', () => {
+            setSegmentState(false);
             renderTable({ skipChart: true });
             stateToQuery();
-            notifyAction(includeNoScoreCb.checked ? 'Including devices without score' : 'Excluding devices without score');
+            notifyAction('Excluding devices without score');
+        });
+        btnAll.addEventListener('click', () => {
+            setSegmentState(true);
+            renderTable({ skipChart: true });
+            stateToQuery();
+            notifyAction('Including devices without score');
         });
     }
 
@@ -1142,8 +1155,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('searchInput').value = '';
             document.getElementById('brandFilter').value = '';
             document.getElementById('scoreFilter')?.remove();
-            const cb = document.getElementById('includeNoScore');
-            if (cb) cb.checked = false; // default: don't include no-score
+            let cb = document.getElementById('includeNoScore');
+            if (!cb) {
+                cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.id = 'includeNoScore';
+                cb.className = 'sr-only';
+                document.body.appendChild(cb);
+            }
+            cb.checked = false; // default: don't include no-score
+            const btnScoredR = document.getElementById('segScored');
+            const btnAllR = document.getElementById('segAll');
+            if (btnScoredR && btnAllR) {
+                btnScoredR.classList.add('is-active');
+                btnAllR.classList.remove('is-active');
+                btnScoredR.setAttribute('aria-pressed', 'true');
+                btnAllR.setAttribute('aria-pressed', 'false');
+            }
             currentSort = {key: 'name', direction: 'asc'};
             selectedForCompare.clear();
             renderTable();
@@ -1265,13 +1293,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('th[data-sort-key]').forEach(th => {
+        const pulse = () => {
+            th.classList.add('th-anim');
+            setTimeout(() => th.classList.remove('th-anim'), 200);
+        };
         th.addEventListener('click', () => {
+            pulse();
             toggleSort(th.dataset.sortKey);
             stateToQuery();
         });
         th.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+                pulse();
                 toggleSort(th.dataset.sortKey);
                 stateToQuery();
             }
