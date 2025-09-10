@@ -17,6 +17,14 @@
     ]
   },
   {
+    "name": "Blu Dash 5.0 Dual SIM",
+    "title": "Blu_Dash_5.0_Dual_SIM",
+    "repairability_score": 6,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Blu_Dash_5.0_Dual_SIM",
+    "teardown_urls": []
+  },
+  {
     "name": "Coolpad 3300A",
     "title": "Coolpad_3300A",
     "repairability_score": 5,
@@ -180,6 +188,21 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Oppo_R9m",
     "teardown_urls": []
+  },
+  {
+    "name": "Shift 5.1",
+    "title": "Shift_5.1",
+    "repairability_score": 6,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Shift_5.1",
+    "teardown_urls": [
+      {
+        "title": "Shift5.1 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Shift5.1+Teardown/62850",
+        "tags": [],
+        "difficulty": "Moderate"
+      }
+    ]
   },
   {
     "name": "Shift 6m",
@@ -1295,6 +1318,14 @@
         "difficulty": "Moderate"
       }
     ]
+  },
+  {
+    "name": "Huawei Ascend P6-U06",
+    "title": "Huawei_Ascend_P6-U06",
+    "repairability_score": 5,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_Ascend_P6-U06",
+    "teardown_urls": []
   },
   {
     "name": "Huawei Ascend W1",
