@@ -237,8 +237,10 @@ def _to_ifixit_title(name: str) -> str:
         A baseline iFixit title format (e.g., 'Samsung_Galaxy_S22_Ultra').
     """
     s = re.sub(r"\s+", "_", name.strip())
-    s = re.sub(r"[^A-Za-z0-9_]+", "_", s)
+    s = re.sub(r"[^A-Za-z0-9_()]+", "_", s)
     s = re.sub(r"_+", "_", s)
+    s = re.sub(r"\(", "%28", s)
+    s = re.sub(r"\)", "%29", s)
     return s
 
 
