@@ -216,12 +216,14 @@ function getFilteredData() {
     const searchValue = document.getElementById('searchInput').value.toLowerCase();
     const brandValue = document.getElementById('brandFilter').value;
     const scoreFilter = document.getElementById('scoreFilter')?.value || '';
+    const includeNoScore = document.getElementById('includeNoScore')?.checked === true;
 
     return devicesData.filter(d => {
         const matchesSearch = d.name.toLowerCase().includes(searchValue);
         const matchesBrand = !brandValue || d.brand === brandValue;
         const matchesScore = !scoreFilter || d.repairability_score === parseInt(scoreFilter);
-        return matchesSearch && matchesBrand && matchesScore;
+        const hasScoreOk = includeNoScore ? true : (d.repairability_score != null);
+        return matchesSearch && matchesBrand && matchesScore && hasScoreOk;
     });
 }
 
@@ -580,7 +582,8 @@ function injectStructuredData(list) {
     }
 }
 
-function renderTable() {
+function renderTable(options = {}) {
+    const { skipChart = false } = options;
     // Close any open teardown portal before re-rendering table to avoid orphaned overlays
     const existingPortal = document.querySelector('.teardown-portal');
     if (existingPortal) {
@@ -595,16 +598,18 @@ function renderTable() {
     window.lastFiltered = data.slice();
     renderActiveFiltersChip();
     injectStructuredData(window.lastFiltered);
-    loadChartModuleIdle().then(() => {
-        try {
-            if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
-                window.ChartModule.renderChart(data);
+    if (!skipChart) {
+        loadChartModuleIdle().then(() => {
+            try {
+                if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
+                    window.ChartModule.renderChart(data);
+                }
+            } catch (e) {
+                console.error('Chart rendering failed:', e);
+                document.getElementById('chartError').classList.remove('hidden');
             }
-        } catch (e) {
-            console.error('Chart rendering failed:', e);
-            document.getElementById('chartError').classList.remove('hidden');
-        }
-    });
+        });
+    }
     updateSortIndicators();
 }
 
@@ -810,8 +815,10 @@ function stateToQuery() {
     params.set('sort', `${currentSort.key}:${currentSort.direction}`);
     const scoreHidden = document.getElementById('scoreFilter')?.value || '';
     params.set('score', scoreHidden);
+    const includeNoScore = document.getElementById('includeNoScore')?.checked ? '1' : '';
+    params.set('noscore', includeNoScore);
     // Clean empties
-    ['q', 'brand', 'score'].forEach(k => {
+    ['q', 'brand', 'score', 'noscore'].forEach(k => {
         if (!params.get(k)) params.delete(k);
     });
     const qs = params.toString();
@@ -824,6 +831,7 @@ function queryToState() {
     const brand = params.get('brand') || '';
     const sort = params.get('sort') || '';
     const score = params.get('score') || '';
+    const noscore = params.get('noscore') === '1';
     document.getElementById('searchInput').value = q;
     document.getElementById('brandFilter').value = brand;
     if (score) {
@@ -838,6 +846,8 @@ function queryToState() {
         if (key) currentSort.key = key;
         if (dir === 'asc' || dir === 'desc') currentSort.direction = dir;
     }
+    const cb = document.getElementById('includeNoScore');
+    if (cb) cb.checked = !!noscore;
 }
 
 function notifyAction(msg) {
@@ -921,6 +931,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const brand = document.getElementById('brandFilter').value || 'All manufacturers';
         notifyAction(`Filtered by ${brand}. ${window.lastFiltered?.length ?? ''} results.`);
     });
+    const includeNoScoreCb = document.getElementById('includeNoScore');
+    if (includeNoScoreCb) {
+        const label = includeNoScoreCb.closest('label.noscore-toggle');
+        const wrapper = label && label.parentElement; // this is the .relative wrapper
+
+        const addSuppression = () => { if (wrapper) wrapper.classList.add('tooltip-suppressed'); };
+        const removeSuppression = () => { if (wrapper) wrapper.classList.remove('tooltip-suppressed'); };
+
+        // Suppress tooltip on pointer-based interactions so it hides immediately after click
+        if (label) {
+            // Start suppression on pointer/mouse down to block :hover/:focus-within
+            label.addEventListener('pointerdown', () => { addSuppression(); });
+            label.addEventListener('mousedown', () => { addSuppression(); });
+            // When pointer leaves the label area, allow tooltip again
+            label.addEventListener('pointerleave', () => { removeSuppression(); });
+            label.addEventListener('mouseleave', () => { removeSuppression(); });
+            // Touch: add on touchstart; remove shortly after touchend to avoid sticky state
+            label.addEventListener('touchstart', () => { addSuppression(); }, { passive: true });
+            label.addEventListener('touchend', () => { setTimeout(removeSuppression, 250); }, { passive: true });
+        }
+
+        // On mouse click, blur to clear focus-within; keep suppression until pointer leaves
+        const handleMouseClick = (e) => {
+            if (e.detail !== 0) { // true mouse interaction
+                addSuppression();
+                includeNoScoreCb.blur();
+                if (label && typeof label.blur === 'function') label.blur();
+                // removal happens on pointerleave/mouseleave; keep a longer safety timeout
+                setTimeout(removeSuppression, 2000);
+            }
+        };
+        includeNoScoreCb.addEventListener('click', handleMouseClick);
+        if (label) label.addEventListener('click', handleMouseClick);
+        // Change handler updates the table without reloading the chart
+        includeNoScoreCb.addEventListener('change', () => {
+            // Including devices without score should not affect the score distribution chart
+            renderTable({ skipChart: true });
+            stateToQuery();
+            notifyAction(includeNoScoreCb.checked ? 'Including devices without score' : 'Excluding devices without score');
+        });
+    }
 
     // Mobile info icon tooltip
     (function setupMobileInfo() {
@@ -1089,6 +1140,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('searchInput').value = '';
             document.getElementById('brandFilter').value = '';
             document.getElementById('scoreFilter')?.remove();
+            const cb = document.getElementById('includeNoScore');
+            if (cb) cb.checked = false; // default: don't include no-score
             currentSort = {key: 'name', direction: 'asc'};
             selectedForCompare.clear();
             renderTable();
