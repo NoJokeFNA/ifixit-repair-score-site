@@ -232,12 +232,14 @@ function sortData(data) {
     return data.sort((a, b) => {
         let A = a[key], B = b[key];
         if (key === 'teardown') {
-            A = a.teardown_urls?.[0]?.url || '';
-            B = b.teardown_urls?.[0]?.url || '';
+            // Sort by number of teardowns (teardown_urls length)
+            A = Array.isArray(a.teardown_urls) ? a.teardown_urls.length : 0;
+            B = Array.isArray(b.teardown_urls) ? b.teardown_urls.length : 0;
         }
-        if (key === 'repairability_score') {
-            A = A ?? -1;
-            B = B ?? -1;
+        if (key === 'repairability_score' || key === 'teardown') {
+            // Numeric comparison for score and teardown count
+            A = (A ?? -1);
+            B = (B ?? -1);
         } else {
             A = (A || '').toString().toLowerCase();
             B = (B || '').toString().toLowerCase();
