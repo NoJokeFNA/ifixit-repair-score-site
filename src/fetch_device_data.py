@@ -573,13 +573,15 @@ def print_device_data(
 
     if output_file:
         try:
-            payload = [
+            # Build payload including devices with and without a repairability score
+            # Start with all devices that returned data (including those with score=None)
+            all_entries = [
                 {
                     "name": name,
                     "title": title,
                     "repairability_score": score,
                     "brand": brand,
-                    "link": link,
+                    "link": links,
                     "teardown_urls": [
                         {
                             "title": guide["title"],
@@ -590,11 +592,36 @@ def print_device_data(
                         for guide in teardown_guides.get(_normalize_key(name), [])
                     ],
                 }
-                for name, title, score, brand, link in with_score
+                for name, title, score, brand, links, _err in results
             ]
-            payload.sort(key=lambda d: (d.get("brand") or "", d["name"], d["title"]))
-            write_json_atomic(output_file, payload)
-            logger.info("Wrote %d devices with scores to: %s", len(payload), output_file)
+            # Also include devices that failed (e.g., 404) so they appear as well
+            # without duplicating already present entries from results list above.
+            existing_keys = {(e[0], e[1]) for e in results}
+            all_entries.extend(
+                {
+                    "name": name,
+                    "title": title,
+                    "repairability_score": None,
+                    "brand": None,
+                    "link": None,
+                    "teardown_urls": [
+                        {
+                            "title": guide["title"],
+                            "url": guide["url"],
+                            "tags": guide.get("tags", []),
+                            "difficulty": guide.get("difficulty"),
+                        }
+                        for guide in teardown_guides.get(_normalize_key(name), [])
+                    ],
+                }
+                for name, title in without_score
+                if (name, title) not in existing_keys
+            )
+
+            # Sort and write
+            all_entries.sort(key=lambda d: ((d.get("brand") or ""), d["name"], d["title"]))
+            write_json_atomic(output_file, all_entries)
+            logger.info("Wrote %d devices (including those without scores) to: %s", len(all_entries), output_file)
         except Exception as e:
             logger.error("Failed to write results to %s: %s", output_file, e, exc_info=True)
             raise
