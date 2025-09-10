@@ -223,7 +223,8 @@ def get_child_devices_for_categories(
             print(json.dumps(devices, indent=2, ensure_ascii=False))
         else:
             print(f"No child devices found for {category}")
-
+    print(_to_ifixit_title('nokia 3.1plus'))
+    print(_to_ifixit_title('Super Nintendo Entertainment System (SNS-101)'))
     return child_devices
 
 
@@ -237,7 +238,7 @@ def _to_ifixit_title(name: str) -> str:
         A baseline iFixit title format (e.g., 'Samsung_Galaxy_S22_Ultra').
     """
     s = re.sub(r"\s+", "_", name.strip())
-    s = re.sub(r"[^A-Za-z0-9_()]+", "_", s)
+    s = re.sub(r"[^A-Za-z0-9_().\-]+", "_", s)
     s = re.sub(r"_+", "_", s)
     s = re.sub(r"\(", "%28", s)
     s = re.sub(r"\)", "%29", s)
