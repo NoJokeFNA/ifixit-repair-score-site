@@ -2048,12 +2048,19 @@ body.theme-light .noscore-toggle:focus-within .attention-icon {
   border-right: 6px solid transparent;
   border-bottom: 6px solid rgba(2, 6, 23, 0.92);
 }
-/* Show on hover/focus of the label or wrapper */
+/* Show on hover/focus; make it interactive when visible */
 .relative:not(.tooltip-suppressed):hover > .noscore-tooltip,
 .relative:not(.tooltip-suppressed):focus-within > .noscore-tooltip {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
+
+/* Hide-only delay: keeps tooltip around for a moment when mouse leaves */
+.relative:not(:hover):not(:focus-within) > .noscore-tooltip {
+  transition-delay: .1s;
+}
+
 /* Light theme variant */
 body.theme-light .noscore-tooltip {
   color: #0f172a; /* slate-900 */
