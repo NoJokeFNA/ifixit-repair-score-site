@@ -9,13 +9,13 @@
     <link rel="canonical" href="/index.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta property="og:title" content="iFixit Repairability Scores — Developer Dashboard">
+    <meta property="og:title" content="iFixit Repairability Scores - Dashboard">
     <meta property="og:description"
           content="Explore repairability scores, filter by brand, and view teardowns. Export CSV/JSON and share deep links.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="favicon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="iFixit Repairability Scores — Developer Dashboard">
+    <meta name="twitter:title" content="iFixit Repairability Scores — Dashboard">
     <meta name="twitter:description" content="Explore repairability scores, filter by brand, and view teardowns.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link href="styles.css" rel="stylesheet"/>
@@ -29,7 +29,7 @@
     <div class="container mx-auto px-6 grid gap-4 md:grid-cols-3 items-start">
         <div>
             <h1 class="text-4xl font-bold neon-glow">iFixit Repairability Scores</h1>
-            <p class="mt-1 text-cyan-400 font-mono text-sm">Developer Dashboard Edition</p>
+            <p class="mt-1 text-cyan-400 font-mono text-sm">Dashboard Edition</p>
         </div>
         <div class="glass-card p-4 text-gray-200 header-info">
             <div class="flex items-start gap-2">
@@ -39,7 +39,7 @@
                         repairability scores.</p>
                     <p class="header-info-text">
                         Inspired by
-                        <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores" target="_blank"
+                        <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores/" target="_blank"
                            class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
                         <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
                            class="text-cyan-400 underline">the original webpage</a>.
@@ -55,6 +55,10 @@
                 <p class="header-info-text">
                     Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
                     inspect teardown links labeled Featured, Community, and Archived.
+                    <br/>
+                    <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
+                       class="text-cyan-400 underline">View source code on GitHub</a>
+                    <br/>
                 </p>
             </div>
             <div class="mt-2 header-info-divider"></div>
@@ -242,7 +246,7 @@
 
 <footer class="bg-slate-950/80 text-gray-500 py-6 border-t border-slate-800 relative">
     <div class="container mx-auto px-6 flex items-center justify-center text-sm font-mono relative">
-        <div class="text-center">Data from iFixit API · Built with Tailwind + Chart.js · Neon Dark · Version 0.0.6</div>
+        <div class="text-center">Data from iFixit API · Built with Tailwind + Chart.js · Version 0.0.6</div>
         <div id="fileAge" class="absolute right-2 text-sm text-gray-500 font-mono"></div>
         <button id="fileAgeInfoBtn" aria-label="Show last datasource update" class="mobile-info-btn" type="button"
                 title="Last datasource update">
@@ -256,7 +260,6 @@
     </div>
 </footer>
 
-<!-- Portal root for overlay dropdowns -->
 <div id="portal-root"></div>
 
 <script defer src="script.js"></script>
