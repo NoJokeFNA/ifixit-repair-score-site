@@ -11,6 +11,7 @@ from time import perf_counter
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 import tqdm
+
 from ifixit_api_client import IFixitAPIClient
 
 # Configure logging
@@ -619,7 +620,8 @@ def print_device_data(
             # Sort and write
             all_entries.sort(key=lambda d: ((d.get("brand") or ""), d["name"], d["title"]))
             write_json_atomic(output_file, all_entries)
-            logger.info("Wrote %d devices (including those without scores) to: %s", len(all_entries), output_file)
+            logger.info("Wrote %d devices (including those without scores) to: %s",
+                        len(all_entries), output_file)
         except Exception as e:
             logger.error("Failed to write results to %s: %s", output_file, e, exc_info=True)
             raise

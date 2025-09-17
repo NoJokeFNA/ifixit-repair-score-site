@@ -1,6 +1,6 @@
 [tool.ruff]
 target-version = "py313"
-line-length = 100
+line-length = 120
 fix = true
 
 [tool.ruff.lint]
@@ -14,7 +14,10 @@ extend-select = [
 ]
 ignore = [
   "E203",
-  "D203", "D212",
+  "D203",
+  "D212",
+  "C901",
+  "UP038",
 ]
 
 [tool.ruff.lint.per-file-ignores]
