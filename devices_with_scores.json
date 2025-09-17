@@ -1062,7 +1062,7 @@
   {
     "name": "Fairphone 6",
     "title": "Fairphone_6",
-    "repairability_score": null,
+    "repairability_score": 10,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Fairphone_6",
     "teardown_urls": []
