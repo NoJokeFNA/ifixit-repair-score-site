@@ -568,56 +568,42 @@ def print_device_data(
         matched = sum(1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides)
         print(f"- Devices with matched teardown URLs: {matched}")
 
+    def create_device_entry(name, title, score, brand, link, teardown_guides):
+        return {
+            "name": name,
+            "title": title,
+            "repairability_score": score,
+            "brand": brand,
+            "link": link,
+            "teardown_urls": [
+                {
+                    "title": guide["title"],
+                    "url": guide["url"],
+                    "tags": guide.get("tags", []),
+                    "difficulty": guide.get("difficulty"),
+                }
+                for guide in teardown_guides.get(_normalize_key(name), [])
+            ],
+        }
+
     print_outputs()
 
     if output_file:
         try:
             # Build payload including devices with and without a repairability score
             # Start with all devices that returned data (including those with score=None)
-            all_entries = [
-                {
-                    "name": name,
-                    "title": title,
-                    "repairability_score": score,
-                    "brand": brand,
-                    "link": links,
-                    "teardown_urls": [
-                        {
-                            "title": guide["title"],
-                            "url": guide["url"],
-                            "tags": guide.get("tags", []),
-                            "difficulty": guide.get("difficulty"),
-                        }
-                        for guide in teardown_guides.get(_normalize_key(name), [])
-                    ],
-                }
-                for name, title, score, brand, links, _err in results
-            ]
+            existing_keys = set()
+            all_entries = []
+            for name, title, score, brand, link, _err in results:
+                all_entries.append(create_device_entry(name, title, score, brand, link, teardown_guides))
+                existing_keys.add((name, title))
+
             # Also include devices that failed (e.g., 404) so they appear as well
             # without duplicating already present entries from results list above.
-            existing_keys = {(e[0], e[1]) for e in results}
-            all_entries.extend(
-                {
-                    "name": name,
-                    "title": title,
-                    "repairability_score": None,
-                    "brand": None,
-                    "link": None,
-                    "teardown_urls": [
-                        {
-                            "title": guide["title"],
-                            "url": guide["url"],
-                            "tags": guide.get("tags", []),
-                            "difficulty": guide.get("difficulty"),
-                        }
-                        for guide in teardown_guides.get(_normalize_key(name), [])
-                    ],
-                }
-                for name, title in without_score
-                if (name, title) not in existing_keys
-            )
+            for name, title in without_score:
+                if (name, title) not in existing_keys:
+                    all_entries.append(create_device_entry(name, title, None, None, None, teardown_guides))
 
-            # Sort and write
             all_entries.sort(key=lambda d: ((d.get("brand") or ""), d["name"], d["title"]))
             write_json_atomic(output_file, all_entries)
             logger.info("Wrote %d devices (including those without scores) to: %s",
