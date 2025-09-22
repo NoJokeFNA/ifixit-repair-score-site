@@ -228,19 +228,32 @@ def get_child_devices_for_categories(
 
 
 def _to_ifixit_title(name: str) -> str:
-    """Converts a human-readable device name into a baseline iFixit wiki title.
+    """
+    Converts a human-readable device name into a normalized iFixit wiki title.
+
+    The conversion applies the following rules:
+    - Strips leading and trailing whitespace.
+    - Replaces all sequences of whitespace (spaces, tabs, etc.) with a single underscore (_).
+    - Replaces any character that is not a letter, digit, underscore, parenthesis, dot, or hyphen
+      with an underscore.
+    - Collapses multiple consecutive underscores into a single underscore.
+    - Replaces '(' with '%28' and ')' with '%29' for URL safety.
+
+    Example:
+        'Motorola Edge 5G UW (2021)' -> 'Motorola_Edge_5G_UW_%282021%29'
 
     Args:
         name: Human-readable device name (e.g., 'Samsung Galaxy S22 Ultra').
 
     Returns:
-        A baseline iFixit title format (e.g., 'Samsung_Galaxy_S22_Ultra').
+        A normalized iFixit wiki title (e.g., 'Samsung_Galaxy_S22_Ultra_%285G%29').
     """
     s = re.sub(r"\s+", "_", name.strip())
     s = re.sub(r"[^A-Za-z0-9_().\-]+", "_", s)
     s = re.sub(r"_+", "_", s)
     s = re.sub(r"\(", "%28", s)
     s = re.sub(r"\)", "%29", s)
+
     return s
 
 
