@@ -215,15 +215,15 @@ def get_child_devices_for_categories(
             logger.error("Failed to fetch category: %s", e, exc_info=True)
             data = {}
 
-    logger.info("Collecting child devices in memory...")
+    logger.info("Collecting child devices...")
     child_devices = collect_child_devices(data, categories, exclude_subtrees=exclude_subtrees)
 
     for category, devices in child_devices.items():
-        print(f"\nChild devices for {category}:")
+        logger.debug("Child devices for %s:", category)
         if devices:
-            print(json.dumps(devices, indent=2, ensure_ascii=False))
+            logger.debug(json.dumps(devices, indent=2, ensure_ascii=False))
         else:
-            print(f"No child devices found for {category}")
+            logger.error("No child devices found for %s", category)
     return child_devices
 
 
@@ -432,7 +432,7 @@ def print_device_data(
 
     unique_devices = dedupe(devices)
     if not unique_devices:
-        print("No devices provided.")
+        logger.warning("No devices provided.")
         return
 
     class _RateLimiter:
@@ -547,26 +547,25 @@ def print_device_data(
 
     def print_outputs() -> None:
         if without_score:
-            print("\nDevices without a repairability score (or failed to fetch):")
+            logger.info("Devices without a repairability score (or failed to fetch):")
             for name, title in sorted(without_score, key=lambda x: x[0]):
-                print(f"- {name} ({title})")
-        print("\nRepairability scores for devices:")
+                logger.info("- %s (%s)", name, title)
+        logger.info("Repairability scores for devices:")
         for name, title, score, _brand, _link in with_score:
             teardown_items = teardown_guides.get(_normalize_key(name), [])
             if teardown_items:
-                # Include tags for visibility in console output.
                 titles_and_urls = [
                     f"{g['title']} ({', '.join(g.get('tags', []))}) : {g['url']}"
                     for g in teardown_items
                 ]
-                print(f"- {name} ({title}): {score}, Teardown URLs: {titles_and_urls}")
+                logger.info("- %s (%s): %s, Teardown URLs: %s", name, title, score, titles_and_urls)
             else:
-                print(f"- {name} ({title}): {score}, No teardown URLs found")
-        print("\nSummary:")
-        print(f"- Devices with a repairability score: {len(with_score)}")
-        print(f"- Total devices processed: {len(results)}")
+                logger.warning("- %s (%s): %s, No teardown URLs found", name, title, score)
+        logger.info("Summary:")
+        logger.info("- Devices with a repairability score: %d", len(with_score))
+        logger.info("- Total devices processed: %d", len(results))
         matched = sum(1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides)
-        print(f"- Devices with matched teardown URLs: {matched}")
+        logger.info("- Devices with matched teardown URLs: %d", matched)
 
     def create_device_entry(name, title, score, brand, link, teardown_guides):
         return {
@@ -637,19 +636,17 @@ def main() -> None:
     client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
     exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
 
-    # Fetch child devices in memory
     child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
 
-    # Build the device list from selected categories
-    demo_devices = []
+    devices = []
     for cat in args.categories:
-        demo_devices.extend(child_map.get(cat, []))
+        devices.extend(child_map.get(cat, []))
 
-    demo_devices = list(dict.fromkeys(demo_devices))
-    if demo_devices:
-        print_device_data(client, demo_devices, args.scores_output)
+    devices = list(dict.fromkeys(devices))
+    if devices:
+        print_device_data(client, devices, args.scores_output)
     else:
-        print("No demo devices found.")
+        logger.warning("No demo devices found.")
 
 
 if __name__ == "__main__":
