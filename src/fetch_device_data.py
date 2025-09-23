@@ -2,17 +2,17 @@ import argparse
 import json
 import logging
 import os
-import re
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import Iterable, List, Optional, Set, Tuple
 
 import tqdm
 
 from ifixit_api_client import IFixitAPIClient
+from utils import _build_tags_from_flags, _tag_priority, _to_ifixit_title, _normalize_key, _is_metadata_key
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ class Suppress404Filter(logging.Filter):
 logging.basicConfig(level=log_level)
 logging.getLogger("ifixit_api_client").addFilter(Suppress404Filter())
 
-type JsonValue = Dict[str, "JsonValue"] | List["JsonValue"] | str | int | float | bool | None
+type JsonValue = dict[str, "JsonValue"] | List["JsonValue"] | str | int | float | bool | None
 
 
 def write_json_atomic(path: str, data: object) -> None:
@@ -56,20 +56,6 @@ def write_json_atomic(path: str, data: object) -> None:
     os.replace(tmp_name, target)
 
 
-def _is_metadata_key(key: str) -> bool:
-    """Returns whether a key is considered metadata and should be skipped."""
-    metadata_keys = {
-        "attrs",
-        "contents_json",
-        "image",
-        "inheritedFrom",
-        "parts",
-        "repairability_score",
-        "source_revisionid",
-    }
-    return key in metadata_keys
-
-
 def _collect_leaf_device_names(
     node: JsonValue, excluded_keys: Set[str] | None = None
 ) -> Iterable[str]:
@@ -82,7 +68,7 @@ def _collect_leaf_device_names(
     """
     excluded = excluded_keys or set()
 
-    def from_dict(d: Dict[str, JsonValue]) -> Iterable[str]:
+    def from_dict(d: dict[str, JsonValue]) -> Iterable[str]:
         for k, v in d.items():
             if _is_metadata_key(k) or k in excluded:
                 continue
@@ -111,11 +97,11 @@ def _collect_leaf_device_names(
 def _find_and_collect_for_targets(
     node: JsonValue,
     target_categories: Iterable[str],
-    exclude_map: Dict[str, Set[str]] | None = None,
-) -> Dict[str, List[str]]:
+    exclude_map: dict[str, Set[str]] | None = None,
+) -> dict[str, List[str]]:
     """Find target categories in the tree and collect leaf devices under them."""
     targets: Set[str] = set(target_categories)
-    out: Dict[str, List[str]] = {t: [] for t in targets}
+    out: dict[str, List[str]] = {t: [] for t in targets}
     excludes = exclude_map or {}
 
     def handle_match(cat: str, value: JsonValue) -> None:
@@ -150,12 +136,12 @@ def _find_and_collect_for_targets(
 
 
 def collect_child_devices(
-    data: Dict[str, JsonValue],
+    data: dict[str, JsonValue],
     target_categories: List[str],
     parent: str = "root",
     depth: int = 0,
-    exclude_subtrees: Dict[str, Iterable[str]] | None = None,
-) -> Dict[str, List[str]]:
+    exclude_subtrees: dict[str, Iterable[str]] | None = None,
+) -> dict[str, List[str]]:
     """Recursively collects leaf device names for specified categories.
 
     Walks the hierarchy, finds each target category, and collects leaf device names
@@ -188,8 +174,8 @@ def collect_child_devices(
 def get_child_devices_for_categories(
     client: IFixitAPIClient,
     categories: List[str],
-    exclude_subtrees: Dict[str, Iterable[str]] | None = None,
-) -> Dict[str, List[str]]:
+    exclude_subtrees: dict[str, Iterable[str]] | None = None,
+) -> dict[str, List[str]]:
     """Fetch and return child devices for the given categories.
 
     This version keeps results in memory instead of writing a temporary JSON file.
@@ -227,43 +213,7 @@ def get_child_devices_for_categories(
     return child_devices
 
 
-def _to_ifixit_title(name: str) -> str:
-    """
-    Converts a human-readable device name into a normalized iFixit wiki title.
-
-    The conversion applies the following rules:
-    - Strips leading and trailing whitespace.
-    - Replaces all sequences of whitespace (spaces, tabs, etc.) with a single underscore (_).
-    - Replaces any character that is not a letter, digit, underscore, parenthesis, dot, or hyphen
-      with an underscore.
-    - Collapses multiple consecutive underscores into a single underscore.
-    - Replaces '(' with '%28' and ')' with '%29' for URL safety.
-
-    Example:
-        'Samsung Galaxy S22 Ultra' -> 'Samsung_Galaxy_S22_Ultra'
-        'Motorola Edge 5G UW (2021)' -> 'Motorola_Edge_5G_UW_%282021%29'
-
-    Args:
-        name: Human-readable device name.
-
-    Returns:
-        A normalized iFixit wiki title.
-    """
-    s = re.sub(r"\s+", "_", name.strip())
-    s = re.sub(r"[^A-Za-z0-9_().\-]+", "_", s)
-    s = re.sub(r"_+", "_", s)
-    s = re.sub(r"\(", "%28", s)
-    s = re.sub(r"\)", "%29", s)
-
-    return s
-
-
-def _normalize_key(s: str) -> str:
-    """Normalized key for robust matching between categories/devices and guide groups."""
-    return _to_ifixit_title(s).lower()
-
-
-def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, object]]]:
+def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, object]]]:
     """Fetch all teardown guides grouped by category.
 
     Retrieves guides with pagination and groups them by category. Each guide keeps its
@@ -277,7 +227,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
         {'title': str, 'url': str, 'tags': List[str]}.
     """
     params = {"filter": "teardown", "limit": 200}
-    results: Dict[str, List[Dict[str, object]]] = {}
+    results: dict[str, List[dict[str, object]]] = {}
     lock = __import__("threading").Lock()
     offset = 0
     max_workers = 8
@@ -290,13 +240,13 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
         expected_title = f"{normalized_category}_teardown"
         return normalized_title == expected_title
 
-    def fetch_page(page_offset: int) -> Dict[str, List[Dict[str, object]]]:
+    def fetch_page(page_offset: int) -> dict[str, List[dict[str, object]]]:
         """Fetch a single page of guides for the given offset."""
         try:
             page_params = params.copy()
             page_params["offset"] = page_offset
             guides = client.get_guides(params=page_params)
-            page_results: Dict[str, List[Dict[str, object]]] = {}
+            page_results: dict[str, List[dict[str, object]]] = {}
             for guide in guides:
                 if (
                     guide.get("url") is None
@@ -306,15 +256,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
                     continue
                 category = guide["category"]
                 raw_flags = guide.get("flags", []) or []
-
-                # Build tags from flags (lowercase, stable set).
-                tags: List[str] = []
-                if "GUIDE_ARCHIVED" in raw_flags:
-                    tags.append("archived")
-                if "GUIDE_STARRED" in raw_flags:
-                    tags.append("starred")
-                if "GUIDE_USER_CONTRIBUTED" in raw_flags:
-                    tags.append("user_contributed")
+                tags = _build_tags_from_flags(raw_flags)
 
                 if category not in page_results:
                     page_results[category] = []
@@ -331,7 +273,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
             logger.error("Failed to fetch offset %d: %s", page_offset, e)
             return {}
 
-    def extend_map(dst: Dict[str, List[Dict[str, object]]], src: Dict[str, List[Dict[str, object]]]) -> None:
+    def extend_map(dst: dict[str, List[dict[str, object]]], src: dict[str, List[dict[str, object]]]) -> None:
         for category, guides in src.items():
             if category not in dst:
                 dst[category] = []
@@ -341,7 +283,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
         while True:
             offsets = list(range(offset, offset + batch_size * max_workers, batch_size))
             futures = {executor.submit(fetch_page, off): off for off in offsets}
-            page_results: Dict[str, List[Dict[str, object]]] = {}
+            page_results: dict[str, List[dict[str, object]]] = {}
 
             for future in tqdm.tqdm(
                 as_completed(futures),
@@ -362,15 +304,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
             offset += batch_size * max_workers
             logger.debug("Processed batch, new offset: %d", offset)
 
-    def _tag_priority(tags: List[str]) -> int:
-        """Return priority rank based on tags: starred < user_contributed < others."""
-        if "starred" in tags:
-            return 0
-        if "user_contributed" in tags:
-            return 1
-        return 2
-
-    def sort_guides_for_category(category: str, guides: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    def sort_guides_for_category(category: str, guides: List[dict[str, object]]) -> List[dict[str, object]]:
         """Sort guides with the following rules.
 
         - Archived guides are always at the bottom (regardless of other flags).
@@ -388,7 +322,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
         """
         # Dedupe by (title, url).
         seen: Set[Tuple[str, str]] = set()
-        unique: List[Dict[str, object]] = []
+        unique: List[dict[str, object]] = []
         for g in guides:
             title = str(g.get("title", "") or "").strip()
             url = str(g.get("url", "") or "").strip()
@@ -403,7 +337,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
             g["tags"] = list(tags) if isinstance(tags, list) else []
             unique.append(g)
 
-        def key_fn(g: Dict[str, object]) -> Tuple[int, int, int, str, str]:
+        def key_fn(g: dict[str, object]) -> Tuple[int, int, int, str, str]:
             title = str(g["title"])
             url = str(g["url"])
             tags = list(g.get("tags", []))
@@ -423,7 +357,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> Dict[str, List[Dict[str, o
         results[category] = sort_guides_for_category(category, results[category])
 
     # Build normalized lookup to make matching resilient.
-    normalized_results: Dict[str, List[Dict[str, object]]] = {
+    normalized_results: dict[str, List[dict[str, object]]] = {
         _normalize_key(category): guides for category, guides in results.items()
     }
 
