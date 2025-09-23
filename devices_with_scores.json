@@ -14894,6 +14894,14 @@
     "teardown_urls": []
   },
   {
+    "name": "ZTE Blade A5 2020",
+    "title": "ZTE_Blade_A5_2020",
+    "repairability_score": null,
+    "brand": "ZTE",
+    "link": "https://www.ifixit.com/Device/ZTE_Blade_A5_2020",
+    "teardown_urls": []
+  },
+  {
     "name": "ZTE Blade E",
     "title": "ZTE_Blade_E",
     "repairability_score": null,
