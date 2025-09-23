@@ -240,13 +240,14 @@ def _to_ifixit_title(name: str) -> str:
     - Replaces '(' with '%28' and ')' with '%29' for URL safety.
 
     Example:
+        'Samsung Galaxy S22 Ultra' -> 'Samsung_Galaxy_S22_Ultra'
         'Motorola Edge 5G UW (2021)' -> 'Motorola_Edge_5G_UW_%282021%29'
 
     Args:
-        name: Human-readable device name (e.g., 'Samsung Galaxy S22 Ultra').
+        name: Human-readable device name.
 
     Returns:
-        A normalized iFixit wiki title (e.g., 'Samsung_Galaxy_S22_Ultra_%285G%29').
+        A normalized iFixit wiki title.
     """
     s = re.sub(r"\s+", "_", name.strip())
     s = re.sub(r"[^A-Za-z0-9_().\-]+", "_", s)
