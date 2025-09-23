@@ -55,7 +55,6 @@ def _to_ifixit_title(name: str) -> str:
     s = re.sub(r"_+", "_", s)
     s = re.sub(r"\(", "%28", s)
     s = re.sub(r"\)", "%29", s)
-
     return s
 
 
