@@ -12,7 +12,7 @@ from typing import Iterable, List, Optional, Set, Tuple
 import tqdm
 
 from ifixit_api_client import IFixitAPIClient
-from utils import _build_tags_from_flags, _tag_priority, _to_ifixit_title, _normalize_key, _is_metadata_key
+from utils import _DeviceDataUtils
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -70,7 +70,7 @@ def _collect_leaf_device_names(
 
     def from_dict(d: dict[str, JsonValue]) -> Iterable[str]:
         for k, v in d.items():
-            if _is_metadata_key(k) or k in excluded:
+            if _DeviceDataUtils.is_metadata_key(k) or k in excluded:
                 continue
             if v is None:
                 yield k
@@ -114,7 +114,7 @@ def _find_and_collect_for_targets(
     def dfs(current: JsonValue) -> None:
         if isinstance(current, dict):
             for k, v in current.items():
-                if _is_metadata_key(k):
+                if _DeviceDataUtils.is_metadata_key(k):
                     continue
                 if k in targets:
                     logger.debug("Found target category: %s", k)
@@ -235,8 +235,8 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
 
     def is_main_teardown(category: str, title: str) -> bool:
         """Check if the guide title matches '<category> Teardown' pattern."""
-        normalized_category = _to_ifixit_title(category).lower()
-        normalized_title = _to_ifixit_title(title).lower()
+        normalized_category = _DeviceDataUtils.to_ifixit_title(category).lower()
+        normalized_title = _DeviceDataUtils.to_ifixit_title(title).lower()
         expected_title = f"{normalized_category}_teardown"
         return normalized_title == expected_title
 
@@ -256,7 +256,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
                     continue
                 category = guide["category"]
                 raw_flags = guide.get("flags", []) or []
-                tags = _build_tags_from_flags(raw_flags)
+                tags = _DeviceDataUtils.build_tags_from_flags(raw_flags)
 
                 if category not in page_results:
                     page_results[category] = []
@@ -346,7 +346,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
             main_bucket = 1
             if archived_bucket == 0 and is_main_teardown(category, title):
                 main_bucket = 0
-            tag_rank = _tag_priority(tags) if archived_bucket == 0 else 2
+            tag_rank = _DeviceDataUtils.tag_priority(tags) if archived_bucket == 0 else 2
             return archived_bucket, main_bucket, tag_rank, title.lower(), url
 
         unique.sort(key=key_fn)
@@ -358,7 +358,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
 
     # Build normalized lookup to make matching resilient.
     normalized_results: dict[str, List[dict[str, object]]] = {
-        _normalize_key(category): guides for category, guides in results.items()
+        _DeviceDataUtils.normalize_key(category): guides for category, guides in results.items()
     }
 
     logger.info("Fetched %d categories with teardown guides", len(results))
@@ -417,7 +417,7 @@ def print_device_data(
     def _fetch_score(
         device_name: str, max_retries: int = 3, base_backoff: float = 0.75
     ) -> Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]:
-        ifixit_title = _to_ifixit_title(device_name)
+        ifixit_title = _DeviceDataUtils.to_ifixit_title(device_name)
         for attempt in range(max_retries):
             try:
                 limiter.acquire()
@@ -500,7 +500,7 @@ def print_device_data(
                 logger.info("- %s (%s)", name, title)
         logger.info("Repairability scores for devices:")
         for name, title, score, _brand, _link in with_score:
-            teardown_items = teardown_guides.get(_normalize_key(name), [])
+            teardown_items = teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             if teardown_items:
                 titles_and_urls = [
                     f"{g['title']} ({', '.join(g.get('tags', []))}) : {g['url']}"
@@ -512,7 +512,8 @@ def print_device_data(
         logger.info("Summary:")
         logger.info("- Devices with a repairability score: %d", len(with_score))
         logger.info("- Total devices processed: %d", len(results))
-        matched = sum(1 for name, _t, _s, _b, _l in with_score if _normalize_key(name) in teardown_guides)
+        matched = sum(
+            1 for name, _t, _s, _b, _l in with_score if _DeviceDataUtils.normalize_key(name) in teardown_guides)
         logger.info("- Devices with matched teardown URLs: %d", matched)
 
     def create_device_entry(name, title, score, brand, link, teardown_guides):
@@ -529,7 +530,7 @@ def print_device_data(
                     "tags": guide.get("tags", []),
                     "difficulty": guide.get("difficulty"),
                 }
-                for guide in teardown_guides.get(_normalize_key(name), [])
+                for guide in teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             ],
         }
 
