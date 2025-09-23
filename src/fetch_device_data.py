@@ -3,20 +3,21 @@ import json
 import logging
 import os
 import tempfile
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from time import perf_counter
 from typing import Iterable, List, Optional, Set, Tuple
 
 import tqdm
 
 from ifixit_api_client import IFixitAPIClient
+from rate_limiter import _RateLimiter
 from utils import _DeviceDataUtils
 
 # Configure logging
 logger = logging.getLogger(__name__)
-log_level = logging.DEBUG if __import__("os").getenv("DEBUG") else logging.INFO
+log_level = logging.DEBUG if os.getenv("DEBUG") else logging.INFO
 
 
 class Suppress404Filter(logging.Filter):
@@ -228,7 +229,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
     """
     params = {"filter": "teardown", "limit": 200}
     results: dict[str, List[dict[str, object]]] = {}
-    lock = __import__("threading").Lock()
+    lock = threading.Lock()
     offset = 0
     max_workers = 8
     batch_size = 200
@@ -382,37 +383,6 @@ def print_device_data(
     if not unique_devices:
         logger.warning("No devices provided.")
         return
-
-    class _RateLimiter:
-        """Token-bucket rate limiter for controlling API request rate."""
-
-        def __init__(self, rate_per_sec: int, burst: Optional[int] = None) -> None:
-            self.rate = max(1, rate_per_sec)
-            self.capacity = burst if burst is not None else self.rate
-            self._tokens: float = float(self.capacity)
-            self._last: float = perf_counter()
-            self._lock = __import__("threading").Lock()
-
-        def acquire(self) -> None:
-            wait_time = 0.0
-            with self._lock:
-                now = perf_counter()
-                elapsed = now - self._last
-                self._last = now
-                self._tokens = min(self.capacity, self._tokens + elapsed * self.rate)
-                if self._tokens < 1.0:
-                    wait_time = (1.0 - self._tokens) / self.rate
-                else:
-                    self._tokens -= 1.0
-                    return
-            if wait_time > 0.0:
-                time.sleep(wait_time)
-            with self._lock:
-                now = perf_counter()
-                elapsed = now - self._last
-                self._last = now
-                self._tokens = min(self.capacity, self._tokens + elapsed * self.rate)
-                self._tokens -= 1.0
 
     def _fetch_score(
         device_name: str, max_retries: int = 3, base_backoff: float = 0.75
