@@ -103,10 +103,9 @@ def _find_and_collect_for_targets(
     """Find target categories in the tree and collect leaf devices under them."""
     targets: Set[str] = set(target_categories)
     out: dict[str, List[str]] = {t: [] for t in targets}
-    excludes = exclude_map or {}
 
     def handle_match(cat: str, value: JsonValue) -> None:
-        excluded = excludes.get(cat, set())
+        excluded = exclude_map.get(cat, set())
         leaves = list(_collect_leaf_device_names(value, excluded_keys=excluded))
         if value is None:
             leaves.append(cat)
@@ -132,7 +131,6 @@ def _find_and_collect_for_targets(
         seen: Set[str] = set()
         unique_ordered = [x for x in out[category] if not (x in seen or seen.add(x))]
         out[category] = sorted(unique_ordered)
-
     return out
 
 
