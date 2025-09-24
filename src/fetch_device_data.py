@@ -630,7 +630,8 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
                     cells = row.find_all('td')
                     if len(cells) >= 2:
                         note = cells[1].text.strip()
-                        if note.lower() != "initial release" or version == "1.0":  # Include "Initial release" only for v1.0
+                        # Include "Initial release" only for v1.0
+                        if note.lower() != "initial release" or version == "1.0":
                             rev_items.append(note)
         revisions.append({"version": version, "items": rev_items})
 
@@ -683,7 +684,7 @@ def main() -> None:
     client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
     rate_limiter = _RateLimiter(rate_per_sec=4)  # Reuse your rate limiter
 
-    if args.generate_rubric or True:
+    if args.generate_rubric:
         generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
         return
 
