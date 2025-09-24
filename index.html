@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>iFixit Repairability Scores — Dev Dashboard</title>
+    <title>iFixit Repairability Scores — Dashboard</title>
     <meta name="description"
-          content="Interactive dashboard of iFixit repairability scores with searchable, filterable device table and score distribution chart.">
+          content="Discover the interactive iFixit Repairability Dashboard: search, filter, and sort devices, analyze score distribution, and export data as CSV or JSON.">
     <link rel="canonical" href="/index.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,8 +74,10 @@
                 Score Distribution
                 <button type="button" aria-label="Repairability score explanation" class="attention-icon" tabindex="-1">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" fill="rgba(8,145,178,0.18)" stroke="rgba(103,232,249,0.45)" stroke-width="1.5"/>
-                    <path d="M12 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm-1.2 4.3c0-.44.36-.8.8-.8h.8c.44 0 .8.36.8.8V17c0 .44-.36.8-.8.8h-.8a.8.8 0 0 1-.8-.8v-5.5Z" fill="#67e8f9"/>
+                    <circle cx="12" cy="12" r="10" fill="rgba(8,145,178,0.18)" stroke="rgba(103,232,249,0.45)"
+                            stroke-width="1.5"/>
+                    <path d="M12 7.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm-1.2 4.3c0-.44.36-.8.8-.8h.8c.44 0 .8.36.8.8V17c0 .44-.36.8-.8.8h-.8a.8.8 0 0 1-.8-.8v-5.5Z"
+                          fill="#67e8f9"/>
                   </svg>
                 </button>
                 <div class="noscore-tooltip" role="tooltip" style="max-width: 360px;">
@@ -83,7 +85,8 @@
                   It is based on the “Repairability Scoring Rubric.” Versions 1.0 through 2.1 exist (2.1 is the latest).
                   Older devices may have been scored with earlier rubrics and are not always directly comparable to v2.1.
                   <br/>
-                  <a href="https://www.ifixit.com/Wiki/Repairability_Scoring_Rubric_v2.1" target="_blank" class="text-cyan-300 underline">See the current rubric (v2.1)</a>
+                  <a href="https://www.ifixit.com/Wiki/Repairability_Scoring_Rubric_v2.1" target="_blank"
+                     class="text-cyan-300 underline">See the current rubric (v2.1)</a>
                 </div>
               </span>
             </h2>
@@ -180,8 +183,12 @@
                 </select>
                 <div class="flex items-center gap-3">
                     <div class="segmented" role="group" aria-label="Device listing scope">
-                        <button type="button" id="segScored" class="px-3 py-2 btn-neon transition seg-left" aria-pressed="true">Scored only</button>
-                        <button type="button" id="segAll" class="px-3 py-2 btn-neon transition seg-right" aria-pressed="false">All devices</button>
+                        <button type="button" id="segScored" class="px-3 py-2 btn-neon transition seg-left"
+                                aria-pressed="true">Scored only
+                        </button>
+                        <button type="button" id="segAll" class="px-3 py-2 btn-neon transition seg-right"
+                                aria-pressed="false">All devices
+                        </button>
                     </div>
                     <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu"
                             aria-expanded="false" title="Export data">Export ▾
