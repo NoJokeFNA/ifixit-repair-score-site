@@ -686,7 +686,6 @@ def main() -> None:
 
     if args.generate_rubric:
         generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
-        return
 
     exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
     child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
