@@ -585,7 +585,7 @@ function injectStructuredData(list) {
 }
 
 function renderTable(options = {}) {
-    const { skipChart = false } = options;
+    const {skipChart = false} = options;
     // Close any open teardown portal before re-rendering table to avoid orphaned overlays
     const existingPortal = document.querySelector('.teardown-portal');
     if (existingPortal) {
@@ -893,8 +893,56 @@ function renderActiveFiltersChip() {
     wrap.classList.toggle('show', any);
 }
 
+function renderRubricTable() {
+    const toggleRubricTableBtn = document.getElementById('toggleRubricTable');
+    const rubricTableContainer = document.getElementById('rubricTableContainer');
+    const rubricTable = document.getElementById('rubricTable');
+    const rubricError = document.getElementById('rubricError');
+
+    toggleRubricTableBtn.addEventListener('click', () => {
+        const isExpanded = toggleRubricTableBtn.getAttribute('aria-expanded') === 'true';
+        toggleRubricTableBtn.setAttribute('aria-expanded', !isExpanded);
+        toggleRubricTableBtn.textContent = isExpanded ? 'Show Rubric' : 'Hide Rubric';
+        rubricTableContainer.classList.toggle('hidden');
+    });
+
+    fetch('rubric.json')
+        .then(response => response.json())
+        .then(data => {
+            const thead = rubricTableContainer.querySelector('thead tr');
+            data.versions.forEach(version => {
+                const th = document.createElement('th');
+                th.scope = 'col';
+                th.className = 'px-2 py-1 text-center text-xs font-semibold text-gray-300 uppercase';
+                th.textContent = version;
+                thead.appendChild(th);
+            });
+
+            data.criteria.forEach(criterion => {
+                const tr = document.createElement('tr');
+                tr.className = 'divide-x divide-slate-700';
+
+                const tdName = document.createElement('td');
+                tdName.className = 'px-2 py-1 text-left text-xs text-gray-100';
+                tdName.textContent = criterion.name;
+                tr.appendChild(tdName);
+
+                criterion.included.forEach(included => {
+                    const td = document.createElement('td');
+                    td.className = 'px-2 py-1 text-center text-xs';
+                    td.textContent = included ? '✓' : '';
+                    tr.appendChild(td);
+                });
+                rubricTable.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading rubric data:', error);
+            rubricError.classList.remove('hidden');
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme: initialize according to preference and set up listeners
     applyTheme();
     const mm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     if (mm && mm.addEventListener) {
@@ -946,6 +994,8 @@ document.addEventListener('DOMContentLoaded', () => {
         notifyAction(`Filtered by ${brand}. ${window.lastFiltered?.length ?? ''} results.`);
     });
 
+    renderRubricTable()
+
     // Segmented control wiring: Scored only | All devices
     function setSegmentState(includeNo) {
         // ensure hidden state element exists
@@ -976,13 +1026,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setSegmentState(initial);
         btnScored.addEventListener('click', () => {
             setSegmentState(false);
-            renderTable({ skipChart: true });
+            renderTable({skipChart: true});
             stateToQuery();
             notifyAction('Excluding devices without score');
         });
         btnAll.addEventListener('click', () => {
             setSegmentState(true);
-            renderTable({ skipChart: true });
+            renderTable({skipChart: true});
             stateToQuery();
             notifyAction('Including devices without score');
         });
