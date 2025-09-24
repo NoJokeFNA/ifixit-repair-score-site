@@ -26,6 +26,7 @@ class IFixitAPIClient:
         log_level: Logging level (default: logging.INFO).
         allow_http: Allow HTTP requests when using a proxy (default: False).
         raise_for_status: Raise exceptions for HTTP error responses (default: True).
+        wiki_html = client.get_wiki_page_html('Repairability_Scoring_Rubric_v1.0')
 
     Usage:
         client = IFixitAPIClient(auth_token='your_token', app_id='your_app_id')
@@ -37,6 +38,7 @@ class IFixitAPIClient:
     """
 
     BASE_URL = 'https://www.ifixit.com/api/2.0'
+    WIKI_BASE_URL = 'https://www.ifixit.com/Wiki'
 
     def __init__(
             self,
@@ -156,6 +158,38 @@ class IFixitAPIClient:
             raise
         except requests.exceptions.RequestException as e:
             logger.error(f'Request failed: {str(e)}')
+            raise
+
+    def get_wiki_page_html(self, title: str) -> str:
+        """Fetch the raw HTML content of a wiki page.
+
+        Args:
+            title: Wiki page title (e.g., 'Repairability_Scoring_Rubric_v2.1').
+
+        Returns:
+            HTML content as a string.
+
+        Raises:
+            requests.exceptions.HTTPError: For HTTP errors.
+            requests.exceptions.RequestException: For other request failures.
+        """
+        url = f'{self.WIKI_BASE_URL}/{title}'
+        logger.debug(f'Fetching wiki page HTML from {url}')
+
+        try:
+            response = self.session.get(
+                url=url,
+                timeout=self.timeout,
+                verify=not self.proxy,
+            )
+            if self.raise_for_status:
+                response.raise_for_status()
+            return response.text
+        except requests.exceptions.HTTPError as e:
+            logger.error(f'HTTP error fetching wiki page {url}: {e.response.status_code} - {e.response.text}')
+            raise
+        except requests.exceptions.RequestException as e:
+            logger.error(f'Request failed for wiki page {url}: {str(e)}')
             raise
 
     # --- Cart Endpoints ---

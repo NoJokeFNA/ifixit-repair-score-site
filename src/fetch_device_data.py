@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import tempfile
 import threading
 import time
@@ -9,7 +10,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Iterable, List, Optional, Set, Tuple
 
+import requests
 import tqdm
+from bs4 import BeautifulSoup
 
 from ifixit_api_client import IFixitAPIClient
 from rate_limiter import _RateLimiter
@@ -529,6 +532,123 @@ def print_device_data(
             raise
 
 
+def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.json",
+                         rate_limiter: Optional[_RateLimiter] = None) -> None:
+    """
+    Scrape iFixit wiki pages to generate rubric.json with version-specific criteria, weights, notes,
+    factors not considered, and revisions.
+
+    Args:
+        client: IFixitAPIClient instance for fetching wiki pages.
+        output_file: Path to write the JSON output (default: 'rubric.json').
+        rate_limiter: Optional _RateLimiter instance for rate-limiting requests.
+    """
+    versions = ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0", "2.1", "Future"]
+    criteria_names = [
+        "Design for Repair", "Service Manual", "Parts Availability",
+        "Unique Product Identifier", "Parts Pairing", "Software Updates"
+    ]
+    criteria = [
+        {
+            "name": name,
+            "included": [False] * len(versions),
+            "weights": {},
+            "notes": {}
+        } for name in criteria_names
+    ]
+    factors_not_considered = []
+    revisions = []
+
+    def fetch_page(version: str) -> Optional[BeautifulSoup]:
+        """Fetch and parse a wiki page for a given version using IFixitAPIClient."""
+        title = f"Repairability_Scoring_Rubric_v{version}"
+        try:
+            if rate_limiter:
+                rate_limiter.acquire()
+            html = client.get_wiki_page_html(title)
+            return BeautifulSoup(html, 'html.parser')
+        except requests.RequestException as e:
+            logger.error(f"Failed to fetch wiki page for version {version}: {e}")
+            return None
+
+    for i, version in enumerate(versions):
+        logger.info(f"Fetching rubric for version {version}...")
+        soup = fetch_page(version)
+        if not soup:
+            logger.warning(f"Skipping version {version} due to fetch failure")
+            factors_not_considered.append({"version": version, "items": []})
+            revisions.append({"version": version, "items": []})
+            continue
+
+        # Extract Scoring Factors
+        scoring_factors = []
+        scoring_heading = soup.find('p', string=re.compile('Scoring Factors', re.I))
+        if scoring_heading:
+            table = scoring_heading.find_next('table')
+            if table:
+                rows = table.find_all('tr')[1:]  # Skip header
+                for row in rows:
+                    cells = row.find_all('td')
+                    if len(cells) >= 3:  # Expect criterion, weight, note
+                        criterion = cells[0].text.strip()
+                        weight = cells[1].text.strip()
+                        note = cells[2].text.strip()
+                        scoring_factors.append({"criterion": criterion, "weight": weight, "note": note})
+
+        # Update criteria inclusion, weights, and notes
+        for criterion in criteria:
+            for sf in scoring_factors:
+                # Normalize criterion name (e.g., "Service Manual (if any)" -> "Service Manual")
+                sf_criterion = re.sub(r'\s*\(if any\)', '', sf["criterion"], flags=re.I).strip()
+                if criterion["name"].lower() == sf_criterion.lower():
+                    criterion["included"][i] = True
+                    criterion["weights"][version] = sf["weight"]
+                    criterion["notes"][version] = sf["note"]
+
+        # Extract Factors Not Considered
+        fnc_items = []
+        fnc_heading = soup.find('p', string=re.compile('Factors Not Considered', re.I))
+        if fnc_heading:
+            table = fnc_heading.find_next('table')
+            if table:
+                rows = table.find_all('tr')  # Include all rows
+                for row in rows:
+                    cells = row.find_all('td')
+                    if len(cells) >= 2:  # Expect criterion, note
+                        note = cells[1].text.strip()
+                        fnc_items.append(note)
+        factors_not_considered.append({"version": version, "items": fnc_items})
+
+        # Extract Revisions
+        rev_items = []
+        rev_heading = soup.find('p', string=re.compile('Revisions( From Previous Version)?', re.I))
+        if rev_heading:
+            table = rev_heading.find_next('table')
+            if table:
+                rows = table.find_all('tr')  # Include all rows
+                for row in rows:
+                    cells = row.find_all('td')
+                    if len(cells) >= 2:
+                        note = cells[1].text.strip()
+                        if note.lower() != "initial release" or version == "1.0":  # Include "Initial release" only for v1.0
+                            rev_items.append(note)
+        revisions.append({"version": version, "items": rev_items})
+
+    rubric_data = {
+        "versions": versions,
+        "criteria": criteria,
+        "factors_not_considered": factors_not_considered,
+        "revisions": revisions
+    }
+
+    try:
+        write_json_atomic(output_file, rubric_data)
+        logger.info(f"Wrote rubric data to {output_file}")
+    except Exception as e:
+        logger.error(f"Failed to write rubric.json: {e}", exc_info=True)
+        raise
+
+
 def main() -> None:
     """Entry point for the script.
 
@@ -548,11 +668,26 @@ def main() -> None:
         default="devices_with_scores.json",
         help="Output file for scores",
     )
+    parser.add_argument(
+        "--generate-rubric",
+        action="store_true",
+        help="Generate rubric.json from iFixit wiki pages",
+    )
+    parser.add_argument(
+        "--rubric-output",
+        default="rubric.json",
+        help="Output file for rubric JSON",
+    )
     args = parser.parse_args()
 
     client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
-    exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
+    rate_limiter = _RateLimiter(rate_per_sec=4)  # Reuse your rate limiter
 
+    if args.generate_rubric or True:
+        generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
+        return
+
+    exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
     child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
 
     devices = []

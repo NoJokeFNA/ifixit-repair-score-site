@@ -35,22 +35,38 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build devices_with_scores.json into gh-pages
+      - name: Build JSON files into gh-pages
         run: |
-          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json
+          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json
 
       - name: Commit to gh-pages if changed
         working-directory: gh-pages
         run: |
           set -e
-          # Stage the file (works for both new and modified files)
-          git add devices_with_scores.json || true
-          # Commit only if something is staged
-          if ! git diff --cached --quiet -- devices_with_scores.json; then
+          # Stage the files (works for both new and modified files)
+          git add devices_with_scores.json rubric.json || true
+          # Initialize commit message parts
+          changed_files=()
+          # Check if devices_with_scores.json has changes
+          if ! git diff --cached --quiet -- devices_with_scores.json 2>/dev/null; then
+            changed_files+=("devices_with_scores.json")
+          fi
+          # Check if rubric.json has changes
+          if ! git diff --cached --quiet -- rubric.json 2>/dev/null; then
+            changed_files+=("rubric.json")
+          fi
+          # Commit only if there are changes
+          if [ ${#changed_files[@]} -gt 0 ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-            git commit -m "chore(gh-pages): update devices_with_scores.json ${ts}"
+            # Construct commit message based on changed files
+            if [ ${#changed_files[@]} -eq 1 ]; then
+              commit_msg="chore(gh-pages): update ${changed_files[0]} ${ts}"
+            else
+              commit_msg="chore(gh-pages): update ${changed_files[0]} and ${changed_files[1]} ${ts}"
+            fi
+            git commit -m "$commit_msg"
             git push
           else
             echo "No changes to commit."
