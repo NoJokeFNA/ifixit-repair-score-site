@@ -1,29 +1,420 @@
 {
-  "versions": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0", "2.1", "Future"],
+  "versions": [
+    "1.0",
+    "1.1",
+    "1.2",
+    "1.3",
+    "1.4",
+    "1.5",
+    "1.6",
+    "1.7",
+    "1.8",
+    "1.9",
+    "2.0",
+    "2.1",
+    "Future"
+  ],
   "criteria": [
     {
       "name": "Design for Repair",
-      "included": [true, true, true, true, true, true, true, true, true, true, true, true, true]
+      "included": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "weights": {
+        "1.0": "90%",
+        "1.1": "90%",
+        "1.2": "90%",
+        "1.3": "90%",
+        "1.4": "80%",
+        "1.5": "80%",
+        "1.6": "80%",
+        "1.7": "80%",
+        "1.8": "80%",
+        "1.9": "80%",
+        "2.0": "80%",
+        "2.1": "80%"
+      },
+      "notes": {
+        "1.0": "Ease of disassembly",
+        "1.1": "Ease of disassembly/reassembly",
+        "1.2": "Ease of disassembly/reassembly",
+        "1.3": "Ease of disassembly/reassembly",
+        "1.4": "Ease of disassembly/reassembly",
+        "1.5": "Ease of disassembly/reassembly",
+        "1.6": "Ease of disassembly/reassembly",
+        "1.7": "Ease of disassembly/reassembly",
+        "1.8": "Ease of disassembly/reassembly",
+        "1.9": "Ease of disassembly/reassembly",
+        "2.0": "Ease of disassembly/reassembly",
+        "2.1": "Ease of disassembly/reassembly"
+      }
     },
     {
       "name": "Service Manual",
-      "included": [true, true, true, true, true, true, true, true, true, true, true, true, true]
+      "included": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "weights": {
+        "1.0": "10%",
+        "1.1": "10%",
+        "1.2": "10%",
+        "1.3": "10%",
+        "1.4": "10%",
+        "1.5": "10%",
+        "1.6": "10%",
+        "1.7": "10%",
+        "1.8": "10%",
+        "1.9": "10%",
+        "2.0": "10%",
+        "2.1": "10%"
+      },
+      "notes": {
+        "1.0": "Free, public, available via OEM support site",
+        "1.1": "Free, public, available via OEM support site",
+        "1.2": "Free, public, available via OEM support site",
+        "1.3": "Free, public, available via OEM support site",
+        "1.4": "Free, public, available via OEM support site",
+        "1.5": "Free, public, available via OEM support site",
+        "1.6": "Free, public, available via OEM support site",
+        "1.7": "Free, public, complete, available via OEM support site",
+        "1.8": "Free, public, complete, available via OEM support site",
+        "1.9": "Free, public, complete, available via OEM support site",
+        "2.0": "Free, public, complete, available via OEM support site",
+        "2.1": "Free, public, complete, available via OEM support site"
+      }
     },
     {
       "name": "Parts Availability",
-      "included": [false, false, false, false, true, true, true, true, true, true, true, true, true]
+      "included": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "weights": {
+        "1.4": "10%",
+        "1.5": "10%",
+        "1.6": "10%"
+      },
+      "notes": {
+        "1.4": "Only OEM parts considered",
+        "1.5": "Only OEM parts considered",
+        "1.6": "Only OEM parts considered"
+      }
     },
     {
       "name": "Unique Product Identifier",
-      "included": [false, false, false, false, true, true, true, true, true, true, true, true, true]
+      "included": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "weights": {
+        "1.4": "N/A",
+        "1.5": "N/A",
+        "1.6": "N/A",
+        "1.7": "N/A",
+        "1.8": "N/A",
+        "1.9": "N/A",
+        "2.0": "N/A",
+        "2.1": "N/A"
+      },
+      "notes": {
+        "1.4": "Gating function for full credit on service manual, parts availability",
+        "1.5": "Gating function for full credit on service manual, parts availability",
+        "1.6": "Gating function for full credit on service manual, parts availability",
+        "1.7": "Gating function for full credit on service manual, parts availability",
+        "1.8": "Gating function for full credit on service manual, parts availability",
+        "1.9": "Gating function for full credit on service manual, parts availability",
+        "2.0": "Gating function for full credit on service manual, parts availability",
+        "2.1": "Gating function for full credit on service manual, parts availability"
+      }
     },
     {
       "name": "Parts Pairing",
-      "included": [false, false, false, false, false, true, true, true, true, true, true, true, true]
+      "included": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "weights": {
+        "1.5": "N/A",
+        "1.6": "N/A",
+        "1.7": "N/A",
+        "1.8": "N/A",
+        "1.9": "N/A",
+        "2.0": "N/A",
+        "2.1": "N/A"
+      },
+      "notes": {
+        "1.5": "Penalty only, global, up to -100%",
+        "1.6": "Penalty only, global, up to -100%",
+        "1.7": "Penalty only, global, up to -100%",
+        "1.8": "Penalty only, global, up to -100%",
+        "1.9": "Penalty only, global, up to -100%",
+        "2.0": "Penalty only, global, up to -100%",
+        "2.1": "Penalty only, global, up to -100%"
+      }
     },
     {
       "name": "Software Updates",
-      "included": [false, false, false, false, false, false, false, false, false, false, false, false, true]
+      "included": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "weights": {},
+      "notes": {}
+    }
+  ],
+  "factors_not_considered": [
+    {
+      "version": "1.0",
+      "items": [
+        "Replacement parts available for purchase from the OEM at reasonable cost to end users will be a requirement in a future scorecard update.",
+        "Where common repairs are inhibited by parts pairing or calibration issues (e.g. full or partial loss of function, authenticity warnings, etc.) for which the OEM provides no freely available software-based remedy, penalties may be included in a future version of the scoring model.",
+        "In a future scorecard update, maximum points may be reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working condition, making it straightforward to find compatible parts and instructions.",
+        "Duration of software updates may be included in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.1",
+      "items": [
+        "Replacement parts available for purchase from the OEM at reasonable cost to end users will be a requirement in a future scorecard update.",
+        "Where common repairs are inhibited by parts pairing or calibration issues (e.g. full or partial loss of function, authenticity warnings, etc.) for which the OEM provides no freely available software-based remedy, penalties may be included in a future version of the scoring model.",
+        "In a future scorecard update, maximum points may be reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working condition, making it straightforward to find compatible parts and instructions.",
+        "Duration of software updates may be included in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.2",
+      "items": [
+        "Replacement parts available for purchase from the OEM at reasonable cost to end users will be a requirement in a future scorecard update.",
+        "Where common repairs are inhibited by parts pairing or calibration issues (e.g. full or partial loss of function, authenticity warnings, etc.) for which the OEM provides no freely available software-based remedy, penalties may be included in a future version of the scoring model.",
+        "In a future scorecard update, maximum points may be reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working condition, making it straightforward to find compatible parts and instructions.",
+        "Duration of software updates may be included in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.3",
+      "items": [
+        "Replacement parts available for purchase from the OEM at reasonable cost to end users will be a requirement in a future scorecard update.",
+        "Where common repairs are inhibited by parts pairing or calibration issues (e.g. full or partial loss of function, authenticity warnings, etc.) for which the OEM provides no freely available software-based remedy, penalties may be included in a future version of the scoring model.",
+        "In a future scorecard update, maximum points may be reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working condition, making it straightforward to find compatible parts and instructions.",
+        "Duration of software updates may be included in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.4",
+      "items": [
+        "Where common repairs are inhibited by parts pairing or calibration issues (e.g. full or partial loss of function, authenticity warnings, etc.) for which the OEM provides no freely available software-based remedy, penalties are being developed for inclusion in a future version of the scoring model.",
+        "Duration of software updates is slated for inclusion in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.5",
+      "items": [
+        "Duration of software updates is slated for inclusion in a future version of the scorecard.",
+        "[Reserved]"
+      ]
+    },
+    {
+      "version": "1.6",
+      "items": [
+        "Duration of software updates is slated for inclusion in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.7",
+      "items": [
+        "Duration of software updates is slated for inclusion in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.8",
+      "items": [
+        "Duration of software updates is slated for inclusion in a future version of the scorecard."
+      ]
+    },
+    {
+      "version": "1.9",
+      "items": [
+        "Duration of software updates is slated for inclusion in a future version of the scorecard.",
+        "[Reserved]"
+      ]
+    },
+    {
+      "version": "2.0",
+      "items": [
+        "Duration of software security updates is slated for inclusion in a future version of the scorecard.",
+        "[Reserved]"
+      ]
+    },
+    {
+      "version": "2.1",
+      "items": [
+        "Duration of software security updates is slated for inclusion in a future version of the scorecard.",
+        "[Reserved]"
+      ]
+    },
+    {
+      "version": "Future",
+      "items": []
+    }
+  ],
+  "revisions": [
+    {
+      "version": "1.0",
+      "items": [
+        "Initial release."
+      ]
+    },
+    {
+      "version": "1.1",
+      "items": [
+        "Added proxy times for various reassembly actions and design features. Over-reliance on adhesives is now directly penalized due to added time for cleaning, prepping, and bonding, the need for additional tools/fixtures, the need for consumables/supplies, and increased possibility of user frustration/error. Devices that use adhesives but can be reliably re-assembled by other means (i.e. reusable fasteners) receive a reduced penalty."
+      ]
+    },
+    {
+      "version": "1.2",
+      "items": [
+        "Refined proxy times associated with various actions, and incorporated new actions.",
+        "Added criteria for repairability scoring of desktop keyboards."
+      ]
+    },
+    {
+      "version": "1.3",
+      "items": [
+        "Refined scoring model for laptops, where disassembly/reassembly proxy times specific to I/O ports repair procedures are replaced with a simple modularity score."
+      ]
+    },
+    {
+      "version": "1.4",
+      "items": [
+        "Incorporated a gating function for full credit on documentation and parts availability criteria. Maximum points are reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working state, making it straightforward to find compatible parts and instructions.",
+        "Refined scoring ranges for various device categories.",
+        "Finalized and incorporated scoring for availability of replacement parts directly from the OEM (or from an endorsed third party, linked from the OEM's support website.",
+        "Refined the scoring calculation for documentation. Criteria for full credit include: repair documentation must be free and publicly available from the OEM support website (or linked therefrom); no registration requirement; presence of tools lists, parts lists with part numbers (or other means of checking compatibility), exploded diagram(s), troubleshooting procedures, schematics, and service procedures for all priority parts."
+      ]
+    },
+    {
+      "version": "1.5",
+      "items": [
+        "Incorporated weighted penalties for various parts pairing scenarios into scoring model."
+      ]
+    },
+    {
+      "version": "1.6",
+      "items": [
+        "Refined scoring penalty for parts pairing, with additional categories.",
+        "Refined proxy times for various degluing actions."
+      ]
+    },
+    {
+      "version": "1.7",
+      "items": [
+        "Refined scoring criteria for tablets, and formalized scoring criteria for foldables under the existing smartphone scoring framework.",
+        "Added actions and associated proxy times for additional tablet design features.",
+        "Revised documentation scoring criteria so that a hardware troubleshooting section is required for full credit."
+      ]
+    },
+    {
+      "version": "1.8",
+      "items": [
+        "Formalized and refined scoring criteria for smartwatches and wireless earbuds.",
+        "Added actions and associated proxy times for additional wearables design features.",
+        "Revised documentation scoring criteria, with more specific guidance for individually scored repair procedures."
+      ]
+    },
+    {
+      "version": "1.9",
+      "items": [
+        "Formalized and refined scoring criteria for e-readers as a separate product group from tablets.",
+        "Added actions and associated proxy times for additional e-reader design features.",
+        "Refined scoring criteria for schematics based on feedback from board-level repair professionals."
+      ]
+    },
+    {
+      "version": "2.0",
+      "items": [
+        "Added new tools and adjusted tool categorizations and scaling factors.",
+        "Removed/replaced deprecated actions and prioritized actions and proxy times associated with specific hardware design features.",
+        "Refined internal definitions and guidance for numerous scoring criteria for greater consistency and ease of use."
+      ]
+    },
+    {
+      "version": "2.1",
+      "items": [
+        "Formalized and refined scoring criteria and product group classification for game consoles (handheld).",
+        "Adjusted tool multipliers for heat sources."
+      ]
+    },
+    {
+      "version": "Future",
+      "items": []
     }
   ]
 }
