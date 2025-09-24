@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nojokefna.github.io/ifixit-repair-score-site/sitemap.xml
