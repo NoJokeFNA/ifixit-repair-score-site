@@ -11,8 +11,7 @@
     "1.8",
     "1.9",
     "2.0",
-    "2.1",
-    "Future"
+    "2.1"
   ],
   "criteria": [
     {
@@ -29,8 +28,7 @@
         true,
         true,
         true,
-        true,
-        false
+        true
       ],
       "weights": {
         "1.0": "90%",
@@ -75,8 +73,7 @@
         true,
         true,
         true,
-        true,
-        false
+        true
       ],
       "weights": {
         "1.0": "10%",
@@ -121,7 +118,6 @@
         false,
         false,
         false,
-        false,
         false
       ],
       "weights": {
@@ -149,8 +145,7 @@
         true,
         true,
         true,
-        true,
-        false
+        true
       ],
       "weights": {
         "1.4": "N/A",
@@ -187,8 +182,7 @@
         true,
         true,
         true,
-        true,
-        false
+        true
       ],
       "weights": {
         "1.5": "N/A",
@@ -212,7 +206,6 @@
     {
       "name": "Software Updates",
       "included": [
-        false,
         false,
         false,
         false,
@@ -319,10 +312,6 @@
         "Duration of software security updates is slated for inclusion in a future version of the scorecard.",
         "[Reserved]"
       ]
-    },
-    {
-      "version": "Future",
-      "items": []
     }
   ],
   "revisions": [
@@ -411,10 +400,6 @@
         "Formalized and refined scoring criteria and product group classification for game consoles (handheld).",
         "Adjusted tool multipliers for heat sources."
       ]
-    },
-    {
-      "version": "Future",
-      "items": []
     }
   ]
 }
