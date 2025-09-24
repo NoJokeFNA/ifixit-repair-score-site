@@ -7,6 +7,7 @@ import tempfile
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from decimal import Decimal
 from pathlib import Path
 from typing import Iterable, List, Optional, Set, Tuple
 
@@ -543,21 +544,6 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
         output_file: Path to write the JSON output (default: 'rubric.json').
         rate_limiter: Optional _RateLimiter instance for rate-limiting requests.
     """
-    versions = ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0", "2.1", "Future"]
-    criteria_names = [
-        "Design for Repair", "Service Manual", "Parts Availability",
-        "Unique Product Identifier", "Parts Pairing", "Software Updates"
-    ]
-    criteria = [
-        {
-            "name": name,
-            "included": [False] * len(versions),
-            "weights": {},
-            "notes": {}
-        } for name in criteria_names
-    ]
-    factors_not_considered = []
-    revisions = []
 
     def fetch_page(version: str) -> Optional[BeautifulSoup]:
         """Fetch and parse a wiki page for a given version using IFixitAPIClient."""
@@ -571,7 +557,36 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
             logger.error(f"Failed to fetch wiki page for version {version}: {e}")
             return None
 
-    for i, version in enumerate(versions):
+    def is_valid_page(soup: Optional[BeautifulSoup]) -> bool:
+        if not soup:
+            return False
+        text = soup.get_text(" ")
+        return not re.search(r"there is no article with this exact name", text, re.I)
+
+    def iter_versions(start: str = "1.0", step: str = "0.1", max_steps: int = 100):
+        cur = Decimal(start)
+        inc = Decimal(step)
+        for _ in range(max_steps):
+            yield f"{cur:.1f}"
+            cur += inc
+
+    versions: list[str] = []
+    criteria_names = [
+        "Design for Repair", "Service Manual", "Parts Availability",
+        "Unique Product Identifier", "Parts Pairing", "Software Updates"
+    ]
+    criteria = [
+        {
+            "name": name,
+            "included": [False] * len(versions),
+            "weights": {},
+            "notes": {}
+        } for name in criteria_names
+    ]
+    factors_not_considered: list[dict[str, object]] = []
+    revisions: list[dict[str, object]] = []
+
+    for version in iter_versions(start="1.0", step="0.1", max_steps=100):
         logger.info(f"Fetching rubric for version {version}...")
         soup = fetch_page(version)
         if not soup:
@@ -579,6 +594,14 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
             factors_not_considered.append({"version": version, "items": []})
             revisions.append({"version": version, "items": []})
             continue
+
+        if not is_valid_page(soup):
+            logger.info(f"Skipping version {version} due to invalid page content")
+            break
+
+        versions.append(version)
+        for c in criteria:
+            c["included"].append(False)
 
         # Extract Scoring Factors
         scoring_factors = []
@@ -601,7 +624,7 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
                 # Normalize criterion name (e.g., "Service Manual (if any)" -> "Service Manual")
                 sf_criterion = re.sub(r'\s*\(if any\)', '', sf["criterion"], flags=re.I).strip()
                 if criterion["name"].lower() == sf_criterion.lower():
-                    criterion["included"][i] = True
+                    criterion["included"][-1] = True
                     criterion["weights"][version] = sf["weight"]
                     criterion["notes"][version] = sf["note"]
 
