@@ -572,7 +572,7 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
 
     versions: list[str] = []
     criteria_names = [
-        "Design for Repair", "Service Manual", "Parts Availability",
+        "Design for Repair", "Service Manual", "Parts Availability", "Parts Availability & Cost"
         "Unique Product Identifier", "Parts Pairing", "Software Updates"
     ]
     criteria = [
