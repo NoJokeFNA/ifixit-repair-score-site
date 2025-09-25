@@ -236,7 +236,7 @@ function sortData(data) {
             A = Array.isArray(a.teardown_urls) ? a.teardown_urls.length : 0;
             B = Array.isArray(b.teardown_urls) ? b.teardown_urls.length : 0;
         }
-        if (key === 'repairability_score' || key === 'teardown') {
+        if (key === 'repairability_score' || key === 'scoring_rubric' || key === 'teardown') {
             // Numeric comparison for score and teardown count
             A = (A ?? -1);
             B = (B ?? -1);
@@ -312,6 +312,12 @@ function populateTable(data) {
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
                         ${d.repairability_score ?? '—'}/10
                     </span>
+                </td>
+                <td class="px-6 py-4">
+                  ${d.scorecard_version
+                    ? `<span class="chip chip-m">${d.scorecard_version}</span>`
+                    : `<span class="chip chip-archived">—</span>`
+                  }
                 </td>`;
         // wire checkbox
         setTimeout(() => {
@@ -541,7 +547,8 @@ function toggleSort(key) {
     renderTable();
     const dirLabel = currentSort.direction === 'asc' ? 'ascending' : 'descending';
     const keyLabel = key === 'repairability_score' ? 'Score' :
-        key === 'brand' ? 'Manufacturer' :
+            key === 'scorecard_version' ? 'Scoring Rubric' :
+            key === 'brand' ? 'Manufacturer' :
             key === 'teardown' ? 'Teardown' : 'Device';
     notifyAction(`Sorted by ${keyLabel}, ${dirLabel}. ${window.lastFiltered?.length ?? ''} results.`);
 }
