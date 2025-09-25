@@ -2774,7 +2774,47 @@ input.cmp:checked::before {
 }
 
 #rubricTableContainer:not(.hidden) {
-  margin-top: 2rem;
+    margin-top: 2rem;
+}
+
+/* Button styling */
+button[aria-label*="Show details for version"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button[aria-label*="Show details for version"]:hover {
+    transform: scale(1.05);
+}
+
+/* Modal styling */
+dialog {
+    border: none;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+    transition: transform 0.2s ease-in-out;
+}
+
+dialog[open] {
+    transform: scale(1);
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(4px);
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #22d3ee;
+    border-radius: 3px;
 }
 
 /* Light theme variants */

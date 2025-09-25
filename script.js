@@ -898,6 +898,8 @@ function renderRubricTable() {
     const rubricTableContainer = document.getElementById('rubricTableContainer');
     const rubricTable = document.getElementById('rubricTable');
     const rubricError = document.getElementById('rubricError');
+    const modal = document.getElementById('rubricModal');
+    const modalContent = document.getElementById('modalContent');
 
     toggleRubricTableBtn.addEventListener('click', () => {
         const isExpanded = toggleRubricTableBtn.getAttribute('aria-expanded') === 'true';
@@ -907,26 +909,66 @@ function renderRubricTable() {
     });
 
     fetch('rubric.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to fetch rubric.json: ${response.status}`);
+            return response.json();
+        })
         .then(data => {
+            console.log('Rubric data loaded:', data); // Debug: Confirm JSON data
             const thead = rubricTableContainer.querySelector('thead tr');
             data.versions.forEach(version => {
                 const th = document.createElement('th');
                 th.scope = 'col';
                 th.className = 'px-2 py-1 text-center text-xs font-semibold text-gray-300 uppercase';
-                th.textContent = version;
+                th.innerHTML = `
+                    ${version}
+                    <button class="ml-2 p-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition border border-cyan-400 font-mono text-sm" aria-label="Show details for version ${version}">
+                        Info
+                    </button>`;
+                const button = th.querySelector('button');
+                button.addEventListener('click', () => {
+                    console.log(`Opening modal for version ${version}`); // Debug: Confirm click
+                    modalContent.innerHTML = `
+                        <h3 class="text-base font-semibold text-cyan-300 font-mono">Version ${version}</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Criteria</h4>
+                                <div class="grid gap-2">
+                                    ${data.criteria.map(c => `
+                                        <div class="bg-slate-700/50 p-2 rounded-lg">
+                                            <p><strong class="text-cyan-400">${c.name}</strong></p>
+                                            <p>Included: ${c.included[data.versions.indexOf(version)] ? 'Yes' : 'No'}</p>
+                                            <p>Weight: ${c.weights[version] || 'N/A'}</p>
+                                            <p>Notes: ${c.notes[version] || 'N/A'}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Factors Not Considered</h4>
+                                <ul class="list-disc pl-4 text-xs text-gray-100">
+                                    ${data.factors_not_considered.find(f => f.version === version)?.items.map(item => `<li>${item}</li>`).join('') || '<li>None</li>'}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Revisions</h4>
+                                <ul class="list-disc pl-4 text-xs text-gray-100">
+                                    ${data.revisions.find(r => r.version === version)?.items.map(item => `<li>${item}</li>`).join('') || '<li>None</li>'}
+                                </ul>
+                            </div>
+                        </div>`;
+                    modal.showModal();
+                });
                 thead.appendChild(th);
             });
 
             data.criteria.forEach(criterion => {
                 const tr = document.createElement('tr');
                 tr.className = 'divide-x divide-slate-700';
-
                 const tdName = document.createElement('td');
                 tdName.className = 'px-2 py-1 text-left text-xs text-gray-100';
                 tdName.textContent = criterion.name;
                 tr.appendChild(tdName);
-
                 criterion.included.forEach(included => {
                     const td = document.createElement('td');
                     td.className = 'px-2 py-1 text-center text-xs';
@@ -940,6 +982,24 @@ function renderRubricTable() {
             console.error('Error loading rubric data:', error);
             rubricError.classList.remove('hidden');
         });
+
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modal.close();
+        }
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -994,7 +1054,7 @@ document.addEventListener('DOMContentLoaded', () => {
         notifyAction(`Filtered by ${brand}. ${window.lastFiltered?.length ?? ''} results.`);
     });
 
-    renderRubricTable()
+    renderRubricTable();
 
     // Segmented control wiring: Scored only | All devices
     function setSegmentState(includeNo) {
