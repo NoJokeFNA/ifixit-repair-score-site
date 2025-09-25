@@ -3002,6 +3002,14 @@
     "teardown_urls": []
   },
   {
+    "name": "vivo y16",
+    "title": "vivo_y16",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/vivo_y16",
+    "teardown_urls": []
+  },
+  {
     "name": "vivo y20",
     "title": "vivo_y20",
     "repairability_score": null,
