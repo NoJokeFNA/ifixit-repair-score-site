@@ -132,7 +132,7 @@
       }
     },
     {
-      "name": "Parts Availability & CostUnique Product Identifier",
+      "name": "Parts Availability & Cost",
       "included": [
         false,
         false,
@@ -141,14 +141,63 @@
         false,
         false,
         false,
-        false,
-        false,
-        false,
-        false,
-        false
+        true,
+        true,
+        true,
+        true,
+        true
       ],
-      "weights": {},
-      "notes": {}
+      "weights": {
+        "1.7": "10%",
+        "1.8": "10%",
+        "1.9": "10%",
+        "2.0": "10%",
+        "2.1": "10%"
+      },
+      "notes": {
+        "1.7": "Only OEM parts considered",
+        "1.8": "Only OEM parts considered",
+        "1.9": "Only OEM parts considered",
+        "2.0": "Only OEM parts considered",
+        "2.1": "Only OEM parts and off-the-shelf standard parts considered"
+      }
+    },
+    {
+      "name": "Unique Product Identifier",
+      "included": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "weights": {
+        "1.4": "N/A",
+        "1.5": "N/A",
+        "1.6": "N/A",
+        "1.7": "N/A",
+        "1.8": "N/A",
+        "1.9": "N/A",
+        "2.0": "N/A",
+        "2.1": "N/A"
+      },
+      "notes": {
+        "1.4": "Gating function for full credit on service manual, parts availability",
+        "1.5": "Gating function for full credit on service manual, parts availability",
+        "1.6": "Gating function for full credit on service manual, parts availability",
+        "1.7": "Gating function for full credit on service manual, parts availability",
+        "1.8": "Gating function for full credit on service manual, parts availability",
+        "1.9": "Gating function for full credit on service manual, parts availability",
+        "2.0": "Gating function for full credit on service manual, parts availability",
+        "2.1": "Gating function for full credit on service manual, parts availability"
+      }
     },
     {
       "name": "Parts Pairing",
