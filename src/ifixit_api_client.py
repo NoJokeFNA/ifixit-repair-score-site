@@ -39,6 +39,7 @@ class IFixitAPIClient:
 
     BASE_URL = 'https://www.ifixit.com/api/2.0'
     WIKI_BASE_URL = 'https://www.ifixit.com/Wiki'
+    REPAIRABILITY_URL = 'https://www.ifixit.com/repairability'
 
     def __init__(
             self,
@@ -190,6 +191,39 @@ class IFixitAPIClient:
             raise
         except requests.exceptions.RequestException as e:
             logger.error(f'Request failed for wiki page {url}: {str(e)}')
+            raise
+
+    def get_repairability_page_html(self, old_devices: bool = False) -> str:
+        """Fetch the raw HTML content of a wiki page.
+
+        Args:
+            old_devices: If true, old devices will be printed.
+
+        Returns:
+            HTML content as a string.
+
+        Raises:
+            requests.exceptions.HTTPError: For HTTP errors.
+            requests.exceptions.RequestException: For other request failures.
+        """
+        title = ('smartphone-repairability-scores' if old_devices else 'legacy-smartphone-scores')
+        url = f'{self.REPAIRABILITY_URL}/{title}'
+        logger.debug(f'Fetching repairability page HTML from {url}')
+
+        try:
+            response = self.session.get(
+                url=url,
+                timeout=self.timeout,
+                verify=not self.proxy,
+            )
+            if self.raise_for_status:
+                response.raise_for_status()
+            return response.text
+        except requests.exceptions.HTTPError as e:
+            logger.error(f'HTTP error fetching repairability page {url}: {e.response.status_code} - {e.response.text}')
+            raise
+        except requests.exceptions.RequestException as e:
+            logger.error(f'Request failed for repairability page {url}: {str(e)}')
             raise
 
     # --- Cart Endpoints ---

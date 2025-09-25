@@ -1,4 +1,5 @@
 import argparse
+import collections
 import json
 import logging
 import os
@@ -525,7 +526,24 @@ def print_device_data(
                     all_entries.append(create_device_entry(name, title, None, None, None, teardown_guides))
 
             all_entries.sort(key=lambda d: ((d.get("brand") or ""), d["name"], d["title"]))
-            write_json_atomic(output_file, all_entries)
+
+            rubric_versions = get_rubric_versions_for_devices(client)
+            scorecard_map = {entry["device_url"]: entry["scorecard_version"] for entry in rubric_versions}
+
+            updated_entries = []
+            for entry in all_entries:
+                scorecard_version = scorecard_map.get(entry.get("link"))
+                if scorecard_version:
+                    new_entry = collections.OrderedDict()
+                    for k, v in entry.items():
+                        new_entry[k] = v
+                        if k == "repairability_score":
+                            new_entry["scorecard_version"] = scorecard_version
+                    updated_entries.append(new_entry)
+                else:
+                    updated_entries.append(entry)
+
+            write_json_atomic(output_file, updated_entries)
             logger.info("Wrote %d devices (including those without scores) to: %s",
                         len(all_entries), output_file)
         except Exception as e:
@@ -673,6 +691,46 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
         raise
 
 
+def get_rubric_versions_for_devices(client) -> list[dict[str, str]]:
+    results = []
+    html_new = client.get_repairability_page_html(old_devices=False)
+    html_old = client.get_repairability_page_html(old_devices=True)
+    for html in [html_new, html_old]:
+        soup = BeautifulSoup(html, "html.parser")
+        for device_block in soup.find_all("div",
+                                          class_="wp-block-column is-layout-flow wp-block-column-is-layout-flow"):
+            h1 = device_block.find("h1", class_="wp-block-heading")
+            if not h1:
+                continue
+            device_name = h1.get_text(strip=True)
+            device_url = None
+            img_figure = device_block.find("figure", class_="wp-block-image")
+            if img_figure:
+                a_tag = img_figure.find("a", href=True)
+                if a_tag:
+                    device_url = a_tag["href"]
+
+            scorecard_p = device_block.find("p", class_="has-text-align-center has-small-font-size")
+            scorecard_version = None
+            scorecard_url = None
+            if scorecard_p:
+                a = scorecard_p.find("a", href=True)
+                if a:
+                    match = re.search(r'v(\d+\.\d+)', a.get_text())
+                    if match:
+                        scorecard_version = match.group(1)
+                        scorecard_url = a["href"]
+            if device_name and scorecard_version and scorecard_url and device_url:
+                results.append({
+                    "device_name": device_name,
+                    "device_url": device_url,
+                    "scorecard_version": scorecard_version,
+                    "scorecard_url": scorecard_url
+                })
+    logging.info(f"Found {len(results)} devices with scorecard versions")
+    return results
+
+
 def main() -> None:
     """Entry point for the script.
 
@@ -705,7 +763,7 @@ def main() -> None:
     args = parser.parse_args()
 
     client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
-    rate_limiter = _RateLimiter(rate_per_sec=4)  # Reuse your rate limiter
+    rate_limiter = _RateLimiter(rate_per_sec=4)
 
     if args.generate_rubric:
         generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
@@ -718,10 +776,11 @@ def main() -> None:
         devices.extend(child_map.get(cat, []))
 
     devices = list(dict.fromkeys(devices))
-    if devices:
-        print_device_data(client, devices, args.scores_output)
-    else:
+    if not devices:
         logger.warning("No demo devices found.")
+        return
+
+    print_device_data(client, devices, args.scores_output)
 
 
 if __name__ == "__main__":
