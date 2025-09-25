@@ -116,6 +116,14 @@
             </figure>
             <div id="rubricTableContainer" class="hidden mt-6 overflow-x-auto rounded-xl max-h-96">
                 <table class="min-w-full divide-y divide-slate-700" aria-label="Repairability Scoring Rubric Table">
+                    <div class="rubric-legend mt-2 mb-2 text-xs text-slate-300 font-mono flex items-start gap-2"
+                         role="note">
+                        <span class="text-cyan-300 font-semibold" aria-hidden="true">🛈</span>
+                        <span>
+                            Weights are shown in %. An empty cell = criterion not scored for that version.
+                            A cell showing the info symbol (🛈) means the weight cannot be directly computed for that rubric version; click the info button above for details.
+                        </span>
+                    </div>
                     <caption class="sr-only">Table of iFixit Repairability Scoring Rubric versions and criteria
                     </caption>
                     <thead class="bg-slate-800/80 sticky top-0 z-10">
@@ -300,9 +308,12 @@
     </div>
 </footer>
 
-<dialog id="rubricModal" class="bg-slate-800 text-gray-100 rounded-lg p-4 max-w-sm w-full max-h-[50vh] overflow-y-auto backdrop:bg-slate-900/80">
+<dialog id="rubricModal"
+        class="bg-slate-800 text-gray-100 rounded-lg p-4 max-w-sm w-full max-h-[50vh] overflow-y-auto backdrop:bg-slate-900/80">
     <div id="modalContent" class="space-y-2 text-xs"></div>
-    <button class="px-4 py-2 btn-neon mt-2 w-full font-mono text-xs" onclick="document.getElementById('rubricModal').close()">Close</button>
+    <button class="px-4 py-2 btn-neon mt-2 w-full font-mono text-xs"
+            onclick="document.getElementById('rubricModal').close()">Close
+    </button>
 </dialog>
 
 <div id="portal-root"></div>

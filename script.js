@@ -969,10 +969,23 @@ function renderRubricTable() {
                 tdName.className = 'px-2 py-1 text-left text-xs text-gray-100';
                 tdName.textContent = criterion.name;
                 tr.appendChild(tdName);
-                criterion.included.forEach(included => {
+                data.versions.forEach((version, idx) => {
                     const td = document.createElement('td');
                     td.className = 'px-2 py-1 text-center text-xs';
-                    td.textContent = included ? '✓' : '';
+
+                    if (criterion.included[idx]) {
+                        const rawWeight = criterion.weights?.[version];
+                        if (rawWeight != null && rawWeight !== '' && rawWeight !== 'N/A') {
+                            const num = Number(rawWeight);
+                            if (Number.isFinite(num)) {
+                                td.textContent = `${num}`;
+                            } else {
+                                td.textContent = `${rawWeight}`;
+                            }
+                        } else {
+                            td.textContent = '🛈';
+                        }
+                    }
                     tr.appendChild(td);
                 });
                 rubricTable.appendChild(tr);
