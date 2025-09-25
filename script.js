@@ -921,7 +921,6 @@ function renderRubricTable() {
             return response.json();
         })
         .then(data => {
-            console.log('Rubric data loaded:', data); // Debug: Confirm JSON data
             const thead = rubricTableContainer.querySelector('thead tr');
             data.versions.forEach(version => {
                 const th = document.createElement('th');
