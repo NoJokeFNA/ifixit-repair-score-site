@@ -1,4 +1,5 @@
 import asyncio
+import difflib
 import logging
 import os
 import re
@@ -128,23 +129,45 @@ class FrenchRepairabilityScraper:
         def normalize(text: str) -> str:
             if not text:
                 return ""
-            return re.sub(r'[^a-z0-9]', '', text.lower()).strip()
+            text = text.lower()
+            text = re.sub(r'smartphone\s*', '', text)
+            text = re.sub(r'\s*5g|\s*4g|\s*lte', '', text)
+            text = re.sub(r'\+', ' plus ', text)
+            text = re.sub(r'[^a-z0-9 ]', '', text)
+            text = re.sub(r'\s+', ' ', text)
+            return text.strip()
 
         device_name = normalize(device.get("name", ""))
         device_title = normalize(device.get("title", ""))
         device_brand = normalize(device.get("brand", ""))
 
         for french_device in self.french_scores:
+            print("test")
             french_name = normalize(french_device.get("name", ""))
             french_marque = normalize(french_device.get("marque", ""))
             french_modele = normalize(french_device.get("modele", ""))
 
-            if (device_name and (device_name in french_name or device_name in french_modele)) or \
-                (device_title and (device_title in french_name or device_title in french_modele)) or \
-                (device_brand and device_brand in french_marque):
+            brand_match = device_brand == french_marque
+
+            name_ratio = difflib.SequenceMatcher(None, device_name, french_name).ratio()
+            title_ratio = difflib.SequenceMatcher(None, device_title, french_name).ratio()
+            max_ratio = max(name_ratio, title_ratio)
+
+            if brand_match and max_ratio > 0.8:
                 score = french_device.get("score")
                 if score is not None:
-                    logger.debug(f"Matched {device.get('name')} to French score: {score}")
+                    logger.info(f"Matched {device.get('name')} to French score: {score} (ratio: {max_ratio})")
                     return score
         logger.debug(f"No French score found for {device.get('name')}")
         return None
+
+
+if __name__ == "__main__":
+    scraper = FrenchRepairabilityScraper()
+    scraper.french_scores = [
+        {"name": "Smartphone SAMSUNG GALAXY S21+ 5G", "marque": "SAMSUNG", "modele": "SM-G996Bs",
+         "date_calcul": "24/12/2020", "score": 8.5},
+    ]
+    print(scraper.match_device_to_french_score(
+        {"name": "Samsung Galaxy S21", "title": "Samsung_Galaxy_S21_Plus", "brand": "Samsung"}))
+    asyncio.run(scraper.get_french_repairability_scores())
