@@ -2,3 +2,4 @@ requests>=2.32
 urllib3>=2.2
 tqdm
 beautifulsoup4
+aiohttp
