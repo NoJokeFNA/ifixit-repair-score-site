@@ -12189,7 +12189,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S20_FE_5G",
-    "teardown_urls": []
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy S20 FE 5G Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S20+FE+5G+Teardown/196547",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ]
   },
   {
     "name": "Samsung Galaxy S20 Plus",
