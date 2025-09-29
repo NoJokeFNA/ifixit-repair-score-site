@@ -1,0 +1,4188 @@
+[
+  {
+    "name": "Smartphone Fairphone 5",
+    "marque": "Fairphone b.v.",
+    "modele": "Fairphone 5",
+    "date_calcul": "31/07/2023",
+    "score": 9.3
+  },
+  {
+    "name": "Smartphone HMD Skyline",
+    "marque": "HMD",
+    "modele": "Skyline",
+    "date_calcul": "19/07/2024",
+    "score": 8.4
+  },
+  {
+    "name": "Smartphone HMD Pulse",
+    "marque": "HMD",
+    "modele": "Pulse",
+    "date_calcul": "24/04/2024",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone HMD Pulse Plus",
+    "marque": "HMD",
+    "modele": "Pulse Plus",
+    "date_calcul": "24/04/2024",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone HMD Pulse Pro",
+    "marque": "HMD",
+    "modele": "Pulse Pro",
+    "date_calcul": "24/04/2024",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone HMD Fusion",
+    "marque": "HMD",
+    "modele": "Fusion",
+    "date_calcul": "19/09/2024",
+    "score": 8.3
+  },
+  {
+    "name": "Smartphone HTC U24 PRO",
+    "marque": "HTC",
+    "modele": null,
+    "date_calcul": null,
+    "score": 8.5
+  },
+  {
+    "name": "Smartphone Sony Xperia 5 V",
+    "marque": "SONY",
+    "modele": "Xperia 5 V",
+    "date_calcul": "19/07/2023",
+    "score": 8.5
+  },
+  {
+    "name": "Smartphone Sony Xperia 10 V",
+    "marque": "SONY",
+    "modele": "Xperia 10 V",
+    "date_calcul": "17/04/2023",
+    "score": 8.3
+  },
+  {
+    "name": "Smartphone Sony Xperia 1 V",
+    "marque": "SONY",
+    "modele": "Xperia 1 V",
+    "date_calcul": "17/04/2023",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone Gigaset GS5 Lite",
+    "marque": "GIGASET",
+    "modele": "GS5 Lite",
+    "date_calcul": "10/07/2022",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone Gigaset GS5 senior",
+    "marque": "GIGASET",
+    "modele": "GS5 Senior",
+    "date_calcul": "10/07/2022",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone Gigaset GX6",
+    "marque": "GIGASET",
+    "modele": "GX6",
+    "date_calcul": "02/03/2023",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Gigaset GX4",
+    "marque": "GIGASET",
+    "modele": "GX4",
+    "date_calcul": "05/02/2023",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone ATHESI E55",
+    "marque": "ATHESI",
+    "modele": "E55",
+    "date_calcul": "01/12/2023",
+    "score": 8.7
+  },
+  {
+    "name": "Smartphone ATHESI AP5501",
+    "marque": "ATHESI",
+    "modele": "3760310040345",
+    "date_calcul": "01/12/2023",
+    "score": 7.6
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia C32",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA C32",
+    "date_calcul": "09/06/2023",
+    "score": 7.9
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia XR21",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA XR21",
+    "date_calcul": "23/05/2023",
+    "score": 7.5
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G42 5G",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G42 5G",
+    "date_calcul": "11/07/2023",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia C12",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA C12",
+    "date_calcul": "20/06/2023",
+    "score": 7.9
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia C22",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA C22",
+    "date_calcul": "20/06/2023",
+    "score": 7.9
+  },
+  {
+    "name": "Smartphone HTC U23 PRO",
+    "marque": "HTC",
+    "modele": null,
+    "date_calcul": null,
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone DORO 8220",
+    "marque": "DORO",
+    "modele": null,
+    "date_calcul": null,
+    "score": 7.9
+  },
+  {
+    "name": "Smartphone DORO 8100 PLUS",
+    "marque": "DORO",
+    "modele": null,
+    "date_calcul": "19/10/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone DORO 8100",
+    "marque": "DORO",
+    "modele": null,
+    "date_calcul": "19/10/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone DORO 8050",
+    "marque": "DORO",
+    "modele": "DSB-0230",
+    "date_calcul": "–",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia XR20",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA XR20",
+    "date_calcul": "10/09/2021",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia X30 5G",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA X30 5G",
+    "date_calcul": "04/11/2022",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia X20",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA X20",
+    "date_calcul": "13/04/2021",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia X10",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA X10",
+    "date_calcul": "13/04/2021",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G22",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G22",
+    "date_calcul": "10/03/2023",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G20",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G20",
+    "date_calcul": "13/04/2021",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G10",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G10",
+    "date_calcul": "13/04/2021",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G60",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G60",
+    "date_calcul": "07/10/2022",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G21",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G21",
+    "date_calcul": "25/02/2022",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia G11",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA G11",
+    "date_calcul": "25/02/2022",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia C21 Plus",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA C21 Plus",
+    "date_calcul": "21/04/2022",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone HMD GLOBAL OY Nokia 1.4",
+    "marque": "HMD GLOBAL OY",
+    "modele": "NOKIA 1.4",
+    "date_calcul": "01/03/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Athesi AP5702",
+    "marque": "ATHESI",
+    "modele": "3760310040307",
+    "date_calcul": "17/02/2022",
+    "score": 8.9
+  },
+  {
+    "name": "Smartphone QILIVE 5.5 » Q2 21",
+    "marque": "QILIVE",
+    "modele": "600091627",
+    "date_calcul": "15/09/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Athesi RT55",
+    "marque": "ATHESI",
+    "modele": "RT55",
+    "date_calcul": "22/11/2021",
+    "score": 9.0
+  },
+  {
+    "name": "Smartphone Athesi E5L",
+    "marque": "ATHESI",
+    "modele": "E5L",
+    "date_calcul": "22/11/2021",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9553",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9553",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9653",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9653",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9640",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9640",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9540",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9540",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9253",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9253",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Spectralink Versity 9240",
+    "marque": "SPECTRALINK",
+    "modele": "Versity 9240",
+    "date_calcul": "03/11/2021",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Google – Pixel 6 PRO",
+    "marque": "Google",
+    "modele": "Pixel 6 PRO",
+    "date_calcul": "?",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Google – Pixel 6",
+    "marque": "Google",
+    "modele": "Pixel 6",
+    "date_calcul": "?",
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone KAPSYS Minivision2",
+    "marque": "Kapsys",
+    "modele": "Minivision2",
+    "date_calcul": "18/12/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone KAPSYS Smartvision2",
+    "marque": "Kapsys",
+    "modele": "Smartvision2",
+    "date_calcul": "18/12/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Fairphone 4 5G (8GB, 256GB)",
+    "marque": "Fairphone",
+    "modele": "FP4",
+    "date_calcul": "21/09/2021",
+    "score": 9.3
+  },
+  {
+    "name": "Smartphone Fairphone 4 5G (6GB, 128GB)",
+    "marque": "Fairphone",
+    "modele": "FP4",
+    "date_calcul": "21/09/2021",
+    "score": 9.2
+  },
+  {
+    "name": "Smartphone Neva Leaf GH5931",
+    "marque": "NEVA LEAF",
+    "modele": null,
+    "date_calcul": "29/01/2021",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 13 Pro",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": null,
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 13",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": null,
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note10 5G 64 Go Silver",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10 5G",
+    "date_calcul": "07.04.2021",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone HUAWEI P20 Lite 64 Go Or",
+    "marque": "Huawei P20 lite",
+    "modele": "ANE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10 5G Vert 256 Go",
+    "marque": "XIAOMI",
+    "modele": "J2 – Mi 10",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 8Go Ram 256Go Argent Morning Mist 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 128Go Argent",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone NOKIA 6.2 Noir 64 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 6.2",
+    "date_calcul": "13.12.2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Oneplus 9 12 Go 256 Go 6,55 Snapdragon 888 50MP 65W Bleu",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone ASUS ROG 5 16GB 256GB 65W Snapdragon 888 NFC 6.78″ Noir",
+    "marque": "ASUS",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI MI 9 Lite Bleu 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 9 Lite (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone HUAWEI P40 128 Go Gris",
+    "marque": "Huawei P40",
+    "modele": "ANA-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone KXD 6A",
+    "marque": "KXD",
+    "modele": "KXD 6A",
+    "date_calcul": "?",
+    "score": 1.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi A3 Noir 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi A3",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone NOKIA 7.2 Ice 128 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 7.2",
+    "date_calcul": "13.12.2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone 4G KXD D58",
+    "marque": "KXD",
+    "modele": "KXD D58",
+    "date_calcul": "?",
+    "score": 1.0
+  },
+  {
+    "name": "Smartphone HONOR 9X Midnight Black 128 Go",
+    "marque": "HONOR",
+    "modele": "STK-LX1",
+    "date_calcul": null,
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A10 Bleu",
+    "marque": "SAMSUNG",
+    "modele": "SM-A105F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart Z 64 Go Bleu",
+    "marque": "HHuawei P smart Z",
+    "modele": "STK-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone XIAOMI MI 9 Lite Gris 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 9 Lite (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 T Blanc 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 8T",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Huawei Y6 2018 Bleu",
+    "marque": "Huawei Y6 2018",
+    "modele": "ATU-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart Z 64 Go Noir",
+    "marque": "Huawei P smart Z",
+    "modele": "STK-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A50 – Double sim 128 Go Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A505F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone LOGICOM Le Hola Rouge 8 Go",
+    "marque": "LOGICOM",
+    "modele": "HOLA_FR_1+8GO_ROUG",
+    "date_calcul": "03/11/2020",
+    "score": 3.0
+  },
+  {
+    "name": "Smartphone WIKO Y61 Gold",
+    "marque": "Wiko",
+    "modele": "Y61 (K560)",
+    "date_calcul": "09/12/2021",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Pro 256 Go Or",
+    "marque": "Huawei P40 Pro",
+    "modele": "ELS-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.0
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Lite 64 Go Bleu Sapphire",
+    "marque": "Huawei Mate20 lite",
+    "modele": "SNE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone WIKO View 4 Cosmic Blue 64 Go",
+    "marque": "WIKO SAS",
+    "modele": "VVIEW4 (V830)",
+    "date_calcul": "09/12/2020",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A50 – Double sim 128 Go Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SM-A505F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Pro 128 Go Lavend",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 7 32 Go Bleu Neptune",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 7 (32 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ 128 Go Gris",
+    "marque": "Samsung",
+    "modele": "SM-G985F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A41 Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A415F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Blanc Glacier 128 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone WIKO View 4 Cosmic Green 64 Go",
+    "marque": "WIKO SAS",
+    "modele": "VIEW4 (V830)",
+    "date_calcul": "09/12/2020",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A41 Bleu",
+    "marque": "SAMSUNG",
+    "modele": "SM-A415F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Bleu Aurore 128 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO A72 128Go Violet",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A72 (CPH2067)",
+    "date_calcul": "13/11/2020",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite 128 Go Vert (services Google non intégrés)",
+    "marque": "Huawei P40 lite",
+    "modele": "JNY-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone HUAWEI P20 Lite 64 Go Klein Blue",
+    "marque": "Huawei P20 lite",
+    "modele": "ANE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone OPPO A72 128Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A72 (CPH2067)",
+    "date_calcul": "13/11/2020",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Lite 128 Go Bleu",
+    "marque": "Huawei P30",
+    "modele": "MAR-LX1A",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone senior MS459 Maxcom avec étui de protection",
+    "marque": "Maxcom",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Pro Gris interstellaire 128 Go",
+    "marque": "XIAOMI",
+    "modele": "XIAOMIREDMINO9PG",
+    "date_calcul": "?",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OnePlus Nord N100 64Go Gris mat",
+    "marque": "OnePlus",
+    "modele": "ONEPLUS N100",
+    "date_calcul": "17/03/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone XIAOMI POCO F2 Pro 128Go Blanc",
+    "marque": "XIAOMI",
+    "modele": "POCO F2 (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone MOTOROLA G100 128GO Bleu",
+    "marque": "MOTOROLA",
+    "modele": "Moto G100",
+    "date_calcul": "03/03/2021",
+    "score": 7.4
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 FE 4G Blanc (2021)",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 Pro Vert 64 Go",
+    "marque": "XIAOMI",
+    "modele": "XIA6941059634621",
+    "date_calcul": "?",
+    "score": 7.1
+  },
+  {
+    "name": "SmartphoneXIAOMI Redmi Note 10S 64Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10S",
+    "date_calcul": null,
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 FE 4G Violet (2021)",
+    "marque": "Samsung",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Pro Blanc glacier 128 Go",
+    "marque": "XIAOMI",
+    "modele": "XIAOMIREDMINO9PB",
+    "date_calcul": "?",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 256Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite 128 Go Noir (services Google non intégrés)",
+    "marque": "Huawei P40 lite",
+    "modele": "HUAWEIP40LITJMI",
+    "date_calcul": "?",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone Huawei PSMART 2021 Crush Green (services Google non intégrés)",
+    "marque": "Huawei",
+    "modele": "HUAPSMARTGREEN",
+    "date_calcul": "?",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 256Go Mauve",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone HUAWEI Y6p Midnight Black 64 Go (Services Google non intégrés)",
+    "marque": "Huawei",
+    "modele": "Y6PMB64",
+    "date_calcul": "?",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone HUAWEI Y6p Phantom Purple 64 Go (Services Google non intégrés)",
+    "marque": "Huawei Y6p",
+    "modele": "HUAWEIY6PPP64",
+    "date_calcul": "?",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 128Go Jaune",
+    "marque": "APPLE",
+    "modele": "A2105",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 128Go Bleu",
+    "marque": "APPLE",
+    "modele": "A2105",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone HUAWEI Nova 5T 128 Go Noir",
+    "marque": "Huawei nova 5T",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 8 Noir 32 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 8",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite 5G Midnight Black 128 Go (Services Google non intégrés)",
+    "marque": "Huawei",
+    "modele": "JNY-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone Huawei Y6 2018 Or",
+    "marque": "Huawei Y6 2018",
+    "modele": "ATU-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite E Aurora Blue 64 Go (Services Google non intégrés)",
+    "marque": "Huawei P40 lite",
+    "modele": "51095DDS",
+    "date_calcul": "?",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone KXD A1",
+    "marque": "KXD",
+    "modele": "KXD A1",
+    "date_calcul": "?",
+    "score": 1.0
+  },
+  {
+    "name": "Smartphone Oneplus 9 Pro 12 Go 256 Go 6,7 pouces Snapdragon 888 50MP 65W Argent",
+    "marque": "OnePlus",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI POCO X3 64Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "XIA6941059650430",
+    "date_calcul": "?",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note10 Lite Noir",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXYN10LN",
+    "date_calcul": "?",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 256Go Vert",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 40 Pro Black (services Google non intégrés)",
+    "marque": "Huawei",
+    "modele": "HUAMATE40PROBLA",
+    "date_calcul": "?",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Pro Noir 256 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Samsung Galaxy A31 Noir",
+    "marque": "Samsung",
+    "modele": "SAMGALAXYA31N",
+    "date_calcul": "?",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 7A 16Go Noir",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO Find X2 Neo 256Go Noir",
+    "marque": "OPPO",
+    "modele": "OPP6944284660106",
+    "date_calcul": "?",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Oneplus 9 Pro 12 Go 256 Go 6,7 pouces Snapdragon 888 50MP 65W Vert",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Oneplus 9 12 Go 256 Go 6,55 Snapdragon 888 50MP 65W Noir",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone ASUS ROG 5 12GB 128GB 65W Snapdragon 888 NFC 6.78″ Blanc",
+    "marque": "ASUS",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 128Go Vert",
+    "marque": "APPLE",
+    "modele": "OCC80YG3DC88880",
+    "date_calcul": "?",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S20 5G Bleu",
+    "marque": "Samsung",
+    "modele": "SAMGALAXS205GBL",
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone senior G50 Swissvoice – 4G – Ecran 5″ – Menu simplifié et touche SOS",
+    "marque": "Swissvoice",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 512Go Graphite",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE Iphone X 256 Go Argent",
+    "marque": "APPLE",
+    "modele": "A1901",
+    "date_calcul": "21/01/2021",
+    "score": 4.8
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S20+ Noir",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXS20PN",
+    "date_calcul": "?",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone Senior MaxCom MS459 Harmony, puissant",
+    "marque": "Maxcom",
+    "modele": "MS459",
+    "date_calcul": "?",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 128Go Vert",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone NOKIA 2.4 Bleu 32 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 2.4",
+    "date_calcul": "13.12.2020",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone HUAWEI Nova 5T Noir + PC Coque Bleu",
+    "marque": "Huawei",
+    "modele": "HUA3613560018490",
+    "date_calcul": null,
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone OPPO Find X2 Pro 512Go Orange",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO FIND X2 PRO(CPH2025)",
+    "date_calcul": "13/11/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 512Go Bleu Pacifique",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI P20 Rose",
+    "marque": "Huawei P20",
+    "modele": "EML-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A20e Bleu",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXYA20EBL",
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 256Go Argent",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 64Go Jaune",
+    "marque": "APPLE",
+    "modele": "A2105",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite 5G Space Silver 128 Go",
+    "marque": "Huawei",
+    "modele": "HUAWEIP40LITSS12",
+    "date_calcul": null,
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 8 Rouge 32 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 8",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 12Go Ram 256Go Noir Stellar Black 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone DORO 8080",
+    "marque": "DORO",
+    "modele": "7785",
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 256Go Vert",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 40 Pro Silver + Freebuds Pro",
+    "marque": "Huawei Mate40 Pro",
+    "modele": "NOH-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone NOKIA 7.2 Vert 128 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 7.2",
+    "date_calcul": "13.12.2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 10S 64Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10S",
+    "date_calcul": null,
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 Pro Max 512 Go Argent",
+    "marque": "APPLE",
+    "modele": "A2218",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S20+ Gris",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SAMGALAXS20PGR",
+    "date_calcul": null,
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 64Go Vert",
+    "marque": "APPLE",
+    "modele": "AP0194252121931",
+    "date_calcul": null,
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Y6S Starry Black 32 Go",
+    "marque": "Huawei Y6s",
+    "modele": "JAT-L41",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.3
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Pro Vert Boréal 256 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi Note 10 Pro",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P30 Pro 128GB Crystal + Coque Noir",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone NOKIA 8.1 Steel 64 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 8.1",
+    "date_calcul": "13.12.2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone NOKIA 3.1 NOIR",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 3.1",
+    "date_calcul": "13.12.2020",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 512Go Argent",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P30 Crystal + Coque Bleu",
+    "marque": "Huawei P30",
+    "modele": "ELE-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone HONOR 9A Phantom Blue 64Go",
+    "marque": "HONOR 9A",
+    "modele": "MOA-LX9N",
+    "date_calcul": null,
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 512Go Bleu Pacifique",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 7 noir 32Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 7",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Smartphone S30U+ Ecran HD Tactile 7.2 pouces Double SIM 2Go + 16Go ROM Blanc ADDICT-GEEK",
+    "marque": "GENERIQUE",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone XIAOMI – Smartphone MI10TLITE 64Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Mi 10T Lite",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Lite Blanc 128 Go",
+    "marque": "XIAOMI",
+    "modele": "F4L – Mi Note 10 Lite (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 8 Bleu 32 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 8",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO Find X2 Pro 512Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO FIND X2 PRO(CPH2025)",
+    "date_calcul": "13/11/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P30 Bleu Aurore + Coque Bleu ciel",
+    "marque": "Huawei P30",
+    "modele": "ELE-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone HONOR 20 Bleu 128 Go",
+    "marque": "HONOR",
+    "modele": "YAL-L21",
+    "date_calcul": null,
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone HUAWEI Y6p Phantom Purple 64 Go",
+    "marque": "Huawei Y6p",
+    "modele": "MED-LX9N",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Pro Mystic Blue 128 Go",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone LOGICOM Starter L 8 Go Noir Blister",
+    "marque": "LOGICOM",
+    "modele": "STARTER_L_8G_NR_BL",
+    "date_calcul": "18/01/2021",
+    "score": 3.0
+  },
+  {
+    "name": "Smartphone HUAWEI Y7 2019 32 Go Noir",
+    "marque": "Huawei Y7 2019",
+    "modele": "DUB-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.3
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 512Go Or",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart 2019 64 Go Bleu Aurore",
+    "marque": "Huawei P smart 2019",
+    "modele": "POT-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.3
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S10 512 Go Vert",
+    "marque": "SAMSUNG",
+    "modele": "G973FZGGXEF",
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P30 Noir Elle + Coque silicone",
+    "marque": "Huawei P30",
+    "modele": "ELE-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 128Go Jaune",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone ASUS ROG Phone 5 noir 128Go",
+    "marque": "ASUS",
+    "modele": "ZS673KS-1A031FR",
+    "date_calcul": "15/01/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 Plus 128 Go 5G Blanc S20+",
+    "marque": "SAMSUNG",
+    "modele": "–",
+    "date_calcul": "?",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 256Go Jaune",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 5G Lavande",
+    "marque": "Samsung",
+    "modele": "SM-A526BLVDEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone NOKIA 3.1 BLEU",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 3.1",
+    "date_calcul": "13.12.2020",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart 2020 Midnight Black 128 Go",
+    "marque": "Huawei P smart 2020",
+    "modele": "POT-LX1A",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone VIVO X60 PRO 256Go Bleu",
+    "marque": "VIVO",
+    "modele": "X60PRO B",
+    "date_calcul": "?",
+    "score": 7.8
+  },
+  {
+    "name": "Smartphone S30U+ Ecran HD Tactile 7.2 pouces Double SIM 2Go + 16Go ROM Bleu ADDICT-GEEK",
+    "marque": "GENERIQUE",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone S30U+ Ecran HD Tactile 7.2 pouces Double SIM 2Go + 16Go ROM Noir ADDICT-GEEK",
+    "marque": "GENERIQUE",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart Plus 64 Go Noir",
+    "marque": "Huawei P smart+",
+    "modele": "INE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone NOKIA 7.1 Bleu",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 7.1",
+    "date_calcul": "13.12.2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 128Go (PRODUCT)RED",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone NOKIA 7.1 Argent",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 7.1",
+    "date_calcul": "13.12.2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone Sony Xperia 10 III Blanc",
+    "marque": "SONY",
+    "modele": "Xperia 10 III",
+    "date_calcul": "22/04/2021",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone VIVO X60 PRO 256Go Noir",
+    "marque": "VIVO",
+    "modele": "X60PRO N",
+    "date_calcul": "?",
+    "score": 7.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 256Go Noir",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Pro Blanc 256 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi Note 10 Pro",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Huawei Y7 2018 Bleu",
+    "marque": "Huawei Y7 2018",
+    "modele": "LDN-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone WIKO View 4 Cosmic Gold 64 Go",
+    "marque": "WIKO SAS",
+    "modele": "VIEW4 (V830)",
+    "date_calcul": "09/12/2020",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 8Go Ram 256Go Noir Stellar Black 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Lite Noir 128 Go",
+    "marque": "XIAOMI",
+    "modele": "F4L – Mi Note 10 Lite (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone XIAOMI MI11i 256 Go Noir",
+    "marque": "XIAOMI",
+    "modele": "Mi 11 i",
+    "date_calcul": "13/04/2021",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone NOKIA 3.4 Bleu 64 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 3.4",
+    "date_calcul": "13/12/2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone NOKIA 7.2 Charcoal 128 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 7.2",
+    "date_calcul": "13/12/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HONOR 10X Lite Vert",
+    "marque": "HONOR",
+    "modele": "DNN-LX9",
+    "date_calcul": null,
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 256Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 256Go RED",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 9T Bleu Glacier 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 9T (64 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P40 Pro+ – 6.58″ – Ceramic white",
+    "marque": "Huawei P40 Pro+",
+    "modele": "ELS-N39",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone HONOR 9A MIDNIGHT BLACK",
+    "marque": "HONOR 9A",
+    "modele": "MOA-LX9N",
+    "date_calcul": null,
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone Huawei PSMART 2021 Crush Green",
+    "marque": "Huawei P smart 2021",
+    "modele": "PPA-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone XIAOMI MI 10 Lite 5G Blanc céleste 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 10 Lite",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 128Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI MI 10 Lite 5G Bleu boréal 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 10 Lite",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO Reno 4 Pro 256Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4 PRO 5G (CPH2089)",
+    "date_calcul": "13/11/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE Iphone 7 Plus 32 Go Or rose",
+    "marque": "APPLE",
+    "modele": "A1784",
+    "date_calcul": "21/01/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone HUAWEI P20 128 Go Midnight blue",
+    "marque": "Huawei P20",
+    "modele": "EML-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone Psmart S – 6.59″ – Cristal",
+    "marque": "Huawei P smart S",
+    "modele": "AQM-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 64Go Vert",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 256Go RED",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 10S 128 Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10S",
+    "date_calcul": null,
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 Ultra 128 Go 5G Noir",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXS20ULN",
+    "date_calcul": null,
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone XIAOMI POCO F2 Pro 128Go Violet",
+    "marque": "XIAOMI",
+    "modele": "POCO F2 (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 40 Pro Noir + Freebuds Pro",
+    "marque": "Huawei Mate40 Pro",
+    "modele": "NOH-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone Psmart S – 6.59″ – Noir",
+    "marque": "Huawei P smart S",
+    "modele": "AQM-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P40 Pro+ – 6.58″ – Ceramic black",
+    "marque": "Huawei P40 Pro+",
+    "modele": "ELS-N39",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 256Go Argent",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart Z 64 Go Vert",
+    "marque": "Huawei P smart Z",
+    "modele": "STK-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Vert",
+    "marque": "SAMSUNG",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 128GB Blanc",
+    "marque": "Apple",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Pro 128 Go Midnight Blue",
+    "marque": "Huawei Mate20 Pro",
+    "modele": "LYA-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone NOKIA 3.4 Gris 64 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 3.4",
+    "date_calcul": "13.12.2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone HUAWEI Nova 5T 128 Go Bleu",
+    "marque": "Huawei nova 5T",
+    "modele": "YAL-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone HUAWEI Y5p Noir 32 Go",
+    "marque": "Huawei Y5p",
+    "modele": "DRA-LX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Pro 128 Go Noir",
+    "marque": "Huawei Mate20 Pro",
+    "modele": "LYA-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 256Go Bleu",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 128Go Noir",
+    "marque": "Apple Distribution International",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 128Go RED",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone NOKIA 1.3 TA-1205 DS 1/16 FR CHARCOAL",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 1.3",
+    "date_calcul": "13/12/2020",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone HUAWEI Smartphone P30 Pro 128GB Noir + Coque Noir",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone HUAWEI Nova 5T 128 Go Purple",
+    "marque": "Huawei nova 5T",
+    "modele": "YAL-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 256Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Huawei Y6 2018 Noir",
+    "marque": "Huawei Y6 2018",
+    "modele": "ATU-L21",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.5
+  },
+  {
+    "name": "Smartphone HUAWEI Y6p Emerald Green 64 Go",
+    "marque": "Huawei Y6p",
+    "modele": "MED-LX9N",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 128Go Or",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI Y5p Phantom Blue 32 Go",
+    "marque": "Huawei Y5p",
+    "modele": "DRA-LX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 128Go Vert",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 64Go RED",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 128Go Bleu",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone NOKIA 9 PureView TA-1087 DS Bleu",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 9",
+    "date_calcul": "13.12.2020",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 10S 64Go Blanc",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10S",
+    "date_calcul": "03/03/2021",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone WIKO View 5 Green",
+    "marque": "WIKO SAS",
+    "modele": "VIEW 5 (W-V851)",
+    "date_calcul": "09/12/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 64Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 128Go Noir",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 10S 128 Go Blanc",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10S",
+    "date_calcul": "03/03/2021",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 7 128 Go Noir de Jais",
+    "marque": "APPLE",
+    "modele": "A1778",
+    "date_calcul": "21/01/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 128Go Argent",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 256Go Or",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi10T Lite 64Go Rose Gold",
+    "marque": "XIAOMI",
+    "modele": "Mi 10T Lite",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Rouge",
+    "marque": "SAMSUNG",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 256Go Graphite",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 Ultra 5G 256 Go Bronze",
+    "marque": "SAMSUNG",
+    "modele": "SM-N986B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 256Go Graphite",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE Iphone X 64 Go Argent",
+    "marque": "APPLE",
+    "modele": "A1901",
+    "date_calcul": "21/01/2021",
+    "score": 4.8
+  },
+  {
+    "name": "Smartphone APPLE Iphone Xs Max 256 Go Gris sidéral",
+    "marque": "APPLE",
+    "modele": "A2101",
+    "date_calcul": "21/01/2021",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 64Go Noir",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Light Violet",
+    "marque": "SAMSUNG",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 256Go Noir",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 T Gris 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 8T",
+    "date_calcul": "2021.01.04",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note10 Lite Rouge",
+    "marque": "SAMSUNG",
+    "modele": "SM-N770F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note10 Lite Silver",
+    "marque": "SAMSUNG",
+    "modele": "SM-N770F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S10 128 Go Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SM-A715F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 128Go RED",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Orange",
+    "marque": "Samsung",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone HONOR 9X Lite Midnight Black 128 Go",
+    "marque": "HONOR",
+    "modele": "JSN-L21",
+    "date_calcul": null,
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite E Midnight Black 64 Go",
+    "marque": "Huawei P40 lite",
+    "modele": "JNY-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 11 5G 256 Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Mi 11",
+    "date_calcul": "18/02/2021",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Lite 128 Go Rose (services Google non intégrés)",
+    "marque": "Huawei P40 lite",
+    "modele": "HUAWEIP40LITJSP",
+    "date_calcul": "?",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 128 Go Rose",
+    "marque": "SAMSUNG",
+    "modele": "SM-G980F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HONOR 10X Lite Noir",
+    "marque": "HONOR",
+    "modele": "DNN-LX9",
+    "date_calcul": null,
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ Polar Blue",
+    "marque": "SAMSUNG",
+    "modele": "SM-G985F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ 128 Go 5G Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-G986B",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 64Go Blanc",
+    "marque": "Apple",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Lite 64 Go Or",
+    "marque": "Huawei Mate20 lite",
+    "modele": "SNE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9C NFC 32Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9C NFC",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 mini 64Go Bleu",
+    "marque": "APPLE",
+    "modele": "A2399",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone HUAWEI P30 128 Go Noir",
+    "marque": "Huawei P30",
+    "modele": "ELE-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 128Go Graphite",
+    "marque": "APPLE",
+    "modele": "A2407",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone OPPO A53 64Go Vert",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A53 (CPH2127)",
+    "date_calcul": "13/11/2020",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 11i 5G 256 Go Silver",
+    "marque": "XIAOMI",
+    "modele": "Mi 11 i",
+    "date_calcul": "13/04/2021",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Blanc Glacier 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 4G 256 Go Bronze",
+    "marque": "SAMSUNG",
+    "modele": "SM-N980F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A71 Silver",
+    "marque": "SAMSUNG",
+    "modele": "SM-A715F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 4G 256 Go Vert",
+    "marque": "SAMSUNG",
+    "modele": "SM-N980F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9A 32 Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9A",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64Go Jaune",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro 256Go Or",
+    "marque": "APPLE",
+    "modele": "AP0194252136119",
+    "date_calcul": "?",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note10 5G 64 Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10 5G",
+    "date_calcul": "07.04.2021",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 Pro Corail 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9A",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO A15 32 Go Bleu",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A15 (CPH2185)",
+    "date_calcul": "13/11/2020",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 5G Bleu",
+    "marque": "Samsung",
+    "modele": "SM-A526BZBDEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone Note10+ Silver 256Go",
+    "marque": "SAMSUNG",
+    "modele": "SM-N970F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 10S 128 Go Gris",
+    "marque": "XIAOMI",
+    "modele": "REDMINOTE10S128G",
+    "date_calcul": "?",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone VIVO V21 128Go Bleu Foncé",
+    "marque": "VIVO",
+    "modele": "V21 DB",
+    "date_calcul": "?",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A72 4G Lavande",
+    "marque": "SAMSUNG",
+    "modele": "SM-A725FLVDEUH",
+    "date_calcul": "?",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone NOKIA 2.3 Vert Cyan 32 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 2.3",
+    "date_calcul": "13/12/2020",
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 32GO Violet",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Pro 256 Go Gris",
+    "marque": "Huawei P40 Pro",
+    "modele": "ELS-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE Light Violet",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Blanc polaire 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P40 Pro 256 Go Noir",
+    "marque": "Huawei P40 Pro",
+    "modele": "ELS-NX9",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone OPPO Reno 4 Pro 256Go Bleu",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4 PRO 5G (CPH2089)",
+    "date_calcul": "13/11/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 32Go Vert",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI Y6p Midnight Black 64 Go",
+    "marque": "Huawei Y6p",
+    "modele": "MED-LX9N",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE 5G Bleu",
+    "marque": "Samsung",
+    "modele": "SM-G781B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Pro Silver Frost 256Go",
+    "marque": null,
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A72 4G Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A725FZKDEUH",
+    "date_calcul": "?",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone MOTOROLA E7I Power 32Go",
+    "marque": "MOTOROLA",
+    "modele": "Moto E7i Power",
+    "date_calcul": "12/04/2021",
+    "score": 7.6
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10 5G Gris 256 Go",
+    "marque": "XIAOMI",
+    "modele": "J2 – Mi 10",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A71 Bleu",
+    "marque": "SAMSUNG",
+    "modele": "SM-A715F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ 128 Go Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-G985F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone OPPO Reno 4 128Go Bleu",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4 5G (CPH2091)",
+    "date_calcul": "13/11/2020",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A20e Noir",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXYA20EN",
+    "date_calcul": "?",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 64Go Noir",
+    "marque": "Apple",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone WIKO Y61 Deep Green",
+    "marque": "WIKO SAS",
+    "modele": "Y61 (K560)",
+    "date_calcul": "09/12/2020",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 4G Bleu",
+    "marque": "Samsung",
+    "modele": "SAMGALAXYA52BL",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone HUAWEI P40 128 Go Or",
+    "marque": "HUAWEI P40",
+    "modele": "HUAWEIP40ANGO",
+    "date_calcul": "?",
+    "score": 5.4
+  },
+  {
+    "name": "Smartphone NOKIA 2.4 Gris 32 Go",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 2.4",
+    "date_calcul": "13.12.2020",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64GB Blanc",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T Lite 5G 64Go Gris",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone XR 64GB RED",
+    "marque": "Apple Distribution International",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Vert forêt 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 128 Go Gris",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-G980F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Pro 128 Go Noir",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 32Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 64Go Bleu",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A41 Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SAMGALAXYA41B",
+    "date_calcul": "?",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 128Go Blanc",
+    "marque": "APPLE",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 5G 256 Go Gris",
+    "marque": "SAMSUNG",
+    "modele": "SM-N981B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 11 5G 256 Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Mi 11",
+    "date_calcul": "18/02/2021",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 11i 5G 256 Go Blanc",
+    "marque": "XIAOMI",
+    "modele": "Mi 11 i",
+    "date_calcul": "13/04/2021",
+    "score": 7.2
+  },
+  {
+    "name": "Smartphone XIAOMI POCO F2 Pro 128Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "POCO F2 (128 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone LOGICOM Prime Bleu 32GO",
+    "marque": "LOGICOM",
+    "modele": "PRIME_2+32GO_BLEU",
+    "date_calcul": "03/11/2020",
+    "score": 3.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE Vert",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S10+ 128 Go Vert Prisme",
+    "marque": "SAMSUNG",
+    "modele": "SM-G975F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 4G Lavande",
+    "marque": "Samsung",
+    "modele": "SM-A525FLVGEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 4G 256 Go Gris",
+    "marque": "SAMSUNG",
+    "modele": "SM-N981B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone OnePlus 8 8GB+128GB IN2013 Interstellar Glow Version globale Chargeur Européen",
+    "marque": "OnePlus 8",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone VIVO Y72 128Go Bleu",
+    "marque": "VIVO",
+    "modele": "Y72 B",
+    "date_calcul": null,
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20FE Rouge",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone CROSSCALL Core M 4 Go Noir",
+    "marque": "CROSSCALL",
+    "modele": "CORE-M4 GO",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 64Go RED",
+    "marque": "Apple Distribution International",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 4.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 256Go Bleu Pacifique",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Gris de minuit 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A51 Bleu",
+    "marque": "Samsung",
+    "modele": "SM-A515F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 128Go Or",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 128Go Bleu",
+    "marque": "APPLE",
+    "modele": "AP0194252135778",
+    "date_calcul": "?",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A71 Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A715F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone CROSSCALL Core M4 Noir",
+    "marque": "CROSSCALL",
+    "modele": "CORE-M4",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 Ultra 5G 256 Go Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-N986B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone Note10+ Noir 256Go",
+    "marque": "SAMSUNG",
+    "modele": "SM-N970F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Noir 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9A 32 Go Vert",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9T 128Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9T",
+    "date_calcul": "2021.02.02",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO Reno4 Z 5G 128Go Blanc",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4Z 5G (CPH2065)",
+    "date_calcul": "13/11/2020",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 5G Noir",
+    "marque": "Samsung",
+    "modele": "SM-A526BZKDEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone Samsung Galaxy S10+ 128 Go Noir Prisme",
+    "marque": "SAMSUNG",
+    "modele": "SM-G975F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone VIVO Y72 128Go Noir",
+    "marque": "VIVO",
+    "modele": "Y72 N",
+    "date_calcul": "?",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone WIKO View 5 Plus Blue",
+    "marque": "WIKO SAS",
+    "modele": "VIEW 5 PLUS (W-V850)",
+    "date_calcul": "09/12/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 128Go Bleu Pacifique",
+    "marque": "APPLE",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Bleu Aurore 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Huawei PSMART 2021 Midnight Black",
+    "marque": "Huawei P smart 2021",
+    "modele": "PPA-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A42 5G Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A426B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64Go Vert",
+    "marque": "Apple Distribution International",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 64Go Noir",
+    "marque": "APPLE",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 4G Blanc",
+    "marque": "Samsung",
+    "modele": "SM-A525FZWGEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone CROSSCALL Core X4 Noir",
+    "marque": "CROSSCALL",
+    "modele": "CORE-X4",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 128Go Noir",
+    "marque": "Apple Distribution International",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9A 32 Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9A",
+    "date_calcul": "2021.01.04",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Sony Xperia 10 III Noir",
+    "marque": "SONY",
+    "modele": "Xperia 10 III",
+    "date_calcul": "22/04/2021",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone OPPO A15 32 Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A15 (CPH2185)",
+    "date_calcul": "13/11/2020",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T 5G 128Go Gris",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone WIKO Y81 Deep Blue",
+    "marque": "Wiko",
+    "modele": "Y81 (W-V680)",
+    "date_calcul": "09/12/2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T Pro 5G 256Go Noir",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note10 5G 64 Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 10 5G",
+    "date_calcul": "07.04.2021",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone WIKO View 5 Gold",
+    "marque": "WIKO SAS",
+    "modele": "VIEW 5 (W-V851)",
+    "date_calcul": "09/12/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 128Go Blanc",
+    "marque": "Apple Distribution International",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone WIKO View 4 Lite LS Deep Gold 32 Go",
+    "marque": "Wiko",
+    "modele": "VIEW4LITE (V730)",
+    "date_calcul": "09/12/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64Go Mauve",
+    "marque": "Apple Distribution International",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone WIKO View 4 Lite LS Deep Blue 32 Go",
+    "marque": "WIKO SAS",
+    "modele": "VIEW4LITE (V730)",
+    "date_calcul": "09/12/2020",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A42 5G Gris",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A426B",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 Pro Max 128Go Graphite",
+    "marque": "Apple Distribution International",
+    "modele": "A2411",
+    "date_calcul": "26 octobre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T 5G 128Go Noir",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T Lite 5G 128Go Bleu",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OPPO Reno4 Z 5G 128Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4Z 5G (CPH2065)",
+    "date_calcul": "13/11/2020",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 64Go Blanc",
+    "marque": "Apple Distribution International",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone XIAOMI POCO X3 128 Go Gris",
+    "marque": "XIAOMI",
+    "modele": "POCO X3",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64 Go RED",
+    "marque": "Apple Distribution International",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone OPPO A53s 128Go Bleu",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A53S (CPH2135)",
+    "date_calcul": "13/11/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone APPLE iPhone 12 128Go Noir",
+    "marque": "Apple Distribution International",
+    "modele": "A2403",
+    "date_calcul": "12 novembre 2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A52 4G Noir",
+    "marque": "Samsung",
+    "modele": "SM-A525FZKGEUH",
+    "date_calcul": "?",
+    "score": 8.6
+  },
+  {
+    "name": "Smartphone WIKO View 5 Plus Silver",
+    "marque": "WIKO SAS",
+    "modele": "VIEW 5 PLUS (W-V850)",
+    "date_calcul": "09/12/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone XIAOMI Mi 10T Pro 5G 256Go Gris",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone WIKO View 4 Lite LS Deep Green 32 Go",
+    "marque": "WIKO SAS",
+    "modele": "VIEW4LITE (V730)",
+    "date_calcul": "09/12/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone iPhone XR 64GB Bleu",
+    "marque": "Apple Distribution International",
+    "modele": null,
+    "date_calcul": "6 novembre 2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Lite 64 Go Noir",
+    "marque": "Huawei Mate20 lite",
+    "modele": "SNE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 64GO Vert",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9T 128Go Vert",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9T",
+    "date_calcul": null,
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Gris Interstellaire 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9C 32Go Orange",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9C NFC",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A72 4G Bleu",
+    "marque": "SAMSUNG",
+    "modele": "SM-A725FZBDEUH",
+    "date_calcul": "?",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9S Gris Interstellaire 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9S",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9T 128Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9T",
+    "date_calcul": "2021.02.02",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone SE RED 128 Go",
+    "marque": "APPLE",
+    "modele": "A2296",
+    "date_calcul": "6 novembre 2020",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A10 Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-A105F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Lite 128 Go Blanc",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 7 32Go Noir",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 7 (32 Go)",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A21s Noir",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A217F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 64Go Violet",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone APPLE iPhone 11 64Go Noir",
+    "marque": "Apple Distribution International",
+    "modele": "A2221",
+    "date_calcul": "6 novembre 2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A21s Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A217F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone OPPO A53s 128Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO A53S (CPH2135)",
+    "date_calcul": "13/11/2020",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9 64Go Gris",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A21s Blanc",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A217F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone HUAWEI P20 Lite 64 Go Rose",
+    "marque": "Huawei P20 lite",
+    "modele": "ANE-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone XIAOMI MI Note 10 Vert 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi Note 10",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi Note 10 4Go 128Go Lac Vert",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": null,
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A51 Noir",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A515F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone OnePlus 9 5G Téléphone 12 Go de RAM 256 Go Snapdragon 888 – 6.55 pouces AMOLED – Noir",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A50 – Double sim 128 Go Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A505F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.8
+  },
+  {
+    "name": "SmartphoneOnePlus 9 12Go Ram 256Go Violet Winter Mist 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P20 Noir",
+    "marque": "Huawei P20",
+    "modele": "EML-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone OnePlus 9 12Go Ram 256Go Bleu Arctic Sky 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 12Go Ram 256Go Vert Pine Green 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 8Go Ram 128Go Bleu Arctic Sky 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 8Go Ram 128Go Violet Winter Mist 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 12Go Ram 256Go Noir Astral Black 5G Plus Buds Z comme cadeau Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 8Go Ram 128Go Noir Astral Black 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 12Go Ram 256Go Argent Morning Mist 5G Snapdragon 888 Photo Hasselblad 50MP 65W",
+    "marque": "ONEPLUS",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy Note20 Ultra 5G 512 Go Noir",
+    "marque": "SAMSUNG",
+    "modele": "SM-N986BZKHEUB",
+    "date_calcul": null,
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A72 4G",
+    "marque": "SAMSUNG Galaxy A72 4G Blanc",
+    "modele": "SM-A725FZWDEUH",
+    "date_calcul": "?",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 30 Pro 256 Go Argent",
+    "marque": "Huawei Mate30 Pro",
+    "modele": "LIO-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone OPPO Find X2 Neo 256Go Bleu",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO FIND X2 NEO (CPH2009)",
+    "date_calcul": "13/11/2020",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone OPPO Reno 4 128Go Noir",
+    "marque": "YANG TECHNOLOGY SAS",
+    "modele": "OPPO RENO 4 5G (CPH2091)",
+    "date_calcul": "13/11/2020",
+    "score": 7.3
+  },
+  {
+    "name": "Smartphone XIAOMI MI 9T Pro Rouge 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 Pro Blanc 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A31 Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A315G",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 Pro Noir 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9A",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 Pro 128 Go Twilight",
+    "marque": "Huawei Mate20 Pro",
+    "modele": "LYA-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone XIAOMI MI Note 10 Noir 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi Note 10",
+    "date_calcul": "2021.01.04",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone XIAOMI MI 9T Pro Bleu 64 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ 128 Go 5G Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-G986B",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone XIAOMI MI 9T Pro Noir 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 9T Pro",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone OnePlus 9 Pro 8Go Ram 256Go Vert Pine Green 5G Snapdragon 888 Photo Hasselblad",
+    "marque": "OnePlus",
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone HUAWEI P30 128 Go Bleu Aurore",
+    "marque": "Huawei P30",
+    "modele": "ELE-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.1
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 128 Go Midnight Blue",
+    "marque": "Huawei Mate20",
+    "modele": "HMA-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20+ 128 Go 5G Gris",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-G986B",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone HUAWEI Mate 20 128 Go Noir",
+    "marque": "Huawei Mate20",
+    "modele": "HMA-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 T Bleu 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 8T",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A31 Noir",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A315G",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A40 – Double sim 64 Go Noir",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-A405F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone XIAOMI POCO X3 64Go Gris",
+    "marque": "XIAOMI",
+    "modele": "POCO X3",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Pro Vert tropical 128 Go",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Pro 128 Go Nacré",
+    "marque": "Huawei P30 Pro",
+    "modele": "VOG-L29",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.2
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy A51 Blanc",
+    "marque": "SAMSUNG",
+    "modele": "SM-A515F",
+    "date_calcul": "30.Nov.2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone HONOR 9X Sapphire Blue 128 Go",
+    "marque": "HONOR",
+    "modele": "STK-LX1",
+    "date_calcul": null,
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone SAMSUNG Galaxy S20 128 Go Bleu",
+    "marque": "Samsung Electronics Co. Ltd",
+    "modele": "SM-G980F",
+    "date_calcul": "30.Nov.2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 8 Pro Bleu 64 Go",
+    "marque": "XIAOMI",
+    "modele": "Redmi 9A",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P Smart 2019 64 Go Noir",
+    "marque": "Huawei P smart 2019",
+    "modele": "POT-LX1",
+    "date_calcul": "19 janvier 2021",
+    "score": 5.3
+  },
+  {
+    "name": "Smartphone XIAOMI MI 10 Lite 5G Gris cosmos 128 Go",
+    "marque": "XIAOMI",
+    "modele": "Mi 10 Lite",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI POCO X3 128 Go Bleu",
+    "marque": "XIAOMI",
+    "modele": "POCO X3",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 7 128 Go Noir",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 7",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi 9C 32Go Gris",
+    "marque": "XIAOMI",
+    "modele": "Redmi Note 9C NFC",
+    "date_calcul": "2021.01.04",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone HUAWEI P30 Lite 128 Go Noir",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "19 janvier 2021",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone Listo SP50",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "?",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone Google Pixel 5",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Google Pixel 4a",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "?",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Nautiz X8",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "15/04/2021",
+    "score": 9.0
+  },
+  {
+    "name": "Smartphone Nautiz X9",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "15/04/2021",
+    "score": 9.0
+  },
+  {
+    "name": "Smartphone Nautiz X2",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "15/04/2021",
+    "score": 8.9
+  },
+  {
+    "name": "Smartphone Nautiz X6",
+    "marque": null,
+    "modele": null,
+    "date_calcul": "18/01/2021",
+    "score": 7.9
+  },
+  {
+    "name": "Smartphone Athesi AP6301",
+    "marque": "ATHESI",
+    "modele": null,
+    "date_calcul": "01/03/2021",
+    "score": 9.6
+  },
+  {
+    "name": "Smartphone Athesi AP5701",
+    "marque": "ATHESI",
+    "modele": null,
+    "date_calcul": "01/03/2021",
+    "score": 9.4
+  },
+  {
+    "name": "Smartphone Athesi AP5801",
+    "marque": "ATHESI",
+    "modele": null,
+    "date_calcul": "01/03/2021",
+    "score": 9.6
+  },
+  {
+    "name": "Smartphone Athesi AP5705S",
+    "marque": "ATHESI",
+    "modele": null,
+    "date_calcul": "01/03/2021",
+    "score": 9.6
+  },
+  {
+    "name": "Smartphone Apple iPhone XS A1921",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 4.7
+  },
+  {
+    "name": "Smartphone Apple iPhone 7 A1778",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Apple iPhone 7 Plus A1784",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone Apple iPhone 8 A1905",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone Apple iPhone 8 Plus A1897",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone Apple iPhone X A1901",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 4.8
+  },
+  {
+    "name": "Smartphone Apple iPhone XS Max A2101",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "27/01/2021",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone Apple iPhone XR A2105",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone Apple iPhone SE 2e génération A2296",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone Apple iPhone 11 Pro Max A2218",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 4.5
+  },
+  {
+    "name": "Smartphone Apple iPhone 11 Pro A2215",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone Apple iPhone 11 A2221",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 4.6
+  },
+  {
+    "name": "Smartphone Apple iPhone 12 mini A2399",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "26/10/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Apple iPhone 12 Pro A2403",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "12/11/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Apple iPhone 12 Pro A2407",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "06/11/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Apple iPhone 12 Pro Max A2411",
+    "marque": "APPLE",
+    "modele": null,
+    "date_calcul": "20/10/2020",
+    "score": 6.0
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi Note 9T5G",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi 7A",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi 8",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi 8A",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi Note 9C",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 9",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10 Pro",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone XIAOMI Mi Note 10",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 9T Pro",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi 9A",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 10 Pro",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 10T Pro",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi Note 9s",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone XIAOMI Redmi Note 9 Pro",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 10 Lite",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2020",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi Note 9",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Mi 10T Lite",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Xiaomi Redmi 9",
+    "marque": "XIAOMI",
+    "modele": null,
+    "date_calcul": "04/01/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Essentielb HeYou 20",
+    "marque": "EssentielB",
+    "modele": "HEYOU 20",
+    "date_calcul": "14/12/2020",
+    "score": 6.4
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Note10 Lite",
+    "marque": "SAMSUNG",
+    "modele": "SM-N770F",
+    "date_calcul": "30/11/2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Note20",
+    "marque": "SAMSUNG",
+    "modele": "SM-N980F",
+    "date_calcul": "30/11/2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A10",
+    "marque": "SAMSUNG",
+    "modele": "SM-A105F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S10 EE",
+    "marque": "SAMSUNG",
+    "modele": "SM-G973F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-G981B",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S21+ 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-G996B",
+    "date_calcul": "24/12/2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A50",
+    "marque": "SAMSUNG",
+    "modele": "SM-A505F",
+    "date_calcul": "30/11/2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone Nokia 2.4",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 2.4",
+    "date_calcul": "13/12/2020",
+    "score": 6.5
+  },
+  {
+    "name": "Smartphone Nokia 3.4",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 3.4",
+    "date_calcul": "13/12/2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Nokia 5.3",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 5.3",
+    "date_calcul": "13/12/2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone Nokia 8.3",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 8.3",
+    "date_calcul": "13/12/2020",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone Nokia 1.3",
+    "marque": "HMD GLOBAL OY",
+    "modele": "Nokia 1.3",
+    "date_calcul": "13/12/2020",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone CROSSCALL CORE-M4 GO",
+    "marque": "CROSSCALL",
+    "modele": "CORE-M4 GO",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone CROSSCALL CORE-M4",
+    "marque": "CROSSCALL",
+    "modele": "CORE-M4",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone CROSSCALL TREKKER-X4",
+    "marque": "CROSSCALL",
+    "modele": "TREKKER-X4",
+    "date_calcul": "31/12/2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone CROSSCALL CORE-X4",
+    "marque": "CROSSCALL",
+    "modele": "CORE-X4",
+    "date_calcul": "31/12/2020",
+    "score": 8.8
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A42 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-A426B",
+    "date_calcul": "30/11/2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20+5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-G986B",
+    "date_calcul": "30/11/2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20+5G EE",
+    "marque": "SAMSUNG",
+    "modele": "SM-G986B",
+    "date_calcul": "30/11/2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Note20 Ultra 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-N986B",
+    "date_calcul": "30/11/2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A10",
+    "marque": "SAMSUNG",
+    "modele": "SM-A105F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A20e",
+    "marque": "SAMSUNG",
+    "modele": "SM-A202F",
+    "date_calcul": "30/11/2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A31",
+    "marque": "SAMSUNG",
+    "modele": "SM-A315G",
+    "date_calcul": "30/11/2020",
+    "score": 5.9
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A51",
+    "marque": "SAMSUNG",
+    "modele": "SM-A515F",
+    "date_calcul": "30/11/2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Z Fold2 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-F916B",
+    "date_calcul": "30/11/2020",
+    "score": 7.5
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY M51",
+    "marque": "SAMSUNG",
+    "modele": "SM-M515F",
+    "date_calcul": "30/11/2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Note20 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-N981B",
+    "date_calcul": "30/11/2020",
+    "score": 8.1
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A12",
+    "marque": "SAMSUNG",
+    "modele": "SM-A125F",
+    "date_calcul": "30/11/2020",
+    "score": 8.2
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A40",
+    "marque": "SAMSUNG",
+    "modele": "SM-A405F",
+    "date_calcul": "30/11/2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A41",
+    "marque": "SAMSUNG",
+    "modele": "SM-A415F",
+    "date_calcul": "30/11/2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY Xcover 4S",
+    "marque": "SAMSUNG",
+    "modele": "SM-G398F",
+    "date_calcul": "30/11/2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY XCover Pro EE",
+    "marque": "SAMSUNG",
+    "modele": "SM-G715F",
+    "date_calcul": "30/11/2020",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S10+ Edition Performance",
+    "marque": "SAMSUNG",
+    "modele": "SM-G975F",
+    "date_calcul": "30/11/2020",
+    "score": 5.6
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20+",
+    "marque": "SAMSUNG",
+    "modele": "SM-G985F",
+    "date_calcul": "30/11/2020",
+    "score": 5.8
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20 Ultra 5G",
+    "marque": "SAMSUNG",
+    "modele": "SM-G988B",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20 EE",
+    "marque": "SAMSUNG",
+    "modele": "SM-G980F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20",
+    "marque": "SAMSUNG",
+    "modele": "SM-G980F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY A21s",
+    "marque": "SAMSUNG",
+    "modele": "SM-A217F",
+    "date_calcul": "30/11/2020",
+    "score": 8.0
+  },
+  {
+    "name": "Smartphone Wiko Y51 (K211)",
+    "marque": "Wiko",
+    "modele": "Y51 (K211)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Wiko Y60 (W-K510)",
+    "marque": "Wiko",
+    "modele": "Y60 (W-K510)",
+    "date_calcul": "09/12/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Wiko Y61 (K560)",
+    "marque": "Wiko",
+    "modele": "Y61 (K560)",
+    "date_calcul": "09/12/2021",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone Wiko Y80 (W-V720)",
+    "marque": "Wiko",
+    "modele": "Y80 (W-V720)",
+    "date_calcul": "09/12/2021",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone Wiko Y81 (W-V680)",
+    "marque": "Wiko",
+    "modele": "Y81 (W-V680)",
+    "date_calcul": "09/12/2021",
+    "score": 6.3
+  },
+  {
+    "name": "Smartphone Wiko VIEW 5 PLUS (W-V850)",
+    "marque": "Wiko",
+    "modele": "VIEW 5 PLUS (W-V850)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Wiko VIEW 5 (W-V851)",
+    "marque": "Wiko",
+    "modele": "VIEW 5 (W-V851)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Wiko HARRY 2 (V600BN)",
+    "marque": "Wiko",
+    "modele": "HARRY 2 (V600BN)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Wiko LENNY 5 (K400)",
+    "marque": "Wiko",
+    "modele": "LENNY 5 (K400)",
+    "date_calcul": "09/12/2021",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone Wiko VIEW 3 (P311)",
+    "marque": "Wiko",
+    "modele": "VIEW 3 (P311)",
+    "date_calcul": "09/12/2021",
+    "score": 7.1
+  },
+  {
+    "name": "Smartphone Wiko VIEW 3 LITE (P311)",
+    "marque": "Wiko",
+    "modele": "VIEW 3 LITE (P311)",
+    "date_calcul": "09/12/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone Wiko VIEW 3 PRO (P611)",
+    "marque": "Wiko",
+    "modele": "VIEW 3 PRO (P611)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Fairphone FP3+",
+    "marque": "Fairphone",
+    "modele": "FP3",
+    "date_calcul": "18/01/2021",
+    "score": 8.7
+  },
+  {
+    "name": "Smartphone Wiko VIEW 4 (v830)",
+    "marque": "Wiko",
+    "modele": "VIEW 4 (v830)",
+    "date_calcul": "09/12/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Wiko VIEW 4 LITE (v730)",
+    "marque": "Wiko",
+    "modele": "VIEW 4 LITE (v730)",
+    "date_calcul": "09/12/2021",
+    "score": 6.6
+  },
+  {
+    "name": "Smartphone Essentielb HeYou 40",
+    "marque": "EssentielB",
+    "modele": "HEYOU 40",
+    "date_calcul": "14/12/2020",
+    "score": 6.1
+  },
+  {
+    "name": "Smartphone OnePlus N100",
+    "marque": "OnePlus",
+    "modele": "N100",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone OnePlus N10 5G",
+    "marque": "OnePlus",
+    "modele": "N10 5G",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone OnePlus Nord",
+    "marque": "OnePlus",
+    "modele": "Nord",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone OnePlus 7T",
+    "marque": "OnePlus",
+    "modele": "7T",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone OnePlus 8",
+    "marque": "OnePlus",
+    "modele": "8",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone OnePlus 8 Pro",
+    "marque": "OnePlus",
+    "modele": "8 Pro",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone Wiko Y50 (K130)",
+    "marque": "Wiko",
+    "modele": "Y50 (K130)",
+    "date_calcul": "09/12/2021",
+    "score": 7.0
+  },
+  {
+    "name": "Smartphone Wiko Y61 (K560)",
+    "marque": "Wiko",
+    "modele": "Y61 (K560)",
+    "date_calcul": "09/12/2021",
+    "score": 6.8
+  },
+  {
+    "name": "Smartphone Wiko VIEW 5 PLUS (W-V850)",
+    "marque": "Wiko",
+    "modele": "VIEW 5 PLUS (W-V850)",
+    "date_calcul": "09/12/2021",
+    "score": 6.7
+  },
+  {
+    "name": "Smartphone Wiko TOMMY3 (C200)",
+    "marque": "Wiko",
+    "modele": "TOMMY3 (C200)",
+    "date_calcul": "09/12/2021",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone Wiko SUNNY3 (K120)",
+    "marque": "Wiko",
+    "modele": "SUNNY3 (K120)",
+    "date_calcul": "09/12/2021",
+    "score": 6.9
+  },
+  {
+    "name": "Smartphone OnePlus 8T",
+    "marque": "OnePlus",
+    "modele": "8T",
+    "date_calcul": "–",
+    "score": 6.2
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S10",
+    "marque": "SAMSUNG",
+    "modele": "SM-G973F",
+    "date_calcul": "30/11/2020",
+    "score": 5.7
+  },
+  {
+    "name": "Smartphone SAMSUNG GALAXY S20FE",
+    "marque": "SAMSUNG",
+    "modele": "SM-G780F",
+    "date_calcul": "30/11/2020",
+    "score": 8.1
+  }
+]
