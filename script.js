@@ -236,7 +236,7 @@ function sortData(data) {
             A = Array.isArray(a.teardown_urls) ? a.teardown_urls.length : 0;
             B = Array.isArray(b.teardown_urls) ? b.teardown_urls.length : 0;
         }
-        if (key === 'repairability_score' || key === 'scoring_rubric' || key === 'teardown') {
+        if (key === 'repairability_score' || key === 'france_repairability_score' || key === 'scoring_rubric' || key === 'teardown') {
             // Numeric comparison for score and teardown count
             A = (A ?? -1);
             B = (B ?? -1);
@@ -311,6 +311,11 @@ function populateTable(data) {
                 <td class="px-6 py-4">
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
                         ${d.repairability_score ?? '—'}/10
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
+                        ${d.france_repairability_score ?? '—'}/10
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -547,6 +552,7 @@ function toggleSort(key) {
     renderTable();
     const dirLabel = currentSort.direction === 'asc' ? 'ascending' : 'descending';
     const keyLabel = key === 'repairability_score' ? 'Score' :
+            key === 'france_repairability_score' ? 'Score (France)' :
             key === 'scorecard_version' ? 'Scoring Rubric' :
             key === 'brand' ? 'Manufacturer' :
             key === 'teardown' ? 'Teardown' : 'Device';
@@ -568,6 +574,13 @@ function injectStructuredData(list) {
                 aggregateRating: Number.isFinite(d.repairability_score) ? {
                     '@type': 'AggregateRating',
                     ratingValue: String(d.repairability_score),
+                    ratingCount: 1,
+                    bestRating: '10',
+                    worstRating: '0'
+                } : undefined,
+                franceAggregateRating: Number.isFinite(d.france_repairability_score) ? {
+                    '@type': 'AggregateRating',
+                    ratingValue: String(d.france_repairability_score),
                     ratingCount: 1,
                     bestRating: '10',
                     worstRating: '0'
@@ -1341,6 +1354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       <div class="text-sm text-slate-400">${it.brand ?? '—'}</div>
                       <div class="text-lg font-semibold text-cyan-300 mb-1">${it.name}</div>
                       <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.repairability_score)}">${it.repairability_score ?? '—'}/10</span></div>
+                      <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.france_repairability_score)}">${it.france_repairability_score ?? '—'}/10</span></div>
                       <div class="text-sm mb-2"><a href="${it.link}" target="_blank" class="text-cyan-400 underline">iFixit page</a></div>
                       <div class="text-sm">Teardowns:</div>
                       <div class="mt-1 space-y-1">${renderTeardownLinks(it.teardown_urls || [])}</div>
@@ -1398,9 +1412,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function exportCsv() {
         const rows = window.lastFiltered || getFilteredData();
-        const header = ['name', 'brand', 'repairability_score', 'link'];
+        const header = ['name', 'brand', 'repairability_score', 'france_repairability_score', 'scoring_rubric', 'link'];
         const lines = [toCsvRow(header)];
         rows.forEach(d => lines.push(toCsvRow([d.name, d.brand ?? '', d.repairability_score ?? '', d.link ?? ''])));
+        rows.forEach(d => lines.push(toCsvRow([d.name, d.brand ?? '', d.france_repairability_score ?? '', d.link ?? ''])));
         const blob = new Blob([lines.join('\r\n')], {type: 'text/csv;charset=utf-8;'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
