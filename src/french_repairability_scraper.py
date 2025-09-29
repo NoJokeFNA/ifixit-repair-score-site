@@ -108,7 +108,7 @@ class FrenchRepairabilityScraper:
             logger.info(f"Found {total_pages} pages to scrape.")
             semaphore = asyncio.Semaphore(5)
 
-            async def limited_fetch(page: int) -> list[Any] | None:
+            async def limited_fetch(page: int) -> list[dict[str, Any]] | None:
                 async with semaphore:
                     await asyncio.sleep(0.5)
                     return await self.get_smartphones_from_page(session, page)
