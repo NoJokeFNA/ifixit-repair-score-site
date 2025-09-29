@@ -93,7 +93,7 @@ class FrenchRepairabilityScraper:
                     continue
         return max(page_numbers) if page_numbers else 38
 
-    async def get_smartphones_from_page(self, session: aiohttp.ClientSession, page_number: int) -> list[Any] | None:
+    async def get_smartphones_from_page(self, session: aiohttp.ClientSession, page_number: int) -> list[dict[str, Any]]:
         """Fetch and parse smartphones from a single page."""
         url = f"https://www.indicereparabilite.fr/appareils/smartphone/page/{page_number}/"
         logger.debug(f"Fetching page {page_number}...")
