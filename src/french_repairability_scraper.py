@@ -133,7 +133,6 @@ class FrenchRepairabilityScraper:
     def match_device_to_french_score(self, device: dict) -> Optional[float]:
         """Match a device to its French repairability score using normalization logic"""
         france_score_map = {}
-        print(self.french_scores)
         for french_device in self.french_scores:
             norm_name = french_device.get("normalized_name", "")
             score = french_device.get("repairability_score")
