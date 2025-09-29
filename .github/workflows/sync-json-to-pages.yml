@@ -37,7 +37,7 @@ jobs:
 
       - name: Build JSON files into gh-pages
         run: |
-          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json
+          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json
 
       - name: Commit to gh-pages if changed
         working-directory: gh-pages
