@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 import collections
 import json
 import logging
@@ -10,12 +11,13 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from decimal import Decimal
 from pathlib import Path
-from typing import Iterable, List, Optional, Set, Tuple
+from typing import Iterable, Optional, Set
 
 import requests
 import tqdm
 from bs4 import BeautifulSoup
 
+from french_repairability_scraper import FrenchRepairabilityScraper
 from ifixit_api_client import IFixitAPIClient
 from rate_limiter import _RateLimiter
 from utils import _DeviceDataUtils
@@ -37,7 +39,7 @@ class Suppress404Filter(logging.Filter):
 logging.basicConfig(level=log_level)
 logging.getLogger("ifixit_api_client").addFilter(Suppress404Filter())
 
-type JsonValue = dict[str, "JsonValue"] | List["JsonValue"] | str | int | float | bool | None
+type JsonValue = dict[str, "JsonValue"] | list["JsonValue"] | str | int | float | bool | None
 
 
 def write_json_atomic(path: str, data: object) -> None:
@@ -85,7 +87,7 @@ def _collect_leaf_device_names(
             elif isinstance(v, list):
                 yield from from_list(v, parent_key=k)
 
-    def from_list(items: List[JsonValue], parent_key: Optional[str] = None) -> Iterable[str]:
+    def from_list(items: list[JsonValue], parent_key: Optional[str] = None) -> Iterable[str]:
         for it in items:
             if isinstance(it, dict):
                 yield from _collect_leaf_device_names(it, excluded)
@@ -104,10 +106,10 @@ def _find_and_collect_for_targets(
     node: JsonValue,
     target_categories: Iterable[str],
     exclude_map: dict[str, Set[str]] | None = None,
-) -> dict[str, List[str]]:
+) -> dict[str, list[str]]:
     """Find target categories in the tree and collect leaf devices under them."""
     targets: Set[str] = set(target_categories)
-    out: dict[str, List[str]] = {t: [] for t in targets}
+    out: dict[str, list[str]] = {t: [] for t in targets}
 
     def handle_match(cat: str, value: JsonValue) -> None:
         excluded = exclude_map.get(cat, set())
@@ -141,11 +143,11 @@ def _find_and_collect_for_targets(
 
 def collect_child_devices(
     data: dict[str, JsonValue],
-    target_categories: List[str],
+    target_categories: list[str],
     parent: str = "root",
     depth: int = 0,
     exclude_subtrees: dict[str, Iterable[str]] | None = None,
-) -> dict[str, List[str]]:
+) -> dict[str, list[str]]:
     """Recursively collects leaf device names for specified categories.
 
     Walks the hierarchy, finds each target category, and collects leaf device names
@@ -177,9 +179,9 @@ def collect_child_devices(
 
 def get_child_devices_for_categories(
     client: IFixitAPIClient,
-    categories: List[str],
+    categories: list[str],
     exclude_subtrees: dict[str, Iterable[str]] | None = None,
-) -> dict[str, List[str]]:
+) -> dict[str, list[str]]:
     """Fetch and return child devices for the given categories.
 
     This version keeps results in memory instead of writing a temporary JSON file.
@@ -217,7 +219,7 @@ def get_child_devices_for_categories(
     return child_devices
 
 
-def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, object]]]:
+def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, list[dict[str, object]]]:
     """Fetch all teardown guides grouped by category.
 
     Retrieves guides with pagination and groups them by category. Each guide keeps its
@@ -228,10 +230,10 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
 
     Returns:
         A dictionary mapping normalized categories to a list of guide dicts:
-        {'title': str, 'url': str, 'tags': List[str]}.
+        {'title': str, 'url': str, 'tags': list[str]}.
     """
     params = {"filter": "teardown", "limit": 200}
-    results: dict[str, List[dict[str, object]]] = {}
+    results: dict[str, list[dict[str, object]]] = {}
     lock = threading.Lock()
     offset = 0
     max_workers = 8
@@ -244,13 +246,13 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
         expected_title = f"{normalized_category}_teardown"
         return normalized_title == expected_title
 
-    def fetch_page(page_offset: int) -> dict[str, List[dict[str, object]]]:
+    def fetch_page(page_offset: int) -> dict[str, list[dict[str, object]]]:
         """Fetch a single page of guides for the given offset."""
         try:
             page_params = params.copy()
             page_params["offset"] = page_offset
             guides = client.get_guides(params=page_params)
-            page_results: dict[str, List[dict[str, object]]] = {}
+            page_results: dict[str, list[dict[str, object]]] = {}
             for guide in guides:
                 if (
                     guide.get("url") is None
@@ -277,7 +279,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
             logger.error("Failed to fetch offset %d: %s", page_offset, e)
             return {}
 
-    def extend_map(dst: dict[str, List[dict[str, object]]], src: dict[str, List[dict[str, object]]]) -> None:
+    def extend_map(dst: dict[str, list[dict[str, object]]], src: dict[str, list[dict[str, object]]]) -> None:
         for category, guides in src.items():
             if category not in dst:
                 dst[category] = []
@@ -287,7 +289,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
         while True:
             offsets = list(range(offset, offset + batch_size * max_workers, batch_size))
             futures = {executor.submit(fetch_page, off): off for off in offsets}
-            page_results: dict[str, List[dict[str, object]]] = {}
+            page_results: dict[str, list[dict[str, object]]] = {}
 
             for future in tqdm.tqdm(
                 as_completed(futures),
@@ -308,7 +310,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
             offset += batch_size * max_workers
             logger.debug("Processed batch, new offset: %d", offset)
 
-    def sort_guides_for_category(category: str, guides: List[dict[str, object]]) -> List[dict[str, object]]:
+    def sort_guides_for_category(category: str, guides: list[dict[str, object]]) -> list[dict[str, object]]:
         """Sort guides with the following rules.
 
         - Archived guides are always at the bottom (regardless of other flags).
@@ -325,8 +327,8 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
             A stable, deduplicated, and sorted list of guides.
         """
         # Dedupe by (title, url).
-        seen: Set[Tuple[str, str]] = set()
-        unique: List[dict[str, object]] = []
+        seen: Set[tuple[str, str]] = set()
+        unique: list[dict[str, object]] = []
         for g in guides:
             title = str(g.get("title", "") or "").strip()
             url = str(g.get("url", "") or "").strip()
@@ -341,7 +343,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
             g["tags"] = list(tags) if isinstance(tags, list) else []
             unique.append(g)
 
-        def key_fn(g: dict[str, object]) -> Tuple[int, int, int, str, str]:
+        def key_fn(g: dict[str, object]) -> tuple[int, int, int, str, str]:
             title = str(g["title"])
             url = str(g["url"])
             tags = list(g.get("tags", []))
@@ -361,7 +363,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
         results[category] = sort_guides_for_category(category, results[category])
 
     # Build normalized lookup to make matching resilient.
-    normalized_results: dict[str, List[dict[str, object]]] = {
+    normalized_results: dict[str, list[dict[str, object]]] = {
         _DeviceDataUtils.normalize_key(category): guides for category, guides in results.items()
     }
 
@@ -371,14 +373,15 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, List[dict[str, o
 
 def print_device_data(
     client: IFixitAPIClient,
-    devices: List[str],
+    devices: list[str],
+    french_scraper: FrenchRepairabilityScraper,
     output_file: Optional[str] = None,
 ) -> None:
     """Fetches and prints device repairability scores and guide URLs concurrently."""
     logger.info("Fetching teardown guides for matching...")
     teardown_guides = fetch_teardown_guides(client)
 
-    def dedupe(seq: List[str]) -> List[str]:
+    def dedupe(seq: list[str]) -> list[str]:
         seen: Set[str] = set()
         return [d for d in seq if not (d in seen or seen.add(d))]
 
@@ -389,7 +392,7 @@ def print_device_data(
 
     def _fetch_score(
         device_name: str, max_retries: int = 3, base_backoff: float = 0.75
-    ) -> Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]:
+    ) -> tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]:
         ifixit_title = _DeviceDataUtils.to_ifixit_title(device_name)
         for attempt in range(max_retries):
             try:
@@ -437,8 +440,8 @@ def print_device_data(
         return device_name, ifixit_title, None, None, None, "Max retries exceeded"
 
     def partition_results(
-        rows: List[Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]]
-    ) -> Tuple[List[Tuple[str, str, Optional[float], Optional[str], Optional[str]]], List[Tuple[str, str]]]:
+        rows: list[tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]]
+    ) -> tuple[list[tuple[str, str, Optional[float], Optional[str], Optional[str]]], list[tuple[str, str]]]:
         with_score = [
             (n, t, s, brand, link_)
             for n, t, s, brand, link_, err in rows
@@ -452,7 +455,7 @@ def print_device_data(
     requests_per_second = 4
     limiter = _RateLimiter(rate_per_sec=requests_per_second)
 
-    results: List[Tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]] = []
+    results: list[tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_map = {executor.submit(_fetch_score, name): name for name in unique_devices}
         for fut in tqdm.tqdm(
@@ -505,6 +508,8 @@ def print_device_data(
                 }
                 for guide in teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             ],
+            "france_repairability_score": french_scraper.match_device_to_french_score(
+                {"name": name, "title": title, "brand": brand}),
         }
 
     print_outputs()
@@ -731,7 +736,7 @@ def get_rubric_versions_for_devices(client) -> list[dict[str, str]]:
     return results
 
 
-def main() -> None:
+async def main_async() -> None:
     """Entry point for the script.
 
     Builds the devices_with_scores.json from iFixit data using in-memory category traversal.
@@ -751,6 +756,11 @@ def main() -> None:
         help="Output file for scores",
     )
     parser.add_argument(
+        "--french-scores-output",
+        default="france_devices_with_scores.json",
+        help="Output file for French repairability scores",
+    )
+    parser.add_argument(
         "--generate-rubric",
         action="store_true",
         help="Generate rubric.json from iFixit wiki pages",
@@ -764,6 +774,13 @@ def main() -> None:
 
     client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
     rate_limiter = _RateLimiter(rate_per_sec=4)
+
+    # Fetch French repairability scores
+    logger.info("Fetching French repairability scores from indicereparabilite.fr...")
+    french_scraper = FrenchRepairabilityScraper()
+    french_scores = await french_scraper.get_french_repairability_scores()
+    write_json_atomic(args.french_scores_output, french_scores)
+    logger.info(f"Saved French repairability scores to {args.french_scores_output}")
 
     if args.generate_rubric:
         generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
@@ -780,8 +797,27 @@ def main() -> None:
         logger.warning("No demo devices found.")
         return
 
-    print_device_data(client, devices, args.scores_output)
+    print_device_data(client, devices, french_scraper, args.scores_output)
+
+
+def run_main():
+    """Run the main async function, handling existing event loops."""
+    try:
+        # Try to use asyncio.run for standalone execution
+        asyncio.run(main_async())
+    except RuntimeError as e:
+        # If an event loop is already running (e.g., in Jupyter), use the existing loop
+        if "cannot run the event loop" in str(e).lower():
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                # If the loop is running, create a task (suitable for async contexts)
+                loop.create_task(main_async())
+            else:
+                # If the loop exists but isn't running, run the coroutine
+                loop.run_until_complete(main_async())
+        else:
+            raise
 
 
 if __name__ == "__main__":
-    main()
+    run_main()
