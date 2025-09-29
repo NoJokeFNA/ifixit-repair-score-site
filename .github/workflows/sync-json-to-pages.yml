@@ -44,7 +44,7 @@ jobs:
         run: |
           set -e
           # List of files to check
-          files=("devices_with_scores.json" "rubric.json" "french_devices_with_scores.json")
+          files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json")
           
           # Stage all files
           git add "${files[@]}" || { echo "Error staging files"; exit 1; }
