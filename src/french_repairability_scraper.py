@@ -24,7 +24,7 @@ class FrenchRepairabilityScraper:
         proxy = self.https_proxy if url.startswith(
             'https://') and self.https_proxy else self.http_proxy if url.startswith(
             'http://') and self.http_proxy else None
-        for attempt in range(retries):
+        for _ in range(retries):
             try:
                 async with session.get(url, proxy=proxy, timeout=10) as response:
                     if response.status == 200:
