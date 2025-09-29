@@ -1,5 +1,4 @@
 import asyncio
-import difflib
 import logging
 import os
 import re
@@ -126,115 +125,56 @@ class FrenchRepairabilityScraper:
             return self.french_scores
 
     def match_device_to_french_score(self, device: dict) -> Optional[float]:
-        """Match a device to its French repairability score using model, name, title, or brand."""
-        import difflib
-        import re
+        """Match a device to its French repairability score using normalization logic from test.py"""
 
-        def normalize(text: str) -> str:
-            if not text:
-                return ""
-            text = text.lower()
-            text = re.sub(r'smartphone\s*', '', text)
-            text = re.sub(r'\s*5g|\s*4g|\s*lte', '', text)
-            text = re.sub(r'\s*(?:\d+\s*(?:go|gb|tb)\s*)+', '', text)
-            text = re.sub(r'\s*(?:noir|blanc|vert|rouge|bleu|jaune|rose|or|argent|gr[ie]s)[a-zéèê]*', '', text)
-            text = re.sub(r'\+', ' plus ', text)
-            text = re.sub(r'[_-]', ' ', text)
-            text = re.sub(r'[^a-z0-9 ]', '', text)
-            text = re.sub(r'\s+', ' ', text)
-            return text.strip()
+        def normalize_name(name, brand=None):
+            name = name.lower().strip()
+            if brand:
+                brand = brand.lower().strip()
+                name = name.replace(f"smartphone {brand}", "").strip()
+                name = name.replace(brand, "").strip()
 
-        def normalize_name(text: str, brand: str) -> str:
-            text = normalize(text)
-            brand = normalize(brand)
-            if brand and text.startswith(brand):
-                text = text[len(brand):].strip()
-            return text
+            se_2020_patterns = [
+                r"iphone se\s*2020",
+                r"iphone se\s*2e\s*génération",
+                r"iphone se\s*second\s*gen(ération)?",
+                r"iphone se\s*2nd\s*gen(ération)?",
+                r"iphone se 2a génération",  # possible typo
+            ]
+            for pattern in se_2020_patterns:
+                if re.search(pattern, name):
+                    return "iphone se 2020"
 
-        def extract_year_from_name(text: str) -> str:
-            match = re.search(r'\b(1[0-9])\b', text.lower())  # e.g., "13" from "iPhone 13"
-            return match.group(1) if match else ""
+            # Remove storage sizes, model codes, and colors
+            name = re.sub(r'\b\d+\s*(go|gb)\b', '', name, flags=re.IGNORECASE)
+            name = re.sub(r'\b(a\d{4})\b', '', name, flags=re.IGNORECASE)
+            name = re.sub(
+                r'\b(rouge|red|noir|blanc|mauve|jaune|vert|argent|or|silver|gold|black|white|green|purple|yellow)\b',
+                '', name, flags=re.IGNORECASE)
+            name = re.sub(r'\s+', ' ', name).strip()
+            return name
 
-        def extract_model_from_name(text: str) -> str:
-            # Extract alphanumeric model code at end (e.g., "A2485" from "iPhone 13 Pro Max A2485")
-            match = re.search(r'\b[a-z0-9]{4,7}\b$', text.lower())
-            return match.group(0) if match else ""
-
-        device_name = normalize_name(device.get("name", ""), device.get("brand", ""))
-        device_title = normalize_name(device.get("title", ""), device.get("brand", ""))
-        device_brand = normalize(device.get("brand", ""))
-        device_model = normalize(device.get("model", ""))
-        device_year = extract_year_from_name(device.get("name", "") + " " + device.get("title", ""))
-        device_name_model = extract_model_from_name(device.get("name", "") + " " + device.get("title", ""))
-
-        logger.debug(
-            f"Matching device: name='{device_name}', title='{device_title}', brand='{device_brand}', model='{device_model}', year='{device_year}', name_model='{device_name_model}'")
-
-        # Step 1: Exact model code matching
-        if device_model:
-            for french_device in self.french_scores:
-                french_modele = normalize(french_device.get("modele", ""))
-                if french_modele == device_model and normalize(french_device.get("marque", "")) == device_brand:
-                    score = french_device.get("score")
-                    if score is not None:
-                        logger.info(
-                            f"Matched {device.get('name')} to French score: {score} (exact model: {device_model})")
-                        return score
-
-        # Step 2: Model code from name matching
-        if device_name_model:
-            for french_device in self.french_scores:
-                french_name_model = extract_model_from_name(french_device.get("name", ""))
-                if french_name_model == device_name_model and normalize(
-                    french_device.get("marque", "")) == device_brand:
-                    score = french_device.get("score")
-                    if score is not None:
-                        logger.info(
-                            f"Matched {device.get('name')} to French score: {score} (name model: {device_name_model})")
-                        return score
-
-        # Step 3: Year + exact name matching (very strict)
-        best_match = None
-        best_ratio = 0.0
+        # Build a map: normalized French device name -> list of scores
+        france_score_map = {}
         for french_device in self.french_scores:
-            french_name = normalize_name(french_device.get("name", ""), french_device.get("marque", ""))
-            french_marque = normalize(french_device.get("marque", ""))
-            french_year = extract_year_from_name(french_device.get("name", ""))
+            norm_name = normalize_name(french_device.get("name", ""), french_device.get("marque"))
+            score = french_device.get("score")
+            if norm_name in france_score_map:
+                france_score_map[norm_name].append(score)
+            else:
+                france_score_map[norm_name] = [score]
 
-            brand_match = device_brand == french_marque
-            year_match = device_year == french_year
+        # Normalize the input device name + brand
+        normalized_device_name = normalize_name(device.get("name", ""), device.get("brand"))
 
-            name_ratio = difflib.SequenceMatcher(None, device_name, french_name).ratio()
-            title_ratio = difflib.SequenceMatcher(None, device_title, french_name).ratio()
-            max_ratio = max(name_ratio, title_ratio)
+        possible_scores = france_score_map.get(normalized_device_name)
+        if not possible_scores:
+            return None
 
-            # Only match if year matches and ratio is near-exact (>0.98)
-            if brand_match and year_match and max_ratio > 0.98:
-                score = french_device.get("score")
-                if score is not None and max_ratio > best_ratio:
-                    best_match = score
-                    best_ratio = max_ratio
-                    logger.debug(
-                        f"Exact match for {device.get('name')}: score={score}, ratio={max_ratio:.2f}, french_name='{french_name}'")
+        # Return the most common score (like in test.py)
+        try:
+            most_common_score = max(set(possible_scores), key=possible_scores.count)
+        except Exception:
+            most_common_score = possible_scores[0]
 
-        if best_match is not None:
-            logger.info(f"Matched {device.get('name')} to French score: {best_match} (exact ratio={best_ratio:.2f})")
-            return best_match
-
-        logger.debug(f"No exact match found for {device.get('name')} - leaving as null")
-        return None
-
-
-if __name__ == "__main__":
-    scraper = FrenchRepairabilityScraper()
-    scraper.french_scores = [
-        {"name": "Smartphone SAMSUNG GALAXY S21+ 5G", "marque": "SAMSUNG", "modele": "SM-G996Bs",
-         "date_calcul": "24/12/2020", "score": 8.5},
-        {"name": "Smartphone APPLE iPhone 13", "marque": "APPLE", "modele": None,
-         "date_calcul": None, "score": 6.2},
-    ]
-    print(scraper.match_device_to_french_score(
-        {"name": "iPhone 13", "title": "iPhone_13", "brand": "Apple"}))
-    print(scraper.match_device_to_french_score(
-        {"name": "Samsung Galaxy S21", "title": "Samsung_Galaxy_S21_Plus", "brand": "Samsung"}))
-    asyncio.run(scraper.get_french_repairability_scores())
+        return most_common_score

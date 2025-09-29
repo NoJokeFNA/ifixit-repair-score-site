@@ -792,8 +792,6 @@ async def main_async() -> None:
     for cat in args.categories:
         devices.extend(child_map.get(cat, []))
 
-    devices = devices[:20]
-
     devices = list(dict.fromkeys(devices))
     if not devices:
         logger.warning("No demo devices found.")
