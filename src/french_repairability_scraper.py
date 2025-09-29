@@ -44,26 +44,29 @@ class FrenchRepairabilityScraper:
         smartphones = []
         for p in products:
             score_elem = p.select_one("div.footer .price h4 span")
-            score = None
+            repairability_score = None
             if score_elem:
                 score_text = score_elem.get_text(strip=True)
                 try:
                     score_cleaned = score_text.replace('€', '').replace(',', '.')
-                    score = float(score_cleaned)
+                    repairability_score = float(score_cleaned)
                 except ValueError:
                     product_name = p.select_one("h4.card-title a")
                     product_name = product_name.get_text(strip=True) if product_name else "Unknown"
                     logger.warning(f"Failed to parse score '{score_text}' for product {product_name}")
 
+                name = (name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None)
+                name = name.replace("Smartphone ", "")
                 smartphone = {
-                    "name": (name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None),
-                    "marque": (marque.get_text(strip=True) if (marque := p.select_one(
+                    "name": name,
+                    "normalized_name": self.normalize_name(name),
+                    "brand": (brand.get_text(strip=True) if (brand := p.select_one(
                         "div.card-description table tbody tr:nth-child(1) strong")) else None),
-                    "modele": (modele.get_text(strip=True) if (modele := p.select_one(
+                    "model": (modele.get_text(strip=True) if (modele := p.select_one(
                         "div.card-description table tbody tr:nth-child(2) strong")) else None),
-                    "date_calcul": (date_calc.get_text(strip=True) if (date_calc := p.select_one(
+                    "last_updated": (last_updated.get_text(strip=True) if (last_updated := p.select_one(
                         "div.card-description table tbody tr:nth-child(3) strong")) else None),
-                    "score": score,
+                    "repairability_score": repairability_score,
                 }
                 smartphones.append(smartphone)
                 logger.debug(f"Parsed {len(smartphones)} smartphones from page")
@@ -126,38 +129,10 @@ class FrenchRepairabilityScraper:
 
     def match_device_to_french_score(self, device: dict) -> Optional[float]:
         """Match a device to its French repairability score using normalization logic from test.py"""
-
-        def normalize_name(name, brand=None):
-            name = name.lower().strip()
-            if brand:
-                brand = brand.lower().strip()
-                name = name.replace(f"smartphone {brand}", "").strip()
-                name = name.replace(brand, "").strip()
-
-            se_2020_patterns = [
-                r"iphone se\s*2020",
-                r"iphone se\s*2e\s*génération",
-                r"iphone se\s*second\s*gen(ération)?",
-                r"iphone se\s*2nd\s*gen(ération)?",
-                r"iphone se 2a génération",  # possible typo
-            ]
-            for pattern in se_2020_patterns:
-                if re.search(pattern, name):
-                    return "iphone se 2020"
-
-            # Remove storage sizes, model codes, and colors
-            name = re.sub(r'\b\d+\s*(go|gb)\b', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\b(a\d{4})\b', '', name, flags=re.IGNORECASE)
-            name = re.sub(
-                r'\b(rouge|red|noir|blanc|mauve|jaune|vert|argent|or|silver|gold|black|white|green|purple|yellow)\b',
-                '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\s+', ' ', name).strip()
-            return name
-
         # Build a map: normalized French device name -> list of scores
         france_score_map = {}
         for french_device in self.french_scores:
-            norm_name = normalize_name(french_device.get("name", ""), french_device.get("marque"))
+            norm_name = self.normalize_name(french_device.get("name", ""), french_device.get("brand"))
             score = french_device.get("score")
             if norm_name in france_score_map:
                 france_score_map[norm_name].append(score)
@@ -165,7 +140,7 @@ class FrenchRepairabilityScraper:
                 france_score_map[norm_name] = [score]
 
         # Normalize the input device name + brand
-        normalized_device_name = normalize_name(device.get("name", ""), device.get("brand"))
+        normalized_device_name = self.normalize_name(device.get("name", ""), device.get("brand"))
 
         possible_scores = france_score_map.get(normalized_device_name)
         if not possible_scores:
@@ -178,3 +153,29 @@ class FrenchRepairabilityScraper:
             most_common_score = possible_scores[0]
 
         return most_common_score
+
+    def normalize_name(self, name, brand=None):
+        name = name.lower().strip()
+        if brand:
+            brand = brand.lower().strip()
+            name = name.replace(brand, "").strip()
+
+        se_2020_patterns = [
+            r"iphone se\s*2020",
+            r"iphone se\s*2e\s*génération",
+            r"iphone se\s*second\s*gen(ération)?",
+            r"iphone se\s*2nd\s*gen(ération)?",
+            r"iphone se 2a génération",  # possible typo
+        ]
+        for pattern in se_2020_patterns:
+            if re.search(pattern, name):
+                return "iphone se 2020"
+
+        # Remove storage sizes, model codes, and colors
+        name = re.sub(r'\b\d+\s*(go|gb)\b', '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\b(a\d{4})\b', '', name, flags=re.IGNORECASE)
+        name = re.sub(
+            r'\b(rouge|red|noir|blanc|mauve|jaune|vert|argent|or|silver|gold|black|white|green|purple|yellow)\b',
+            '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\s+', ' ', name).strip()
+        return name
