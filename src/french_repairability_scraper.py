@@ -38,7 +38,7 @@ class FrenchRepairabilityScraper:
         logger.warning(f"Failed to fetch {url} after {retries} attempts")
         return None
 
-    async def parse_smartphones(self, html: str) -> list[Any] | None:
+    async def parse_smartphones(self, html: str) -> list[dict[str, Any]]:
         soup = BeautifulSoup(html, "html.parser")
         products = soup.select("ul.products li.product")
         smartphones = []
