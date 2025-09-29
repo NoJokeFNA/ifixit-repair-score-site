@@ -792,12 +792,14 @@ async def main_async() -> None:
     for cat in args.categories:
         devices.extend(child_map.get(cat, []))
 
+    devices = devices[:20]
+
     devices = list(dict.fromkeys(devices))
     if not devices:
         logger.warning("No demo devices found.")
         return
 
-    print_device_data(client, devices, args.scores_output)
+    print_device_data(client, devices, french_scraper, args.scores_output)
 
 
 def run_main():
