@@ -57,15 +57,18 @@ class FrenchRepairabilityScraper:
 
                 name = (name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None)
                 name = name.replace("Smartphone ", "")
+                brand = (brand.get_text(strip=True) if (brand := p.select_one(
+                        "div.card-description table tbody tr:nth-child(1) strong")) else None)
+                model = (model.get_text(strip=True) if (model := p.select_one(
+                        "div.card-description table tbody tr:nth-child(2) strong")) else None)
+                last_updated = (last_updated.get_text(strip=True) if (last_updated := p.select_one(
+                        "div.card-description table tbody tr:nth-child(3) strong")) else None)
                 smartphone = {
                     "name": name,
-                    "normalized_name": self.normalize_name(name),
-                    "brand": (brand.get_text(strip=True) if (brand := p.select_one(
-                        "div.card-description table tbody tr:nth-child(1) strong")) else None),
-                    "model": (modele.get_text(strip=True) if (modele := p.select_one(
-                        "div.card-description table tbody tr:nth-child(2) strong")) else None),
-                    "last_updated": (last_updated.get_text(strip=True) if (last_updated := p.select_one(
-                        "div.card-description table tbody tr:nth-child(3) strong")) else None),
+                    "normalized_name": self.normalize_name(name, brand),
+                    "brand": brand,
+                    "model": model,
+                    "last_updated": last_updated,
                     "repairability_score": repairability_score,
                 }
                 smartphones.append(smartphone)
@@ -128,25 +131,22 @@ class FrenchRepairabilityScraper:
             return self.french_scores
 
     def match_device_to_french_score(self, device: dict) -> Optional[float]:
-        """Match a device to its French repairability score using normalization logic from test.py"""
-        # Build a map: normalized French device name -> list of scores
+        """Match a device to its French repairability score using normalization logic"""
         france_score_map = {}
+        print(self.french_scores)
         for french_device in self.french_scores:
-            norm_name = self.normalize_name(french_device.get("name", ""), french_device.get("brand"))
-            score = french_device.get("score")
+            norm_name = french_device.get("normalized_name", "")
+            score = french_device.get("repairability_score")
             if norm_name in france_score_map:
                 france_score_map[norm_name].append(score)
             else:
                 france_score_map[norm_name] = [score]
 
-        # Normalize the input device name + brand
         normalized_device_name = self.normalize_name(device.get("name", ""), device.get("brand"))
-
         possible_scores = france_score_map.get(normalized_device_name)
         if not possible_scores:
             return None
 
-        # Return the most common score (like in test.py)
         try:
             most_common_score = max(set(possible_scores), key=possible_scores.count)
         except Exception:
@@ -165,7 +165,7 @@ class FrenchRepairabilityScraper:
             r"iphone se\s*2e\s*génération",
             r"iphone se\s*second\s*gen(ération)?",
             r"iphone se\s*2nd\s*gen(ération)?",
-            r"iphone se 2a génération",  # possible typo
+            r"iphone se 2a génération",
         ]
         for pattern in se_2020_patterns:
             if re.search(pattern, name):
