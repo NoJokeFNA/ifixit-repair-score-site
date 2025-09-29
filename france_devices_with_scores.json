@@ -9,7 +9,7 @@
   },
   {
     "name": "HMD Skyline",
-    "normalized_name": "hmd skyline",
+    "normalized_name": "skyline",
     "brand": "HMD",
     "model": "Skyline",
     "last_updated": "19/07/2024",
@@ -17,7 +17,7 @@
   },
   {
     "name": "HMD Pulse",
-    "normalized_name": "hmd pulse",
+    "normalized_name": "pulse",
     "brand": "HMD",
     "model": "Pulse",
     "last_updated": "24/04/2024",
@@ -25,7 +25,7 @@
   },
   {
     "name": "HMD Pulse Plus",
-    "normalized_name": "hmd pulse plus",
+    "normalized_name": "pulse plus",
     "brand": "HMD",
     "model": "Pulse Plus",
     "last_updated": "24/04/2024",
@@ -33,7 +33,7 @@
   },
   {
     "name": "HMD Pulse Pro",
-    "normalized_name": "hmd pulse pro",
+    "normalized_name": "pulse pro",
     "brand": "HMD",
     "model": "Pulse Pro",
     "last_updated": "24/04/2024",
@@ -41,7 +41,7 @@
   },
   {
     "name": "HMD Fusion",
-    "normalized_name": "hmd fusion",
+    "normalized_name": "fusion",
     "brand": "HMD",
     "model": "Fusion",
     "last_updated": "19/09/2024",
@@ -49,7 +49,7 @@
   },
   {
     "name": "HTC U24 PRO",
-    "normalized_name": "htc u24 pro",
+    "normalized_name": "u24 pro",
     "brand": "HTC",
     "model": null,
     "last_updated": null,
@@ -57,7 +57,7 @@
   },
   {
     "name": "Sony Xperia 5 V",
-    "normalized_name": "sony xperia 5 v",
+    "normalized_name": "xperia 5 v",
     "brand": "SONY",
     "model": "Xperia 5 V",
     "last_updated": "19/07/2023",
@@ -65,7 +65,7 @@
   },
   {
     "name": "Sony Xperia 10 V",
-    "normalized_name": "sony xperia 10 v",
+    "normalized_name": "xperia 10 v",
     "brand": "SONY",
     "model": "Xperia 10 V",
     "last_updated": "17/04/2023",
@@ -73,7 +73,7 @@
   },
   {
     "name": "Sony Xperia 1 V",
-    "normalized_name": "sony xperia 1 v",
+    "normalized_name": "xperia 1 v",
     "brand": "SONY",
     "model": "Xperia 1 V",
     "last_updated": "17/04/2023",
@@ -81,7 +81,7 @@
   },
   {
     "name": "Gigaset GS5 Lite",
-    "normalized_name": "gigaset gs5 lite",
+    "normalized_name": "gs5 lite",
     "brand": "GIGASET",
     "model": "GS5 Lite",
     "last_updated": "10/07/2022",
@@ -89,7 +89,7 @@
   },
   {
     "name": "Gigaset GS5 senior",
-    "normalized_name": "gigaset gs5 senior",
+    "normalized_name": "gs5 senior",
     "brand": "GIGASET",
     "model": "GS5 Senior",
     "last_updated": "10/07/2022",
@@ -97,7 +97,7 @@
   },
   {
     "name": "Gigaset GX6",
-    "normalized_name": "gigaset gx6",
+    "normalized_name": "gx6",
     "brand": "GIGASET",
     "model": "GX6",
     "last_updated": "02/03/2023",
@@ -105,7 +105,7 @@
   },
   {
     "name": "Gigaset GX4",
-    "normalized_name": "gigaset gx4",
+    "normalized_name": "gx4",
     "brand": "GIGASET",
     "model": "GX4",
     "last_updated": "05/02/2023",
@@ -113,7 +113,7 @@
   },
   {
     "name": "ATHESI E55",
-    "normalized_name": "athesi e55",
+    "normalized_name": "e55",
     "brand": "ATHESI",
     "model": "E55",
     "last_updated": "01/12/2023",
@@ -121,7 +121,7 @@
   },
   {
     "name": "ATHESI AP5501",
-    "normalized_name": "athesi ap5501",
+    "normalized_name": "ap5501",
     "brand": "ATHESI",
     "model": "3760310040345",
     "last_updated": "01/12/2023",
@@ -129,7 +129,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia C32",
-    "normalized_name": "hmd global oy nokia c32",
+    "normalized_name": "nokia c32",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA C32",
     "last_updated": "09/06/2023",
@@ -137,7 +137,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia XR21",
-    "normalized_name": "hmd global oy nokia xr21",
+    "normalized_name": "nokia xr21",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA XR21",
     "last_updated": "23/05/2023",
@@ -145,7 +145,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G42 5G",
-    "normalized_name": "hmd global oy nokia g42 5g",
+    "normalized_name": "nokia g42 5g",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G42 5G",
     "last_updated": "11/07/2023",
@@ -153,7 +153,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia C12",
-    "normalized_name": "hmd global oy nokia c12",
+    "normalized_name": "nokia c12",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA C12",
     "last_updated": "20/06/2023",
@@ -161,7 +161,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia C22",
-    "normalized_name": "hmd global oy nokia c22",
+    "normalized_name": "nokia c22",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA C22",
     "last_updated": "20/06/2023",
@@ -169,7 +169,7 @@
   },
   {
     "name": "HTC U23 PRO",
-    "normalized_name": "htc u23 pro",
+    "normalized_name": "u23 pro",
     "brand": "HTC",
     "model": null,
     "last_updated": null,
@@ -177,7 +177,7 @@
   },
   {
     "name": "DORO 8220",
-    "normalized_name": "doro 8220",
+    "normalized_name": "8220",
     "brand": "DORO",
     "model": null,
     "last_updated": null,
@@ -185,7 +185,7 @@
   },
   {
     "name": "DORO 8100 PLUS",
-    "normalized_name": "doro 8100 plus",
+    "normalized_name": "8100 plus",
     "brand": "DORO",
     "model": null,
     "last_updated": "19/10/2021",
@@ -193,7 +193,7 @@
   },
   {
     "name": "DORO 8100",
-    "normalized_name": "doro 8100",
+    "normalized_name": "8100",
     "brand": "DORO",
     "model": null,
     "last_updated": "19/10/2021",
@@ -201,7 +201,7 @@
   },
   {
     "name": "DORO 8050",
-    "normalized_name": "doro 8050",
+    "normalized_name": "8050",
     "brand": "DORO",
     "model": "DSB-0230",
     "last_updated": "–",
@@ -209,7 +209,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia XR20",
-    "normalized_name": "hmd global oy nokia xr20",
+    "normalized_name": "nokia xr20",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA XR20",
     "last_updated": "10/09/2021",
@@ -217,7 +217,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia X30 5G",
-    "normalized_name": "hmd global oy nokia x30 5g",
+    "normalized_name": "nokia x30 5g",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA X30 5G",
     "last_updated": "04/11/2022",
@@ -225,7 +225,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia X20",
-    "normalized_name": "hmd global oy nokia x20",
+    "normalized_name": "nokia x20",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA X20",
     "last_updated": "13/04/2021",
@@ -233,7 +233,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia X10",
-    "normalized_name": "hmd global oy nokia x10",
+    "normalized_name": "nokia x10",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA X10",
     "last_updated": "13/04/2021",
@@ -241,7 +241,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G22",
-    "normalized_name": "hmd global oy nokia g22",
+    "normalized_name": "nokia g22",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G22",
     "last_updated": "10/03/2023",
@@ -249,7 +249,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G20",
-    "normalized_name": "hmd global oy nokia g20",
+    "normalized_name": "nokia g20",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G20",
     "last_updated": "13/04/2021",
@@ -257,7 +257,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G10",
-    "normalized_name": "hmd global oy nokia g10",
+    "normalized_name": "nokia g10",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G10",
     "last_updated": "13/04/2021",
@@ -265,7 +265,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G60",
-    "normalized_name": "hmd global oy nokia g60",
+    "normalized_name": "nokia g60",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G60",
     "last_updated": "07/10/2022",
@@ -273,7 +273,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G21",
-    "normalized_name": "hmd global oy nokia g21",
+    "normalized_name": "nokia g21",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G21",
     "last_updated": "25/02/2022",
@@ -281,7 +281,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia G11",
-    "normalized_name": "hmd global oy nokia g11",
+    "normalized_name": "nokia g11",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA G11",
     "last_updated": "25/02/2022",
@@ -289,7 +289,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia C21 Plus",
-    "normalized_name": "hmd global oy nokia c21 plus",
+    "normalized_name": "nokia c21 plus",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA C21 Plus",
     "last_updated": "21/04/2022",
@@ -297,7 +297,7 @@
   },
   {
     "name": "HMD GLOBAL OY Nokia 1.4",
-    "normalized_name": "hmd global oy nokia 1.4",
+    "normalized_name": "nokia 1.4",
     "brand": "HMD GLOBAL OY",
     "model": "NOKIA 1.4",
     "last_updated": "01/03/2021",
@@ -305,7 +305,7 @@
   },
   {
     "name": "Athesi AP5702",
-    "normalized_name": "athesi ap5702",
+    "normalized_name": "ap5702",
     "brand": "ATHESI",
     "model": "3760310040307",
     "last_updated": "17/02/2022",
@@ -313,7 +313,7 @@
   },
   {
     "name": "QILIVE 5.5 » Q2 21",
-    "normalized_name": "qilive 5.5 » q2 21",
+    "normalized_name": "5.5 » q2 21",
     "brand": "QILIVE",
     "model": "600091627",
     "last_updated": "15/09/2021",
@@ -321,7 +321,7 @@
   },
   {
     "name": "Athesi RT55",
-    "normalized_name": "athesi rt55",
+    "normalized_name": "rt55",
     "brand": "ATHESI",
     "model": "RT55",
     "last_updated": "22/11/2021",
@@ -329,7 +329,7 @@
   },
   {
     "name": "Athesi E5L",
-    "normalized_name": "athesi e5l",
+    "normalized_name": "e5l",
     "brand": "ATHESI",
     "model": "E5L",
     "last_updated": "22/11/2021",
@@ -337,7 +337,7 @@
   },
   {
     "name": "Spectralink Versity 9553",
-    "normalized_name": "spectralink versity 9553",
+    "normalized_name": "versity 9553",
     "brand": "SPECTRALINK",
     "model": "Versity 9553",
     "last_updated": "03/11/2021",
@@ -345,7 +345,7 @@
   },
   {
     "name": "Spectralink Versity 9653",
-    "normalized_name": "spectralink versity 9653",
+    "normalized_name": "versity 9653",
     "brand": "SPECTRALINK",
     "model": "Versity 9653",
     "last_updated": "03/11/2021",
@@ -353,7 +353,7 @@
   },
   {
     "name": "Spectralink Versity 9640",
-    "normalized_name": "spectralink versity 9640",
+    "normalized_name": "versity 9640",
     "brand": "SPECTRALINK",
     "model": "Versity 9640",
     "last_updated": "03/11/2021",
@@ -361,7 +361,7 @@
   },
   {
     "name": "Spectralink Versity 9540",
-    "normalized_name": "spectralink versity 9540",
+    "normalized_name": "versity 9540",
     "brand": "SPECTRALINK",
     "model": "Versity 9540",
     "last_updated": "03/11/2021",
@@ -369,7 +369,7 @@
   },
   {
     "name": "Spectralink Versity 9253",
-    "normalized_name": "spectralink versity 9253",
+    "normalized_name": "versity 9253",
     "brand": "SPECTRALINK",
     "model": "Versity 9253",
     "last_updated": "03/11/2021",
@@ -377,7 +377,7 @@
   },
   {
     "name": "Spectralink Versity 9240",
-    "normalized_name": "spectralink versity 9240",
+    "normalized_name": "versity 9240",
     "brand": "SPECTRALINK",
     "model": "Versity 9240",
     "last_updated": "03/11/2021",
@@ -385,7 +385,7 @@
   },
   {
     "name": "Google – Pixel 6 PRO",
-    "normalized_name": "google – pixel 6 pro",
+    "normalized_name": "– pixel 6 pro",
     "brand": "Google",
     "model": "Pixel 6 PRO",
     "last_updated": "?",
@@ -393,7 +393,7 @@
   },
   {
     "name": "Google – Pixel 6",
-    "normalized_name": "google – pixel 6",
+    "normalized_name": "– pixel 6",
     "brand": "Google",
     "model": "Pixel 6",
     "last_updated": "?",
@@ -401,7 +401,7 @@
   },
   {
     "name": "KAPSYS Minivision2",
-    "normalized_name": "kapsys minivision2",
+    "normalized_name": "minivision2",
     "brand": "Kapsys",
     "model": "Minivision2",
     "last_updated": "18/12/2020",
@@ -409,7 +409,7 @@
   },
   {
     "name": "KAPSYS Smartvision2",
-    "normalized_name": "kapsys smartvision2",
+    "normalized_name": "smartvision2",
     "brand": "Kapsys",
     "model": "Smartvision2",
     "last_updated": "18/12/2020",
@@ -417,7 +417,7 @@
   },
   {
     "name": "Fairphone 4 5G (8GB, 256GB)",
-    "normalized_name": "fairphone 4 5g (, )",
+    "normalized_name": "4 5g (, )",
     "brand": "Fairphone",
     "model": "FP4",
     "last_updated": "21/09/2021",
@@ -425,7 +425,7 @@
   },
   {
     "name": "Fairphone 4 5G (6GB, 128GB)",
-    "normalized_name": "fairphone 4 5g (, )",
+    "normalized_name": "4 5g (, )",
     "brand": "Fairphone",
     "model": "FP4",
     "last_updated": "21/09/2021",
@@ -433,7 +433,7 @@
   },
   {
     "name": "Neva Leaf GH5931",
-    "normalized_name": "neva leaf gh5931",
+    "normalized_name": "gh5931",
     "brand": "NEVA LEAF",
     "model": null,
     "last_updated": "29/01/2021",
@@ -441,7 +441,7 @@
   },
   {
     "name": "APPLE iPhone 13 Pro",
-    "normalized_name": "apple iphone 13 pro",
+    "normalized_name": "iphone 13 pro",
     "brand": "APPLE",
     "model": null,
     "last_updated": null,
@@ -449,7 +449,7 @@
   },
   {
     "name": "APPLE iPhone 13",
-    "normalized_name": "apple iphone 13",
+    "normalized_name": "iphone 13",
     "brand": "APPLE",
     "model": null,
     "last_updated": null,
@@ -457,7 +457,7 @@
   },
   {
     "name": "XIAOMI Redmi Note10 5G 64 Go Silver",
-    "normalized_name": "xiaomi redmi note10 5g",
+    "normalized_name": "redmi note10 5g",
     "brand": "XIAOMI",
     "model": "Redmi Note 10 5G",
     "last_updated": "07.04.2021",
@@ -465,7 +465,7 @@
   },
   {
     "name": "HUAWEI P20 Lite 64 Go Or",
-    "normalized_name": "huawei p20 lite",
+    "normalized_name": "",
     "brand": "Huawei P20 lite",
     "model": "ANE-LX1",
     "last_updated": "19 janvier 2021",
@@ -473,7 +473,7 @@
   },
   {
     "name": "XIAOMI Mi 10 5G Vert 256 Go",
-    "normalized_name": "xiaomi mi 10 5g",
+    "normalized_name": "mi 10 5g",
     "brand": "XIAOMI",
     "model": "J2 – Mi 10",
     "last_updated": "2021.01.04",
@@ -481,7 +481,7 @@
   },
   {
     "name": "OnePlus 9 Pro 8Go Ram 256Go Argent Morning Mist 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 pro ram morning mist 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 pro ram morning mist 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": "–",
     "last_updated": "?",
@@ -489,7 +489,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 128Go Argent",
-    "normalized_name": "apple iphone 12 pro max",
+    "normalized_name": "iphone 12 pro max",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -505,7 +505,7 @@
   },
   {
     "name": "Oneplus 9 12 Go 256 Go 6,55 Snapdragon 888 50MP 65W Bleu",
-    "normalized_name": "oneplus 9 6,55 snapdragon 888 50mp 65w bleu",
+    "normalized_name": "9 6,55 snapdragon 888 50mp 65w bleu",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -513,7 +513,7 @@
   },
   {
     "name": "ASUS ROG 5 16GB 256GB 65W Snapdragon 888 NFC 6.78″ Noir",
-    "normalized_name": "asus rog 5 65w snapdragon 888 nfc 6.78″",
+    "normalized_name": "rog 5 65w snapdragon 888 nfc 6.78″",
     "brand": "ASUS",
     "model": "–",
     "last_updated": "?",
@@ -521,7 +521,7 @@
   },
   {
     "name": "XIAOMI MI 9 Lite Bleu 128 Go",
-    "normalized_name": "xiaomi mi 9 lite bleu",
+    "normalized_name": "mi 9 lite bleu",
     "brand": "XIAOMI",
     "model": "Mi 9 Lite (128 Go)",
     "last_updated": "2021.01.04",
@@ -529,7 +529,7 @@
   },
   {
     "name": "HUAWEI P40 128 Go Gris",
-    "normalized_name": "huawei p40 gris",
+    "normalized_name": "gris",
     "brand": "Huawei P40",
     "model": "ANA-NX9",
     "last_updated": "19 janvier 2021",
@@ -537,7 +537,7 @@
   },
   {
     "name": "KXD 6A",
-    "normalized_name": "kxd 6a",
+    "normalized_name": "6a",
     "brand": "KXD",
     "model": "KXD 6A",
     "last_updated": "?",
@@ -545,7 +545,7 @@
   },
   {
     "name": "XIAOMI Mi A3 Noir 64 Go",
-    "normalized_name": "xiaomi mi a3",
+    "normalized_name": "mi a3",
     "brand": "XIAOMI",
     "model": "Mi A3",
     "last_updated": "2021.01.04",
@@ -561,7 +561,7 @@
   },
   {
     "name": "4G KXD D58",
-    "normalized_name": "4g kxd d58",
+    "normalized_name": "4g d58",
     "brand": "KXD",
     "model": "KXD D58",
     "last_updated": "?",
@@ -569,7 +569,7 @@
   },
   {
     "name": "HONOR 9X Midnight Black 128 Go",
-    "normalized_name": "honor 9x midnight",
+    "normalized_name": "9x midnight",
     "brand": "HONOR",
     "model": "STK-LX1",
     "last_updated": null,
@@ -577,7 +577,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A10 Bleu",
-    "normalized_name": "samsung galaxy a10 bleu",
+    "normalized_name": "galaxy a10 bleu",
     "brand": "SAMSUNG",
     "model": "SM-A105F",
     "last_updated": "30.Nov.2020",
@@ -593,7 +593,7 @@
   },
   {
     "name": "XIAOMI MI 9 Lite Gris 128 Go",
-    "normalized_name": "xiaomi mi 9 lite gris",
+    "normalized_name": "mi 9 lite gris",
     "brand": "XIAOMI",
     "model": "Mi 9 Lite (128 Go)",
     "last_updated": "2021.01.04",
@@ -601,7 +601,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 T Blanc 64 Go",
-    "normalized_name": "xiaomi redmi note 8 t",
+    "normalized_name": "redmi note 8 t",
     "brand": "XIAOMI",
     "model": "Redmi Note 8T",
     "last_updated": "2021.01.04",
@@ -609,7 +609,7 @@
   },
   {
     "name": "Huawei Y6 2018 Bleu",
-    "normalized_name": "huawei y6 2018 bleu",
+    "normalized_name": "bleu",
     "brand": "Huawei Y6 2018",
     "model": "ATU-L21",
     "last_updated": "19 janvier 2021",
@@ -617,7 +617,7 @@
   },
   {
     "name": "HUAWEI P Smart Z 64 Go Noir",
-    "normalized_name": "huawei p smart z",
+    "normalized_name": "",
     "brand": "Huawei P smart Z",
     "model": "STK-LX1",
     "last_updated": "19 janvier 2021",
@@ -625,7 +625,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A50 – Double sim 128 Go Noir",
-    "normalized_name": "samsung galaxy a50 – double sim",
+    "normalized_name": "galaxy a50 – double sim",
     "brand": "SAMSUNG",
     "model": "SM-A505F",
     "last_updated": "30.Nov.2020",
@@ -633,7 +633,7 @@
   },
   {
     "name": "LOGICOM Le Hola Rouge 8 Go",
-    "normalized_name": "logicom le hola",
+    "normalized_name": "le hola",
     "brand": "LOGICOM",
     "model": "HOLA_FR_1+8GO_ROUG",
     "last_updated": "03/11/2020",
@@ -641,7 +641,7 @@
   },
   {
     "name": "WIKO Y61 Gold",
-    "normalized_name": "wiko y61",
+    "normalized_name": "y61",
     "brand": "Wiko",
     "model": "Y61 (K560)",
     "last_updated": "09/12/2021",
@@ -649,7 +649,7 @@
   },
   {
     "name": "HUAWEI P40 Pro 256 Go Or",
-    "normalized_name": "huawei p40 pro",
+    "normalized_name": "",
     "brand": "Huawei P40 Pro",
     "model": "ELS-NX9",
     "last_updated": "19 janvier 2021",
@@ -673,7 +673,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A50 – Double sim 128 Go Blanc",
-    "normalized_name": "samsung galaxy a50 – double sim",
+    "normalized_name": "galaxy a50 – double sim",
     "brand": "SAMSUNG",
     "model": "SM-A505F",
     "last_updated": "30.Nov.2020",
@@ -681,7 +681,7 @@
   },
   {
     "name": "HUAWEI P30 Pro 128 Go Lavend",
-    "normalized_name": "huawei p30 pro lavend",
+    "normalized_name": "lavend",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -689,7 +689,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 7 32 Go Bleu Neptune",
-    "normalized_name": "xiaomi redmi note 7 bleu neptune",
+    "normalized_name": "redmi note 7 bleu neptune",
     "brand": "XIAOMI",
     "model": "Redmi Note 7 (32 Go)",
     "last_updated": "2021.01.04",
@@ -697,7 +697,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20+ 128 Go Gris",
-    "normalized_name": "samsung galaxy s20+ gris",
+    "normalized_name": "galaxy s20+ gris",
     "brand": "Samsung",
     "model": "SM-G985F",
     "last_updated": "30.Nov.2020",
@@ -705,7 +705,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A41 Noir",
-    "normalized_name": "samsung galaxy a41",
+    "normalized_name": "galaxy a41",
     "brand": "SAMSUNG",
     "model": "SM-A415F",
     "last_updated": "30.Nov.2020",
@@ -713,7 +713,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Blanc Glacier 128 Go",
-    "normalized_name": "xiaomi redmi note 9s glacier",
+    "normalized_name": "redmi note 9s glacier",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -729,7 +729,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A41 Bleu",
-    "normalized_name": "samsung galaxy a41 bleu",
+    "normalized_name": "galaxy a41 bleu",
     "brand": "SAMSUNG",
     "model": "SM-A415F",
     "last_updated": "30.Nov.2020",
@@ -737,7 +737,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Bleu Aurore 128 Go",
-    "normalized_name": "xiaomi redmi note 9s bleu aurore",
+    "normalized_name": "redmi note 9s bleu aurore",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -753,7 +753,7 @@
   },
   {
     "name": "HUAWEI P40 Lite 128 Go Vert (services Google non intégrés)",
-    "normalized_name": "huawei p40 lite (services google non intégrés)",
+    "normalized_name": "(services google non intégrés)",
     "brand": "Huawei P40 lite",
     "model": "JNY-LX1",
     "last_updated": "19 janvier 2021",
@@ -761,7 +761,7 @@
   },
   {
     "name": "HUAWEI P20 Lite 64 Go Klein Blue",
-    "normalized_name": "huawei p20 lite klein blue",
+    "normalized_name": "klein blue",
     "brand": "Huawei P20 lite",
     "model": "ANE-LX1",
     "last_updated": "19 janvier 2021",
@@ -777,7 +777,7 @@
   },
   {
     "name": "HUAWEI P30 Lite 128 Go Bleu",
-    "normalized_name": "huawei p30 lite bleu",
+    "normalized_name": "lite bleu",
     "brand": "Huawei P30",
     "model": "MAR-LX1A",
     "last_updated": "19 janvier 2021",
@@ -785,7 +785,7 @@
   },
   {
     "name": "senior MS459 Maxcom avec étui de protection",
-    "normalized_name": "senior ms459 maxcom avec étui de protection",
+    "normalized_name": "senior ms459 avec étui de protection",
     "brand": "Maxcom",
     "model": "–",
     "last_updated": "?",
@@ -793,7 +793,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Pro Gris interstellaire 128 Go",
-    "normalized_name": "xiaomi redmi note 9 pro gris interstellaire",
+    "normalized_name": "redmi note 9 pro gris interstellaire",
     "brand": "XIAOMI",
     "model": "XIAOMIREDMINO9PG",
     "last_updated": "?",
@@ -801,7 +801,7 @@
   },
   {
     "name": "OnePlus Nord N100 64Go Gris mat",
-    "normalized_name": "oneplus nord n100 gris mat",
+    "normalized_name": "nord n100 gris mat",
     "brand": "OnePlus",
     "model": "ONEPLUS N100",
     "last_updated": "17/03/2021",
@@ -809,7 +809,7 @@
   },
   {
     "name": "XIAOMI POCO F2 Pro 128Go Blanc",
-    "normalized_name": "xiaomi poco f2 pro",
+    "normalized_name": "poco f2 pro",
     "brand": "XIAOMI",
     "model": "POCO F2 (128 Go)",
     "last_updated": "2021.01.04",
@@ -817,7 +817,7 @@
   },
   {
     "name": "MOTOROLA G100 128GO Bleu",
-    "normalized_name": "motorola g100 bleu",
+    "normalized_name": "g100 bleu",
     "brand": "MOTOROLA",
     "model": "Moto G100",
     "last_updated": "03/03/2021",
@@ -825,7 +825,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20 FE 4G Blanc (2021)",
-    "normalized_name": "samsung galaxy s20 fe 4g (2021)",
+    "normalized_name": "galaxy s20 fe 4g (2021)",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -833,7 +833,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 Pro Vert 64 Go",
-    "normalized_name": "xiaomi redmi note 8 pro",
+    "normalized_name": "redmi note 8 pro",
     "brand": "XIAOMI",
     "model": "XIA6941059634621",
     "last_updated": "?",
@@ -841,7 +841,7 @@
   },
   {
     "name": "SmartphoneXIAOMI Redmi Note 10S 64Go Bleu",
-    "normalized_name": "smartphonexiaomi redmi note 10s bleu",
+    "normalized_name": "smartphone redmi note 10s bleu",
     "brand": "XIAOMI",
     "model": "Redmi Note 10S",
     "last_updated": null,
@@ -849,7 +849,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20 FE 4G Violet (2021)",
-    "normalized_name": "samsung galaxy s20 fe 4g violet (2021)",
+    "normalized_name": "galaxy s20 fe 4g violet (2021)",
     "brand": "Samsung",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -857,7 +857,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Pro Blanc glacier 128 Go",
-    "normalized_name": "xiaomi redmi note 9 pro glacier",
+    "normalized_name": "redmi note 9 pro glacier",
     "brand": "XIAOMI",
     "model": "XIAOMIREDMINO9PB",
     "last_updated": "?",
@@ -865,7 +865,7 @@
   },
   {
     "name": "APPLE iPhone 11 256Go Blanc",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -873,7 +873,7 @@
   },
   {
     "name": "HUAWEI P40 Lite 128 Go Noir (services Google non intégrés)",
-    "normalized_name": "huawei p40 lite (services google non intégrés)",
+    "normalized_name": "(services google non intégrés)",
     "brand": "Huawei P40 lite",
     "model": "HUAWEIP40LITJMI",
     "last_updated": "?",
@@ -881,7 +881,7 @@
   },
   {
     "name": "Huawei PSMART 2021 Crush Green (services Google non intégrés)",
-    "normalized_name": "huawei psmart 2021 crush (services google non intégrés)",
+    "normalized_name": "psmart 2021 crush (services google non intégrés)",
     "brand": "Huawei",
     "model": "HUAPSMARTGREEN",
     "last_updated": "?",
@@ -889,7 +889,7 @@
   },
   {
     "name": "APPLE iPhone 11 256Go Mauve",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -897,7 +897,7 @@
   },
   {
     "name": "HUAWEI Y6p Midnight Black 64 Go (Services Google non intégrés)",
-    "normalized_name": "huawei y6p midnight (services google non intégrés)",
+    "normalized_name": "y6p midnight (services google non intégrés)",
     "brand": "Huawei",
     "model": "Y6PMB64",
     "last_updated": "?",
@@ -905,7 +905,7 @@
   },
   {
     "name": "HUAWEI Y6p Phantom Purple 64 Go (Services Google non intégrés)",
-    "normalized_name": "huawei y6p phantom (services google non intégrés)",
+    "normalized_name": "phantom (services google non intégrés)",
     "brand": "Huawei Y6p",
     "model": "HUAWEIY6PPP64",
     "last_updated": "?",
@@ -913,7 +913,7 @@
   },
   {
     "name": "APPLE iPhone XR 128Go Jaune",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "APPLE",
     "model": "A2105",
     "last_updated": "6 novembre 2020",
@@ -921,7 +921,7 @@
   },
   {
     "name": "APPLE iPhone XR 128Go Bleu",
-    "normalized_name": "apple iphone xr bleu",
+    "normalized_name": "iphone xr bleu",
     "brand": "APPLE",
     "model": "A2105",
     "last_updated": "6 novembre 2020",
@@ -929,7 +929,7 @@
   },
   {
     "name": "HUAWEI Nova 5T 128 Go Noir",
-    "normalized_name": "huawei nova 5t",
+    "normalized_name": "",
     "brand": "Huawei nova 5T",
     "model": "–",
     "last_updated": "?",
@@ -937,7 +937,7 @@
   },
   {
     "name": "XIAOMI Redmi 8 Noir 32 Go",
-    "normalized_name": "xiaomi redmi 8",
+    "normalized_name": "redmi 8",
     "brand": "XIAOMI",
     "model": "Redmi 8",
     "last_updated": "2021.01.04",
@@ -945,7 +945,7 @@
   },
   {
     "name": "HUAWEI P40 Lite 5G Midnight Black 128 Go (Services Google non intégrés)",
-    "normalized_name": "huawei p40 lite 5g midnight (services google non intégrés)",
+    "normalized_name": "p40 lite 5g midnight (services google non intégrés)",
     "brand": "Huawei",
     "model": "JNY-LX1",
     "last_updated": "19 janvier 2021",
@@ -953,7 +953,7 @@
   },
   {
     "name": "Huawei Y6 2018 Or",
-    "normalized_name": "huawei y6 2018",
+    "normalized_name": "",
     "brand": "Huawei Y6 2018",
     "model": "ATU-L21",
     "last_updated": "19 janvier 2021",
@@ -961,7 +961,7 @@
   },
   {
     "name": "HUAWEI P40 Lite E Aurora Blue 64 Go (Services Google non intégrés)",
-    "normalized_name": "huawei p40 lite e aurora blue (services google non intégrés)",
+    "normalized_name": "e aurora blue (services google non intégrés)",
     "brand": "Huawei P40 lite",
     "model": "51095DDS",
     "last_updated": "?",
@@ -969,7 +969,7 @@
   },
   {
     "name": "KXD A1",
-    "normalized_name": "kxd a1",
+    "normalized_name": "a1",
     "brand": "KXD",
     "model": "KXD A1",
     "last_updated": "?",
@@ -977,7 +977,7 @@
   },
   {
     "name": "Oneplus 9 Pro 12 Go 256 Go 6,7 pouces Snapdragon 888 50MP 65W Argent",
-    "normalized_name": "oneplus 9 pro 6,7 pouces snapdragon 888 50mp 65w",
+    "normalized_name": "9 pro 6,7 pouces snapdragon 888 50mp 65w",
     "brand": "OnePlus",
     "model": "–",
     "last_updated": "?",
@@ -985,7 +985,7 @@
   },
   {
     "name": "XIAOMI POCO X3 64Go Bleu",
-    "normalized_name": "xiaomi poco x3 bleu",
+    "normalized_name": "poco x3 bleu",
     "brand": "XIAOMI",
     "model": "XIA6941059650430",
     "last_updated": "?",
@@ -993,7 +993,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note10 Lite Noir",
-    "normalized_name": "samsung galaxy note10 lite",
+    "normalized_name": "galaxy note10 lite",
     "brand": "SAMSUNG",
     "model": "SAMGALAXYN10LN",
     "last_updated": "?",
@@ -1001,7 +1001,7 @@
   },
   {
     "name": "APPLE iPhone 12 256Go Vert",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -1009,7 +1009,7 @@
   },
   {
     "name": "HUAWEI Mate 40 Pro Black (services Google non intégrés)",
-    "normalized_name": "huawei mate 40 pro (services google non intégrés)",
+    "normalized_name": "mate 40 pro (services google non intégrés)",
     "brand": "Huawei",
     "model": "HUAMATE40PROBLA",
     "last_updated": "?",
@@ -1017,7 +1017,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Pro Noir 256 Go",
-    "normalized_name": "xiaomi mi note 10 pro",
+    "normalized_name": "mi note 10 pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -1025,7 +1025,7 @@
   },
   {
     "name": "Samsung Galaxy A31 Noir",
-    "normalized_name": "samsung galaxy a31",
+    "normalized_name": "galaxy a31",
     "brand": "Samsung",
     "model": "SAMGALAXYA31N",
     "last_updated": "?",
@@ -1033,7 +1033,7 @@
   },
   {
     "name": "XIAOMI Redmi 7A 16Go Noir",
-    "normalized_name": "xiaomi redmi 7a",
+    "normalized_name": "redmi 7a",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -1041,7 +1041,7 @@
   },
   {
     "name": "OPPO Find X2 Neo 256Go Noir",
-    "normalized_name": "oppo find x2 neo",
+    "normalized_name": "find x2 neo",
     "brand": "OPPO",
     "model": "OPP6944284660106",
     "last_updated": "?",
@@ -1049,7 +1049,7 @@
   },
   {
     "name": "Oneplus 9 Pro 12 Go 256 Go 6,7 pouces Snapdragon 888 50MP 65W Vert",
-    "normalized_name": "oneplus 9 pro 6,7 pouces snapdragon 888 50mp 65w",
+    "normalized_name": "9 pro 6,7 pouces snapdragon 888 50mp 65w",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -1057,7 +1057,7 @@
   },
   {
     "name": "Oneplus 9 12 Go 256 Go 6,55 Snapdragon 888 50MP 65W Noir",
-    "normalized_name": "oneplus 9 6,55 snapdragon 888 50mp 65w",
+    "normalized_name": "9 6,55 snapdragon 888 50mp 65w",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -1065,7 +1065,7 @@
   },
   {
     "name": "ASUS ROG 5 12GB 128GB 65W Snapdragon 888 NFC 6.78″ Blanc",
-    "normalized_name": "asus rog 5 65w snapdragon 888 nfc 6.78″",
+    "normalized_name": "rog 5 65w snapdragon 888 nfc 6.78″",
     "brand": "ASUS",
     "model": "–",
     "last_updated": "?",
@@ -1073,7 +1073,7 @@
   },
   {
     "name": "APPLE iPhone 12 128Go Vert",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "OCC80YG3DC88880",
     "last_updated": "?",
@@ -1081,7 +1081,7 @@
   },
   {
     "name": "Samsung Galaxy S20 5G Bleu",
-    "normalized_name": "samsung galaxy s20 5g bleu",
+    "normalized_name": "galaxy s20 5g bleu",
     "brand": "Samsung",
     "model": "SAMGALAXS205GBL",
     "last_updated": "?",
@@ -1089,7 +1089,7 @@
   },
   {
     "name": "senior G50 Swissvoice – 4G – Ecran 5″ – Menu simplifié et touche SOS",
-    "normalized_name": "senior g50 swissvoice – 4g – ecran 5″ – menu simplifié et touche sos",
+    "normalized_name": "senior g50 – 4g – ecran 5″ – menu simplifié et touche sos",
     "brand": "Swissvoice",
     "model": "–",
     "last_updated": "?",
@@ -1097,7 +1097,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 512Go Graphite",
-    "normalized_name": "apple iphone 12 pro max graphite",
+    "normalized_name": "iphone 12 pro max graphite",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -1105,7 +1105,7 @@
   },
   {
     "name": "APPLE Iphone X 256 Go Argent",
-    "normalized_name": "apple iphone x",
+    "normalized_name": "iphone x",
     "brand": "APPLE",
     "model": "A1901",
     "last_updated": "21/01/2021",
@@ -1113,7 +1113,7 @@
   },
   {
     "name": "Samsung Galaxy S20+ Noir",
-    "normalized_name": "samsung galaxy s20+",
+    "normalized_name": "galaxy s20+",
     "brand": "SAMSUNG",
     "model": "SAMGALAXS20PN",
     "last_updated": "?",
@@ -1121,7 +1121,7 @@
   },
   {
     "name": "Senior MaxCom MS459 Harmony, puissant",
-    "normalized_name": "senior maxcom ms459 harmony, puissant",
+    "normalized_name": "senior ms459 harmony, puissant",
     "brand": "Maxcom",
     "model": "MS459",
     "last_updated": "?",
@@ -1129,7 +1129,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 128Go Vert",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1145,7 +1145,7 @@
   },
   {
     "name": "HUAWEI Nova 5T Noir + PC Coque Bleu",
-    "normalized_name": "huawei nova 5t + pc coque bleu",
+    "normalized_name": "nova 5t + pc coque bleu",
     "brand": "Huawei",
     "model": "HUA3613560018490",
     "last_updated": null,
@@ -1161,7 +1161,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 512Go Bleu Pacifique",
-    "normalized_name": "apple iphone 12 pro max bleu pacifique",
+    "normalized_name": "iphone 12 pro max bleu pacifique",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -1169,7 +1169,7 @@
   },
   {
     "name": "HUAWEI P20 Rose",
-    "normalized_name": "huawei p20 rose",
+    "normalized_name": "rose",
     "brand": "Huawei P20",
     "model": "EML-L29",
     "last_updated": "19 janvier 2021",
@@ -1177,7 +1177,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A20e Bleu",
-    "normalized_name": "samsung galaxy a20e bleu",
+    "normalized_name": "galaxy a20e bleu",
     "brand": "SAMSUNG",
     "model": "SAMGALAXYA20EBL",
     "last_updated": "?",
@@ -1185,7 +1185,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 256Go Argent",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -1193,7 +1193,7 @@
   },
   {
     "name": "APPLE iPhone XR 64Go Jaune",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "APPLE",
     "model": "A2105",
     "last_updated": "6 novembre 2020",
@@ -1201,7 +1201,7 @@
   },
   {
     "name": "HUAWEI P40 Lite 5G Space Silver 128 Go",
-    "normalized_name": "huawei p40 lite 5g space",
+    "normalized_name": "p40 lite 5g space",
     "brand": "Huawei",
     "model": "HUAWEIP40LITSS12",
     "last_updated": null,
@@ -1209,7 +1209,7 @@
   },
   {
     "name": "XIAOMI Redmi 8 Rouge 32 Go",
-    "normalized_name": "xiaomi redmi 8",
+    "normalized_name": "redmi 8",
     "brand": "XIAOMI",
     "model": "Redmi 8",
     "last_updated": "2021.01.04",
@@ -1217,7 +1217,7 @@
   },
   {
     "name": "OnePlus 9 Pro 12Go Ram 256Go Noir Stellar Black 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 pro ram stellar 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 pro ram stellar 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -1225,7 +1225,7 @@
   },
   {
     "name": "DORO 8080",
-    "normalized_name": "doro 8080",
+    "normalized_name": "8080",
     "brand": "DORO",
     "model": "7785",
     "last_updated": "?",
@@ -1233,7 +1233,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 256Go Vert",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1257,7 +1257,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 10S 64Go Gris",
-    "normalized_name": "xiaomi redmi note 10s gris",
+    "normalized_name": "redmi note 10s gris",
     "brand": "XIAOMI",
     "model": "Redmi Note 10S",
     "last_updated": null,
@@ -1265,7 +1265,7 @@
   },
   {
     "name": "APPLE iPhone 11 Pro Max 512 Go Argent",
-    "normalized_name": "apple iphone 11 pro max",
+    "normalized_name": "iphone 11 pro max",
     "brand": "APPLE",
     "model": "A2218",
     "last_updated": "6 novembre 2020",
@@ -1281,7 +1281,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 64Go Vert",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "AP0194252121931",
     "last_updated": null,
@@ -1289,7 +1289,7 @@
   },
   {
     "name": "HUAWEI Y6S Starry Black 32 Go",
-    "normalized_name": "huawei y6s starry",
+    "normalized_name": "starry",
     "brand": "Huawei Y6s",
     "model": "JAT-L41",
     "last_updated": "19 janvier 2021",
@@ -1297,7 +1297,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Pro Vert Boréal 256 Go",
-    "normalized_name": "xiaomi mi note 10 pro boréal",
+    "normalized_name": "mi note 10 pro boréal",
     "brand": "XIAOMI",
     "model": "Mi Note 10 Pro",
     "last_updated": "2021.01.04",
@@ -1305,7 +1305,7 @@
   },
   {
     "name": "HUAWEI P30 Pro 128GB Crystal + Coque Noir",
-    "normalized_name": "huawei p30 pro crystal + coque",
+    "normalized_name": "crystal + coque",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -1329,7 +1329,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 512Go Argent",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -1337,7 +1337,7 @@
   },
   {
     "name": "HUAWEI P30 Crystal + Coque Bleu",
-    "normalized_name": "huawei p30 crystal + coque bleu",
+    "normalized_name": "crystal + coque bleu",
     "brand": "Huawei P30",
     "model": "ELE-L29",
     "last_updated": "19 janvier 2021",
@@ -1345,7 +1345,7 @@
   },
   {
     "name": "HONOR 9A Phantom Blue 64Go",
-    "normalized_name": "honor 9a phantom blue",
+    "normalized_name": "phantom blue",
     "brand": "HONOR 9A",
     "model": "MOA-LX9N",
     "last_updated": null,
@@ -1353,7 +1353,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 512Go Bleu Pacifique",
-    "normalized_name": "apple iphone 12 pro bleu pacifique",
+    "normalized_name": "iphone 12 pro bleu pacifique",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -1361,7 +1361,7 @@
   },
   {
     "name": "XIAOMI Redmi 7 noir 32Go",
-    "normalized_name": "xiaomi redmi 7",
+    "normalized_name": "redmi 7",
     "brand": "XIAOMI",
     "model": "Redmi 7",
     "last_updated": "2021.01.04",
@@ -1377,7 +1377,7 @@
   },
   {
     "name": "XIAOMI – MI10TLITE 64Go Bleu",
-    "normalized_name": "xiaomi – mi10tlite bleu",
+    "normalized_name": "– mi10tlite bleu",
     "brand": "XIAOMI",
     "model": "Mi 10T Lite",
     "last_updated": "2021.01.04",
@@ -1385,7 +1385,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Lite Blanc 128 Go",
-    "normalized_name": "xiaomi mi note 10 lite",
+    "normalized_name": "mi note 10 lite",
     "brand": "XIAOMI",
     "model": "F4L – Mi Note 10 Lite (128 Go)",
     "last_updated": "2021.01.04",
@@ -1393,7 +1393,7 @@
   },
   {
     "name": "XIAOMI Redmi 8 Bleu 32 Go",
-    "normalized_name": "xiaomi redmi 8 bleu",
+    "normalized_name": "redmi 8 bleu",
     "brand": "XIAOMI",
     "model": "Redmi 8",
     "last_updated": "2021.01.04",
@@ -1409,7 +1409,7 @@
   },
   {
     "name": "HUAWEI P30 Bleu Aurore + Coque Bleu ciel",
-    "normalized_name": "huawei p30 bleu aurore + coque bleu ciel",
+    "normalized_name": "bleu aurore + coque bleu ciel",
     "brand": "Huawei P30",
     "model": "ELE-L29",
     "last_updated": "19 janvier 2021",
@@ -1417,7 +1417,7 @@
   },
   {
     "name": "HONOR 20 Bleu 128 Go",
-    "normalized_name": "honor 20 bleu",
+    "normalized_name": "20 bleu",
     "brand": "HONOR",
     "model": "YAL-L21",
     "last_updated": null,
@@ -1425,7 +1425,7 @@
   },
   {
     "name": "HUAWEI Y6p Phantom Purple 64 Go",
-    "normalized_name": "huawei y6p phantom",
+    "normalized_name": "phantom",
     "brand": "Huawei Y6p",
     "model": "MED-LX9N",
     "last_updated": "19 janvier 2021",
@@ -1433,7 +1433,7 @@
   },
   {
     "name": "HUAWEI P30 Pro Mystic Blue 128 Go",
-    "normalized_name": "huawei p30 pro mystic blue",
+    "normalized_name": "mystic blue",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -1441,7 +1441,7 @@
   },
   {
     "name": "LOGICOM Starter L 8 Go Noir Blister",
-    "normalized_name": "logicom starter l blister",
+    "normalized_name": "starter l blister",
     "brand": "LOGICOM",
     "model": "STARTER_L_8G_NR_BL",
     "last_updated": "18/01/2021",
@@ -1449,7 +1449,7 @@
   },
   {
     "name": "HUAWEI Y7 2019 32 Go Noir",
-    "normalized_name": "huawei y7 2019",
+    "normalized_name": "",
     "brand": "Huawei Y7 2019",
     "model": "DUB-LX1",
     "last_updated": "19 janvier 2021",
@@ -1457,7 +1457,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 512Go Or",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -1465,7 +1465,7 @@
   },
   {
     "name": "HUAWEI P Smart 2019 64 Go Bleu Aurore",
-    "normalized_name": "huawei p smart 2019 bleu aurore",
+    "normalized_name": "bleu aurore",
     "brand": "Huawei P smart 2019",
     "model": "POT-LX1",
     "last_updated": "19 janvier 2021",
@@ -1473,7 +1473,7 @@
   },
   {
     "name": "Samsung Galaxy S10 512 Go Vert",
-    "normalized_name": "samsung galaxy s10",
+    "normalized_name": "galaxy s10",
     "brand": "SAMSUNG",
     "model": "G973FZGGXEF",
     "last_updated": "?",
@@ -1481,7 +1481,7 @@
   },
   {
     "name": "HUAWEI P30 Noir Elle + Coque silicone",
-    "normalized_name": "huawei p30 elle + coque silicone",
+    "normalized_name": "elle + coque silicone",
     "brand": "Huawei P30",
     "model": "ELE-L29",
     "last_updated": "19 janvier 2021",
@@ -1489,7 +1489,7 @@
   },
   {
     "name": "APPLE iPhone 11 128Go Jaune",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -1497,7 +1497,7 @@
   },
   {
     "name": "ASUS ROG Phone 5 noir 128Go",
-    "normalized_name": "asus rog phone 5",
+    "normalized_name": "rog phone 5",
     "brand": "ASUS",
     "model": "ZS673KS-1A031FR",
     "last_updated": "15/01/2021",
@@ -1505,7 +1505,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20 Plus 128 Go 5G Blanc S20+",
-    "normalized_name": "samsung galaxy s20 plus 5g s20+",
+    "normalized_name": "galaxy s20 plus 5g s20+",
     "brand": "SAMSUNG",
     "model": "–",
     "last_updated": "?",
@@ -1513,7 +1513,7 @@
   },
   {
     "name": "APPLE iPhone 11 256Go Jaune",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -1521,7 +1521,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 5G Lavande",
-    "normalized_name": "samsung galaxy a52 5g lavande",
+    "normalized_name": "galaxy a52 5g lavande",
     "brand": "Samsung",
     "model": "SM-A526BLVDEUH",
     "last_updated": "?",
@@ -1537,7 +1537,7 @@
   },
   {
     "name": "HUAWEI P Smart 2020 Midnight Black 128 Go",
-    "normalized_name": "huawei p smart 2020 midnight",
+    "normalized_name": "midnight",
     "brand": "Huawei P smart 2020",
     "model": "POT-LX1A",
     "last_updated": "19 janvier 2021",
@@ -1545,7 +1545,7 @@
   },
   {
     "name": "VIVO X60 PRO 256Go Bleu",
-    "normalized_name": "vivo x60 pro bleu",
+    "normalized_name": "x60 pro bleu",
     "brand": "VIVO",
     "model": "X60PRO B",
     "last_updated": "?",
@@ -1585,7 +1585,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 128Go (PRODUCT)RED",
-    "normalized_name": "apple iphone 12 mini (product)",
+    "normalized_name": "iphone 12 mini (product)",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1601,7 +1601,7 @@
   },
   {
     "name": "Sony Xperia 10 III Blanc",
-    "normalized_name": "sony xperia 10 iii",
+    "normalized_name": "xperia 10 iii",
     "brand": "SONY",
     "model": "Xperia 10 III",
     "last_updated": "22/04/2021",
@@ -1609,7 +1609,7 @@
   },
   {
     "name": "VIVO X60 PRO 256Go Noir",
-    "normalized_name": "vivo x60 pro",
+    "normalized_name": "x60 pro",
     "brand": "VIVO",
     "model": "X60PRO N",
     "last_updated": "?",
@@ -1617,7 +1617,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 256Go Noir",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1625,7 +1625,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Pro Blanc 256 Go",
-    "normalized_name": "xiaomi mi note 10 pro",
+    "normalized_name": "mi note 10 pro",
     "brand": "XIAOMI",
     "model": "Mi Note 10 Pro",
     "last_updated": "2021.01.04",
@@ -1633,7 +1633,7 @@
   },
   {
     "name": "Huawei Y7 2018 Bleu",
-    "normalized_name": "huawei y7 2018 bleu",
+    "normalized_name": "bleu",
     "brand": "Huawei Y7 2018",
     "model": "LDN-L21",
     "last_updated": "19 janvier 2021",
@@ -1649,7 +1649,7 @@
   },
   {
     "name": "OnePlus 9 Pro 8Go Ram 256Go Noir Stellar Black 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 pro ram stellar 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 pro ram stellar 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -1657,7 +1657,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Lite Noir 128 Go",
-    "normalized_name": "xiaomi mi note 10 lite",
+    "normalized_name": "mi note 10 lite",
     "brand": "XIAOMI",
     "model": "F4L – Mi Note 10 Lite (128 Go)",
     "last_updated": "2021.01.04",
@@ -1665,7 +1665,7 @@
   },
   {
     "name": "XIAOMI MI11i 256 Go Noir",
-    "normalized_name": "xiaomi mi11i",
+    "normalized_name": "mi11i",
     "brand": "XIAOMI",
     "model": "Mi 11 i",
     "last_updated": "13/04/2021",
@@ -1689,7 +1689,7 @@
   },
   {
     "name": "HONOR 10X Lite Vert",
-    "normalized_name": "honor 10x lite",
+    "normalized_name": "10x lite",
     "brand": "HONOR",
     "model": "DNN-LX9",
     "last_updated": null,
@@ -1697,7 +1697,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 256Go Blanc",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1705,7 +1705,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 256Go RED",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1713,7 +1713,7 @@
   },
   {
     "name": "XIAOMI Mi 9T Bleu Glacier 64 Go",
-    "normalized_name": "xiaomi mi 9t bleu glacier",
+    "normalized_name": "mi 9t bleu glacier",
     "brand": "XIAOMI",
     "model": "Mi 9T (64 Go)",
     "last_updated": "2021.01.04",
@@ -1721,7 +1721,7 @@
   },
   {
     "name": "HUAWEI P40 Pro+ – 6.58″ – Ceramic white",
-    "normalized_name": "huawei p40 pro+ – 6.58″ – ceramic",
+    "normalized_name": "– 6.58″ – ceramic",
     "brand": "Huawei P40 Pro+",
     "model": "ELS-N39",
     "last_updated": "19 janvier 2021",
@@ -1729,7 +1729,7 @@
   },
   {
     "name": "HONOR 9A MIDNIGHT BLACK",
-    "normalized_name": "honor 9a midnight",
+    "normalized_name": "midnight",
     "brand": "HONOR 9A",
     "model": "MOA-LX9N",
     "last_updated": null,
@@ -1745,7 +1745,7 @@
   },
   {
     "name": "XIAOMI MI 10 Lite 5G Blanc céleste 128 Go",
-    "normalized_name": "xiaomi mi 10 lite 5g céleste",
+    "normalized_name": "mi 10 lite 5g céleste",
     "brand": "XIAOMI",
     "model": "Mi 10 Lite",
     "last_updated": "2021.01.04",
@@ -1753,7 +1753,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 128Go Blanc",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1761,7 +1761,7 @@
   },
   {
     "name": "XIAOMI MI 10 Lite 5G Bleu boréal 128 Go",
-    "normalized_name": "xiaomi mi 10 lite 5g bleu boréal",
+    "normalized_name": "mi 10 lite 5g bleu boréal",
     "brand": "XIAOMI",
     "model": "Mi 10 Lite",
     "last_updated": "2021.01.04",
@@ -1777,7 +1777,7 @@
   },
   {
     "name": "APPLE Iphone 7 Plus 32 Go Or rose",
-    "normalized_name": "apple iphone 7 plus rose",
+    "normalized_name": "iphone 7 plus rose",
     "brand": "APPLE",
     "model": "A1784",
     "last_updated": "21/01/2021",
@@ -1785,7 +1785,7 @@
   },
   {
     "name": "HUAWEI P20 128 Go Midnight blue",
-    "normalized_name": "huawei p20 midnight blue",
+    "normalized_name": "midnight blue",
     "brand": "Huawei P20",
     "model": "EML-L29",
     "last_updated": "19 janvier 2021",
@@ -1801,7 +1801,7 @@
   },
   {
     "name": "APPLE iPhone 12 64Go Vert",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -1809,7 +1809,7 @@
   },
   {
     "name": "APPLE iPhone 11 256Go RED",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -1817,7 +1817,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 10S 128 Go Bleu",
-    "normalized_name": "xiaomi redmi note 10s bleu",
+    "normalized_name": "redmi note 10s bleu",
     "brand": "XIAOMI",
     "model": "Redmi Note 10S",
     "last_updated": null,
@@ -1825,7 +1825,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20 Ultra 128 Go 5G Noir",
-    "normalized_name": "samsung galaxy s20 ultra 5g",
+    "normalized_name": "galaxy s20 ultra 5g",
     "brand": "SAMSUNG",
     "model": "SAMGALAXS20ULN",
     "last_updated": null,
@@ -1833,7 +1833,7 @@
   },
   {
     "name": "XIAOMI POCO F2 Pro 128Go Violet",
-    "normalized_name": "xiaomi poco f2 pro violet",
+    "normalized_name": "poco f2 pro violet",
     "brand": "XIAOMI",
     "model": "POCO F2 (128 Go)",
     "last_updated": "2021.01.04",
@@ -1857,7 +1857,7 @@
   },
   {
     "name": "HUAWEI P40 Pro+ – 6.58″ – Ceramic black",
-    "normalized_name": "huawei p40 pro+ – 6.58″ – ceramic",
+    "normalized_name": "– 6.58″ – ceramic",
     "brand": "Huawei P40 Pro+",
     "model": "ELS-N39",
     "last_updated": "19 janvier 2021",
@@ -1865,7 +1865,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 256Go Argent",
-    "normalized_name": "apple iphone 12 pro max",
+    "normalized_name": "iphone 12 pro max",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -1873,7 +1873,7 @@
   },
   {
     "name": "HUAWEI P Smart Z 64 Go Vert",
-    "normalized_name": "huawei p smart z",
+    "normalized_name": "",
     "brand": "Huawei P smart Z",
     "model": "STK-LX1",
     "last_updated": "19 janvier 2021",
@@ -1881,7 +1881,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Vert",
-    "normalized_name": "samsung galaxy s20fe 5g",
+    "normalized_name": "galaxy s20fe 5g",
     "brand": "SAMSUNG",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -1889,7 +1889,7 @@
   },
   {
     "name": "APPLE iPhone XR 128GB Blanc",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "Apple",
     "model": null,
     "last_updated": "6 novembre 2020",
@@ -1913,7 +1913,7 @@
   },
   {
     "name": "HUAWEI Nova 5T 128 Go Bleu",
-    "normalized_name": "huawei nova 5t bleu",
+    "normalized_name": "bleu",
     "brand": "Huawei nova 5T",
     "model": "YAL-L21",
     "last_updated": "19 janvier 2021",
@@ -1921,7 +1921,7 @@
   },
   {
     "name": "HUAWEI Y5p Noir 32 Go",
-    "normalized_name": "huawei y5p",
+    "normalized_name": "",
     "brand": "Huawei Y5p",
     "model": "DRA-LX9",
     "last_updated": "19 janvier 2021",
@@ -1937,7 +1937,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 256Go Bleu",
-    "normalized_name": "apple iphone 12 mini bleu",
+    "normalized_name": "iphone 12 mini bleu",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -1953,7 +1953,7 @@
   },
   {
     "name": "APPLE iPhone 11 128Go RED",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -1969,7 +1969,7 @@
   },
   {
     "name": "HUAWEI P30 Pro 128GB Noir + Coque Noir",
-    "normalized_name": "huawei p30 pro + coque",
+    "normalized_name": "+ coque",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -1977,7 +1977,7 @@
   },
   {
     "name": "HUAWEI Nova 5T 128 Go Purple",
-    "normalized_name": "huawei nova 5t",
+    "normalized_name": "",
     "brand": "Huawei nova 5T",
     "model": "YAL-L21",
     "last_updated": "19 janvier 2021",
@@ -1985,7 +1985,7 @@
   },
   {
     "name": "APPLE iPhone 12 256Go Blanc",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -1993,7 +1993,7 @@
   },
   {
     "name": "Huawei Y6 2018 Noir",
-    "normalized_name": "huawei y6 2018",
+    "normalized_name": "",
     "brand": "Huawei Y6 2018",
     "model": "ATU-L21",
     "last_updated": "19 janvier 2021",
@@ -2001,7 +2001,7 @@
   },
   {
     "name": "HUAWEI Y6p Emerald Green 64 Go",
-    "normalized_name": "huawei y6p emerald",
+    "normalized_name": "emerald",
     "brand": "Huawei Y6p",
     "model": "MED-LX9N",
     "last_updated": "19 janvier 2021",
@@ -2009,7 +2009,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 128Go Or",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -2017,7 +2017,7 @@
   },
   {
     "name": "HUAWEI Y5p Phantom Blue 32 Go",
-    "normalized_name": "huawei y5p phantom blue",
+    "normalized_name": "phantom blue",
     "brand": "Huawei Y5p",
     "model": "DRA-LX9",
     "last_updated": "19 janvier 2021",
@@ -2025,7 +2025,7 @@
   },
   {
     "name": "APPLE iPhone 11 128Go Vert",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -2033,7 +2033,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 64Go RED",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2041,7 +2041,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 128Go Bleu",
-    "normalized_name": "apple iphone 12 mini bleu",
+    "normalized_name": "iphone 12 mini bleu",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2057,7 +2057,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 10S 64Go Blanc",
-    "normalized_name": "xiaomi redmi note 10s",
+    "normalized_name": "redmi note 10s",
     "brand": "XIAOMI",
     "model": "Redmi Note 10S",
     "last_updated": "03/03/2021",
@@ -2073,7 +2073,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 64Go Blanc",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2081,7 +2081,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 128Go Noir",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2089,7 +2089,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 10S 128 Go Blanc",
-    "normalized_name": "xiaomi redmi note 10s",
+    "normalized_name": "redmi note 10s",
     "brand": "XIAOMI",
     "model": "Redmi Note 10S",
     "last_updated": "03/03/2021",
@@ -2097,7 +2097,7 @@
   },
   {
     "name": "APPLE iPhone 7 128 Go Noir de Jais",
-    "normalized_name": "apple iphone 7 de jais",
+    "normalized_name": "iphone 7 de jais",
     "brand": "APPLE",
     "model": "A1778",
     "last_updated": "21/01/2021",
@@ -2105,7 +2105,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 128Go Argent",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -2113,7 +2113,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 256Go Or",
-    "normalized_name": "apple iphone 12 pro max",
+    "normalized_name": "iphone 12 pro max",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -2121,7 +2121,7 @@
   },
   {
     "name": "XIAOMI Mi10T Lite 64Go Rose Gold",
-    "normalized_name": "xiaomi mi10t lite rose",
+    "normalized_name": "mi10t lite rose",
     "brand": "XIAOMI",
     "model": "Mi 10T Lite",
     "last_updated": "2021.01.04",
@@ -2129,7 +2129,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Rouge",
-    "normalized_name": "samsung galaxy s20fe 5g",
+    "normalized_name": "galaxy s20fe 5g",
     "brand": "SAMSUNG",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -2137,7 +2137,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 256Go Graphite",
-    "normalized_name": "apple iphone 12 pro graphite",
+    "normalized_name": "iphone 12 pro graphite",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -2145,7 +2145,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 Ultra 5G 256 Go Bronze",
-    "normalized_name": "samsung galaxy note20 ultra 5g bronze",
+    "normalized_name": "galaxy note20 ultra 5g bronze",
     "brand": "SAMSUNG",
     "model": "SM-N986B",
     "last_updated": "30.Nov.2020",
@@ -2153,7 +2153,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 256Go Graphite",
-    "normalized_name": "apple iphone 12 pro max graphite",
+    "normalized_name": "iphone 12 pro max graphite",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -2161,7 +2161,7 @@
   },
   {
     "name": "APPLE Iphone X 64 Go Argent",
-    "normalized_name": "apple iphone x",
+    "normalized_name": "iphone x",
     "brand": "APPLE",
     "model": "A1901",
     "last_updated": "21/01/2021",
@@ -2169,7 +2169,7 @@
   },
   {
     "name": "APPLE Iphone Xs Max 256 Go Gris sidéral",
-    "normalized_name": "apple iphone xs max gris sidéral",
+    "normalized_name": "iphone xs max gris sidéral",
     "brand": "APPLE",
     "model": "A2101",
     "last_updated": "21/01/2021",
@@ -2177,7 +2177,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 64Go Noir",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2185,7 +2185,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Light Violet",
-    "normalized_name": "samsung galaxy s20fe 5g light violet",
+    "normalized_name": "galaxy s20fe 5g light violet",
     "brand": "SAMSUNG",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -2193,7 +2193,7 @@
   },
   {
     "name": "APPLE iPhone 12 256Go Noir",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -2201,7 +2201,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 T Gris 64 Go",
-    "normalized_name": "xiaomi redmi note 8 t gris",
+    "normalized_name": "redmi note 8 t gris",
     "brand": "XIAOMI",
     "model": "Redmi Note 8T",
     "last_updated": "2021.01.04",
@@ -2209,7 +2209,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note10 Lite Rouge",
-    "normalized_name": "samsung galaxy note10 lite",
+    "normalized_name": "galaxy note10 lite",
     "brand": "SAMSUNG",
     "model": "SM-N770F",
     "last_updated": "30.Nov.2020",
@@ -2217,7 +2217,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note10 Lite Silver",
-    "normalized_name": "samsung galaxy note10 lite",
+    "normalized_name": "galaxy note10 lite",
     "brand": "SAMSUNG",
     "model": "SM-N770F",
     "last_updated": "30.Nov.2020",
@@ -2225,7 +2225,7 @@
   },
   {
     "name": "Samsung Galaxy S10 128 Go Blanc",
-    "normalized_name": "samsung galaxy s10",
+    "normalized_name": "galaxy s10",
     "brand": "SAMSUNG",
     "model": "SM-A715F",
     "last_updated": "30.Nov.2020",
@@ -2233,7 +2233,7 @@
   },
   {
     "name": "APPLE iPhone 12 128Go RED",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -2241,7 +2241,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Orange",
-    "normalized_name": "samsung galaxy s20fe 5g orange",
+    "normalized_name": "galaxy s20fe 5g orange",
     "brand": "Samsung",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -2249,7 +2249,7 @@
   },
   {
     "name": "HONOR 9X Lite Midnight Black 128 Go",
-    "normalized_name": "honor 9x lite midnight",
+    "normalized_name": "9x lite midnight",
     "brand": "HONOR",
     "model": "JSN-L21",
     "last_updated": null,
@@ -2257,7 +2257,7 @@
   },
   {
     "name": "HUAWEI P40 Lite E Midnight Black 64 Go",
-    "normalized_name": "huawei p40 lite e midnight",
+    "normalized_name": "e midnight",
     "brand": "Huawei P40 lite",
     "model": "JNY-LX1",
     "last_updated": "19 janvier 2021",
@@ -2265,7 +2265,7 @@
   },
   {
     "name": "XIAOMI Mi 11 5G 256 Go Bleu",
-    "normalized_name": "xiaomi mi 11 5g bleu",
+    "normalized_name": "mi 11 5g bleu",
     "brand": "XIAOMI",
     "model": "Mi 11",
     "last_updated": "18/02/2021",
@@ -2273,7 +2273,7 @@
   },
   {
     "name": "HUAWEI P40 Lite 128 Go Rose (services Google non intégrés)",
-    "normalized_name": "huawei p40 lite rose (services google non intégrés)",
+    "normalized_name": "rose (services google non intégrés)",
     "brand": "Huawei P40 lite",
     "model": "HUAWEIP40LITJSP",
     "last_updated": "?",
@@ -2281,7 +2281,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20 128 Go Rose",
-    "normalized_name": "samsung galaxy s20 rose",
+    "normalized_name": "galaxy s20 rose",
     "brand": "SAMSUNG",
     "model": "SM-G980F",
     "last_updated": "30.Nov.2020",
@@ -2289,7 +2289,7 @@
   },
   {
     "name": "HONOR 10X Lite Noir",
-    "normalized_name": "honor 10x lite",
+    "normalized_name": "10x lite",
     "brand": "HONOR",
     "model": "DNN-LX9",
     "last_updated": null,
@@ -2297,7 +2297,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20+ Polar Blue",
-    "normalized_name": "samsung galaxy s20+ polar blue",
+    "normalized_name": "galaxy s20+ polar blue",
     "brand": "SAMSUNG",
     "model": "SM-G985F",
     "last_updated": "30.Nov.2020",
@@ -2305,7 +2305,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20+ 128 Go 5G Noir",
-    "normalized_name": "samsung galaxy s20+ 5g",
+    "normalized_name": "galaxy s20+ 5g",
     "brand": "SAMSUNG",
     "model": "SM-G986B",
     "last_updated": "30.Nov.2020",
@@ -2313,7 +2313,7 @@
   },
   {
     "name": "APPLE iPhone XR 64Go Blanc",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "Apple",
     "model": null,
     "last_updated": "6 novembre 2020",
@@ -2329,7 +2329,7 @@
   },
   {
     "name": "XIAOMI Redmi 9C NFC 32Go Bleu",
-    "normalized_name": "xiaomi redmi 9c nfc bleu",
+    "normalized_name": "redmi 9c nfc bleu",
     "brand": "XIAOMI",
     "model": "Redmi Note 9C NFC",
     "last_updated": "2021.01.04",
@@ -2337,7 +2337,7 @@
   },
   {
     "name": "APPLE iPhone 12 mini 64Go Bleu",
-    "normalized_name": "apple iphone 12 mini bleu",
+    "normalized_name": "iphone 12 mini bleu",
     "brand": "APPLE",
     "model": "A2399",
     "last_updated": "26 octobre 2020",
@@ -2345,7 +2345,7 @@
   },
   {
     "name": "HUAWEI P30 128 Go Noir",
-    "normalized_name": "huawei p30",
+    "normalized_name": "",
     "brand": "Huawei P30",
     "model": "ELE-L29",
     "last_updated": "19 janvier 2021",
@@ -2353,7 +2353,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 128Go Graphite",
-    "normalized_name": "apple iphone 12 pro graphite",
+    "normalized_name": "iphone 12 pro graphite",
     "brand": "APPLE",
     "model": "A2407",
     "last_updated": "6 novembre 2020",
@@ -2369,7 +2369,7 @@
   },
   {
     "name": "XIAOMI Mi 11i 5G 256 Go Silver",
-    "normalized_name": "xiaomi mi 11i 5g",
+    "normalized_name": "mi 11i 5g",
     "brand": "XIAOMI",
     "model": "Mi 11 i",
     "last_updated": "13/04/2021",
@@ -2377,7 +2377,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Blanc Glacier 64 Go",
-    "normalized_name": "xiaomi redmi note 9s glacier",
+    "normalized_name": "redmi note 9s glacier",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -2385,7 +2385,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 4G 256 Go Bronze",
-    "normalized_name": "samsung galaxy note20 4g bronze",
+    "normalized_name": "galaxy note20 4g bronze",
     "brand": "SAMSUNG",
     "model": "SM-N980F",
     "last_updated": "30.Nov.2020",
@@ -2393,7 +2393,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A71 Silver",
-    "normalized_name": "samsung galaxy a71",
+    "normalized_name": "galaxy a71",
     "brand": "SAMSUNG",
     "model": "SM-A715F",
     "last_updated": "30.Nov.2020",
@@ -2401,7 +2401,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 4G 256 Go Vert",
-    "normalized_name": "samsung galaxy note20 4g",
+    "normalized_name": "galaxy note20 4g",
     "brand": "SAMSUNG",
     "model": "SM-N980F",
     "last_updated": "30.Nov.2020",
@@ -2409,7 +2409,7 @@
   },
   {
     "name": "XIAOMI Redmi 9A 32 Go Bleu",
-    "normalized_name": "xiaomi redmi 9a bleu",
+    "normalized_name": "redmi 9a bleu",
     "brand": "XIAOMI",
     "model": "Redmi 9A",
     "last_updated": "2021.01.04",
@@ -2417,7 +2417,7 @@
   },
   {
     "name": "APPLE iPhone 11 64Go Jaune",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -2425,7 +2425,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro 256Go Or",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": "AP0194252136119",
     "last_updated": "?",
@@ -2433,7 +2433,7 @@
   },
   {
     "name": "XIAOMI Redmi Note10 5G 64 Go Gris",
-    "normalized_name": "xiaomi redmi note10 5g gris",
+    "normalized_name": "redmi note10 5g gris",
     "brand": "XIAOMI",
     "model": "Redmi Note 10 5G",
     "last_updated": "07.04.2021",
@@ -2441,7 +2441,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 Pro Corail 128 Go",
-    "normalized_name": "xiaomi redmi note 8 pro corail",
+    "normalized_name": "redmi note 8 pro corail",
     "brand": "XIAOMI",
     "model": "Redmi 9A",
     "last_updated": "2021.01.04",
@@ -2457,7 +2457,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 5G Bleu",
-    "normalized_name": "samsung galaxy a52 5g bleu",
+    "normalized_name": "galaxy a52 5g bleu",
     "brand": "Samsung",
     "model": "SM-A526BZBDEUH",
     "last_updated": "?",
@@ -2473,7 +2473,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 10S 128 Go Gris",
-    "normalized_name": "xiaomi redmi note 10s gris",
+    "normalized_name": "redmi note 10s gris",
     "brand": "XIAOMI",
     "model": "REDMINOTE10S128G",
     "last_updated": "?",
@@ -2481,7 +2481,7 @@
   },
   {
     "name": "VIVO V21 128Go Bleu Foncé",
-    "normalized_name": "vivo v21 bleu foncé",
+    "normalized_name": "v21 bleu foncé",
     "brand": "VIVO",
     "model": "V21 DB",
     "last_updated": "?",
@@ -2489,7 +2489,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A72 4G Lavande",
-    "normalized_name": "samsung galaxy a72 4g lavande",
+    "normalized_name": "galaxy a72 4g lavande",
     "brand": "SAMSUNG",
     "model": "SM-A725FLVDEUH",
     "last_updated": "?",
@@ -2505,7 +2505,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 32GO Violet",
-    "normalized_name": "xiaomi redmi 9 violet",
+    "normalized_name": "redmi 9 violet",
     "brand": "XIAOMI",
     "model": "Redmi 9",
     "last_updated": "2021.01.04",
@@ -2513,7 +2513,7 @@
   },
   {
     "name": "HUAWEI P40 Pro 256 Go Gris",
-    "normalized_name": "huawei p40 pro gris",
+    "normalized_name": "gris",
     "brand": "Huawei P40 Pro",
     "model": "ELS-NX9",
     "last_updated": "19 janvier 2021",
@@ -2521,7 +2521,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE Light Violet",
-    "normalized_name": "samsung galaxy s20fe light violet",
+    "normalized_name": "galaxy s20fe light violet",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -2529,7 +2529,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Blanc polaire 64 Go",
-    "normalized_name": "xiaomi redmi note 9 polaire",
+    "normalized_name": "redmi note 9 polaire",
     "brand": "XIAOMI",
     "model": "Redmi Note 9",
     "last_updated": "2021.01.04",
@@ -2537,7 +2537,7 @@
   },
   {
     "name": "HUAWEI P40 Pro 256 Go Noir",
-    "normalized_name": "huawei p40 pro",
+    "normalized_name": "",
     "brand": "Huawei P40 Pro",
     "model": "ELS-NX9",
     "last_updated": "19 janvier 2021",
@@ -2545,7 +2545,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Blanc",
-    "normalized_name": "samsung galaxy s20fe 5g",
+    "normalized_name": "galaxy s20fe 5g",
     "brand": "SAMSUNG",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -2561,7 +2561,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 32Go Vert",
-    "normalized_name": "xiaomi redmi 9",
+    "normalized_name": "redmi 9",
     "brand": "XIAOMI",
     "model": "Redmi 9",
     "last_updated": "2021.01.04",
@@ -2569,7 +2569,7 @@
   },
   {
     "name": "HUAWEI Y6p Midnight Black 64 Go",
-    "normalized_name": "huawei y6p midnight",
+    "normalized_name": "midnight",
     "brand": "Huawei Y6p",
     "model": "MED-LX9N",
     "last_updated": "19 janvier 2021",
@@ -2577,7 +2577,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE 5G Bleu",
-    "normalized_name": "samsung galaxy s20fe 5g bleu",
+    "normalized_name": "galaxy s20fe 5g bleu",
     "brand": "Samsung",
     "model": "SM-G781B",
     "last_updated": "30.Nov.2020",
@@ -2593,7 +2593,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A72 4G Noir",
-    "normalized_name": "samsung galaxy a72 4g",
+    "normalized_name": "galaxy a72 4g",
     "brand": "SAMSUNG",
     "model": "SM-A725FZKDEUH",
     "last_updated": "?",
@@ -2601,7 +2601,7 @@
   },
   {
     "name": "MOTOROLA E7I Power 32Go",
-    "normalized_name": "motorola e7i power",
+    "normalized_name": "e7i power",
     "brand": "MOTOROLA",
     "model": "Moto E7i Power",
     "last_updated": "12/04/2021",
@@ -2609,7 +2609,7 @@
   },
   {
     "name": "XIAOMI Mi 10 5G Gris 256 Go",
-    "normalized_name": "xiaomi mi 10 5g gris",
+    "normalized_name": "mi 10 5g gris",
     "brand": "XIAOMI",
     "model": "J2 – Mi 10",
     "last_updated": "2021.01.04",
@@ -2617,7 +2617,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A71 Bleu",
-    "normalized_name": "samsung galaxy a71 bleu",
+    "normalized_name": "galaxy a71 bleu",
     "brand": "SAMSUNG",
     "model": "SM-A715F",
     "last_updated": "30.Nov.2020",
@@ -2625,7 +2625,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20+ 128 Go Noir",
-    "normalized_name": "samsung galaxy s20+",
+    "normalized_name": "galaxy s20+",
     "brand": "SAMSUNG",
     "model": "SM-G985F",
     "last_updated": "30.Nov.2020",
@@ -2641,7 +2641,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A20e Noir",
-    "normalized_name": "samsung galaxy a20e",
+    "normalized_name": "galaxy a20e",
     "brand": "SAMSUNG",
     "model": "SAMGALAXYA20EN",
     "last_updated": "?",
@@ -2649,7 +2649,7 @@
   },
   {
     "name": "APPLE iPhone XR 64Go Noir",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "Apple",
     "model": null,
     "last_updated": "6 novembre 2020",
@@ -2665,7 +2665,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 4G Bleu",
-    "normalized_name": "samsung galaxy a52 4g bleu",
+    "normalized_name": "galaxy a52 4g bleu",
     "brand": "Samsung",
     "model": "SAMGALAXYA52BL",
     "last_updated": "?",
@@ -2673,7 +2673,7 @@
   },
   {
     "name": "HUAWEI P40 128 Go Or",
-    "normalized_name": "huawei p40",
+    "normalized_name": "",
     "brand": "HUAWEI P40",
     "model": "HUAWEIP40ANGO",
     "last_updated": "?",
@@ -2689,7 +2689,7 @@
   },
   {
     "name": "APPLE iPhone 11 64GB Blanc",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -2697,7 +2697,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE Blanc",
-    "normalized_name": "samsung galaxy s20fe",
+    "normalized_name": "galaxy s20fe",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -2705,7 +2705,7 @@
   },
   {
     "name": "XIAOMI Mi 10T Lite 5G 64Go Gris",
-    "normalized_name": "xiaomi mi 10t lite 5g gris",
+    "normalized_name": "mi 10t lite 5g gris",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -2721,7 +2721,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Vert forêt 64 Go",
-    "normalized_name": "xiaomi redmi note 9 forêt",
+    "normalized_name": "redmi note 9 forêt",
     "brand": "XIAOMI",
     "model": "Redmi Note 9",
     "last_updated": "2021.01.04",
@@ -2737,7 +2737,7 @@
   },
   {
     "name": "HUAWEI P30 Pro 128 Go Noir",
-    "normalized_name": "huawei p30 pro",
+    "normalized_name": "",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -2745,7 +2745,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 32Go Gris",
-    "normalized_name": "xiaomi redmi 9 gris",
+    "normalized_name": "redmi 9 gris",
     "brand": "XIAOMI",
     "model": "Redmi 9",
     "last_updated": "2021.01.04",
@@ -2753,7 +2753,7 @@
   },
   {
     "name": "APPLE iPhone 12 64Go Bleu",
-    "normalized_name": "apple iphone 12 bleu",
+    "normalized_name": "iphone 12 bleu",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -2761,7 +2761,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A41 Blanc",
-    "normalized_name": "samsung galaxy a41",
+    "normalized_name": "galaxy a41",
     "brand": "SAMSUNG",
     "model": "SAMGALAXYA41B",
     "last_updated": "?",
@@ -2769,7 +2769,7 @@
   },
   {
     "name": "APPLE iPhone 11 128Go Blanc",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": "A2221",
     "last_updated": "6 novembre 2020",
@@ -2777,7 +2777,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 5G 256 Go Gris",
-    "normalized_name": "samsung galaxy note20 5g gris",
+    "normalized_name": "galaxy note20 5g gris",
     "brand": "SAMSUNG",
     "model": "SM-N981B",
     "last_updated": "30.Nov.2020",
@@ -2785,7 +2785,7 @@
   },
   {
     "name": "XIAOMI Mi 11 5G 256 Go Gris",
-    "normalized_name": "xiaomi mi 11 5g gris",
+    "normalized_name": "mi 11 5g gris",
     "brand": "XIAOMI",
     "model": "Mi 11",
     "last_updated": "18/02/2021",
@@ -2793,7 +2793,7 @@
   },
   {
     "name": "XIAOMI Mi 11i 5G 256 Go Blanc",
-    "normalized_name": "xiaomi mi 11i 5g",
+    "normalized_name": "mi 11i 5g",
     "brand": "XIAOMI",
     "model": "Mi 11 i",
     "last_updated": "13/04/2021",
@@ -2801,7 +2801,7 @@
   },
   {
     "name": "XIAOMI POCO F2 Pro 128Go Bleu",
-    "normalized_name": "xiaomi poco f2 pro bleu",
+    "normalized_name": "poco f2 pro bleu",
     "brand": "XIAOMI",
     "model": "POCO F2 (128 Go)",
     "last_updated": "2021.01.04",
@@ -2809,7 +2809,7 @@
   },
   {
     "name": "LOGICOM Prime Bleu 32GO",
-    "normalized_name": "logicom prime bleu",
+    "normalized_name": "prime bleu",
     "brand": "LOGICOM",
     "model": "PRIME_2+32GO_BLEU",
     "last_updated": "03/11/2020",
@@ -2817,7 +2817,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE Vert",
-    "normalized_name": "samsung galaxy s20fe",
+    "normalized_name": "galaxy s20fe",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -2825,7 +2825,7 @@
   },
   {
     "name": "Samsung Galaxy S10+ 128 Go Vert Prisme",
-    "normalized_name": "samsung galaxy s10+ prisme",
+    "normalized_name": "galaxy s10+ prisme",
     "brand": "SAMSUNG",
     "model": "SM-G975F",
     "last_updated": "30.Nov.2020",
@@ -2841,7 +2841,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 4G Lavande",
-    "normalized_name": "samsung galaxy a52 4g lavande",
+    "normalized_name": "galaxy a52 4g lavande",
     "brand": "Samsung",
     "model": "SM-A525FLVGEUH",
     "last_updated": "?",
@@ -2849,7 +2849,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 4G 256 Go Gris",
-    "normalized_name": "samsung galaxy note20 4g gris",
+    "normalized_name": "galaxy note20 4g gris",
     "brand": "SAMSUNG",
     "model": "SM-N981B",
     "last_updated": "30.Nov.2020",
@@ -2857,7 +2857,7 @@
   },
   {
     "name": "OnePlus 8 8GB+128GB IN2013 Interstellar Glow Version globale Chargeur Européen",
-    "normalized_name": "oneplus 8 + in2013 interstellar glow version globale chargeur européen",
+    "normalized_name": "+ in2013 interstellar glow version globale chargeur européen",
     "brand": "OnePlus 8",
     "model": null,
     "last_updated": "?",
@@ -2865,7 +2865,7 @@
   },
   {
     "name": "VIVO Y72 128Go Bleu",
-    "normalized_name": "vivo y72 bleu",
+    "normalized_name": "y72 bleu",
     "brand": "VIVO",
     "model": "Y72 B",
     "last_updated": null,
@@ -2873,7 +2873,7 @@
   },
   {
     "name": "SAMSUNG Galaxy S20FE Rouge",
-    "normalized_name": "samsung galaxy s20fe",
+    "normalized_name": "galaxy s20fe",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30.Nov.2020",
@@ -2881,7 +2881,7 @@
   },
   {
     "name": "CROSSCALL Core M 4 Go Noir",
-    "normalized_name": "crosscall core m",
+    "normalized_name": "core m",
     "brand": "CROSSCALL",
     "model": "CORE-M4 GO",
     "last_updated": "31/12/2020",
@@ -2897,7 +2897,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 256Go Bleu Pacifique",
-    "normalized_name": "apple iphone 12 pro max bleu pacifique",
+    "normalized_name": "iphone 12 pro max bleu pacifique",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -2905,7 +2905,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Gris de minuit 64 Go",
-    "normalized_name": "xiaomi redmi note 9 gris de minuit",
+    "normalized_name": "redmi note 9 gris de minuit",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -2913,7 +2913,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A51 Bleu",
-    "normalized_name": "samsung galaxy a51 bleu",
+    "normalized_name": "galaxy a51 bleu",
     "brand": "Samsung",
     "model": "SM-A515F",
     "last_updated": "30.Nov.2020",
@@ -2921,7 +2921,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 128Go Or",
-    "normalized_name": "apple iphone 12 pro max",
+    "normalized_name": "iphone 12 pro max",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -2929,7 +2929,7 @@
   },
   {
     "name": "APPLE iPhone 12 128Go Bleu",
-    "normalized_name": "apple iphone 12 bleu",
+    "normalized_name": "iphone 12 bleu",
     "brand": "APPLE",
     "model": "AP0194252135778",
     "last_updated": "?",
@@ -2937,7 +2937,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A71 Noir",
-    "normalized_name": "samsung galaxy a71",
+    "normalized_name": "galaxy a71",
     "brand": "SAMSUNG",
     "model": "SM-A715F",
     "last_updated": "30.Nov.2020",
@@ -2945,7 +2945,7 @@
   },
   {
     "name": "CROSSCALL Core M4 Noir",
-    "normalized_name": "crosscall core m4",
+    "normalized_name": "core m4",
     "brand": "CROSSCALL",
     "model": "CORE-M4",
     "last_updated": "31/12/2020",
@@ -2953,7 +2953,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 Ultra 5G 256 Go Noir",
-    "normalized_name": "samsung galaxy note20 ultra 5g",
+    "normalized_name": "galaxy note20 ultra 5g",
     "brand": "SAMSUNG",
     "model": "SM-N986B",
     "last_updated": "30.Nov.2020",
@@ -2969,7 +2969,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Noir 64 Go",
-    "normalized_name": "xiaomi redmi note 9",
+    "normalized_name": "redmi note 9",
     "brand": "XIAOMI",
     "model": "Redmi Note 9",
     "last_updated": "2021.01.04",
@@ -2977,7 +2977,7 @@
   },
   {
     "name": "XIAOMI Redmi 9A 32 Go Vert",
-    "normalized_name": "xiaomi redmi 9a",
+    "normalized_name": "redmi 9a",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -2985,7 +2985,7 @@
   },
   {
     "name": "XIAOMI Redmi 9T 128Go Gris",
-    "normalized_name": "xiaomi redmi 9t gris",
+    "normalized_name": "redmi 9t gris",
     "brand": "XIAOMI",
     "model": "Redmi 9T",
     "last_updated": "2021.02.02",
@@ -3001,7 +3001,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 5G Noir",
-    "normalized_name": "samsung galaxy a52 5g",
+    "normalized_name": "galaxy a52 5g",
     "brand": "Samsung",
     "model": "SM-A526BZKDEUH",
     "last_updated": "?",
@@ -3009,7 +3009,7 @@
   },
   {
     "name": "Samsung Galaxy S10+ 128 Go Noir Prisme",
-    "normalized_name": "samsung galaxy s10+ prisme",
+    "normalized_name": "galaxy s10+ prisme",
     "brand": "SAMSUNG",
     "model": "SM-G975F",
     "last_updated": "30.Nov.2020",
@@ -3017,7 +3017,7 @@
   },
   {
     "name": "VIVO Y72 128Go Noir",
-    "normalized_name": "vivo y72",
+    "normalized_name": "y72",
     "brand": "VIVO",
     "model": "Y72 N",
     "last_updated": "?",
@@ -3033,7 +3033,7 @@
   },
   {
     "name": "APPLE iPhone 12 Pro Max 128Go Bleu Pacifique",
-    "normalized_name": "apple iphone 12 pro max bleu pacifique",
+    "normalized_name": "iphone 12 pro max bleu pacifique",
     "brand": "APPLE",
     "model": "A2411",
     "last_updated": "26 octobre 2020",
@@ -3041,7 +3041,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Bleu Aurore 64 Go",
-    "normalized_name": "xiaomi redmi note 9s bleu aurore",
+    "normalized_name": "redmi note 9s bleu aurore",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3057,7 +3057,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A42 5G Noir",
-    "normalized_name": "samsung galaxy a42 5g",
+    "normalized_name": "galaxy a42 5g",
     "brand": "SAMSUNG",
     "model": "SM-A426B",
     "last_updated": "30.Nov.2020",
@@ -3073,7 +3073,7 @@
   },
   {
     "name": "APPLE iPhone 12 64Go Noir",
-    "normalized_name": "apple iphone 12",
+    "normalized_name": "iphone 12",
     "brand": "APPLE",
     "model": "A2403",
     "last_updated": "12 novembre 2020",
@@ -3081,7 +3081,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 4G Blanc",
-    "normalized_name": "samsung galaxy a52 4g",
+    "normalized_name": "galaxy a52 4g",
     "brand": "Samsung",
     "model": "SM-A525FZWGEUH",
     "last_updated": "?",
@@ -3089,7 +3089,7 @@
   },
   {
     "name": "CROSSCALL Core X4 Noir",
-    "normalized_name": "crosscall core x4",
+    "normalized_name": "core x4",
     "brand": "CROSSCALL",
     "model": "CORE-X4",
     "last_updated": "31/12/2020",
@@ -3105,7 +3105,7 @@
   },
   {
     "name": "XIAOMI Redmi 9A 32 Go Gris",
-    "normalized_name": "xiaomi redmi 9a gris",
+    "normalized_name": "redmi 9a gris",
     "brand": "XIAOMI",
     "model": "Redmi 9A",
     "last_updated": "2021.01.04",
@@ -3113,7 +3113,7 @@
   },
   {
     "name": "Sony Xperia 10 III Noir",
-    "normalized_name": "sony xperia 10 iii",
+    "normalized_name": "xperia 10 iii",
     "brand": "SONY",
     "model": "Xperia 10 III",
     "last_updated": "22/04/2021",
@@ -3129,7 +3129,7 @@
   },
   {
     "name": "XIAOMI Mi 10T 5G 128Go Gris",
-    "normalized_name": "xiaomi mi 10t 5g gris",
+    "normalized_name": "mi 10t 5g gris",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3137,7 +3137,7 @@
   },
   {
     "name": "WIKO Y81 Deep Blue",
-    "normalized_name": "wiko y81 deep blue",
+    "normalized_name": "y81 deep blue",
     "brand": "Wiko",
     "model": "Y81 (W-V680)",
     "last_updated": "09/12/2020",
@@ -3145,7 +3145,7 @@
   },
   {
     "name": "XIAOMI Mi 10T Pro 5G 256Go Noir",
-    "normalized_name": "xiaomi mi 10t pro 5g",
+    "normalized_name": "mi 10t pro 5g",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3153,7 +3153,7 @@
   },
   {
     "name": "XIAOMI Redmi Note10 5G 64 Go Bleu",
-    "normalized_name": "xiaomi redmi note10 5g bleu",
+    "normalized_name": "redmi note10 5g bleu",
     "brand": "XIAOMI",
     "model": "Redmi Note 10 5G",
     "last_updated": "07.04.2021",
@@ -3177,7 +3177,7 @@
   },
   {
     "name": "WIKO View 4 Lite LS Deep Gold 32 Go",
-    "normalized_name": "wiko view 4 lite ls deep",
+    "normalized_name": "view 4 lite ls deep",
     "brand": "Wiko",
     "model": "VIEW4LITE (V730)",
     "last_updated": "09/12/2021",
@@ -3217,7 +3217,7 @@
   },
   {
     "name": "XIAOMI Mi 10T 5G 128Go Noir",
-    "normalized_name": "xiaomi mi 10t 5g",
+    "normalized_name": "mi 10t 5g",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3225,7 +3225,7 @@
   },
   {
     "name": "XIAOMI Mi 10T Lite 5G 128Go Bleu",
-    "normalized_name": "xiaomi mi 10t lite 5g bleu",
+    "normalized_name": "mi 10t lite 5g bleu",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3249,7 +3249,7 @@
   },
   {
     "name": "XIAOMI POCO X3 128 Go Gris",
-    "normalized_name": "xiaomi poco x3 gris",
+    "normalized_name": "poco x3 gris",
     "brand": "XIAOMI",
     "model": "POCO X3",
     "last_updated": "2021.01.04",
@@ -3281,7 +3281,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A52 4G Noir",
-    "normalized_name": "samsung galaxy a52 4g",
+    "normalized_name": "galaxy a52 4g",
     "brand": "Samsung",
     "model": "SM-A525FZKGEUH",
     "last_updated": "?",
@@ -3297,7 +3297,7 @@
   },
   {
     "name": "XIAOMI Mi 10T Pro 5G 256Go Gris",
-    "normalized_name": "xiaomi mi 10t pro 5g gris",
+    "normalized_name": "mi 10t pro 5g gris",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3329,7 +3329,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 64GO Vert",
-    "normalized_name": "xiaomi redmi 9",
+    "normalized_name": "redmi 9",
     "brand": "XIAOMI",
     "model": "Redmi 9",
     "last_updated": "2021.01.04",
@@ -3337,7 +3337,7 @@
   },
   {
     "name": "XIAOMI Redmi 9T 128Go Vert",
-    "normalized_name": "xiaomi redmi 9t",
+    "normalized_name": "redmi 9t",
     "brand": "XIAOMI",
     "model": "Redmi 9T",
     "last_updated": null,
@@ -3345,7 +3345,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Gris Interstellaire 64 Go",
-    "normalized_name": "xiaomi redmi note 9s gris interstellaire",
+    "normalized_name": "redmi note 9s gris interstellaire",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3353,7 +3353,7 @@
   },
   {
     "name": "XIAOMI Redmi 9C 32Go Orange",
-    "normalized_name": "xiaomi redmi 9c orange",
+    "normalized_name": "redmi 9c orange",
     "brand": "XIAOMI",
     "model": "Redmi Note 9C NFC",
     "last_updated": "2021.01.04",
@@ -3361,7 +3361,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A72 4G Bleu",
-    "normalized_name": "samsung galaxy a72 4g bleu",
+    "normalized_name": "galaxy a72 4g bleu",
     "brand": "SAMSUNG",
     "model": "SM-A725FZBDEUH",
     "last_updated": "?",
@@ -3369,7 +3369,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9S Gris Interstellaire 128 Go",
-    "normalized_name": "xiaomi redmi note 9s gris interstellaire",
+    "normalized_name": "redmi note 9s gris interstellaire",
     "brand": "XIAOMI",
     "model": "Redmi Note 9S",
     "last_updated": "2021.01.04",
@@ -3377,7 +3377,7 @@
   },
   {
     "name": "XIAOMI Redmi 9T 128Go Bleu",
-    "normalized_name": "xiaomi redmi 9t bleu",
+    "normalized_name": "redmi 9t bleu",
     "brand": "XIAOMI",
     "model": "Redmi 9T",
     "last_updated": "2021.02.02",
@@ -3385,7 +3385,7 @@
   },
   {
     "name": "APPLE iPhone SE RED 128 Go",
-    "normalized_name": "apple iphone se",
+    "normalized_name": "iphone se",
     "brand": "APPLE",
     "model": "A2296",
     "last_updated": "6 novembre 2020",
@@ -3393,7 +3393,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A10 Noir",
-    "normalized_name": "samsung galaxy a10",
+    "normalized_name": "galaxy a10",
     "brand": "SAMSUNG",
     "model": "SM-A105F",
     "last_updated": "30.Nov.2020",
@@ -3409,7 +3409,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 7 32Go Noir",
-    "normalized_name": "xiaomi redmi note 7",
+    "normalized_name": "redmi note 7",
     "brand": "XIAOMI",
     "model": "Redmi Note 7 (32 Go)",
     "last_updated": "2021.01.04",
@@ -3425,7 +3425,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 64Go Violet",
-    "normalized_name": "xiaomi redmi 9 violet",
+    "normalized_name": "redmi 9 violet",
     "brand": "XIAOMI",
     "model": "Redmi 9",
     "last_updated": "2021.01.04",
@@ -3457,7 +3457,7 @@
   },
   {
     "name": "XIAOMI Redmi 9 64Go Gris",
-    "normalized_name": "xiaomi redmi 9 gris",
+    "normalized_name": "redmi 9 gris",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3473,7 +3473,7 @@
   },
   {
     "name": "HUAWEI P20 Lite 64 Go Rose",
-    "normalized_name": "huawei p20 lite rose",
+    "normalized_name": "rose",
     "brand": "Huawei P20 lite",
     "model": "ANE-LX1",
     "last_updated": "19 janvier 2021",
@@ -3481,7 +3481,7 @@
   },
   {
     "name": "XIAOMI MI Note 10 Vert 128 Go",
-    "normalized_name": "xiaomi mi note 10",
+    "normalized_name": "mi note 10",
     "brand": "XIAOMI",
     "model": "Mi Note 10",
     "last_updated": "2021.01.04",
@@ -3489,7 +3489,7 @@
   },
   {
     "name": "Xiaomi Redmi Note 10 4Go 128Go Lac Vert",
-    "normalized_name": "xiaomi redmi note 10 lac",
+    "normalized_name": "redmi note 10 lac",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": null,
@@ -3505,7 +3505,7 @@
   },
   {
     "name": "OnePlus 9 5G Téléphone 12 Go de RAM 256 Go Snapdragon 888 – 6.55 pouces AMOLED – Noir",
-    "normalized_name": "oneplus 9 5g téléphone de ram snapdragon 888 – 6.55 pouces amoled –",
+    "normalized_name": "9 5g téléphone de ram snapdragon 888 – 6.55 pouces amoled –",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3521,7 +3521,7 @@
   },
   {
     "name": "SmartphoneOnePlus 9 12Go Ram 256Go Violet Winter Mist 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "smartphoneoneplus 9 ram violet winter mist 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "smartphone 9 ram violet winter mist 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3529,7 +3529,7 @@
   },
   {
     "name": "HUAWEI P20 Noir",
-    "normalized_name": "huawei p20",
+    "normalized_name": "",
     "brand": "Huawei P20",
     "model": "EML-L29",
     "last_updated": "19 janvier 2021",
@@ -3537,7 +3537,7 @@
   },
   {
     "name": "OnePlus 9 12Go Ram 256Go Bleu Arctic Sky 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 ram bleu arctic sky 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 ram bleu arctic sky 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3545,7 +3545,7 @@
   },
   {
     "name": "OnePlus 9 Pro 12Go Ram 256Go Vert Pine Green 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 pro ram pine 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 pro ram pine 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3553,7 +3553,7 @@
   },
   {
     "name": "OnePlus 9 8Go Ram 128Go Bleu Arctic Sky 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 ram bleu arctic sky 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 ram bleu arctic sky 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3561,7 +3561,7 @@
   },
   {
     "name": "OnePlus 9 8Go Ram 128Go Violet Winter Mist 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 ram violet winter mist 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 ram violet winter mist 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3569,7 +3569,7 @@
   },
   {
     "name": "OnePlus 9 12Go Ram 256Go Noir Astral Black 5G Plus Buds Z comme cadeau Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 ram astral 5g plus buds z comme cadeau snapdragon 888 photo hasselblad",
+    "normalized_name": "9 ram astral 5g plus buds z comme cadeau snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3577,7 +3577,7 @@
   },
   {
     "name": "OnePlus 9 8Go Ram 128Go Noir Astral Black 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 ram astral 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 ram astral 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3585,7 +3585,7 @@
   },
   {
     "name": "OnePlus 9 Pro 12Go Ram 256Go Argent Morning Mist 5G Snapdragon 888 Photo Hasselblad 50MP 65W",
-    "normalized_name": "oneplus 9 pro ram morning mist 5g snapdragon 888 photo hasselblad 50mp 65w",
+    "normalized_name": "9 pro ram morning mist 5g snapdragon 888 photo hasselblad 50mp 65w",
     "brand": "ONEPLUS",
     "model": null,
     "last_updated": "?",
@@ -3593,7 +3593,7 @@
   },
   {
     "name": "SAMSUNG Galaxy Note20 Ultra 5G 512 Go Noir",
-    "normalized_name": "samsung galaxy note20 ultra 5g",
+    "normalized_name": "galaxy note20 ultra 5g",
     "brand": "SAMSUNG",
     "model": "SM-N986BZKHEUB",
     "last_updated": null,
@@ -3633,7 +3633,7 @@
   },
   {
     "name": "XIAOMI MI 9T Pro Rouge 64 Go",
-    "normalized_name": "xiaomi mi 9t pro",
+    "normalized_name": "mi 9t pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3641,7 +3641,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 Pro Blanc 64 Go",
-    "normalized_name": "xiaomi redmi note 8 pro",
+    "normalized_name": "redmi note 8 pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3657,7 +3657,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 Pro Noir 64 Go",
-    "normalized_name": "xiaomi redmi note 8 pro",
+    "normalized_name": "redmi note 8 pro",
     "brand": "XIAOMI",
     "model": "Redmi 9A",
     "last_updated": "2021.01.04",
@@ -3673,7 +3673,7 @@
   },
   {
     "name": "XIAOMI MI Note 10 Noir 128 Go",
-    "normalized_name": "xiaomi mi note 10",
+    "normalized_name": "mi note 10",
     "brand": "XIAOMI",
     "model": "Mi Note 10",
     "last_updated": "2021.01.04",
@@ -3681,7 +3681,7 @@
   },
   {
     "name": "XIAOMI MI 9T Pro Bleu 64 Go",
-    "normalized_name": "xiaomi mi 9t pro bleu",
+    "normalized_name": "mi 9t pro bleu",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3697,7 +3697,7 @@
   },
   {
     "name": "XIAOMI MI 9T Pro Noir 64 Go",
-    "normalized_name": "xiaomi mi 9t pro",
+    "normalized_name": "mi 9t pro",
     "brand": "XIAOMI",
     "model": "Mi 9T Pro",
     "last_updated": "2021.01.04",
@@ -3705,7 +3705,7 @@
   },
   {
     "name": "OnePlus 9 Pro 8Go Ram 256Go Vert Pine Green 5G Snapdragon 888 Photo Hasselblad",
-    "normalized_name": "oneplus 9 pro ram pine 5g snapdragon 888 photo hasselblad",
+    "normalized_name": "9 pro ram pine 5g snapdragon 888 photo hasselblad",
     "brand": "OnePlus",
     "model": null,
     "last_updated": "?",
@@ -3713,7 +3713,7 @@
   },
   {
     "name": "HUAWEI P30 128 Go Bleu Aurore",
-    "normalized_name": "huawei p30 bleu aurore",
+    "normalized_name": "bleu aurore",
     "brand": "Huawei P30",
     "model": "ELE-L29",
     "last_updated": "19 janvier 2021",
@@ -3745,7 +3745,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 T Bleu 64 Go",
-    "normalized_name": "xiaomi redmi note 8 t bleu",
+    "normalized_name": "redmi note 8 t bleu",
     "brand": "XIAOMI",
     "model": "Redmi Note 8T",
     "last_updated": "2021.01.04",
@@ -3769,7 +3769,7 @@
   },
   {
     "name": "XIAOMI POCO X3 64Go Gris",
-    "normalized_name": "xiaomi poco x3 gris",
+    "normalized_name": "poco x3 gris",
     "brand": "XIAOMI",
     "model": "POCO X3",
     "last_updated": "2021.01.04",
@@ -3777,7 +3777,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Pro Vert tropical 128 Go",
-    "normalized_name": "xiaomi redmi note 9 pro tropical",
+    "normalized_name": "redmi note 9 pro tropical",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "2021.01.04",
@@ -3785,7 +3785,7 @@
   },
   {
     "name": "HUAWEI P30 Pro 128 Go Nacré",
-    "normalized_name": "huawei p30 pro nacré",
+    "normalized_name": "nacré",
     "brand": "Huawei P30 Pro",
     "model": "VOG-L29",
     "last_updated": "19 janvier 2021",
@@ -3793,7 +3793,7 @@
   },
   {
     "name": "SAMSUNG Galaxy A51 Blanc",
-    "normalized_name": "samsung galaxy a51",
+    "normalized_name": "galaxy a51",
     "brand": "SAMSUNG",
     "model": "SM-A515F",
     "last_updated": "30.Nov.2020",
@@ -3801,7 +3801,7 @@
   },
   {
     "name": "HONOR 9X Sapphire Blue 128 Go",
-    "normalized_name": "honor 9x sapphire blue",
+    "normalized_name": "9x sapphire blue",
     "brand": "HONOR",
     "model": "STK-LX1",
     "last_updated": null,
@@ -3817,7 +3817,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 8 Pro Bleu 64 Go",
-    "normalized_name": "xiaomi redmi note 8 pro bleu",
+    "normalized_name": "redmi note 8 pro bleu",
     "brand": "XIAOMI",
     "model": "Redmi 9A",
     "last_updated": "2021.01.04",
@@ -3825,7 +3825,7 @@
   },
   {
     "name": "HUAWEI P Smart 2019 64 Go Noir",
-    "normalized_name": "huawei p smart 2019",
+    "normalized_name": "",
     "brand": "Huawei P smart 2019",
     "model": "POT-LX1",
     "last_updated": "19 janvier 2021",
@@ -3833,7 +3833,7 @@
   },
   {
     "name": "XIAOMI MI 10 Lite 5G Gris cosmos 128 Go",
-    "normalized_name": "xiaomi mi 10 lite 5g gris cosmos",
+    "normalized_name": "mi 10 lite 5g gris cosmos",
     "brand": "XIAOMI",
     "model": "Mi 10 Lite",
     "last_updated": "2021.01.04",
@@ -3841,7 +3841,7 @@
   },
   {
     "name": "XIAOMI POCO X3 128 Go Bleu",
-    "normalized_name": "xiaomi poco x3 bleu",
+    "normalized_name": "poco x3 bleu",
     "brand": "XIAOMI",
     "model": "POCO X3",
     "last_updated": "2021.01.04",
@@ -3849,7 +3849,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 7 128 Go Noir",
-    "normalized_name": "xiaomi redmi note 7",
+    "normalized_name": "redmi note 7",
     "brand": "XIAOMI",
     "model": "Redmi Note 7",
     "last_updated": "2021.01.04",
@@ -3857,7 +3857,7 @@
   },
   {
     "name": "XIAOMI Redmi 9C 32Go Gris",
-    "normalized_name": "xiaomi redmi 9c gris",
+    "normalized_name": "redmi 9c gris",
     "brand": "XIAOMI",
     "model": "Redmi Note 9C NFC",
     "last_updated": "2021.01.04",
@@ -3929,7 +3929,7 @@
   },
   {
     "name": "Athesi AP6301",
-    "normalized_name": "athesi ap6301",
+    "normalized_name": "ap6301",
     "brand": "ATHESI",
     "model": null,
     "last_updated": "01/03/2021",
@@ -3937,7 +3937,7 @@
   },
   {
     "name": "Athesi AP5701",
-    "normalized_name": "athesi ap5701",
+    "normalized_name": "ap5701",
     "brand": "ATHESI",
     "model": null,
     "last_updated": "01/03/2021",
@@ -3945,7 +3945,7 @@
   },
   {
     "name": "Athesi AP5801",
-    "normalized_name": "athesi ap5801",
+    "normalized_name": "ap5801",
     "brand": "ATHESI",
     "model": null,
     "last_updated": "01/03/2021",
@@ -3953,7 +3953,7 @@
   },
   {
     "name": "Athesi AP5705S",
-    "normalized_name": "athesi ap5705s",
+    "normalized_name": "ap5705s",
     "brand": "ATHESI",
     "model": null,
     "last_updated": "01/03/2021",
@@ -3961,7 +3961,7 @@
   },
   {
     "name": "Apple iPhone XS A1921",
-    "normalized_name": "apple iphone xs",
+    "normalized_name": "iphone xs",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -3969,7 +3969,7 @@
   },
   {
     "name": "Apple iPhone 7 A1778",
-    "normalized_name": "apple iphone 7",
+    "normalized_name": "iphone 7",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -3977,7 +3977,7 @@
   },
   {
     "name": "Apple iPhone 7 Plus A1784",
-    "normalized_name": "apple iphone 7 plus",
+    "normalized_name": "iphone 7 plus",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -3985,7 +3985,7 @@
   },
   {
     "name": "Apple iPhone 8 A1905",
-    "normalized_name": "apple iphone 8",
+    "normalized_name": "iphone 8",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -3993,7 +3993,7 @@
   },
   {
     "name": "Apple iPhone 8 Plus A1897",
-    "normalized_name": "apple iphone 8 plus",
+    "normalized_name": "iphone 8 plus",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -4001,7 +4001,7 @@
   },
   {
     "name": "Apple iPhone X A1901",
-    "normalized_name": "apple iphone x",
+    "normalized_name": "iphone x",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -4009,7 +4009,7 @@
   },
   {
     "name": "Apple iPhone XS Max A2101",
-    "normalized_name": "apple iphone xs max",
+    "normalized_name": "iphone xs max",
     "brand": "APPLE",
     "model": null,
     "last_updated": "27/01/2021",
@@ -4017,7 +4017,7 @@
   },
   {
     "name": "Apple iPhone XR A2105",
-    "normalized_name": "apple iphone xr",
+    "normalized_name": "iphone xr",
     "brand": "APPLE",
     "model": null,
     "last_updated": "06/11/2020",
@@ -4033,7 +4033,7 @@
   },
   {
     "name": "Apple iPhone 11 Pro Max A2218",
-    "normalized_name": "apple iphone 11 pro max",
+    "normalized_name": "iphone 11 pro max",
     "brand": "APPLE",
     "model": null,
     "last_updated": "06/11/2020",
@@ -4041,7 +4041,7 @@
   },
   {
     "name": "Apple iPhone 11 Pro A2215",
-    "normalized_name": "apple iphone 11 pro",
+    "normalized_name": "iphone 11 pro",
     "brand": "APPLE",
     "model": null,
     "last_updated": "06/11/2020",
@@ -4049,7 +4049,7 @@
   },
   {
     "name": "Apple iPhone 11 A2221",
-    "normalized_name": "apple iphone 11",
+    "normalized_name": "iphone 11",
     "brand": "APPLE",
     "model": null,
     "last_updated": "06/11/2020",
@@ -4057,7 +4057,7 @@
   },
   {
     "name": "Apple iPhone 12 mini A2399",
-    "normalized_name": "apple iphone 12 mini",
+    "normalized_name": "iphone 12 mini",
     "brand": "APPLE",
     "model": null,
     "last_updated": "26/10/2020",
@@ -4065,7 +4065,7 @@
   },
   {
     "name": "Apple iPhone 12 Pro A2403",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": null,
     "last_updated": "12/11/2020",
@@ -4073,7 +4073,7 @@
   },
   {
     "name": "Apple iPhone 12 Pro A2407",
-    "normalized_name": "apple iphone 12 pro",
+    "normalized_name": "iphone 12 pro",
     "brand": "APPLE",
     "model": null,
     "last_updated": "06/11/2020",
@@ -4081,7 +4081,7 @@
   },
   {
     "name": "Apple iPhone 12 Pro Max A2411",
-    "normalized_name": "apple iphone 12 pro max",
+    "normalized_name": "iphone 12 pro max",
     "brand": "APPLE",
     "model": null,
     "last_updated": "20/10/2020",
@@ -4089,7 +4089,7 @@
   },
   {
     "name": "Xiaomi Redmi Note 9T5G",
-    "normalized_name": "xiaomi redmi note 9t5g",
+    "normalized_name": "redmi note 9t5g",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4097,7 +4097,7 @@
   },
   {
     "name": "Xiaomi Redmi 7A",
-    "normalized_name": "xiaomi redmi 7a",
+    "normalized_name": "redmi 7a",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4105,7 +4105,7 @@
   },
   {
     "name": "Xiaomi Redmi 8",
-    "normalized_name": "xiaomi redmi 8",
+    "normalized_name": "redmi 8",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4113,7 +4113,7 @@
   },
   {
     "name": "Xiaomi Redmi 8A",
-    "normalized_name": "xiaomi redmi 8a",
+    "normalized_name": "redmi 8a",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4121,7 +4121,7 @@
   },
   {
     "name": "Xiaomi Redmi Note 9C",
-    "normalized_name": "xiaomi redmi note 9c",
+    "normalized_name": "redmi note 9c",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4129,7 +4129,7 @@
   },
   {
     "name": "Xiaomi Mi 9",
-    "normalized_name": "xiaomi mi 9",
+    "normalized_name": "mi 9",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4137,7 +4137,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10 Pro",
-    "normalized_name": "xiaomi mi note 10 pro",
+    "normalized_name": "mi note 10 pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4145,7 +4145,7 @@
   },
   {
     "name": "XIAOMI Mi Note 10",
-    "normalized_name": "xiaomi mi note 10",
+    "normalized_name": "mi note 10",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4153,7 +4153,7 @@
   },
   {
     "name": "Xiaomi Mi 9T Pro",
-    "normalized_name": "xiaomi mi 9t pro",
+    "normalized_name": "mi 9t pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4161,7 +4161,7 @@
   },
   {
     "name": "Xiaomi Redmi 9A",
-    "normalized_name": "xiaomi redmi 9a",
+    "normalized_name": "redmi 9a",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4169,7 +4169,7 @@
   },
   {
     "name": "Xiaomi Mi 10 Pro",
-    "normalized_name": "xiaomi mi 10 pro",
+    "normalized_name": "mi 10 pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4177,7 +4177,7 @@
   },
   {
     "name": "Xiaomi Mi 10T Pro",
-    "normalized_name": "xiaomi mi 10t pro",
+    "normalized_name": "mi 10t pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4185,7 +4185,7 @@
   },
   {
     "name": "Xiaomi Redmi Note 9s",
-    "normalized_name": "xiaomi redmi note 9s",
+    "normalized_name": "redmi note 9s",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4193,7 +4193,7 @@
   },
   {
     "name": "XIAOMI Redmi Note 9 Pro",
-    "normalized_name": "xiaomi redmi note 9 pro",
+    "normalized_name": "redmi note 9 pro",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4201,7 +4201,7 @@
   },
   {
     "name": "Xiaomi Mi 10 Lite",
-    "normalized_name": "xiaomi mi 10 lite",
+    "normalized_name": "mi 10 lite",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2020",
@@ -4209,7 +4209,7 @@
   },
   {
     "name": "Xiaomi Redmi Note 9",
-    "normalized_name": "xiaomi redmi note 9",
+    "normalized_name": "redmi note 9",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4217,7 +4217,7 @@
   },
   {
     "name": "Xiaomi Mi 10T Lite",
-    "normalized_name": "xiaomi mi 10t lite",
+    "normalized_name": "mi 10t lite",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4225,7 +4225,7 @@
   },
   {
     "name": "Xiaomi Redmi 9",
-    "normalized_name": "xiaomi redmi 9",
+    "normalized_name": "redmi 9",
     "brand": "XIAOMI",
     "model": null,
     "last_updated": "04/01/2021",
@@ -4233,7 +4233,7 @@
   },
   {
     "name": "Essentielb HeYou 20",
-    "normalized_name": "essentielb heyou 20",
+    "normalized_name": "heyou 20",
     "brand": "EssentielB",
     "model": "HEYOU 20",
     "last_updated": "14/12/2020",
@@ -4241,7 +4241,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Note10 Lite",
-    "normalized_name": "samsung galaxy note10 lite",
+    "normalized_name": "galaxy note10 lite",
     "brand": "SAMSUNG",
     "model": "SM-N770F",
     "last_updated": "30/11/2020",
@@ -4249,7 +4249,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Note20",
-    "normalized_name": "samsung galaxy note20",
+    "normalized_name": "galaxy note20",
     "brand": "SAMSUNG",
     "model": "SM-N980F",
     "last_updated": "30/11/2020",
@@ -4257,7 +4257,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A10",
-    "normalized_name": "samsung galaxy a10",
+    "normalized_name": "galaxy a10",
     "brand": "SAMSUNG",
     "model": "SM-A105F",
     "last_updated": "30/11/2020",
@@ -4265,7 +4265,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S10 EE",
-    "normalized_name": "samsung galaxy s10 ee",
+    "normalized_name": "galaxy s10 ee",
     "brand": "SAMSUNG",
     "model": "SM-G973F",
     "last_updated": "30/11/2020",
@@ -4273,7 +4273,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20 5G",
-    "normalized_name": "samsung galaxy s20 5g",
+    "normalized_name": "galaxy s20 5g",
     "brand": "SAMSUNG",
     "model": "SM-G981B",
     "last_updated": "30/11/2020",
@@ -4281,7 +4281,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S21+ 5G",
-    "normalized_name": "samsung galaxy s21+ 5g",
+    "normalized_name": "galaxy s21+ 5g",
     "brand": "SAMSUNG",
     "model": "SM-G996B",
     "last_updated": "24/12/2020",
@@ -4289,7 +4289,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A50",
-    "normalized_name": "samsung galaxy a50",
+    "normalized_name": "galaxy a50",
     "brand": "SAMSUNG",
     "model": "SM-A505F",
     "last_updated": "30/11/2020",
@@ -4337,7 +4337,7 @@
   },
   {
     "name": "CROSSCALL CORE-M4 GO",
-    "normalized_name": "crosscall core-m4 go",
+    "normalized_name": "core-m4 go",
     "brand": "CROSSCALL",
     "model": "CORE-M4 GO",
     "last_updated": "31/12/2020",
@@ -4345,7 +4345,7 @@
   },
   {
     "name": "CROSSCALL CORE-M4",
-    "normalized_name": "crosscall core-m4",
+    "normalized_name": "core-m4",
     "brand": "CROSSCALL",
     "model": "CORE-M4",
     "last_updated": "31/12/2020",
@@ -4353,7 +4353,7 @@
   },
   {
     "name": "CROSSCALL TREKKER-X4",
-    "normalized_name": "crosscall trekker-x4",
+    "normalized_name": "trekker-x4",
     "brand": "CROSSCALL",
     "model": "TREKKER-X4",
     "last_updated": "31/12/2020",
@@ -4361,7 +4361,7 @@
   },
   {
     "name": "CROSSCALL CORE-X4",
-    "normalized_name": "crosscall core-x4",
+    "normalized_name": "core-x4",
     "brand": "CROSSCALL",
     "model": "CORE-X4",
     "last_updated": "31/12/2020",
@@ -4369,7 +4369,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A42 5G",
-    "normalized_name": "samsung galaxy a42 5g",
+    "normalized_name": "galaxy a42 5g",
     "brand": "SAMSUNG",
     "model": "SM-A426B",
     "last_updated": "30/11/2020",
@@ -4377,7 +4377,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20+5G",
-    "normalized_name": "samsung galaxy s20+5g",
+    "normalized_name": "galaxy s20+5g",
     "brand": "SAMSUNG",
     "model": "SM-G986B",
     "last_updated": "30/11/2020",
@@ -4385,7 +4385,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20+5G EE",
-    "normalized_name": "samsung galaxy s20+5g ee",
+    "normalized_name": "galaxy s20+5g ee",
     "brand": "SAMSUNG",
     "model": "SM-G986B",
     "last_updated": "30/11/2020",
@@ -4393,7 +4393,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Note20 Ultra 5G",
-    "normalized_name": "samsung galaxy note20 ultra 5g",
+    "normalized_name": "galaxy note20 ultra 5g",
     "brand": "SAMSUNG",
     "model": "SM-N986B",
     "last_updated": "30/11/2020",
@@ -4401,7 +4401,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A10",
-    "normalized_name": "samsung galaxy a10",
+    "normalized_name": "galaxy a10",
     "brand": "SAMSUNG",
     "model": "SM-A105F",
     "last_updated": "30/11/2020",
@@ -4409,7 +4409,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A20e",
-    "normalized_name": "samsung galaxy a20e",
+    "normalized_name": "galaxy a20e",
     "brand": "SAMSUNG",
     "model": "SM-A202F",
     "last_updated": "30/11/2020",
@@ -4417,7 +4417,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A31",
-    "normalized_name": "samsung galaxy a31",
+    "normalized_name": "galaxy a31",
     "brand": "SAMSUNG",
     "model": "SM-A315G",
     "last_updated": "30/11/2020",
@@ -4425,7 +4425,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A51",
-    "normalized_name": "samsung galaxy a51",
+    "normalized_name": "galaxy a51",
     "brand": "SAMSUNG",
     "model": "SM-A515F",
     "last_updated": "30/11/2020",
@@ -4433,7 +4433,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Z Fold2 5G",
-    "normalized_name": "samsung galaxy z fold2 5g",
+    "normalized_name": "galaxy z fold2 5g",
     "brand": "SAMSUNG",
     "model": "SM-F916B",
     "last_updated": "30/11/2020",
@@ -4441,7 +4441,7 @@
   },
   {
     "name": "SAMSUNG GALAXY M51",
-    "normalized_name": "samsung galaxy m51",
+    "normalized_name": "galaxy m51",
     "brand": "SAMSUNG",
     "model": "SM-M515F",
     "last_updated": "30/11/2020",
@@ -4449,7 +4449,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Note20 5G",
-    "normalized_name": "samsung galaxy note20 5g",
+    "normalized_name": "galaxy note20 5g",
     "brand": "SAMSUNG",
     "model": "SM-N981B",
     "last_updated": "30/11/2020",
@@ -4457,7 +4457,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A12",
-    "normalized_name": "samsung galaxy a12",
+    "normalized_name": "galaxy a12",
     "brand": "SAMSUNG",
     "model": "SM-A125F",
     "last_updated": "30/11/2020",
@@ -4465,7 +4465,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A40",
-    "normalized_name": "samsung galaxy a40",
+    "normalized_name": "galaxy a40",
     "brand": "SAMSUNG",
     "model": "SM-A405F",
     "last_updated": "30/11/2020",
@@ -4473,7 +4473,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A41",
-    "normalized_name": "samsung galaxy a41",
+    "normalized_name": "galaxy a41",
     "brand": "SAMSUNG",
     "model": "SM-A415F",
     "last_updated": "30/11/2020",
@@ -4481,7 +4481,7 @@
   },
   {
     "name": "SAMSUNG GALAXY Xcover 4S",
-    "normalized_name": "samsung galaxy xcover 4s",
+    "normalized_name": "galaxy xcover 4s",
     "brand": "SAMSUNG",
     "model": "SM-G398F",
     "last_updated": "30/11/2020",
@@ -4489,7 +4489,7 @@
   },
   {
     "name": "SAMSUNG GALAXY XCover Pro EE",
-    "normalized_name": "samsung galaxy xcover pro ee",
+    "normalized_name": "galaxy xcover pro ee",
     "brand": "SAMSUNG",
     "model": "SM-G715F",
     "last_updated": "30/11/2020",
@@ -4497,7 +4497,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S10+ Edition Performance",
-    "normalized_name": "samsung galaxy s10+ edition performance",
+    "normalized_name": "galaxy s10+ edition performance",
     "brand": "SAMSUNG",
     "model": "SM-G975F",
     "last_updated": "30/11/2020",
@@ -4505,7 +4505,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20+",
-    "normalized_name": "samsung galaxy s20+",
+    "normalized_name": "galaxy s20+",
     "brand": "SAMSUNG",
     "model": "SM-G985F",
     "last_updated": "30/11/2020",
@@ -4513,7 +4513,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20 Ultra 5G",
-    "normalized_name": "samsung galaxy s20 ultra 5g",
+    "normalized_name": "galaxy s20 ultra 5g",
     "brand": "SAMSUNG",
     "model": "SM-G988B",
     "last_updated": "30/11/2020",
@@ -4521,7 +4521,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20 EE",
-    "normalized_name": "samsung galaxy s20 ee",
+    "normalized_name": "galaxy s20 ee",
     "brand": "SAMSUNG",
     "model": "SM-G980F",
     "last_updated": "30/11/2020",
@@ -4529,7 +4529,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20",
-    "normalized_name": "samsung galaxy s20",
+    "normalized_name": "galaxy s20",
     "brand": "SAMSUNG",
     "model": "SM-G980F",
     "last_updated": "30/11/2020",
@@ -4537,7 +4537,7 @@
   },
   {
     "name": "SAMSUNG GALAXY A21s",
-    "normalized_name": "samsung galaxy a21s",
+    "normalized_name": "galaxy a21s",
     "brand": "SAMSUNG",
     "model": "SM-A217F",
     "last_updated": "30/11/2020",
@@ -4545,7 +4545,7 @@
   },
   {
     "name": "Wiko Y51 (K211)",
-    "normalized_name": "wiko y51 (k211)",
+    "normalized_name": "y51 (k211)",
     "brand": "Wiko",
     "model": "Y51 (K211)",
     "last_updated": "09/12/2021",
@@ -4553,7 +4553,7 @@
   },
   {
     "name": "Wiko Y60 (W-K510)",
-    "normalized_name": "wiko y60 (w-k510)",
+    "normalized_name": "y60 (w-k510)",
     "brand": "Wiko",
     "model": "Y60 (W-K510)",
     "last_updated": "09/12/2021",
@@ -4561,7 +4561,7 @@
   },
   {
     "name": "Wiko Y61 (K560)",
-    "normalized_name": "wiko y61 (k560)",
+    "normalized_name": "y61 (k560)",
     "brand": "Wiko",
     "model": "Y61 (K560)",
     "last_updated": "09/12/2021",
@@ -4569,7 +4569,7 @@
   },
   {
     "name": "Wiko Y80 (W-V720)",
-    "normalized_name": "wiko y80 (w-v720)",
+    "normalized_name": "y80 (w-v720)",
     "brand": "Wiko",
     "model": "Y80 (W-V720)",
     "last_updated": "09/12/2021",
@@ -4577,7 +4577,7 @@
   },
   {
     "name": "Wiko Y81 (W-V680)",
-    "normalized_name": "wiko y81 (w-v680)",
+    "normalized_name": "y81 (w-v680)",
     "brand": "Wiko",
     "model": "Y81 (W-V680)",
     "last_updated": "09/12/2021",
@@ -4585,7 +4585,7 @@
   },
   {
     "name": "Wiko VIEW 5 PLUS (W-V850)",
-    "normalized_name": "wiko view 5 plus (w-v850)",
+    "normalized_name": "view 5 plus (w-v850)",
     "brand": "Wiko",
     "model": "VIEW 5 PLUS (W-V850)",
     "last_updated": "09/12/2021",
@@ -4593,7 +4593,7 @@
   },
   {
     "name": "Wiko VIEW 5 (W-V851)",
-    "normalized_name": "wiko view 5 (w-v851)",
+    "normalized_name": "view 5 (w-v851)",
     "brand": "Wiko",
     "model": "VIEW 5 (W-V851)",
     "last_updated": "09/12/2021",
@@ -4601,7 +4601,7 @@
   },
   {
     "name": "Wiko HARRY 2 (V600BN)",
-    "normalized_name": "wiko harry 2 (v600bn)",
+    "normalized_name": "harry 2 (v600bn)",
     "brand": "Wiko",
     "model": "HARRY 2 (V600BN)",
     "last_updated": "09/12/2021",
@@ -4609,7 +4609,7 @@
   },
   {
     "name": "Wiko LENNY 5 (K400)",
-    "normalized_name": "wiko lenny 5 (k400)",
+    "normalized_name": "lenny 5 (k400)",
     "brand": "Wiko",
     "model": "LENNY 5 (K400)",
     "last_updated": "09/12/2021",
@@ -4617,7 +4617,7 @@
   },
   {
     "name": "Wiko VIEW 3 (P311)",
-    "normalized_name": "wiko view 3 (p311)",
+    "normalized_name": "view 3 (p311)",
     "brand": "Wiko",
     "model": "VIEW 3 (P311)",
     "last_updated": "09/12/2021",
@@ -4625,7 +4625,7 @@
   },
   {
     "name": "Wiko VIEW 3 LITE (P311)",
-    "normalized_name": "wiko view 3 lite (p311)",
+    "normalized_name": "view 3 lite (p311)",
     "brand": "Wiko",
     "model": "VIEW 3 LITE (P311)",
     "last_updated": "09/12/2021",
@@ -4633,7 +4633,7 @@
   },
   {
     "name": "Wiko VIEW 3 PRO (P611)",
-    "normalized_name": "wiko view 3 pro (p611)",
+    "normalized_name": "view 3 pro (p611)",
     "brand": "Wiko",
     "model": "VIEW 3 PRO (P611)",
     "last_updated": "09/12/2021",
@@ -4641,7 +4641,7 @@
   },
   {
     "name": "Fairphone FP3+",
-    "normalized_name": "fairphone fp3+",
+    "normalized_name": "fp3+",
     "brand": "Fairphone",
     "model": "FP3",
     "last_updated": "18/01/2021",
@@ -4649,7 +4649,7 @@
   },
   {
     "name": "Wiko VIEW 4 (v830)",
-    "normalized_name": "wiko view 4 (v830)",
+    "normalized_name": "view 4 (v830)",
     "brand": "Wiko",
     "model": "VIEW 4 (v830)",
     "last_updated": "09/12/2021",
@@ -4657,7 +4657,7 @@
   },
   {
     "name": "Wiko VIEW 4 LITE (v730)",
-    "normalized_name": "wiko view 4 lite (v730)",
+    "normalized_name": "view 4 lite (v730)",
     "brand": "Wiko",
     "model": "VIEW 4 LITE (v730)",
     "last_updated": "09/12/2021",
@@ -4665,7 +4665,7 @@
   },
   {
     "name": "Essentielb HeYou 40",
-    "normalized_name": "essentielb heyou 40",
+    "normalized_name": "heyou 40",
     "brand": "EssentielB",
     "model": "HEYOU 40",
     "last_updated": "14/12/2020",
@@ -4673,7 +4673,7 @@
   },
   {
     "name": "OnePlus N100",
-    "normalized_name": "oneplus n100",
+    "normalized_name": "n100",
     "brand": "OnePlus",
     "model": "N100",
     "last_updated": "–",
@@ -4681,7 +4681,7 @@
   },
   {
     "name": "OnePlus N10 5G",
-    "normalized_name": "oneplus n10 5g",
+    "normalized_name": "n10 5g",
     "brand": "OnePlus",
     "model": "N10 5G",
     "last_updated": "–",
@@ -4689,7 +4689,7 @@
   },
   {
     "name": "OnePlus Nord",
-    "normalized_name": "oneplus nord",
+    "normalized_name": "nord",
     "brand": "OnePlus",
     "model": "Nord",
     "last_updated": "–",
@@ -4697,7 +4697,7 @@
   },
   {
     "name": "OnePlus 7T",
-    "normalized_name": "oneplus 7t",
+    "normalized_name": "7t",
     "brand": "OnePlus",
     "model": "7T",
     "last_updated": "–",
@@ -4705,7 +4705,7 @@
   },
   {
     "name": "OnePlus 8",
-    "normalized_name": "oneplus 8",
+    "normalized_name": "8",
     "brand": "OnePlus",
     "model": "8",
     "last_updated": "–",
@@ -4713,7 +4713,7 @@
   },
   {
     "name": "OnePlus 8 Pro",
-    "normalized_name": "oneplus 8 pro",
+    "normalized_name": "8 pro",
     "brand": "OnePlus",
     "model": "8 Pro",
     "last_updated": "–",
@@ -4721,7 +4721,7 @@
   },
   {
     "name": "Wiko Y50 (K130)",
-    "normalized_name": "wiko y50 (k130)",
+    "normalized_name": "y50 (k130)",
     "brand": "Wiko",
     "model": "Y50 (K130)",
     "last_updated": "09/12/2021",
@@ -4729,7 +4729,7 @@
   },
   {
     "name": "Wiko Y61 (K560)",
-    "normalized_name": "wiko y61 (k560)",
+    "normalized_name": "y61 (k560)",
     "brand": "Wiko",
     "model": "Y61 (K560)",
     "last_updated": "09/12/2021",
@@ -4737,7 +4737,7 @@
   },
   {
     "name": "Wiko VIEW 5 PLUS (W-V850)",
-    "normalized_name": "wiko view 5 plus (w-v850)",
+    "normalized_name": "view 5 plus (w-v850)",
     "brand": "Wiko",
     "model": "VIEW 5 PLUS (W-V850)",
     "last_updated": "09/12/2021",
@@ -4745,7 +4745,7 @@
   },
   {
     "name": "Wiko TOMMY3 (C200)",
-    "normalized_name": "wiko tommy3 (c200)",
+    "normalized_name": "tommy3 (c200)",
     "brand": "Wiko",
     "model": "TOMMY3 (C200)",
     "last_updated": "09/12/2021",
@@ -4753,7 +4753,7 @@
   },
   {
     "name": "Wiko SUNNY3 (K120)",
-    "normalized_name": "wiko sunny3 (k120)",
+    "normalized_name": "sunny3 (k120)",
     "brand": "Wiko",
     "model": "SUNNY3 (K120)",
     "last_updated": "09/12/2021",
@@ -4761,7 +4761,7 @@
   },
   {
     "name": "OnePlus 8T",
-    "normalized_name": "oneplus 8t",
+    "normalized_name": "8t",
     "brand": "OnePlus",
     "model": "8T",
     "last_updated": "–",
@@ -4769,7 +4769,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S10",
-    "normalized_name": "samsung galaxy s10",
+    "normalized_name": "galaxy s10",
     "brand": "SAMSUNG",
     "model": "SM-G973F",
     "last_updated": "30/11/2020",
@@ -4777,7 +4777,7 @@
   },
   {
     "name": "SAMSUNG GALAXY S20FE",
-    "normalized_name": "samsung galaxy s20fe",
+    "normalized_name": "galaxy s20fe",
     "brand": "SAMSUNG",
     "model": "SM-G780F",
     "last_updated": "30/11/2020",
