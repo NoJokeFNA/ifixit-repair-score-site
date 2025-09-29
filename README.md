@@ -3,7 +3,7 @@
 Python 3.13 project that builds a JSON with device repairability information from the iFixit API. A separate gh-pages branch hosts the static website and the generated JSON.
 
 - Data source: iFixit API v2.0
-- Backend (main branch): Python only
+- Backend (master branch): Python only
 - Frontend (gh-pages branch): vanilla HTML/JS/CSS
 - Deployment: GitHub Pages via Actions
 

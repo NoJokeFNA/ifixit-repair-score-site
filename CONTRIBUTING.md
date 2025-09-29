@@ -4,7 +4,7 @@ Thanks for considering contributing!
 
 - Use English in code and documentation.
 - For feature proposals, open a GitHub Issue first.
-- Create a topic branch from `main`.
+- Create a topic branch from `master`.
 - Follow Conventional Commits for messages (e.g., `feat: ...`, `fix: ...`, `chore: ...`).
 - Run CI locally if possible (lint, JSON validity).
 
