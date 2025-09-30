@@ -10,6 +10,17 @@ from bs4 import BeautifulSoup
 # Configure logging
 logger = logging.getLogger(__name__)
 
+_RE_SEPARATORS = re.compile(r"[–—\-_/|:]+")
+_RE_PARENS = re.compile(r"\([^)]*\)")
+_RE_NETWORK = re.compile(r"\b(?:[45]\s*G)\b", flags=re.IGNORECASE)
+# Matches memory like "128GO", "256 Go", "64Gb", etc., capturing the start to cut the string.
+_RE_MEMORY = re.compile(r"\b\d+\s*(?:GO|Go|go|GB|Gb|gb)\b")
+_RE_SPACES = re.compile(r"\s+")
+_RE_WORDS = re.compile(r"\b(?:red|blue|green|yellow|orange|purple|black|white|gray|brown|pink|violet|vert|forêt"
+                       r"|tropical|gris|interstellaire|blanc|glacier|noir|de minuit|polaire|bleu|corail|rouge|boréal"
+                       r"|cosmos|céleste|silver|gold|ls deep|light|polar|lavande|argent|cyan)\b",
+                       flags=re.IGNORECASE)
+
 
 class FrenchRepairabilityScraper:
     """Class to scrape and match French repairability scores from indicereparabilite.fr."""
@@ -56,16 +67,16 @@ class FrenchRepairabilityScraper:
                     logger.warning(f"Failed to parse score '{score_text}' for product {product_name}")
 
                 name = (name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None)
-                name = name.replace("Smartphone ", "")
+                name = re.sub(r'^\s*Smartphone[\s\-]*', '', name or '', flags=re.IGNORECASE)
                 brand = (brand.get_text(strip=True) if (brand := p.select_one(
-                        "div.card-description table tbody tr:nth-child(1) strong")) else None)
+                    "div.card-description table tbody tr:nth-child(1) strong")) else None)
                 model = (model.get_text(strip=True) if (model := p.select_one(
-                        "div.card-description table tbody tr:nth-child(2) strong")) else None)
+                    "div.card-description table tbody tr:nth-child(2) strong")) else None)
                 last_updated = (last_updated.get_text(strip=True) if (last_updated := p.select_one(
-                        "div.card-description table tbody tr:nth-child(3) strong")) else None)
+                    "div.card-description table tbody tr:nth-child(3) strong")) else None)
                 smartphone = {
                     "name": name,
-                    "normalized_name": self.normalize_name(name, brand),
+                    "normalized_name": self.normalize_device_name(name),
                     "brand": brand,
                     "model": model,
                     "last_updated": last_updated,
@@ -128,6 +139,7 @@ class FrenchRepairabilityScraper:
                 else:
                     logger.error(f"Error in task: {result}")
             logger.info(f"Total smartphones found: {len(self.french_scores)}")
+            self.french_scores.sort(key=lambda x: x.get("name", "").lower())
             return self.french_scores
 
     def match_device_to_french_score(self, device: dict) -> Optional[float]:
@@ -141,7 +153,7 @@ class FrenchRepairabilityScraper:
             else:
                 france_score_map[norm_name] = [score]
 
-        normalized_device_name = self.normalize_name(device.get("name", ""), device.get("brand"))
+        normalized_device_name = self.normalize_device_name(device.get("name", ""))
         possible_scores = france_score_map.get(normalized_device_name)
         if not possible_scores:
             return None
@@ -153,28 +165,68 @@ class FrenchRepairabilityScraper:
 
         return most_common_score
 
-    def normalize_name(self, name, brand=None):
-        name = name.lower().strip()
-        if brand:
-            brand = brand.lower().strip()
-            name = name.replace(brand, "").strip()
+    def normalize_device_name(self, raw_name: str) -> str:
+        """Normalize a device name to a clean model designation.
 
-        se_2020_patterns = [
-            r"iphone se\s*2020",
-            r"iphone se\s*2e\s*génération",
-            r"iphone se\s*second\s*gen(ération)?",
-            r"iphone se\s*2nd\s*gen(ération)?",
-            r"iphone se 2a génération",
-        ]
-        for pattern in se_2020_patterns:
-            if re.search(pattern, name):
-                return "iphone se 2020"
+        Rules:
+          * Remove anything inside parentheses.
+          * Remove standalone '4G'/'5G'.
+          * If a memory token like '128 Go'/'128GO'/'128GB' exists, cut the string from
+            the start of that number to the end (i.e., keep the left part only).
+          * Unify separators to spaces, collapse spaces, Title Case.
+          * Keep the special iPhone SE handling.
 
-        # Remove storage sizes, model codes, and colors
-        name = re.sub(r'\b\d+\s*(go|gb)\b', '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\b(a\d{4})\b', '', name, flags=re.IGNORECASE)
-        name = re.sub(
-            r'\b(rouge|red|noir|blanc|mauve|jaune|vert|argent|or|silver|gold|black|white|green|purple|yellow)\b',
-            '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\s+', ' ', name).strip()
-        return name
+        Args:
+          raw_name: Original device name.
+
+        Returns:
+          Normalized device name.
+        """
+        if not raw_name:
+            return ""
+
+        s = raw_name.strip()
+
+        # Special-case iPhone SE (keep as a canonical name).
+        if re.search(r"\biphone\s*se\b", s, flags=re.IGNORECASE):
+            return "Apple iPhone SE"
+
+        xiaomi_match = re.search(r'(?i)\bredmi\s+note\s+(\d+)\s*s\b', s, flags=re.IGNORECASE)
+        if xiaomi_match:
+            return f"Xiaomi Redmi Note {xiaomi_match.group(1)} S"
+
+        # Remove parentheses content first.
+        s = _RE_PARENS.sub(" ", s)
+
+        # Normalize separators to spaces early.
+        s = _RE_SEPARATORS.sub(" ", s)
+
+        # Remove standalone 4G/5G tokens.
+        s = _RE_NETWORK.sub(" ", s)
+
+        # If a memory marker exists (e.g., '128 Go' / '128GO' / '128GB'), cut from there.
+        mem_match = _RE_MEMORY.search(s)
+        if mem_match:
+            s = s[: mem_match.start()]
+
+        # Collapse spaces and trim.
+        s = _RE_SPACES.sub(" ", s).strip()
+
+        # Remove color words.
+        s = _RE_WORDS.sub(" ", s)
+
+        # Title Case for readability ('PRO' -> 'Pro', etc.).
+        s = " ".join(w.capitalize() for w in s.split())
+
+        s = s.replace("Google  Pixel", "Google Pixel")  # in case double spaces slipped in
+        s = s.replace("Iphone", "iPhone")
+        return s
+
+    def normalize_xiaomi_redmi_note_s(name: str) -> Optional[str]:
+        """
+        Normalize Xiaomi Redmi Note S variants to a canonical name.
+        """
+        m = re.search(r'(?i)\bredmi\s+note\s+(\d+)\s*s\b', name)
+        if m:
+            return f"Xiaomi Redmi Note {m.group(1)} S"
+        return None
