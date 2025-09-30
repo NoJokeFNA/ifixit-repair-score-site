@@ -919,6 +919,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "CAT S41",
+    "title": "CAT_S41",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/CAT_S41",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "CAT S48c",
     "title": "CAT_S48c",
     "repairability_score": null,
@@ -4143,7 +4152,16 @@
     "repairability_score": null,
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_Air",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "iPhone Air Chip ID",
+        "url": "https://www.ifixit.com/Guide/iPhone+Air+Chip+ID/195913",
+        "tags": [
+          "starred"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
