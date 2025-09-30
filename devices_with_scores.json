@@ -1179,7 +1179,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Fairphone_4",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 9.2
   },
   {
     "name": "Fairphone 5",
@@ -1280,7 +1280,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/HMD_Fusion",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.3
   },
   {
     "name": "HMD Fusion Business",
@@ -1325,7 +1325,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/HMD_Pulse",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.0
   },
   {
     "name": "HMD Pulse Plus",
@@ -1334,7 +1334,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/HMD_Pulse_Plus",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.0
   },
   {
     "name": "HMD Pulse Pro",
@@ -1343,7 +1343,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/HMD_Pulse_Pro",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.0
   },
   {
     "name": "HMD Skyline",
@@ -1353,7 +1353,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/HMD_Skyline",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.4
   },
   {
     "name": "HMD Skyline Business",
@@ -1416,7 +1416,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Huawei_P_Smart_Z",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.5
   },
   {
     "name": "Infinix hot 10i",
@@ -2058,7 +2058,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Nokia_C32",
     "teardown_urls": [],
-    "france_repairability_score": 7.9
+    "france_repairability_score": null
   },
   {
     "name": "Nokia G22",
@@ -2068,7 +2068,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Nokia_G22",
     "teardown_urls": [],
-    "france_repairability_score": 8.1
+    "france_repairability_score": null
   },
   {
     "name": "Nokia G310 5G",
@@ -2086,7 +2086,7 @@
     "brand": null,
     "link": "https://www.ifixit.com/Device/Nokia_G42_5G",
     "teardown_urls": [],
-    "france_repairability_score": 8.1
+    "france_repairability_score": null
   },
   {
     "name": "Nokia X",
@@ -3409,7 +3409,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 4.6
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 11 Pro",
@@ -3427,7 +3427,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 4.6
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 11 Pro Max",
@@ -3444,7 +3444,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 4.5
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 12",
@@ -3463,7 +3463,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.0
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 12 Pro",
@@ -3482,7 +3482,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.0
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 12 Pro Max",
@@ -3499,7 +3499,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.0
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 12 mini",
@@ -3518,7 +3518,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.0
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 13",
@@ -3527,7 +3527,7 @@
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_13",
     "teardown_urls": [],
-    "france_repairability_score": 6.2
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 13 Pro",
@@ -3560,7 +3560,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.2
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 13 Pro Max",
@@ -4093,7 +4093,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.7
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 7 Plus",
@@ -4110,7 +4110,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.6
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 8",
@@ -4127,7 +4127,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.6
+    "france_repairability_score": null
   },
   {
     "name": "iPhone 8 Plus",
@@ -4144,7 +4144,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 6.6
+    "france_repairability_score": null
   },
   {
     "name": "iPhone Air",
@@ -4216,7 +4216,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 6.2
   },
   {
     "name": "iPhone X",
@@ -4233,7 +4233,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 4.8
+    "france_repairability_score": null
   },
   {
     "name": "iPhone XR",
@@ -4267,7 +4267,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": 4.7
+    "france_repairability_score": null
   },
   {
     "name": "iPhone XS Max",
@@ -4276,7 +4276,7 @@
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_XS_Max",
     "teardown_urls": [],
-    "france_repairability_score": 4.6
+    "france_repairability_score": null
   },
   {
     "name": "ASUS FonePad 7",
@@ -4348,7 +4348,7 @@
     "brand": "Asus",
     "link": "https://www.ifixit.com/Device/Asus",
     "teardown_urls": [],
-    "france_repairability_score": 5.5
+    "france_repairability_score": null
   },
   {
     "name": "Asus FonePad Note 6",
@@ -4840,7 +4840,7 @@
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_4a",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.3
   },
   {
     "name": "Google Pixel 4a 5G",
@@ -4849,7 +4849,7 @@
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_4a_5G",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.3
   },
   {
     "name": "Google Pixel 4a 5G mmWave",
@@ -4868,7 +4868,7 @@
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_5",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.3
   },
   {
     "name": "Google Pixel 5a",
@@ -4888,7 +4888,7 @@
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_6",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.4
   },
   {
     "name": "Google Pixel 6 Pro",
@@ -4898,7 +4898,7 @@
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_6_Pro",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.3
   },
   {
     "name": "Google Pixel 6a",
@@ -6285,7 +6285,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Mate_20",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.5
   },
   {
     "name": "Huawei Mate 20 Pro",
@@ -6304,7 +6304,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 5.9
   },
   {
     "name": "Huawei Mate 20 X",
@@ -6351,7 +6351,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Mate_20_lite",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.3
   },
   {
     "name": "Huawei Mate 30 Pro",
@@ -6377,7 +6377,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 5.6
   },
   {
     "name": "Huawei Mate 40 Pro",
@@ -6396,7 +6396,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 5.1
   },
   {
     "name": "Huawei Mate 8",
@@ -6512,7 +6512,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Nova_5T",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.8
   },
   {
     "name": "Huawei Nova Young",
@@ -6575,7 +6575,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_P20",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.0
   },
   {
     "name": "Huawei P20 Lite",
@@ -6584,7 +6584,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_P20_Lite",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.8
   },
   {
     "name": "Huawei P20 Pro",
@@ -6612,7 +6612,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_P30",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.1
   },
   {
     "name": "Huawei P30 Pro",
@@ -6630,7 +6630,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 5.2
   },
   {
     "name": "Huawei P40 Pro",
@@ -6639,7 +6639,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_P40_Pro",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.0
   },
   {
     "name": "Huawei P40 lite",
@@ -6648,7 +6648,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_P40_lite",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.4
   },
   {
     "name": "Huawei P40 lite E",
@@ -6884,7 +6884,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Y7_2018_%28LDN-L21%29",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.7
   },
   {
     "name": "Huawei Y7 2019",
@@ -6893,7 +6893,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_Y7_2019",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.3
   },
   {
     "name": "Huawei ascend G700",
@@ -6929,7 +6929,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_p_smart_2019",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.3
   },
   {
     "name": "Huawei u7519",
@@ -6997,7 +6997,7 @@
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/huawei_p30_lite",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.8
   },
   {
     "name": "huawei y6s",
@@ -10926,7 +10926,7 @@
     "brand": "OnePlus",
     "link": "https://www.ifixit.com/Device/OnePlus_9_5G",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.8
   },
   {
     "name": "OnePlus 9 Pro",
@@ -10935,7 +10935,7 @@
     "brand": "OnePlus",
     "link": "https://www.ifixit.com/Device/OnePlus_9_Pro",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.8
   },
   {
     "name": "OnePlus Ace 2 Pro",
@@ -11016,7 +11016,7 @@
     "brand": "OnePlus",
     "link": "https://www.ifixit.com/Device/OnePlus_Nord_N100",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.0
   },
   {
     "name": "OnePlus Nord N20 5G",
@@ -11125,7 +11125,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Galaxy_A71",
     "teardown_urls": [],
-    "france_repairability_score": 8.2
+    "france_repairability_score": null
   },
   {
     "name": "Galaxy A71 5g",
@@ -11168,7 +11168,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Galaxy_S20",
     "teardown_urls": [],
-    "france_repairability_score": 5.7
+    "france_repairability_score": null
   },
   {
     "name": "Galaxy S23 Plus",
@@ -11867,7 +11867,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A52",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.6
   },
   {
     "name": "Samsung Galaxy A52 5G",
@@ -11993,7 +11993,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A72",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.2
   },
   {
     "name": "Samsung Galaxy A73",
@@ -13439,7 +13439,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S10_5G",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.7
   },
   {
     "name": "Samsung Galaxy S10 Lite",
@@ -13482,7 +13482,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S20_FE",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 8.1
   },
   {
     "name": "Samsung Galaxy S20 FE 5G",
@@ -13500,7 +13500,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 8.1
   },
   {
     "name": "Samsung Galaxy S20 Plus",
@@ -13509,7 +13509,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S20_Plus",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.9
   },
   {
     "name": "Samsung Galaxy S20 Plus 5G",
@@ -13518,7 +13518,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S20_Plus_5G",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 5.9
   },
   {
     "name": "Samsung Galaxy S20 Ultra",
@@ -13537,7 +13537,7 @@
         "difficulty": "Moderate"
       }
     ],
-    "france_repairability_score": null
+    "france_repairability_score": 5.7
   },
   {
     "name": "Samsung Galaxy S21",
@@ -14270,7 +14270,7 @@
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold2",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.5
   },
   {
     "name": "Samsung Galaxy Z Fold3",
@@ -15431,7 +15431,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Poco_F2_Pro",
     "teardown_urls": [],
-    "france_repairability_score": 7.0
+    "france_repairability_score": null
   },
   {
     "name": "Poco F3",
@@ -15620,7 +15620,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Redmi_Note_9_Pro",
     "teardown_urls": [],
-    "france_repairability_score": 7.1
+    "france_repairability_score": null
   },
   {
     "name": "Redmi k 20",
@@ -15728,7 +15728,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_10",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 6.9
   },
   {
     "name": "Xiaomi Mi 10 Lite",
@@ -15827,7 +15827,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_11i",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.2
   },
   {
     "name": "Xiaomi Mi 12S",
@@ -15918,7 +15918,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_9_Lite",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.0
   },
   {
     "name": "Xiaomi Mi 9T",
@@ -15927,7 +15927,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_9T",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.0
   },
   {
     "name": "Xiaomi Mi 9T Pro",
@@ -16195,7 +16195,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_9C",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.1
   },
   {
     "name": "Xiaomi Redmi Go",
@@ -16231,7 +16231,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_10",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.1
   },
   {
     "name": "Xiaomi Redmi Note 10 5G",
@@ -16240,7 +16240,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_10_5G",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.1
   },
   {
     "name": "Xiaomi Redmi Note 10 Pro",
@@ -16511,7 +16511,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_9_S",
     "teardown_urls": [],
-    "france_repairability_score": null
+    "france_repairability_score": 7.1
   },
   {
     "name": "Xiaomi Redmi Note 9T",
@@ -16565,7 +16565,7 @@
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/redmi_9t",
     "teardown_urls": [],
-    "france_repairability_score": 7.1
+    "france_repairability_score": null
   },
   {
     "name": "resmi power ic",
