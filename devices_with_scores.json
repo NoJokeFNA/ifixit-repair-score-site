@@ -3401,12 +3401,6 @@
         "url": "https://www.ifixit.com/Teardown/iPhone+11+Teardown/126192",
         "tags": [],
         "difficulty": "Moderate"
-      },
-      {
-        "title": "iPhone 11 Pro Max Connector ID",
-        "url": "https://www.ifixit.com/Guide/iPhone+11+Pro+Max+Connector+ID/173388",
-        "tags": [],
-        "difficulty": "Moderate"
       }
     ],
     "france_repairability_score": null
@@ -3440,6 +3434,12 @@
       {
         "title": "iPhone 11 Pro Max Teardown",
         "url": "https://www.ifixit.com/Teardown/iPhone+11+Pro+Max+Teardown/126000",
+        "tags": [],
+        "difficulty": "Moderate"
+      },
+      {
+        "title": "iPhone 11 Pro Max Connector ID",
+        "url": "https://www.ifixit.com/Guide/iPhone+11+Pro+Max+Connector+ID/173388",
         "tags": [],
         "difficulty": "Moderate"
       }
