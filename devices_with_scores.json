@@ -10555,6 +10555,33 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr 2023",
+    "title": "Motorola_Razr_2023",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_2023",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr 2024",
+    "title": "Motorola_Razr_2024",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_2024",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr 2025",
+    "title": "Motorola_Razr_2025",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_2025",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr 40",
     "title": "Motorola_Razr_40",
     "repairability_score": null,
@@ -10573,6 +10600,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr 50",
+    "title": "Motorola_Razr_50",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_50",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr 50 Ultra",
+    "title": "Motorola_Razr_50_Ultra",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_50_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr 5G",
     "title": "Motorola_Razr_5G",
     "repairability_score": null,
@@ -10582,11 +10627,56 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr 60",
+    "title": "Motorola_Razr_60",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_60",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr 60 Ultra",
+    "title": "Motorola_Razr_60_Ultra",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_60_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr Plus",
     "title": "Motorola_Razr_Plus",
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Razr_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr Plus 2024",
+    "title": "Motorola_Razr_Plus_2024",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Plus_2024",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr Plus 2025",
+    "title": "Motorola_Razr_Plus_2025",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Plus_2025",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr Ultra 2025",
+    "title": "Motorola_Razr_Ultra_2025",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Ultra_2025",
     "teardown_urls": [],
     "france_repairability_score": null
   },
