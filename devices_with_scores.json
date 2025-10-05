@@ -16016,7 +16016,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_9T",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Xiaomi Mi 9T Teardown",
+        "url": "https://www.ifixit.com/Teardown/Xiaomi+Mi+9T+Teardown/196991",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": 7.0
   },
   {
