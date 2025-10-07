@@ -16016,16 +16016,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_9T",
-    "teardown_urls": [
-      {
-        "title": "Xiaomi Mi 9T Teardown",
-        "url": "https://www.ifixit.com/Teardown/Xiaomi+Mi+9T+Teardown/196991",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": 7.0
   },
   {
@@ -16564,16 +16555,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_8",
-    "teardown_urls": [
-      {
-        "title": "Xiaomi Redmi Note 8 Teardown",
-        "url": "https://www.ifixit.com/Teardown/Xiaomi+Redmi+Note+8+Teardown/196769",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
