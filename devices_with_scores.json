@@ -937,6 +937,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "CAT S62",
+    "title": "CAT_S62",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/CAT_S62",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "CMF Phone 1",
     "title": "CMF_Phone_1",
     "repairability_score": null,
