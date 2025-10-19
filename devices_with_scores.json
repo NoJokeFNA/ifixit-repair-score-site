@@ -8813,7 +8813,16 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Moto_G8_Power",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Moto G8 Power lite",
+        "url": "https://www.ifixit.com/Guide/Moto+G8+Power+lite/198074",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
