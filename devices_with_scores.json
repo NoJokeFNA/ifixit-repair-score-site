@@ -27,15 +27,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "AQUOS Crystal",
-    "title": "AQUOS_Crystal",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/AQUOS_Crystal",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Acer Liquid E1",
     "title": "Acer_Liquid_E1",
     "repairability_score": null,
@@ -2590,6 +2581,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Revvl_6_Pro_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "SHARP",
+    "title": "SHARP",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/SHARP",
     "teardown_urls": [],
     "france_repairability_score": null
   },
