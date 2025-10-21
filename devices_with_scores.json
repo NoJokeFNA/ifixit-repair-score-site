@@ -2369,6 +2369,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo Reno 4 Pro 5G",
+    "title": "Oppo_Reno_4_Pro_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_Reno_4_Pro_5G",
+    "teardown_urls": [],
+    "france_repairability_score": 7.1
+  },
+  {
     "name": "Oppo X9000",
     "title": "Oppo_X9000",
     "repairability_score": null,
@@ -5914,6 +5923,15 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Honor_5C_-_NEM_L21",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Huawei",
+    "title": "Huawei",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei",
     "teardown_urls": [],
     "france_repairability_score": null
   },
