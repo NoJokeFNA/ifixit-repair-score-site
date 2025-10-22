@@ -12032,6 +12032,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A54 5G",
+    "title": "Samsung_Galaxy_A54_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A54_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A56 5G",
     "title": "Samsung_Galaxy_A56_5G",
     "repairability_score": null,
