@@ -1079,6 +1079,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Doogee s88 plus",
+    "title": "Doogee_s88_plus",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Doogee_s88_plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Doov v15",
     "title": "Doov_v15",
     "repairability_score": null,
@@ -1417,6 +1426,15 @@
     "link": "https://www.ifixit.com/Device/Huawei_P_Smart_Z",
     "teardown_urls": [],
     "france_repairability_score": 5.5
+  },
+  {
+    "name": "Infinix HOT 40i",
+    "title": "Infinix_HOT_40i",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Infinix_HOT_40i",
+    "teardown_urls": [],
+    "france_repairability_score": null
   },
   {
     "name": "Infinix hot 10i",
@@ -3286,6 +3304,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/realme_6",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "realme 6 pro",
+    "title": "realme_6_pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/realme_6_pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
