@@ -910,6 +910,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "CAT S22 Flip",
+    "title": "CAT_S22_Flip",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/CAT_S22_Flip",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "CAT S41",
     "title": "CAT_S41",
     "repairability_score": null,
