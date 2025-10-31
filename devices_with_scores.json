@@ -4203,7 +4203,7 @@
   {
     "name": "iPhone Air",
     "title": "iPhone_Air",
-    "repairability_score": null,
+    "repairability_score": 7,
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_Air",
     "teardown_urls": [
@@ -9791,6 +9791,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Moto G 5G (2025)",
+    "title": "Motorola_Moto_G_5G_%282025%29",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_5G_%282025%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Moto G 5G Plus",
     "title": "Motorola_Moto_G_5G_Plus",
     "repairability_score": null,
@@ -9859,6 +9868,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Power_%282021%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Moto G Power (2025)",
+    "title": "Motorola_Moto_G_Power_%282025%29",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Power_%282025%29",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -9967,6 +9985,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_5G_%282024%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Moto G Stylus 5G (2025)",
+    "title": "Motorola_Moto_G_Stylus_5G_%282025%29",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_5G_%282025%29",
     "teardown_urls": [],
     "france_repairability_score": null
   },
