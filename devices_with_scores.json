@@ -3815,7 +3815,14 @@
     "repairability_score": null,
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_17_Pro",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "iPhone 17 Pro Chip ID",
+        "url": "https://www.ifixit.com/Guide/iPhone+17+Pro+Chip+ID/196117",
+        "tags": [],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
