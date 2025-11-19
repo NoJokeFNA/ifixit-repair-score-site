@@ -2648,6 +2648,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "SHIFTphone8",
+    "title": "SHIFTphone8",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/SHIFTphone8",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A8  (2018)",
     "title": "Samsung_Galaxy_A8_%282018%29",
     "repairability_score": null,
