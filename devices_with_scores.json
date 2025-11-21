@@ -9960,6 +9960,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Moto G Stylus (2022)",
+    "title": "Motorola_Moto_G_Stylus_%282022%29",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_%282022%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Moto G Stylus 4G (2022)",
     "title": "Motorola_Moto_G_Stylus_4G_%282022%29",
     "repairability_score": null,
