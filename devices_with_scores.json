@@ -8883,16 +8883,7 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Moto_G8_Power",
-    "teardown_urls": [
-      {
-        "title": "Moto G8 Power lite",
-        "url": "https://www.ifixit.com/Guide/Moto+G8+Power+lite/198074",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -9290,6 +9281,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Edge_%282024%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Edge (2025)",
+    "title": "Motorola_Edge_%282025%29",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Edge_%282025%29",
     "teardown_urls": [],
     "france_repairability_score": null
   },
