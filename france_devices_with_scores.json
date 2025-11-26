@@ -1000,12 +1000,28 @@
     "repairability_score": 9.3
   },
   {
+    "name": "Fairphone B.V. Fairphone 5",
+    "normalized_name": "Fairphone B.v. Fairphone 5",
+    "brand": "Fairphone B.V",
+    "model": "Fairphone 5",
+    "last_updated": "31/07/2023",
+    "repairability_score": 9.3
+  },
+  {
     "name": "Fairphone FP3+",
     "normalized_name": "Fairphone Fp3+",
     "brand": "Fairphone",
     "model": "FP3",
     "last_updated": "18/01/2021",
     "repairability_score": 8.7
+  },
+  {
+    "name": "Fairphone FP6",
+    "normalized_name": "Fairphone Fp6",
+    "brand": "Fairphone",
+    "model": "FP6",
+    "last_updated": "24/06/2025",
+    "repairability_score": 9.3
   },
   {
     "name": "Gigaset GS5 Lite",
@@ -3598,6 +3614,14 @@
     "model": "Versity 9653",
     "last_updated": "03/11/2021",
     "repairability_score": 8.1
+  },
+  {
+    "name": "SweetLink S2 PLUS",
+    "normalized_name": "Sweetlink S2 Plus",
+    "brand": "SweetLink",
+    "model": "S2 PLUS",
+    "last_updated": "12/12/2024",
+    "repairability_score": 9.5
   },
   {
     "name": "VIVO V21 128Go Bleu Foncé",
