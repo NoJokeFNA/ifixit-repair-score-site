@@ -99,15 +99,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Alcatel Jitterbug Smart",
-    "title": "Alcatel_Jitterbug_Smart",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Alcatel_Jitterbug_Smart",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Alcatel One Touch Evolve 2",
     "title": "Alcatel_One_Touch_Evolve_2",
     "repairability_score": null,
@@ -1260,6 +1251,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Gabb_Phone_Z2",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Greatcall Jitterbug Smart2",
+    "title": "Greatcall_Jitterbug_Smart2",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Greatcall_Jitterbug_Smart2",
     "teardown_urls": [],
     "france_repairability_score": null
   },
