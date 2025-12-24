@@ -81,6 +81,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Alcatel Go Flip 3",
+    "title": "Alcatel_Go_Flip_3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Alcatel_Go_Flip_3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Alcatel Go Flip 4",
     "title": "Alcatel_Go_Flip_4",
     "repairability_score": null,
