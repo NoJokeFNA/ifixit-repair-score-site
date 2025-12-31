@@ -1564,6 +1564,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Kyocera DuraSport 5G",
+    "title": "Kyocera_DuraSport_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Kyocera_DuraSport_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Kyocera Echo",
     "title": "Kyocera_Echo",
     "repairability_score": null,
