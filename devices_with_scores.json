@@ -16022,7 +16022,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_11_Lite_5G",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Xiaomi Mi 11 Lite 5G",
+        "url": "https://www.ifixit.com/Guide/Xiaomi+Mi+11+Lite+5G/204206",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
