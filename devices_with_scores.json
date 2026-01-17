@@ -937,6 +937,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "CAT S48C Repair",
+    "title": "CAT_S48C_Repair",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/CAT_S48C_Repair",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "CAT S48c",
     "title": "CAT_S48c",
     "repairability_score": null,
@@ -1497,6 +1506,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Infinix_x521",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Itel l6502",
+    "title": "Itel_l6502",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Itel_l6502",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -2641,6 +2659,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Realme note 50",
+    "title": "Realme_note_50",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_note_50",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Revvl 6 Pro 5G",
     "title": "Revvl_6_Pro_5G",
     "repairability_score": null,
@@ -2835,6 +2862,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Techno_Y3s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Pop4 pro",
+    "title": "Tecno_Pop4_pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pop4_pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3193,6 +3229,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "infinix hot 10",
+    "title": "infinix_hot_10",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/infinix_hot_10",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "infinix note 12",
     "title": "infinix_note_12",
     "repairability_score": null,
@@ -3346,6 +3391,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "realme 5 pro",
+    "title": "realme_5_pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/realme_5_pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "realme 6",
     "title": "realme_6",
     "repairability_score": null,
@@ -3406,6 +3460,15 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "tecno camon 19",
+    "title": "tecno_camon_19",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/tecno_camon_19",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -5990,6 +6053,15 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/HUAWEI_HONOR_5X",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Hauwei p smart 2021",
+    "title": "Hauwei_p_smart_2021",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Hauwei_p_smart_2021",
     "teardown_urls": [],
     "france_repairability_score": null
   },
