@@ -1483,6 +1483,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Infinix smart 4",
+    "title": "Infinix_smart_4",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Infinix_smart_4",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Infinix smart 6 plus",
     "title": "Infinix_smart_6_plus",
     "repairability_score": null,
@@ -2614,6 +2623,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Realme 9",
+    "title": "Realme_9",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_9",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Realme C1",
     "title": "Realme_C1",
     "repairability_score": null,
@@ -2664,6 +2682,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Realme_note_50",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Redmagic 11 Pro",
+    "title": "Redmagic_11_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Redmagic_11_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -2821,6 +2848,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "TCL 50 Pro NXTPAPER 5G",
+    "title": "TCL_50_Pro_NXTPAPER_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/TCL_50_Pro_NXTPAPER_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "TCL Stylus",
     "title": "TCL_Stylus",
     "repairability_score": null,
@@ -2871,6 +2907,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Tecno_Pop4_pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Spark 10 Pro",
+    "title": "Tecno_Spark_10_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Spark_10_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3026,6 +3071,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Vivo_x60_Pro_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Vivo y03",
+    "title": "Vivo_y03",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_y03",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3229,6 +3283,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "infinix Hot50i",
+    "title": "infinix_Hot50i",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/infinix_Hot50i",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "infinix hot 10",
     "title": "infinix_hot_10",
     "repairability_score": null,
@@ -3324,6 +3387,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/oppo_A3s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "oppo A54",
+    "title": "oppo_A54",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/oppo_A54",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -6726,6 +6798,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Huawei P smart Pro",
+    "title": "Huawei_P_smart_Pro",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_P_smart_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Huawei P10",
     "title": "Huawei_P10",
     "repairability_score": null,
@@ -8772,6 +8853,15 @@
     "repairability_score": null,
     "brand": "Lenovo",
     "link": "https://www.ifixit.com/Device/Lenovo_P2c72",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "2026 Moto G 5G",
+    "title": "2026_Moto_G_5G",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/2026_Moto_G_5G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14748,6 +14838,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Sidekick",
+    "title": "Samsung_Sidekick",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Sidekick",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Stratosphere",
     "title": "Samsung_Stratosphere",
     "repairability_score": null,
@@ -15656,6 +15755,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Sony ZV-E10",
+    "title": "Sony_ZV-E10",
+    "repairability_score": null,
+    "brand": "Sony Ericsson",
+    "link": "https://www.ifixit.com/Device/Sony_ZV-E10",
+    "teardown_urls": [
+      {
+        "title": "Teardown Sony ZV-E10 to reach SD card slot",
+        "url": "https://www.ifixit.com/Teardown/Teardown+Sony+ZV-E10+to+reach+SD+card+slot/200047",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
+    "france_repairability_score": null
+  },
+  {
     "name": "Sony xperia P",
     "title": "Sony_xperia_P",
     "repairability_score": null,
@@ -15896,6 +16013,24 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Redmi_9_prime",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Redmi A3",
+    "title": "Redmi_A3",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Redmi_A3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Redmi C14",
+    "title": "Redmi_C14",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Redmi_C14",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -16462,6 +16597,15 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_5_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Xiaomi Redmi 6A",
+    "title": "Xiaomi_Redmi_6A",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_6A",
     "teardown_urls": [],
     "france_repairability_score": null
   },
