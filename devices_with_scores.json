@@ -10182,15 +10182,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Motorola Moto G Stylus 5G (2021)",
-    "title": "Motorola_Moto_G_Stylus_5G_%282021%29",
-    "repairability_score": null,
-    "brand": "Motorola",
-    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_5G_%282021%29",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Motorola Moto G Stylus 5G (2022)",
     "title": "Motorola_Moto_G_Stylus_5G_%282022%29",
     "repairability_score": null,
@@ -10214,6 +10205,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_5G_%282025%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Moto G Stylus 5G 2021",
+    "title": "Motorola_Moto_G_Stylus_5G_2021",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_Stylus_5G_2021",
     "teardown_urls": [],
     "france_repairability_score": null
   },
