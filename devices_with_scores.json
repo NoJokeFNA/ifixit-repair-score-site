@@ -14153,6 +14153,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy S25 FE",
+    "title": "Samsung_Galaxy_S25_FE",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S25_FE",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy S25 Plus",
     "title": "Samsung_Galaxy_S25_Plus",
     "repairability_score": null,
