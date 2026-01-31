@@ -12343,6 +12343,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A55",
+    "title": "Samsung_Galaxy_A55",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A55",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A56 5G",
     "title": "Samsung_Galaxy_A56_5G",
     "repairability_score": null,
@@ -16022,6 +16031,24 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Poco_X6_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Poco X7",
+    "title": "Poco_X7",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Poco_X7",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Poco X7 Pro",
+    "title": "Poco_X7_Pro",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Poco_X7_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
