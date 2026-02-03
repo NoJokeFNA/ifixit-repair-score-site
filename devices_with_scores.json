@@ -3436,6 +3436,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "oppo a83",
+    "title": "oppo_a83",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/oppo_a83",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "oppo f1s",
     "title": "oppo_f1s",
     "repairability_score": null,
