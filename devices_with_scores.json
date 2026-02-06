@@ -9399,15 +9399,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Motorola Droid RAZR M",
-    "title": "Motorola_Droid_RAZR_M",
-    "repairability_score": null,
-    "brand": "Motorola",
-    "link": "https://www.ifixit.com/Device/Motorola_Droid_RAZR_M",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Motorola Droid RAZR Maxx",
     "title": "Motorola_Droid_RAZR_Maxx",
     "repairability_score": null,
@@ -9674,6 +9665,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Edge_X30",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Electrify M XT901",
+    "title": "Motorola_Electrify_M_XT901",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Electrify_M_XT901",
     "teardown_urls": [],
     "france_repairability_score": null
   },
