@@ -2397,6 +2397,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo A72",
+    "title": "Oppo_A72",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_A72",
+    "teardown_urls": [],
+    "france_repairability_score": 6.8
+  },
+  {
     "name": "Oppo A74 5G",
     "title": "Oppo_A74_5G",
     "repairability_score": null,
