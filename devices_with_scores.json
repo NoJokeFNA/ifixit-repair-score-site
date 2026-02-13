@@ -2866,6 +2866,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "TCL Flip 3",
+    "title": "TCL_Flip_3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/TCL_Flip_3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "TCL Stylus",
     "title": "TCL_Stylus",
     "repairability_score": null,
@@ -4419,22 +4428,12 @@
     "france_repairability_score": null
   },
   {
-    "name": "iPhone Air",
-    "title": "iPhone_Air",
-    "repairability_score": 7,
-    "scorecard_version": "2.2",
+    "name": "iPhone Air MagSafe Battery",
+    "title": "iPhone_Air_MagSafe_Battery",
+    "repairability_score": null,
     "brand": "Apple",
-    "link": "https://www.ifixit.com/Device/iPhone_Air",
-    "teardown_urls": [
-      {
-        "title": "iPhone Air Chip ID",
-        "url": "https://www.ifixit.com/Guide/iPhone+Air+Chip+ID/195913",
-        "tags": [
-          "starred"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "link": "https://www.ifixit.com/Device/iPhone_Air_MagSafe_Battery",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -12216,6 +12215,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A35 5G",
+    "title": "Samsung_Galaxy_A35_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A35_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A40",
     "title": "Samsung_Galaxy_A40",
     "repairability_score": null,
@@ -15023,6 +15031,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_galaxy_s5_neo",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "galaxy s21",
+    "title": "galaxy_s21",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/galaxy_s21",
     "teardown_urls": [],
     "france_repairability_score": null
   },
