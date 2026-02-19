@@ -4985,6 +4985,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Google Pixel 10a",
+    "title": "Google_Pixel_10a",
+    "repairability_score": null,
+    "brand": "Google",
+    "link": "https://www.ifixit.com/Device/Google_Pixel_10a",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Google Pixel 2",
     "title": "Google_Pixel_2",
     "repairability_score": null,
