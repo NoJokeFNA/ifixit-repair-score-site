@@ -14249,6 +14249,33 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy S26",
+    "title": "Samsung_Galaxy_S26",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S26",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy S26 Plus",
+    "title": "Samsung_Galaxy_S26_Plus",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S26_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy S26 Ultra",
+    "title": "Samsung_Galaxy_S26_Ultra",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S26_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy S3 Mini",
     "title": "Samsung_Galaxy_S3_Mini",
     "repairability_score": null,
