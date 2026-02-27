@@ -12084,7 +12084,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A22",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy A22 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+A22+Teardown/208760",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -16380,16 +16389,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Mi_11_Lite_5G",
-    "teardown_urls": [
-      {
-        "title": "Xiaomi Mi 11 Lite 5G",
-        "url": "https://www.ifixit.com/Guide/Xiaomi+Mi+11+Lite+5G/204206",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
