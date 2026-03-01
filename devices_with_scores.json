@@ -9700,7 +9700,16 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Electrify_M_XT901",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Motorola Electrify M Teardown",
+        "url": "https://www.ifixit.com/Teardown/Motorola+Electrify+M+Teardown/208716",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
