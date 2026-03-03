@@ -4055,6 +4055,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "iPhone 17e",
+    "title": "iPhone_17e",
+    "repairability_score": null,
+    "brand": "Apple",
+    "link": "https://www.ifixit.com/Device/iPhone_17e",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "iPhone 1st Generation",
     "title": "iPhone_1st_Generation",
     "repairability_score": 2,
@@ -7926,7 +7935,16 @@
     "repairability_score": null,
     "brand": "LG",
     "link": "https://www.ifixit.com/Device/LG_L_Bello",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Teardown LG L Bello",
+        "url": "https://www.ifixit.com/Teardown/Teardown+LG+L+Bello/209044",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
