@@ -748,6 +748,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Blackview BV6200 Plus",
+    "title": "Blackview_BV6200_Plus",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Blackview_BV6200_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Blackview BV9200",
     "title": "Blackview_BV9200",
     "repairability_score": null,
@@ -2970,16 +2979,7 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Ulefone_Phone",
-    "teardown_urls": [
-      {
-        "title": "Ulefone Phone Teardown",
-        "url": "https://www.ifixit.com/Teardown/Ulefone+Phone+Teardown/207443",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -3540,6 +3540,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/realme_8i",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "realmec53",
+    "title": "realmec53",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/realmec53",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -16195,6 +16204,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Redmi 15",
+    "title": "Redmi_15",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Redmi_15",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Redmi 9 prime",
     "title": "Redmi_9_prime",
     "repairability_score": null,
@@ -16869,30 +16887,12 @@
     "france_repairability_score": null
   },
   {
-    "name": "Xiaomi Redmi Note",
-    "title": "Xiaomi_Redmi_Note",
-    "repairability_score": null,
-    "brand": "Xiaomi",
-    "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Xiaomi Redmi Note 10",
     "title": "Xiaomi_Redmi_Note_10",
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_10",
-    "teardown_urls": [
-      {
-        "title": "Xiaomi Redmi Note 10 Teardown",
-        "url": "https://www.ifixit.com/Teardown/Xiaomi+Redmi+Note+10+Teardown/207455",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": 7.1
   },
   {
