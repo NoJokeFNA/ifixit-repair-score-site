@@ -15043,6 +15043,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Z Flip 7 FE",
+    "title": "Samsung_Z_Flip_7_FE",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Z_Flip_7_FE",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung galaxy A20",
     "title": "Samsung_galaxy_A20",
     "repairability_score": null,
