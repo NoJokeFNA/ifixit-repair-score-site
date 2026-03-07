@@ -27,6 +27,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "ATT Z998",
+    "title": "ATT_Z998",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/ATT_Z998",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Acer Liquid E1",
     "title": "Acer_Liquid_E1",
     "repairability_score": null,
@@ -1443,6 +1452,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Hisense_H40",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Hisense Phones",
+    "title": "Hisense_Phones",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Hisense_Phones",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13195,6 +13213,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy M01",
+    "title": "Samsung_Galaxy_M01",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M01",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy M01 Core",
     "title": "Samsung_Galaxy_M01_Core",
     "repairability_score": null,
@@ -13204,11 +13231,65 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy M01s",
+    "title": "Samsung_Galaxy_M01s",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M01s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M02",
+    "title": "Samsung_Galaxy_M02",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M02",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M02s",
+    "title": "Samsung_Galaxy_M02s",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M02s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy M04",
     "title": "Samsung_Galaxy_M04",
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M04",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M05",
+    "title": "Samsung_Galaxy_M05",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M05",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M06",
+    "title": "Samsung_Galaxy_M06",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M06",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M07",
+    "title": "Samsung_Galaxy_M07",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M07",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13258,11 +13339,56 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy M14",
+    "title": "Samsung_Galaxy_M14",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M14",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M15",
+    "title": "Samsung_Galaxy_M15",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M15",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M16",
+    "title": "Samsung_Galaxy_M16",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M16",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M17",
+    "title": "Samsung_Galaxy_M17",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M17",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy M20",
     "title": "Samsung_Galaxy_M20",
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M20",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M21 2021",
+    "title": "Samsung_Galaxy_M21_2021",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M21_2021",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14833,6 +14959,15 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Z Flip7 FE",
+    "title": "Samsung_Galaxy_Z_Flip7_FE",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip7_FE",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
