@@ -16267,6 +16267,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Poco M6 Pro (4G) version globale",
+    "title": "Poco_M6_Pro_%284G%29_version_globale",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Poco_M6_Pro_%284G%29_version_globale",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Poco X3 Pro",
     "title": "Poco_X3_Pro",
     "repairability_score": null,
