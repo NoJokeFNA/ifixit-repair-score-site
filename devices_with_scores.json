@@ -2542,6 +2542,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Other Brand Android Phone",
+    "title": "Other_Brand_Android_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Other_Brand_Android_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Oukitel WP15",
     "title": "Oukitel_WP15",
     "repairability_score": null,
@@ -13465,11 +13474,29 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy M32 5G",
+    "title": "Samsung_Galaxy_M32_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M32_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy M34 5G Repair",
     "title": "Samsung_Galaxy_M34_5G_Repair",
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M34_5G_Repair",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M36",
+    "title": "Samsung_Galaxy_M36",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M36",
     "teardown_urls": [],
     "france_repairability_score": null
   },
