@@ -12765,7 +12765,7 @@
   {
     "name": "Samsung Galaxy Centura",
     "title": "Samsung_Galaxy_Centura",
-    "repairability_score": 8,
+    "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Centura",
     "teardown_urls": [
