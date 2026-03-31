@@ -11713,14 +11713,6 @@
     "link": "https://www.ifixit.com/Device/Galaxy_S23_Ultra",
     "teardown_urls": [
       {
-        "title": "Galaxy S23 Ultra Teardown",
-        "url": "https://www.ifixit.com/Teardown/Galaxy+S23+Ultra+Teardown/208546",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      },
-      {
         "title": "Galaxy S23 Ultra Chip ID",
         "url": "https://www.ifixit.com/Guide/Galaxy+S23+Ultra+Chip+ID/158052",
         "tags": [],
