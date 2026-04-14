@@ -3073,6 +3073,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Vivo S18e",
+    "title": "Vivo_S18e",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_S18e",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Vivo X21",
     "title": "Vivo_X21",
     "repairability_score": null,
