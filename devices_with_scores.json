@@ -1,5 +1,14 @@
 [
   {
+    "name": "A57 Oppo",
+    "title": "A57_Oppo",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/A57_Oppo",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "ALCATEL 5015A Pixi 3 (5) 3G",
     "title": "ALCATEL_5015A_Pixi_3_%285%29_3G",
     "repairability_score": null,
