@@ -11472,6 +11472,15 @@
     "france_repairability_score": 6.8
   },
   {
+    "name": "OnePlus 9R",
+    "title": "OnePlus_9R",
+    "repairability_score": null,
+    "brand": "OnePlus",
+    "link": "https://www.ifixit.com/Device/OnePlus_9R",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "OnePlus Ace 2 Pro",
     "title": "OnePlus_Ace_2_Pro",
     "repairability_score": null,
