@@ -2406,6 +2406,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo A3",
+    "title": "Oppo_A3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_A3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Oppo A37fw",
     "title": "Oppo_A37fw",
     "repairability_score": null,
@@ -2429,6 +2438,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Oppo_A5s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Oppo A6 Pro",
+    "title": "Oppo_A6_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_A6_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -2722,6 +2740,33 @@
     "france_repairability_score": null
   },
   {
+    "name": "Realme C85",
+    "title": "Realme_C85",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_C85",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Realme Note 60",
+    "title": "Realme_Note_60",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_Note_60",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Realme Note 70",
+    "title": "Realme_Note_70",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_Note_70",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Realme XT",
     "title": "Realme_XT",
     "repairability_score": null,
@@ -2956,6 +3001,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Techno Spark 3",
+    "title": "Techno_Spark_3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Techno_Spark_3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Techno Y3s",
     "title": "Techno_Y3s",
     "repairability_score": null,
@@ -2979,6 +3033,24 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Tecno_Spark_10_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Spark 40",
+    "title": "Tecno_Spark_40",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Spark_40",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno spark5 pro",
+    "title": "Tecno_spark5_pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_spark5_pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -12116,6 +12188,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A17",
+    "title": "Samsung_Galaxy_A17",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A17",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A2 Core",
     "title": "Samsung_Galaxy_A2_Core",
     "repairability_score": null,
@@ -12332,6 +12413,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A37",
+    "title": "Samsung_Galaxy_A37",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A37",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A40",
     "title": "Samsung_Galaxy_A40",
     "repairability_score": null,
@@ -12500,6 +12590,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A56_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A57",
+    "title": "Samsung_Galaxy_A57",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A57",
     "teardown_urls": [],
     "france_repairability_score": null
   },
