@@ -2298,6 +2298,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Nothing Phone (4a)",
+    "title": "Nothing_Phone_%284a%29",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Nothing_Phone_%284a%29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Nothing Phone (4a) Pro",
+    "title": "Nothing_Phone_%284a%29_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Nothing_Phone_%284a%29_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Nuu Mobile A1",
     "title": "Nuu_Mobile_A1",
     "repairability_score": null,
@@ -11334,6 +11352,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "OnePlus 15",
+    "title": "OnePlus_15",
+    "repairability_score": null,
+    "brand": "OnePlus",
+    "link": "https://www.ifixit.com/Device/OnePlus_15",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "OnePlus 2",
     "title": "OnePlus_2",
     "repairability_score": 7,
@@ -16678,6 +16705,24 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_14_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Xiaomi 15",
+    "title": "Xiaomi_15",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_15",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Xiaomi 17",
+    "title": "Xiaomi_17",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_17",
     "teardown_urls": [],
     "france_repairability_score": null
   },
