@@ -5342,7 +5342,16 @@
     "scorecard_version": "1.6",
     "brand": "Google",
     "link": "https://www.ifixit.com/Device/Google_Pixel_6a",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Google Pixel 6a Teardown",
+        "url": "https://www.ifixit.com/Teardown/Google+Pixel+6a+Teardown/216451",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
