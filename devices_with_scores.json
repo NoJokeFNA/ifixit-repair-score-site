@@ -4152,7 +4152,16 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/oppo_a83",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "oppo a83 Teardown",
+        "url": "https://www.ifixit.com/Teardown/oppo+a83+Teardown/217182",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
