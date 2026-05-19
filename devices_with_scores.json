@@ -2874,6 +2874,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo A96 4G",
+    "title": "Oppo_A96_4G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_A96_4G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Oppo F5",
     "title": "Oppo_F5",
     "repairability_score": null,
@@ -12408,6 +12417,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "OnePlus Nord CE 3 Lite 5G",
+    "title": "OnePlus_Nord_CE_3_Lite_5G",
+    "repairability_score": null,
+    "brand": "OnePlus",
+    "link": "https://www.ifixit.com/Device/OnePlus_Nord_CE_3_Lite_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "OnePlus Nord N10 5G",
     "title": "OnePlus_Nord_N10_5G",
     "repairability_score": null,
@@ -18190,6 +18208,15 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_K40",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Xiaomi Redmi Note",
+    "title": "Xiaomi_Redmi_Note",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note",
     "teardown_urls": [],
     "france_repairability_score": null
   },
