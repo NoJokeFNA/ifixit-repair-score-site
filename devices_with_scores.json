@@ -9756,15 +9756,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "2026 Moto G 5G",
-    "title": "2026_Moto_G_5G",
-    "repairability_score": null,
-    "brand": "Motorola",
-    "link": "https://www.ifixit.com/Device/2026_Moto_G_5G",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Droid Ultra XT1080",
     "title": "Droid_Ultra_XT1080",
     "repairability_score": null,
@@ -10880,6 +10871,15 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Moto G 2026",
+    "title": "Motorola_Moto_G_2026",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_2026",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
