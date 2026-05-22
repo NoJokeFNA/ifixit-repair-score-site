@@ -135,6 +135,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Alcatel Lively Jitterbug Smart3",
+    "title": "Alcatel_Lively_Jitterbug_Smart3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Alcatel_Lively_Jitterbug_Smart3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Alcatel One Touch Evolve 2",
     "title": "Alcatel_One_Touch_Evolve_2",
     "repairability_score": null,
@@ -1569,6 +1578,24 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Honor_Magic_4_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Honor X5b Plus",
+    "title": "Honor_X5b_Plus",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_X5b_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Honor X6a",
+    "title": "Honor_X6a",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_X6a",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -17534,6 +17561,15 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_12",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Xiaomi 12T 5G",
+    "title": "Xiaomi_12T_5G",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_12T_5G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
