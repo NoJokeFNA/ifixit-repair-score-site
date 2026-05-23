@@ -13079,6 +13079,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A15 5G",
+    "title": "Samsung_Galaxy_A15_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A15_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A16 5G",
     "title": "Samsung_Galaxy_A16_5G",
     "repairability_score": null,
@@ -13201,6 +13210,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A24",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A24 5G",
+    "title": "Samsung_Galaxy_A24_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A24_5G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13449,6 +13467,15 @@
     "france_repairability_score": 8.1
   },
   {
+    "name": "Samsung Galaxy A51 5G",
+    "title": "Samsung_Galaxy_A51_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A51_5G",
+    "teardown_urls": [],
+    "france_repairability_score": 8.1
+  },
+  {
     "name": "Samsung Galaxy A52",
     "title": "Samsung_Galaxy_A52",
     "repairability_score": null,
@@ -13602,6 +13629,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A71 5G",
+    "title": "Samsung_Galaxy_A71_5G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A71_5G",
+    "teardown_urls": [],
+    "france_repairability_score": 8.2
+  },
+  {
     "name": "Samsung Galaxy A72",
     "title": "Samsung_Galaxy_A72",
     "repairability_score": null,
@@ -13625,6 +13661,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A8_2015",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A8 2016",
+    "title": "Samsung_Galaxy_A8_2016",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A8_2016",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13697,6 +13742,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A9_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A90",
+    "title": "Samsung_Galaxy_A90",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A90",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14025,6 +14079,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy J1 2016",
+    "title": "Samsung_Galaxy_J1_2016",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J1_2016",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy J1mini",
     "title": "Samsung_Galaxy_J1mini",
     "repairability_score": null,
@@ -14084,6 +14147,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J3_2016_Duos",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy J3 2017",
+    "title": "Samsung_Galaxy_J3_2017",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J3_2017",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14231,11 +14303,29 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy J7 Plus",
+    "title": "Samsung_Galaxy_J7_Plus",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J7_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy J7 V",
     "title": "Samsung_Galaxy_J7_V",
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J7_V",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy J8 Plus",
+    "title": "Samsung_Galaxy_J8_Plus",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_J8_Plus",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14353,6 +14443,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M10",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy M10s",
+    "title": "Samsung_Galaxy_M10s",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_M10s",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -16125,6 +16224,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung J1 Ace",
+    "title": "Samsung_J1_Ace",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_J1_Ace",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung J3 (2017) Sm-j330fm",
     "title": "Samsung_J3_%282017%29_Sm-j330fm",
     "repairability_score": null,
@@ -16301,15 +16409,6 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_galaxy_j4",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Samsung galaxy j5 2017",
-    "title": "Samsung_galaxy_j5_2017",
-    "repairability_score": null,
-    "brand": "Samsung",
-    "link": "https://www.ifixit.com/Device/Samsung_galaxy_j5_2017",
     "teardown_urls": [],
     "france_repairability_score": null
   },
