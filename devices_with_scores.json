@@ -1897,6 +1897,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Kyocera DuraXV Extreme Plus",
+    "title": "Kyocera_DuraXV_Extreme_Plus",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Kyocera_DuraXV_Extreme_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Kyocera Echo",
     "title": "Kyocera_Echo",
     "repairability_score": null,
@@ -2970,15 +2979,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Orbic_Wonder",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Oscal Phone",
-    "title": "Oscal_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Oscal_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
