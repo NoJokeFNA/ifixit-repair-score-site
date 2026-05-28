@@ -8209,11 +8209,11 @@
     "france_repairability_score": null
   },
   {
-    "name": "LG Aristo",
-    "title": "LG_Aristo",
+    "name": "LG Aristo 2",
+    "title": "LG_Aristo_2",
     "repairability_score": null,
     "brand": "LG",
-    "link": "https://www.ifixit.com/Device/LG_Aristo",
+    "link": "https://www.ifixit.com/Device/LG_Aristo_2",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -18875,6 +18875,15 @@
     "repairability_score": null,
     "brand": "ZTE",
     "link": "https://www.ifixit.com/Device/ZTE_Axon11",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "ZTE Blade A36",
+    "title": "ZTE_Blade_A36",
+    "repairability_score": null,
+    "brand": "ZTE",
+    "link": "https://www.ifixit.com/Device/ZTE_Blade_A36",
     "teardown_urls": [],
     "france_repairability_score": null
   },
