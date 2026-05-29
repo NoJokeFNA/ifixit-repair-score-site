@@ -1555,6 +1555,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Hafury Umax",
+    "title": "Hafury_Umax",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Hafury_Umax",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Hisense H40",
     "title": "Hisense_H40",
     "repairability_score": null,
