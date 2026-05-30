@@ -1355,6 +1355,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "HMD Barbie",
+    "title": "HMD_Barbie",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/HMD_Barbie",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "HMD Fusion",
     "title": "HMD_Fusion",
     "repairability_score": 9,
@@ -2019,6 +2028,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Lava_iris_atom2",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Lenovo (VIBE) K6   K6 Power",
+    "title": "Lenovo_%28VIBE%29_K6_K6_Power",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Lenovo_%28VIBE%29_K6_K6_Power",
     "teardown_urls": [],
     "france_repairability_score": null
   },
