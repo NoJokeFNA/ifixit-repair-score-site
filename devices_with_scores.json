@@ -3001,6 +3001,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo a6",
+    "title": "Oppo_a6",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_a6",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Orbic Wonder",
     "title": "Orbic_Wonder",
     "repairability_score": null,
@@ -3537,6 +3546,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/TECNO_SPARK_20_Pro_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "TECNO SPARK 4",
+    "title": "TECNO_SPARK_4",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/TECNO_SPARK_4",
     "teardown_urls": [],
     "france_repairability_score": null
   },
