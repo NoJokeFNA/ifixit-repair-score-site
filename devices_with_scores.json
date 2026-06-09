@@ -3649,6 +3649,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Spark 50",
+    "title": "Tecno_Spark_50",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Spark_50",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno spark5 pro",
     "title": "Tecno_spark5_pro",
     "repairability_score": null,
