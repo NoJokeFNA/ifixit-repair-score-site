@@ -18334,7 +18334,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_9",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Xiaomi Redmi 9 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Xiaomi+Redmi+9+Teardown/221020",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": 7.1
   },
   {
