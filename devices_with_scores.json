@@ -1915,6 +1915,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Kyocera DuraXA Equip",
+    "title": "Kyocera_DuraXA_Equip",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Kyocera_DuraXA_Equip",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Kyocera DuraXV Extreme Plus",
     "title": "Kyocera_DuraXV_Extreme_Plus",
     "repairability_score": null,
