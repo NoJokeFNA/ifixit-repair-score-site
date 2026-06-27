@@ -811,6 +811,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Blackview Phone",
+    "title": "Blackview_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Blackview_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Blu Advance 5.0",
     "title": "Blu_Advance_5.0",
     "repairability_score": null,
@@ -1578,15 +1587,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Hisense_H40",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Hisense Phones",
-    "title": "Hisense_Phones",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Hisense_Phones",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3721,15 +3721,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Unihertz Phone",
-    "title": "Unihertz_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Unihertz_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Unnecto Drone M",
     "title": "Unnecto_Drone_M",
     "repairability_score": null,
@@ -3854,7 +3845,16 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Vivo_y21",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Vivo y21 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Vivo+y21+Teardown/222465",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
