@@ -811,15 +811,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Blackview Phone",
-    "title": "Blackview_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Blackview_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Blu Advance 5.0",
     "title": "Blu_Advance_5.0",
     "repairability_score": null,
