@@ -1636,15 +1636,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Huawei Mate 10 lite",
-    "title": "Huawei_Mate_10_lite",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Huawei_Mate_10_lite",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Huawei P Smart Z",
     "title": "Huawei_P_Smart_Z",
     "repairability_score": null,
@@ -3064,24 +3055,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Philips Xenium W832",
-    "title": "Philips_Xenium_W832",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Philips_Xenium_W832",
-    "teardown_urls": [
-      {
-        "title": "Philips Xenium W832 Teardown",
-        "url": "https://www.ifixit.com/Teardown/Philips+Xenium+W832+Teardown/44340",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
-    "france_repairability_score": null
-  },
-  {
     "name": "Pinwheel Plus 2",
     "title": "Pinwheel_Plus_2",
     "repairability_score": null,
@@ -4252,6 +4225,15 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "oppo f11",
+    "title": "oppo_f11",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/oppo_f11",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -7488,6 +7470,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Huawei Mate 10 lite",
+    "title": "Huawei_Mate_10_lite",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_Mate_10_lite",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Huawei Mate 20",
     "title": "Huawei_Mate_20",
     "repairability_score": null,
@@ -9015,6 +9006,15 @@
     "repairability_score": null,
     "brand": "LG",
     "link": "https://www.ifixit.com/Device/LG_Optimus_G_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "LG Optimus L3",
+    "title": "LG_Optimus_L3",
+    "repairability_score": null,
+    "brand": "LG",
+    "link": "https://www.ifixit.com/Device/LG_Optimus_L3",
     "teardown_urls": [],
     "france_repairability_score": null
   },
