@@ -13210,16 +13210,7 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A22",
-    "teardown_urls": [
-      {
-        "title": "Samsung Galaxy A22 Teardown",
-        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+A22+Teardown/208760",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -13390,6 +13381,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A35_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A36",
+    "title": "Samsung_Galaxy_A36",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A36",
     "teardown_urls": [],
     "france_repairability_score": null
   },
