@@ -1609,6 +1609,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Honor phones",
+    "title": "Honor_phones",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_phones",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Honor x6c",
     "title": "Honor_x6c",
     "repairability_score": null,
@@ -2237,16 +2246,7 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Micromax_A110_Canvas_2",
-    "teardown_urls": [
-      {
-        "title": "Micromax A110 Canvas 2 Teardown",
-        "url": "https://www.ifixit.com/Teardown/Micromax+A110+Canvas+2+Teardown/216490",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -2609,6 +2609,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Nothing_Phone_%284a%29_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Nothing Phone (4b)",
+    "title": "Nothing_Phone_%284b%29",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Nothing_Phone_%284b%29",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3231,6 +3240,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Realme_Note_70",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Realme Note 80",
+    "title": "Realme_Note_80",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_Note_80",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -4215,16 +4233,7 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/oppo_a83",
-    "teardown_urls": [
-      {
-        "title": "oppo a83 Teardown",
-        "url": "https://www.ifixit.com/Teardown/oppo+a83+Teardown/217182",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -11032,6 +11041,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Moto_G_5G_Plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Moto G 5G Series",
+    "title": "Motorola_Moto_G_5G_Series",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_5G_Series",
     "teardown_urls": [],
     "france_repairability_score": null
   },
