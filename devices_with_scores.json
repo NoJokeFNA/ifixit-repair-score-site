@@ -960,7 +960,16 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/CAT_S22_Flip",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "CAT S22 Teardown",
+        "url": "https://www.ifixit.com/Teardown/CAT+S22+Teardown/178328",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
