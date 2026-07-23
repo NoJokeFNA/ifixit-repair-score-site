@@ -1591,6 +1591,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Hisense u963",
+    "title": "Hisense_u963",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Hisense_u963",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Honor Magic 4 Pro",
     "title": "Honor_Magic_4_Pro",
     "repairability_score": null,
@@ -3285,15 +3294,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Redmagic_11_Pro",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Redmagic Phone",
-    "title": "Redmagic_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Redmagic_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13304,6 +13304,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy A27",
+    "title": "Samsung_Galaxy_A27",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A27",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy A3 (2017)",
     "title": "Samsung_Galaxy_A3_%282017%29",
     "repairability_score": null,
@@ -16445,15 +16454,6 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_galaxy_A16",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Samsung galaxy A20",
-    "title": "Samsung_galaxy_A20",
-    "repairability_score": null,
-    "brand": "Samsung",
-    "link": "https://www.ifixit.com/Device/Samsung_galaxy_A20",
     "teardown_urls": [],
     "france_repairability_score": null
   },
