@@ -16133,25 +16133,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Samsung Galaxy Z Flip",
-    "title": "Samsung_Galaxy_Z_Flip",
-    "repairability_score": 2,
-    "scorecard_version": "1.0",
-    "brand": "Samsung",
-    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip",
-    "teardown_urls": [
-      {
-        "title": "Samsung Galaxy Z Flip Teardown",
-        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002",
-        "tags": [
-          "starred"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
-    "france_repairability_score": null
-  },
-  {
     "name": "Samsung Galaxy Z Flip 4",
     "title": "Samsung_Galaxy_Z_Flip_4",
     "repairability_score": null,
@@ -16202,6 +16183,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip7_FE",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Z Flip8",
+    "title": "Samsung_Galaxy_Z_Flip8",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip8",
     "teardown_urls": [],
     "france_repairability_score": null
   },
