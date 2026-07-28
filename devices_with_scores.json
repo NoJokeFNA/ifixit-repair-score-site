@@ -4291,6 +4291,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "realme 5i",
+    "title": "realme_5i",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/realme_5i",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "realme 6",
     "title": "realme_6",
     "repairability_score": null,
@@ -16129,6 +16138,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Y_Duos",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Y Pro",
+    "title": "Samsung_Galaxy_Y_Pro",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Y_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
