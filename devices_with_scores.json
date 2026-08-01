@@ -3631,15 +3631,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Other Brand Android Phone",
-    "title": "Other_Brand_Android_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Other_Brand_Android_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Oukitel WP15",
     "title": "Oukitel_WP15",
     "repairability_score": null,
@@ -4234,6 +4225,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Camon Phone",
+    "title": "Tecno_Camon_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Camon_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno Pop4 pro",
     "title": "Tecno_Pop4_pro",
     "repairability_score": null,
@@ -4270,6 +4270,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Spark Phone",
+    "title": "Tecno_Spark_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Spark_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno spark5 pro",
     "title": "Tecno_spark5_pro",
     "repairability_score": null,
@@ -4302,6 +4311,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Teracube_2e",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Trump Mobile T1",
+    "title": "Trump_Mobile_T1",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Trump_Mobile_T1",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -17294,6 +17312,25 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy Z Flip",
+    "title": "Samsung_Galaxy_Z_Flip",
+    "repairability_score": 2,
+    "scorecard_version": "1.0",
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip",
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy Z Flip Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002",
+        "tags": [
+          "starred"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy Z Flip 4",
     "title": "Samsung_Galaxy_Z_Flip_4",
     "repairability_score": null,
@@ -17390,6 +17427,24 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Z Fold8",
+    "title": "Samsung_Galaxy_Z_Fold8",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold8",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Z Fold8 Ultra",
+    "title": "Samsung_Galaxy_Z_Fold8_Ultra",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold8_Ultra",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
