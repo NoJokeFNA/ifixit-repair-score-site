@@ -1600,6 +1600,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Honor 60",
+    "title": "Honor_60",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_60",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Honor 60 Pro",
+    "title": "Honor_60_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_60_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Honor Magic 4 Pro",
     "title": "Honor_Magic_4_Pro",
     "repairability_score": null,
@@ -7906,24 +7924,6 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Huawei 60",
-    "title": "Huawei_60",
-    "repairability_score": null,
-    "brand": "Huawei",
-    "link": "https://www.ifixit.com/Device/Huawei_60",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Huawei 60 Pro",
-    "title": "Huawei_60_Pro",
-    "repairability_score": null,
-    "brand": "Huawei",
-    "link": "https://www.ifixit.com/Device/Huawei_60_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
