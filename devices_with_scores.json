@@ -1627,6 +1627,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Honor Magic 5 Pro",
+    "title": "Honor_Magic_5_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Honor_Magic_5_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Honor Magic 6 Lite",
     "title": "Honor_Magic_6_Lite",
     "repairability_score": null,
@@ -8284,15 +8293,6 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_M835",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Huawei Magic 5 Pro",
-    "title": "Huawei_Magic_5_Pro",
-    "repairability_score": null,
-    "brand": "Huawei",
-    "link": "https://www.ifixit.com/Device/Huawei_Magic_5_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
