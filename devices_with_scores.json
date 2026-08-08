@@ -3973,6 +3973,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Sharp Aquos Crystal",
+    "title": "Sharp_Aquos_Crystal",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Sharp_Aquos_Crystal",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Shift 5.1",
     "title": "Shift_5.1",
     "repairability_score": 6,
@@ -4252,11 +4261,11 @@
     "france_repairability_score": null
   },
   {
-    "name": "Tecno Camon Phone",
-    "title": "Tecno_Camon_Phone",
+    "name": "Tecno Pop Phone",
+    "title": "Tecno_Pop_Phone",
     "repairability_score": null,
     "brand": null,
-    "link": "https://www.ifixit.com/Device/Tecno_Camon_Phone",
+    "link": "https://www.ifixit.com/Device/Tecno_Pop_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -4293,15 +4302,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Tecno_Spark_50",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Tecno Spark Phone",
-    "title": "Tecno_Spark_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Tecno_Spark_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -12040,15 +12040,6 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Moto_G_5G_Plus",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Motorola Moto G 5G Series",
-    "title": "Motorola_Moto_G_5G_Series",
-    "repairability_score": null,
-    "brand": "Motorola",
-    "link": "https://www.ifixit.com/Device/Motorola_Moto_G_5G_Series",
     "teardown_urls": [],
     "france_repairability_score": null
   },
