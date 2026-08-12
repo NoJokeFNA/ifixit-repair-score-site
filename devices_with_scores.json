@@ -4261,15 +4261,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Tecno Pop Phone",
-    "title": "Tecno_Pop_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Tecno_Pop_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Tecno Pop4 pro",
     "title": "Tecno_Pop4_pro",
     "repairability_score": null,
