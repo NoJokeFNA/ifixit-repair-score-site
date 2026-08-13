@@ -6713,6 +6713,42 @@
     "france_repairability_score": null
   },
   {
+    "name": "Google Pixel 11",
+    "title": "Google_Pixel_11",
+    "repairability_score": null,
+    "brand": "Google",
+    "link": "https://www.ifixit.com/Device/Google_Pixel_11",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Google Pixel 11 Pro",
+    "title": "Google_Pixel_11_Pro",
+    "repairability_score": null,
+    "brand": "Google",
+    "link": "https://www.ifixit.com/Device/Google_Pixel_11_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Google Pixel 11 Pro Fold",
+    "title": "Google_Pixel_11_Pro_Fold",
+    "repairability_score": null,
+    "brand": "Google",
+    "link": "https://www.ifixit.com/Device/Google_Pixel_11_Pro_Fold",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Google Pixel 11 Pro XL",
+    "title": "Google_Pixel_11_Pro_XL",
+    "repairability_score": null,
+    "brand": "Google",
+    "link": "https://www.ifixit.com/Device/Google_Pixel_11_Pro_XL",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Google Pixel 2",
     "title": "Google_Pixel_2",
     "repairability_score": null,
