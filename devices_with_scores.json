@@ -4261,6 +4261,33 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Camon 50",
+    "title": "Tecno_Camon_50",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Camon_50",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Camon Slim",
+    "title": "Tecno_Camon_Slim",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Camon_Slim",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Pop 20",
+    "title": "Tecno_Pop_20",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pop_20",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno Pop4 pro",
     "title": "Tecno_Pop4_pro",
     "repairability_score": null,
@@ -17887,6 +17914,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Sony Xperia 5 IV",
+    "title": "Sony_Xperia_5_IV",
+    "repairability_score": null,
+    "brand": "Sony Ericsson",
+    "link": "https://www.ifixit.com/Device/Sony_Xperia_5_IV",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Sony Xperia 5 ii",
     "title": "Sony_Xperia_5_ii",
     "repairability_score": null,
@@ -18551,24 +18587,6 @@
     "brand": "Sony Ericsson",
     "link": "https://www.ifixit.com/Device/Sony_Xperia_go",
     "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Sony ZV-E10",
-    "title": "Sony_ZV-E10",
-    "repairability_score": null,
-    "brand": "Sony Ericsson",
-    "link": "https://www.ifixit.com/Device/Sony_ZV-E10",
-    "teardown_urls": [
-      {
-        "title": "Teardown Sony ZV-E10 to reach SD card slot",
-        "url": "https://www.ifixit.com/Teardown/Teardown+Sony+ZV-E10+to+reach+SD+card+slot/200047",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
     "france_repairability_score": null
   },
   {
