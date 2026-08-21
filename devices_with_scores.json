@@ -13087,6 +13087,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr Fold 2026",
+    "title": "Motorola_Razr_Fold_2026",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Fold_2026",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr Plus",
     "title": "Motorola_Razr_Plus",
     "repairability_score": null,
