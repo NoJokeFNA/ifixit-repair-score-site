@@ -1283,6 +1283,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Fairphone 6plus",
+    "title": "Fairphone_6plus",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Fairphone_6plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Freeyond F9",
     "title": "Freeyond_F9",
     "repairability_score": null,
@@ -11419,6 +11428,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Droid_RAZR_HD",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Droid RAZR M",
+    "title": "Motorola_Droid_RAZR_M",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Droid_RAZR_M",
     "teardown_urls": [],
     "france_repairability_score": null
   },
