@@ -13,12 +13,14 @@
     "2.0",
     "2.1",
     "2.2",
-    "2.3"
+    "2.3",
+    "2.4"
   ],
   "criteria": [
     {
       "name": "Design for Repair",
       "included": [
+        true,
         true,
         true,
         true,
@@ -48,7 +50,8 @@
         "2.0": "80%",
         "2.1": "80%",
         "2.2": "80%",
-        "2.3": "80%"
+        "2.3": "80%",
+        "2.4": "80%"
       },
       "notes": {
         "1.0": "Ease of disassembly",
@@ -64,12 +67,14 @@
         "2.0": "Ease of disassembly/reassembly",
         "2.1": "Ease of disassembly/reassembly",
         "2.2": "Ease of disassembly/reassembly",
-        "2.3": "Ease of disassembly/reassembly"
+        "2.3": "Ease of disassembly/reassembly",
+        "2.4": "Ease of disassembly/reassembly"
       }
     },
     {
       "name": "Service Manual",
       "included": [
+        true,
         true,
         true,
         true,
@@ -99,7 +104,8 @@
         "2.0": "10%",
         "2.1": "10%",
         "2.2": "10%",
-        "2.3": "10%"
+        "2.3": "10%",
+        "2.4": "10%"
       },
       "notes": {
         "1.0": "Free, public, available via OEM support site",
@@ -115,7 +121,8 @@
         "2.0": "Free, public, complete, available via OEM support site",
         "2.1": "Free, public, complete, available via OEM support site",
         "2.2": "Free, public, complete, available via OEM support site",
-        "2.3": "Free, public, complete, available via OEM support site"
+        "2.3": "Free, public, complete, available via OEM support site",
+        "2.4": "Free, public, complete, available via OEM support site"
       }
     },
     {
@@ -128,6 +135,7 @@
         true,
         true,
         true,
+        false,
         false,
         false,
         false,
@@ -163,6 +171,7 @@
         true,
         true,
         true,
+        true,
         true
       ],
       "weights": {
@@ -172,7 +181,8 @@
         "2.0": "10%",
         "2.1": "10%",
         "2.2": "10%",
-        "2.3": "10%"
+        "2.3": "10%",
+        "2.4": "10%"
       },
       "notes": {
         "1.7": "Only OEM parts considered",
@@ -181,7 +191,8 @@
         "2.0": "Only OEM parts considered",
         "2.1": "Only OEM parts and off-the-shelf standard parts considered",
         "2.2": "Only OEM parts and off-the-shelf standard parts considered",
-        "2.3": "Only OEM parts and off-the-shelf standard parts considered"
+        "2.3": "Only OEM parts and off-the-shelf standard parts considered",
+        "2.4": "Only OEM parts and off-the-shelf standard parts considered"
       }
     },
     {
@@ -191,6 +202,7 @@
         false,
         false,
         false,
+        true,
         true,
         true,
         true,
@@ -212,7 +224,8 @@
         "2.0": "N/A",
         "2.1": "N/A",
         "2.2": "N/A",
-        "2.3": "N/A"
+        "2.3": "N/A",
+        "2.4": "N/A"
       },
       "notes": {
         "1.4": "Gating function for full credit on service manual, parts availability",
@@ -224,7 +237,8 @@
         "2.0": "Gating function for full credit on service manual, parts availability",
         "2.1": "Gating function for full credit on service manual, parts availability",
         "2.2": "Gating function for full credit on service manual, parts availability",
-        "2.3": "Gating function for full credit on service manual, parts availability"
+        "2.3": "Gating function for full credit on service manual, parts availability",
+        "2.4": "Gating function for full credit on service manual, parts availability"
       }
     },
     {
@@ -235,6 +249,7 @@
         false,
         false,
         false,
+        true,
         true,
         true,
         true,
@@ -254,7 +269,8 @@
         "2.0": "N/A",
         "2.1": "N/A",
         "2.2": "N/A",
-        "2.3": "N/A"
+        "2.3": "N/A",
+        "2.4": "N/A"
       },
       "notes": {
         "1.5": "Penalty only, global, up to -100%",
@@ -265,12 +281,14 @@
         "2.0": "Penalty only, global, up to -100%",
         "2.1": "Penalty only, global, up to -100%",
         "2.2": "Penalty only, global, up to -100%",
-        "2.3": "Penalty only, global, up to -100%"
+        "2.3": "Penalty only, global, up to -100%",
+        "2.4": "Penalty only, global, up to -100%"
       }
     },
     {
       "name": "Software Updates",
       "included": [
+        false,
         false,
         false,
         false,
@@ -393,6 +411,10 @@
         "Duration of software security updates is slated for inclusion in a future version of the scorecard.",
         "[Reserved]"
       ]
+    },
+    {
+      "version": "2.4",
+      "items": []
     }
   ],
   "revisions": [
@@ -494,6 +516,14 @@
       "items": [
         "Formalized and refined scoring criteria for wireless headphones.",
         "Added proxy times for common soldering actions and adjusted existing soldering actions."
+      ]
+    },
+    {
+      "version": "2.4",
+      "items": [
+        "Formalized and refined scoring criteria for portable wireless speakers.",
+        "Added proxy times for actions common to portable wireless speaker repair. Adjusted proxy times for separating thermal compounds.",
+        "Adjusted tool multipliers for combination (i.e. multiple simultaneous) tools."
       ]
     }
   ]
