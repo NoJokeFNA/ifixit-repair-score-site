@@ -17932,6 +17932,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Sony Xperia 1 V",
+    "title": "Sony_Xperia_1_V",
+    "repairability_score": null,
+    "brand": "Sony Ericsson",
+    "link": "https://www.ifixit.com/Device/Sony_Xperia_1_V",
+    "teardown_urls": [],
+    "france_repairability_score": 8.2
+  },
+  {
     "name": "Sony Xperia 10 VI",
     "title": "Sony_Xperia_10_VI",
     "repairability_score": null,
