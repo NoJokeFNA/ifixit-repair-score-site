@@ -4596,6 +4596,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Vivo Y29",
+    "title": "Vivo_Y29",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_Y29",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Vivo Y36",
     "title": "Vivo_Y36",
     "repairability_score": null,
