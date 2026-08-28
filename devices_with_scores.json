@@ -3207,11 +3207,29 @@
     "france_repairability_score": null
   },
   {
+    "name": "Oppo A98 5G",
+    "title": "Oppo_A98_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_A98_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Oppo CPH2499",
     "title": "Oppo_CPH2499",
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Oppo_CPH2499",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Oppo F23 5G",
+    "title": "Oppo_F23_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oppo_F23_5G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -13560,15 +13578,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "OnePlus A98 5G",
-    "title": "OnePlus_A98_5G",
-    "repairability_score": null,
-    "brand": "OnePlus",
-    "link": "https://www.ifixit.com/Device/OnePlus_A98_5G",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "OnePlus ACE",
     "title": "OnePlus_ACE",
     "repairability_score": null,
@@ -13628,15 +13637,6 @@
     "repairability_score": null,
     "brand": "OnePlus",
     "link": "https://www.ifixit.com/Device/OnePlus_Ace_2_Pro",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "OnePlus F23 5G",
-    "title": "OnePlus_F23_5G",
-    "repairability_score": null,
-    "brand": "OnePlus",
-    "link": "https://www.ifixit.com/Device/OnePlus_F23_5G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
