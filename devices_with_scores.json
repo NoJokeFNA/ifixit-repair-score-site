@@ -1969,6 +1969,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Itel A06",
+    "title": "Itel_A06",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Itel_A06",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Itel A50",
     "title": "Itel_A50",
     "repairability_score": null,
@@ -4623,6 +4632,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Vivo Y29 5G",
+    "title": "Vivo_Y29_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_Y29_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Vivo Y36",
     "title": "Vivo_Y36",
     "repairability_score": null,
@@ -4890,6 +4908,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/infinix_hot_10",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "infinix hot 11 play",
+    "title": "infinix_hot_11_play",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/infinix_hot_11_play",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -16911,6 +16938,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S26",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy S26 FE",
+    "title": "Samsung_Galaxy_S26_FE",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S26_FE",
     "teardown_urls": [],
     "france_repairability_score": null
   },
