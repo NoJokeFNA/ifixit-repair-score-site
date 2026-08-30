@@ -16816,6 +16816,14 @@
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S22_Ultra",
     "teardown_urls": [
       {
+        "title": "Samsung Galaxy S22 Ultra Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S22+Ultra+Teardown/232733",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      },
+      {
         "title": "Samsung Galaxy S22 Ultra Chip ID",
         "url": "https://www.ifixit.com/Guide/Samsung+Galaxy+S22+Ultra+Chip+ID/148073",
         "tags": [],
