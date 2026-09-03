@@ -5726,7 +5726,16 @@
     "scorecard_version": "1.6",
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_15_Pro",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Teardown",
+        "url": "https://www.ifixit.com/Teardown/Teardown/226351",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -8041,7 +8050,16 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Honor_5C_-_NEM_L21",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Honor 5C - NEM L21 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Honor+5C+-+NEM+L21+Teardown/77790",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -14281,7 +14299,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A05",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "imei",
+        "url": "https://www.ifixit.com/Guide/imei/229173",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -16462,7 +16489,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_S_Advance",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy S Advance Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+S+Advance+Teardown/61594",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -17533,7 +17569,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold2",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy Z Fold2 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Fold2+Teardown/152535",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": 7.5
   },
   {
@@ -19252,7 +19297,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_14",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Teardown",
+        "url": "https://www.ifixit.com/Teardown/Teardown/228149",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -20115,7 +20169,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_12S",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Disassembling the Device",
+        "url": "https://www.ifixit.com/Guide/Disassembling+the+Device/231768",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
