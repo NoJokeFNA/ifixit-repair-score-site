@@ -5873,6 +5873,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "iPhone 18 Pro",
+    "title": "iPhone_18_Pro",
+    "repairability_score": null,
+    "brand": "Apple",
+    "link": "https://www.ifixit.com/Device/iPhone_18_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "iPhone 18 Pro Max",
+    "title": "iPhone_18_Pro_Max",
+    "repairability_score": null,
+    "brand": "Apple",
+    "link": "https://www.ifixit.com/Device/iPhone_18_Pro_Max",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "iPhone 1st Generation",
     "title": "iPhone_1st_Generation",
     "repairability_score": 2,
@@ -6251,6 +6269,15 @@
     "repairability_score": null,
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_Air_MagSafe_Battery",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "iPhone Duo",
+    "title": "iPhone_Duo",
+    "repairability_score": null,
+    "brand": "Apple",
+    "link": "https://www.ifixit.com/Device/iPhone_Duo",
     "teardown_urls": [],
     "france_repairability_score": null
   },
