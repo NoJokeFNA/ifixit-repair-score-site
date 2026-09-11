@@ -4587,6 +4587,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Vivo Y17s",
+    "title": "Vivo_Y17s",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_Y17s",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Vivo Y17s V2310",
     "title": "Vivo_Y17s_V2310",
     "repairability_score": null,
@@ -5385,15 +5394,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/vivo_T4x_5G",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "vivo Y17s",
-    "title": "vivo_Y17s",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/vivo_Y17s",
     "teardown_urls": [],
     "france_repairability_score": null
   },
