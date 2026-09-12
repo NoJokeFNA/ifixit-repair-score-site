@@ -144,6 +144,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Alcatel One Touch 206",
+    "title": "Alcatel_One_Touch_206",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Alcatel_One_Touch_206",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Alcatel One Touch Evolve 2",
     "title": "Alcatel_One_Touch_Evolve_2",
     "repairability_score": null,
@@ -1054,7 +1063,7 @@
   {
     "name": "Coolpad 3300A",
     "title": "Coolpad_3300A",
-    "repairability_score": 5,
+    "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Coolpad_3300A",
     "teardown_urls": [],
@@ -3784,6 +3793,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Realme 13 Pro Plus 5G",
+    "title": "Realme_13_Pro_Plus_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Realme_13_Pro_Plus_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Realme 7i",
     "title": "Realme_7i",
     "repairability_score": null,
@@ -3996,6 +4014,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/SHIFTphone8",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Ch@t 335",
+    "title": "Samsung_Ch_t_335",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Samsung_Ch_t_335",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -8234,6 +8261,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Huawei C300",
+    "title": "Huawei_C300",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_C300",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Huawei G9 PLUS",
     "title": "Huawei_G9_PLUS",
     "repairability_score": null,
@@ -8813,6 +8849,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Huawei Nova 9 SE",
+    "title": "Huawei_Nova_9_SE",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_Nova_9_SE",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Huawei Nova Young",
     "title": "Huawei_Nova_Young",
     "repairability_score": null,
@@ -9289,15 +9334,6 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_ascend_G700",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Huawei nova",
-    "title": "Huawei_nova",
-    "repairability_score": null,
-    "brand": "Huawei",
-    "link": "https://www.ifixit.com/Device/Huawei_nova",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -17500,6 +17536,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Galaxy Young",
+    "title": "Samsung_Galaxy_Young",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Young",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Galaxy Z Flip",
     "title": "Samsung_Galaxy_Z_Flip",
     "repairability_score": 2,
@@ -17803,6 +17848,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Serenata_SGH-F310",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Serene",
+    "title": "Samsung_Serene",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Serene",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -19436,6 +19490,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Xiaomi Black Shark 4",
+    "title": "Xiaomi_Black_Shark_4",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Xiaomi_Black_Shark_4",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Xiaomi Mi 10",
     "title": "Xiaomi_Mi_10",
     "repairability_score": null,
@@ -20899,6 +20962,15 @@
     "repairability_score": null,
     "brand": "ZTE",
     "link": "https://www.ifixit.com/Device/ZTE_Racer_II",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "ZTE SFR 151",
+    "title": "ZTE_SFR_151",
+    "repairability_score": null,
+    "brand": "ZTE",
+    "link": "https://www.ifixit.com/Device/ZTE_SFR_151",
     "teardown_urls": [],
     "france_repairability_score": null
   },
