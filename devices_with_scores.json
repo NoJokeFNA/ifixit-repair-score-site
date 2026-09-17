@@ -19360,7 +19360,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_13_Ultra",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Disassembling the Device",
+        "url": "https://www.ifixit.com/Guide/Disassembling+the+Device/237166",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
