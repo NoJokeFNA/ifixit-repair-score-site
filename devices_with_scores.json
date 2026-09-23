@@ -784,6 +784,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Blackview Active 8 Pro",
+    "title": "Blackview_Active_8_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Blackview_Active_8_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Blackview BV6200 Plus",
     "title": "Blackview_BV6200_Plus",
     "repairability_score": null,
@@ -4401,15 +4410,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Tecno_spark5_pro",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Telefoni Blackview",
-    "title": "Telefoni_Blackview",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Telefoni_Blackview",
     "teardown_urls": [],
     "france_repairability_score": null
   },
