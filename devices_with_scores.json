@@ -784,6 +784,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "BenQ Phone",
+    "title": "BenQ_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/BenQ_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Blackview Active 8 Pro",
     "title": "Blackview_Active_8_Pro",
     "repairability_score": null,
@@ -1045,6 +1054,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Cat Phone",
+    "title": "Cat_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Cat_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Caterpillar B15",
     "title": "Caterpillar_B15",
     "repairability_score": null,
@@ -1066,6 +1084,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Caterpillar_S60",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Celkon Phone",
+    "title": "Celkon_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Celkon_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -1129,6 +1156,24 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Cubot_Dinosaur",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Cubot Phone",
+    "title": "Cubot_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Cubot_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Dell Phone",
+    "title": "Dell_Phone",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Dell_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -2014,6 +2059,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Itel P13",
+    "title": "Itel_P13",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Itel_P13",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Itel S13",
+    "title": "Itel_S13",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Itel_S13",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Itel S23",
     "title": "Itel_S23",
     "repairability_score": null,
@@ -2573,6 +2636,15 @@
     "link": "https://www.ifixit.com/Device/Nokia_3.1",
     "teardown_urls": [],
     "france_repairability_score": 6.8
+  },
+  {
+    "name": "Nokia 3.4",
+    "title": "Nokia_3.4",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Nokia_3.4",
+    "teardown_urls": [],
+    "france_repairability_score": 6.3
   },
   {
     "name": "Nokia 4.2",
@@ -3991,6 +4063,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "RugOne",
+    "title": "RugOne",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/RugOne",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "SHARP",
     "title": "SHARP",
     "repairability_score": null,
@@ -4023,15 +4104,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/SHIFTphone8",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Samsung Ch@t 335",
-    "title": "Samsung_Ch_t_335",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Samsung_Ch_t_335",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -4446,6 +4518,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Ulefone_Phone",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Umidigi",
+    "title": "Umidigi",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Umidigi",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -8270,15 +8351,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Huawei C300",
-    "title": "Huawei_C300",
-    "repairability_score": null,
-    "brand": "Huawei",
-    "link": "https://www.ifixit.com/Device/Huawei_C300",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Huawei G9 PLUS",
     "title": "Huawei_G9_PLUS",
     "repairability_score": null,
@@ -9343,6 +9415,15 @@
     "repairability_score": null,
     "brand": "Huawei",
     "link": "https://www.ifixit.com/Device/Huawei_ascend_G700",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Huawei nova",
+    "title": "Huawei_nova",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_nova",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -10871,6 +10952,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "LG W41",
+    "title": "LG_W41",
+    "repairability_score": null,
+    "brand": "LG",
+    "link": "https://www.ifixit.com/Device/LG_W41",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "LG W41 Pro",
+    "title": "LG_W41_Pro",
+    "repairability_score": null,
+    "brand": "LG",
+    "link": "https://www.ifixit.com/Device/LG_W41_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "LG Wing",
     "title": "LG_Wing",
     "repairability_score": null,
@@ -11905,6 +12004,15 @@
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_G8_plus",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola MPx",
+    "title": "Motorola_MPx",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_MPx",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -14188,6 +14296,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung Continuum",
+    "title": "Samsung_Continuum",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Continuum",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Core Prime",
     "title": "Samsung_Core_Prime",
     "repairability_score": null,
@@ -14560,6 +14677,15 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A17_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy A18 4G",
+    "title": "Samsung_Galaxy_A18_4G",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A18_4G",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -17852,6 +17978,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Samsung SGH-L760",
+    "title": "Samsung_SGH-L760",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_SGH-L760",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Samsung Serenata SGH-F310",
     "title": "Samsung_Serenata_SGH-F310",
     "repairability_score": null,
@@ -19180,6 +19315,15 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Redmi_A3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Redmi A7 Pro",
+    "title": "Redmi_A7_Pro",
+    "repairability_score": null,
+    "brand": "Xiaomi",
+    "link": "https://www.ifixit.com/Device/Redmi_A7_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
