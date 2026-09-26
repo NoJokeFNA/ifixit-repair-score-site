@@ -4423,6 +4423,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Phantom",
+    "title": "Tecno_Phantom",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Phantom",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno Pop 10",
     "title": "Tecno_Pop_10",
     "repairability_score": null,
@@ -20115,7 +20124,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_13C",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Xiaomi Redmi 13C Teardown",
+        "url": "https://www.ifixit.com/Teardown/Xiaomi+Redmi+13C+Teardown/239065",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
