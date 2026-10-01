@@ -4423,11 +4423,29 @@
     "france_repairability_score": null
   },
   {
-    "name": "Tecno Phantom",
-    "title": "Tecno_Phantom",
+    "name": "Tecno PHANTOM V Flip2 5G",
+    "title": "Tecno_PHANTOM_V_Flip2_5G",
     "repairability_score": null,
     "brand": null,
-    "link": "https://www.ifixit.com/Device/Tecno_Phantom",
+    "link": "https://www.ifixit.com/Device/Tecno_PHANTOM_V_Flip2_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Phantom V Flip",
+    "title": "Tecno_Phantom_V_Flip",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Phantom_V_Flip",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Phantom X2 Pro",
+    "title": "Tecno_Phantom_X2_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Phantom_X2_Pro",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -4653,6 +4671,15 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Vivo_X21",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Vivo X500",
+    "title": "Vivo_X500",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Vivo_X500",
     "teardown_urls": [],
     "france_repairability_score": null
   },
