@@ -4477,6 +4477,42 @@
     "france_repairability_score": null
   },
   {
+    "name": "Tecno Pova 7",
+    "title": "Tecno_Pova_7",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pova_7",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Pova 8 5G",
+    "title": "Tecno_Pova_8_5G",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pova_8_5G",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Pova Curve 2",
+    "title": "Tecno_Pova_Curve_2",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pova_Curve_2",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Tecno Pova Slim",
+    "title": "Tecno_Pova_Slim",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Tecno_Pova_Slim",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Tecno Spark 10 Pro",
     "title": "Tecno_Spark_10_Pro",
     "repairability_score": null,
