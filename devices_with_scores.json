@@ -5915,16 +5915,7 @@
     "scorecard_version": "1.6",
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_15_Pro",
-    "teardown_urls": [
-      {
-        "title": "Teardown",
-        "url": "https://www.ifixit.com/Teardown/Teardown/226351",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -14560,16 +14551,7 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A05",
-    "teardown_urls": [
-      {
-        "title": "imei",
-        "url": "https://www.ifixit.com/Guide/imei/229173",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -20502,16 +20484,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_12S",
-    "teardown_urls": [
-      {
-        "title": "Disassembling the Device",
-        "url": "https://www.ifixit.com/Guide/Disassembling+the+Device/231768",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
