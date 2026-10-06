@@ -2611,6 +2611,32 @@
     "france_repairability_score": null
   },
   {
+    "name": "Nokia 2 (TA-1029)",
+    "title": "Nokia_2_%28TA-1029%29",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Nokia_2_%28TA-1029%29",
+    "teardown_urls": [
+      {
+        "title": "Nokia 2 (TA-1029) Teardown",
+        "url": "https://www.ifixit.com/Teardown/Nokia+2+(TA-1029)+Teardown/234287",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      },
+      {
+        "title": "Nokia 2 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Nokia+2+Teardown/149264",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
+    "france_repairability_score": null
+  },
+  {
     "name": "Nokia 2.2",
     "title": "Nokia_2.2",
     "repairability_score": null,
@@ -5915,7 +5941,16 @@
     "scorecard_version": "1.6",
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_15_Pro",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Teardown",
+        "url": "https://www.ifixit.com/Teardown/Teardown/226351",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -14551,7 +14586,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A05",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "imei",
+        "url": "https://www.ifixit.com/Guide/imei/229173",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -20484,7 +20528,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_12S",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Disassembling the Device",
+        "url": "https://www.ifixit.com/Guide/Disassembling+the+Device/231768",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
