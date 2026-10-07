@@ -9445,6 +9445,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Huawei Y550",
+    "title": "Huawei_Y550",
+    "repairability_score": null,
+    "brand": "Huawei",
+    "link": "https://www.ifixit.com/Device/Huawei_Y550",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Huawei Y6 2018 Prime",
     "title": "Huawei_Y6_2018_Prime",
     "repairability_score": null,
