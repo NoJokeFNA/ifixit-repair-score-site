@@ -2082,7 +2082,16 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Itel_S23",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Itel S23 Teardown",
+        "url": "https://www.ifixit.com/Teardown/Itel+S23+Teardown/242918",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
