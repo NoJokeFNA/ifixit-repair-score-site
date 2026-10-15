@@ -784,11 +784,11 @@
     "france_repairability_score": null
   },
   {
-    "name": "BenQ Phone",
-    "title": "BenQ_Phone",
+    "name": "BenQ-Siemens Feature Phone",
+    "title": "BenQ-Siemens_Feature_Phone",
     "repairability_score": null,
     "brand": null,
-    "link": "https://www.ifixit.com/Device/BenQ_Phone",
+    "link": "https://www.ifixit.com/Device/BenQ-Siemens_Feature_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -973,6 +973,33 @@
     "france_repairability_score": null
   },
   {
+    "name": "BraX2",
+    "title": "BraX2",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/BraX2",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "BraX3",
+    "title": "BraX3",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/BraX3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Brax Wink",
+    "title": "Brax_Wink",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Brax_Wink",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "C21y",
     "title": "C21y",
     "repairability_score": null,
@@ -1054,15 +1081,6 @@
     "france_repairability_score": null
   },
   {
-    "name": "Cat Phone",
-    "title": "Cat_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Cat_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Caterpillar B15",
     "title": "Caterpillar_B15",
     "repairability_score": null,
@@ -1084,15 +1102,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Caterpillar_S60",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Celkon Phone",
-    "title": "Celkon_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Celkon_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -1156,24 +1165,6 @@
     "repairability_score": null,
     "brand": null,
     "link": "https://www.ifixit.com/Device/Cubot_Dinosaur",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Cubot Phone",
-    "title": "Cubot_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Cubot_Phone",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
-    "name": "Dell Phone",
-    "title": "Dell_Phone",
-    "repairability_score": null,
-    "brand": null,
-    "link": "https://www.ifixit.com/Device/Dell_Phone",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -3062,6 +3053,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "OPPO Find X9 Pro",
+    "title": "OPPO_Find_X9_Pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/OPPO_Find_X9_Pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "OPPO Find X9 Ultra",
+    "title": "OPPO_Find_X9_Ultra",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/OPPO_Find_X9_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "OPPO N1",
     "title": "OPPO_N1",
     "repairability_score": null,
@@ -3816,6 +3825,15 @@
         "difficulty": "Moderate"
       }
     ],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Oukitel WP12",
+    "title": "Oukitel_WP12",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Oukitel_WP12",
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -5950,16 +5968,7 @@
     "scorecard_version": "1.6",
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_15_Pro",
-    "teardown_urls": [
-      {
-        "title": "Teardown",
-        "url": "https://www.ifixit.com/Teardown/Teardown/226351",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -14604,16 +14613,7 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_A05",
-    "teardown_urls": [
-      {
-        "title": "imei",
-        "url": "https://www.ifixit.com/Teardown/imei/229173",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -17733,20 +17733,20 @@
     "france_repairability_score": null
   },
   {
-    "name": "Samsung Galaxy Xcover",
-    "title": "Samsung_Galaxy_Xcover",
-    "repairability_score": null,
-    "brand": "Samsung",
-    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Xcover",
-    "teardown_urls": [],
-    "france_repairability_score": null
-  },
-  {
     "name": "Samsung Galaxy Xcover 3",
     "title": "Samsung_Galaxy_Xcover_3",
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Xcover_3",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Samsung Galaxy Xcover 5",
+    "title": "Samsung_Galaxy_Xcover_5",
+    "repairability_score": null,
+    "brand": "Samsung",
+    "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Xcover_5",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -19656,16 +19656,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_14",
-    "teardown_urls": [
-      {
-        "title": "Teardown",
-        "url": "https://www.ifixit.com/Teardown/Teardown/228149",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
