@@ -2602,6 +2602,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr  2026",
+    "title": "Motorola_Razr_2026",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_2026",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "NO. 1 X6800",
     "title": "NO._1_X6800",
     "repairability_score": null,
@@ -5996,6 +6005,14 @@
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_16",
     "teardown_urls": [
+      {
+        "title": "Disassembling the Device",
+        "url": "https://www.ifixit.com/Teardown/Disassembling+the+Device/241324",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      },
       {
         "title": "iPhone 16 Chip ID",
         "url": "https://www.ifixit.com/Teardown/iPhone+16+Chip+ID/177222",
@@ -13482,6 +13499,24 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr 70",
+    "title": "Motorola_Razr_70",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_70",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr 70 Ultra",
+    "title": "Motorola_Razr_70_Ultra",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_70_Ultra",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr Fold 2026",
     "title": "Motorola_Razr_Fold_2026",
     "repairability_score": null,
@@ -13518,11 +13553,38 @@
     "france_repairability_score": null
   },
   {
+    "name": "Motorola Razr Plus 2026",
+    "title": "Motorola_Razr_Plus_2026",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Plus_2026",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr Plus 70",
+    "title": "Motorola_Razr_Plus_70",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Plus_70",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "Motorola Razr Ultra 2025",
     "title": "Motorola_Razr_Ultra_2025",
     "repairability_score": null,
     "brand": "Motorola",
     "link": "https://www.ifixit.com/Device/Motorola_Razr_Ultra_2025",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
+    "name": "Motorola Razr Ultra 2026",
+    "title": "Motorola_Razr_Ultra_2026",
+    "repairability_score": null,
+    "brand": "Motorola",
+    "link": "https://www.ifixit.com/Device/Motorola_Razr_Ultra_2026",
     "teardown_urls": [],
     "france_repairability_score": null
   },
@@ -19332,7 +19394,16 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Poco_X3_Pro",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Disassembling the Device",
+        "url": "https://www.ifixit.com/Teardown/Disassembling+the+Device/241687",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
@@ -19620,16 +19691,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_13_Ultra",
-    "teardown_urls": [
-      {
-        "title": "Disassembling the Device",
-        "url": "https://www.ifixit.com/Teardown/Disassembling+the+Device/237166",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
@@ -20537,16 +20599,7 @@
     "repairability_score": null,
     "brand": "Xiaomi",
     "link": "https://www.ifixit.com/Device/Xiaomi_Redmi_Note_12S",
-    "teardown_urls": [
-      {
-        "title": "Disassembling the Device",
-        "url": "https://www.ifixit.com/Teardown/Disassembling+the+Device/231768",
-        "tags": [
-          "user_contributed"
-        ],
-        "difficulty": "Moderate"
-      }
-    ],
+    "teardown_urls": [],
     "france_repairability_score": null
   },
   {
