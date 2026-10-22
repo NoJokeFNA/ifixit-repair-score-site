@@ -17945,7 +17945,16 @@
     "repairability_score": null,
     "brand": "Samsung",
     "link": "https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold_6",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "Samsung Galaxy Z Fold 6 Technique",
+        "url": "https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Fold+6+Technique/244759",
+        "tags": [
+          "user_contributed"
+        ],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
