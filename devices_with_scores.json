@@ -6528,7 +6528,14 @@
     "repairability_score": null,
     "brand": "Apple",
     "link": "https://www.ifixit.com/Device/iPhone_Duo",
-    "teardown_urls": [],
+    "teardown_urls": [
+      {
+        "title": "iPhone Duo Chip ID",
+        "url": "https://www.ifixit.com/Teardown/iPhone+Duo+Chip+ID/245251",
+        "tags": [],
+        "difficulty": "Moderate"
+      }
+    ],
     "france_repairability_score": null
   },
   {
