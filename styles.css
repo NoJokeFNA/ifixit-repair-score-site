@@ -2947,3 +2947,26 @@ body.theme-light .segmented .btn-neon.is-active {
     color: #0f172a;
     box-shadow: inset 0 0 0 1px rgba(2, 132, 199, 0.35);
 }
+/* Keep controls reachable on narrow phones and intermediate tablet widths. */
+.chart-heading {
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.device-controls {
+    flex-wrap: wrap;
+}
+.device-controls > *, .chart-heading > * {
+    min-width: 0;
+    max-width: 100%;
+}
+.device-controls > .flex {
+    flex-wrap: wrap;
+}
+@media (max-width: 1024px) {
+    .device-controls #searchInput {
+        flex-basis: 100%;
+    }
+    .difficulty-legend .difficulty-chips {
+        flex-wrap: wrap;
+    }
+}
