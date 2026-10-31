@@ -14,6 +14,12 @@ window.addEventListener('unhandledrejection', (e) => {
     }
 });
 
+// Browser storage is optional (private mode, policy restrictions, or quota limits).
+const storage = {
+    getItem(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+    setItem(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* memory-only mode */ } }
+};
+
 let devicesData = [];
 const MAX_COMPARE = 5;
 let selectedForCompare = new Set();
@@ -171,43 +177,44 @@ async function loadData() {
         <td class="px-6 py-4"><span class="skeleton-box md"></span></td>
         <td class="px-6 py-4"><span class="skeleton-box md"></span></td>
         <td class="px-6 py-4"><span class="skeleton-box sm"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box sm"></span></td>
+        <td class="px-6 py-4"><span class="skeleton-box sm"></span></td>
       </tr>
     `).join('');
     chartError.classList.add('hidden');
 
-    const cachedData = localStorage.getItem('devicesData');
-    if (cachedData) {
-        devicesData = JSON.parse(cachedData);
-        renderTable();
-        populateBrandFilter();
-        try {
-            loadChartModuleIdle().then(() => {
-                if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
-                    window.ChartModule.renderChart(devicesData);
-                }
-            });
-        } catch (e) {
-            console.error('Chart rendering failed with cached data:', e);
-            chartError.classList.remove('hidden');
+    function showData(data) {
+        if (!Array.isArray(data) || !data.every(d => d && typeof d === 'object' && typeof d.name === 'string')) {
+            throw new Error('Invalid device data');
         }
+        devicesData = data;
+        populateBrandFilter();
+        renderTable();
+    }
+
+    // A corrupt or unavailable cache must never prevent the network request.
+    try {
+        const cachedData = storage.getItem('devicesData');
+        if (cachedData) showData(JSON.parse(cachedData));
+    } catch (error) {
+        console.warn('Ignoring invalid device cache:', error);
     }
 
     try {
         const res = await fetch('devices_with_scores.json');
         if (!res.ok) throw new Error('Failed to fetch data');
-        devicesData = await res.json();
-        localStorage.setItem('devicesData', JSON.stringify(devicesData));
-        renderTable();
-        populateBrandFilter();
-        loadChartModuleIdle().then(() => {
-            if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
-                window.ChartModule.renderChart(devicesData);
-            }
-        });
+        const data = await res.json();
+        showData(data);
+        storage.setItem('devicesData', JSON.stringify(data));
     } catch (error) {
         console.error('Data fetch failed:', error);
-        tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-rose-500">Failed to load data</td></tr>';
-        chartError.classList.remove('hidden');
+        if (devicesData.length) {
+            notifyAction('Could not refresh data. Showing cached devices.');
+        } else {
+            tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-rose-500" role="alert">Failed to load data. <button type="button" class="btn-neon px-3 py-2" id="retryData">Retry</button></td></tr>';
+            document.getElementById('retryData').addEventListener('click', loadData);
+            chartError.classList.remove('hidden');
+        }
     }
 }
 
@@ -271,7 +278,7 @@ function populateTable(data) {
     const tbody = document.getElementById('deviceTable');
     tbody.innerHTML = '';
     if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No devices found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No devices found</td></tr>';
         return;
     }
 
@@ -513,8 +520,10 @@ function badge(score) {
 }
 
 function populateBrandFilter() {
-    const brands = [...new Set(devicesData.map(d => d.brand).filter(Boolean))].sort();
     const select = document.getElementById('brandFilter');
+    const selectedBrand = select.value || select.dataset.pendingBrand || '';
+    delete select.dataset.pendingBrand;
+    const brands = [...new Set(devicesData.map(d => d.brand).filter(Boolean))].sort();
     select.innerHTML = '<option value="">All manufacturers</option>';
     brands.forEach(b => {
         const opt = document.createElement('option');
@@ -522,12 +531,15 @@ function populateBrandFilter() {
         opt.textContent = b;
         select.appendChild(opt);
     });
+    select.value = brands.includes(selectedBrand) ? selectedBrand : '';
 }
 
 function updateSortIndicators() {
     document.querySelectorAll('th[data-sort-key]').forEach(th => {
         const key = th.dataset.sortKey;
         const icon = th.querySelector('.sort-icon');
+        th.setAttribute('aria-sort', key === currentSort.key ? (currentSort.direction === 'asc' ? 'ascending' : 'descending') : 'none');
+        if (!icon) return;
         if (key === currentSort.key) {
             icon.textContent = currentSort.direction === 'asc' ? '▲' : '▼';
             icon.classList.add('text-cyan-400');
@@ -648,7 +660,7 @@ function getSystemPrefersDark() {
 
 function getStoredTheme() {
     // Only explicit user choice 'light' | 'dark' is stored. If null, follow system.
-    const v = localStorage.getItem('theme');
+    const v = storage.getItem('theme');
     return (v === 'light' || v === 'dark') ? v : null;
 }
 
@@ -855,7 +867,7 @@ function queryToState() {
     const score = params.get('score') || '';
     const noscore = params.get('noscore') === '1';
     document.getElementById('searchInput').value = q;
-    document.getElementById('brandFilter').value = brand;
+    document.getElementById('brandFilter').dataset.pendingBrand = brand;
     if (score) {
         const scoreFilter = document.createElement('input');
         scoreFilter.type = 'hidden';
@@ -1049,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const curr = getStoredTheme();
             // Toggle only between light and dark; clicking sets explicit preference
             const next = curr === 'light' ? 'dark' : 'light';
-            localStorage.setItem('theme', next);
+            storage.setItem('theme', next);
             applyTheme();
             notifyAction(`Theme set to ${next}`);
         });
@@ -1199,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Density management (now via actions menu)
     function applyDensityFromStorage() {
-        const mode = localStorage.getItem('density') || 'compact';
+        const mode = storage.getItem('density') || 'compact';
         const body = document.body;
         if (mode === 'compact') {
             body.classList.add('compact-rows');
@@ -1280,15 +1292,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const densityBtn = document.getElementById('densityToggle');
     if (densityBtn) {
         densityBtn.addEventListener('click', () => {
-            const curr = localStorage.getItem('density') || 'comfortable';
+            const curr = storage.getItem('density') || 'comfortable';
             const next = curr === 'compact' ? 'comfortable' : 'compact';
-            localStorage.setItem('density', next);
+            storage.setItem('density', next);
             applyDensityFromStorage();
             densityBtn.textContent = `Density: ${next.charAt(0).toUpperCase()}${next.slice(1)}`;
             notifyAction(`Density set to ${next}`);
         });
         // initialize label
-        const current = localStorage.getItem('density') || 'compact';
+        const current = storage.getItem('density') || 'compact';
         densityBtn.textContent = `Density: ${current.charAt(0).toUpperCase()}${current.slice(1)}`;
     }
     const resetBtn = document.getElementById('resetFilters');
