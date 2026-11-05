@@ -5181,6 +5181,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "infinix hot 11 pro",
+    "title": "infinix_hot_11_pro",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/infinix_hot_11_pro",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "infinix hot 30i",
     "title": "infinix_hot_30i",
     "repairability_score": null,
