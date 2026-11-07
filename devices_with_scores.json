@@ -2429,6 +2429,15 @@
     "france_repairability_score": null
   },
   {
+    "name": "MEDION Smartphone P5001",
+    "title": "MEDION_Smartphone_P5001",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/MEDION_Smartphone_P5001",
+    "teardown_urls": [],
+    "france_repairability_score": null
+  },
+  {
     "name": "MLais M9 Smart Phone",
     "title": "MLais_M9_Smart_Phone",
     "repairability_score": null,
