@@ -3,7 +3,6 @@ import os
 from typing import Any
 
 import requests
-import urllib3
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
@@ -52,11 +51,15 @@ class IFixitAPIClient:
         proxy=False,
         allow_http: bool = False,
         raise_for_status: bool = True,
+        api_key: str | None = None,
+        ca_bundle: str | None = None,
     ):
         """Initialize the client.
 
         Args:
-            auth_token: Authentication token for authorized requests.
+            auth_token: Legacy authentication token (Authorization: api).
+            api_key: Personal API key (Authorization: Bearer).
+            ca_bundle: Optional PEM CA bundle; TLS verification always stays enabled.
             app_id: Optional app ID for the X-App-Id header.
             retries: Number of retries for failed requests.
             backoff_factor: Backoff factor for retries.
@@ -66,7 +69,11 @@ class IFixitAPIClient:
             raise_for_status: Raise exceptions for HTTP error responses.
             proxy: Use proxy settings from environment variables.
         """
-        self.auth_token = auth_token
+        if api_key and auth_token:
+            raise ValueError("Use api_key or auth_token, not both")
+        self.auth_token = api_key or auth_token
+        self.auth_scheme = "Bearer" if api_key else "api"
+        self.verify = ca_bundle or True
         self.app_id = app_id
         self.timeout = timeout
         self.proxy = proxy
@@ -74,11 +81,12 @@ class IFixitAPIClient:
         logging.basicConfig(level=log_level)
 
         self.session = requests.Session()
+        self.session.trust_env = bool(proxy)
         retry_strategy = Retry(
             total=retries,
             backoff_factor=backoff_factor,
             status_forcelist=[429, 500, 502, 503, 504],
-            allowed_methods=["HEAD", "GET", "OPTIONS", "POST", "PATCH", "PUT", "DELETE"],
+            allowed_methods=["HEAD", "GET", "OPTIONS"],
         )
 
         adapter = HTTPAdapter(max_retries=retry_strategy)
@@ -87,7 +95,6 @@ class IFixitAPIClient:
         self.session.mount("http://", adapter)
 
         if self.proxy:
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
             self.session.proxies = {
                 "http": os.getenv("HTTP_PROXY"),
                 "https": os.getenv("HTTPS_PROXY"),
@@ -104,7 +111,7 @@ class IFixitAPIClient:
             "Accept": "application/json",
         }
         if self.auth_token:
-            headers["Authorization"] = f"api {self.auth_token}"
+            headers["Authorization"] = f"{self.auth_scheme} {self.auth_token}"
         if self.app_id:
             headers["X-App-Id"] = self.app_id
         return headers
@@ -135,7 +142,7 @@ class IFixitAPIClient:
         """
         url = f"{self.BASE_URL}/{endpoint.lstrip('/')}"
         headers = self._build_headers()
-        logger.debug(f"Making {method} request to {url} with params={params}, json={json}")
+        logger.debug("Making %s request to %s", method, url)
 
         try:
             response = self.session.request(
@@ -145,14 +152,14 @@ class IFixitAPIClient:
                 params=params,
                 json=json,
                 timeout=self.timeout,
-                verify=not self.proxy,
+                verify=self.verify,
                 **kwargs,
             )
-            if self.raise_for_status:
+            if self.raise_for_status or response.status_code in {401, 403}:
                 response.raise_for_status()
             return response.json() if response.content else None
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error: {e.response.status_code} - {e.response.text}")
+            logger.error("HTTP error: %s", e.response.status_code)
             raise
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e!s}")
@@ -178,7 +185,7 @@ class IFixitAPIClient:
             response = self.session.get(
                 url=url,
                 timeout=self.timeout,
-                verify=not self.proxy,
+                verify=self.verify,
             )
             if self.raise_for_status:
                 response.raise_for_status()
@@ -211,7 +218,7 @@ class IFixitAPIClient:
             response = self.session.get(
                 url=url,
                 timeout=self.timeout,
-                verify=not self.proxy,
+                verify=self.verify,
             )
             if self.raise_for_status:
                 response.raise_for_status()

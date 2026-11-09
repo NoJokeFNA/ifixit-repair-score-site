@@ -36,6 +36,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build JSON files into gh-pages
+        env:
+          IFIXIT_TOKEN: ${{ secrets.IFIXIT_TOKEN }}
         run: |
           python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json
 

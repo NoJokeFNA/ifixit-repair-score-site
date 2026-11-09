@@ -788,7 +788,15 @@ async def main_async() -> None:
     )
     args = parser.parse_args()
 
-    client = IFixitAPIClient(log_level=log_level, proxy=True, raise_for_status=False)
+    client = IFixitAPIClient(
+        log_level=log_level,
+        api_key=os.getenv("IFIXIT_TOKEN") or None,
+        proxy=os.getenv("IFIXIT_USE_PROXY", "").lower() in {"1", "true", "yes"},
+        ca_bundle=os.getenv("IFIXIT_CA_BUNDLE") or None,
+        raise_for_status=False,
+    )
+    # Check API authorization before writing any generated files.
+    client.get_guides(params={"limit": 1})
     rate_limiter = _RateLimiter(rate_per_sec=4)
 
     # Fetch French repairability scores

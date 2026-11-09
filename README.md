@@ -30,3 +30,28 @@ French score matching:
 - Fetches verify the advertised product count and unique product URLs across every page. Timeouts are retried; missing pages, changed markup and invalid scores stop the build before the French output is replaced.
 - Intentionally conservative: a source listing without 5G cannot establish a score for a 5G device. Missing matches do not mean the device is unrepairable. Additional aliases require model-specific evidence and regression tests.
 - Coordinate rollout with the `gh-pages` frontend containing `tests/france.cjs`; the daily publication workflow requires that check. Keep the Beta label until outstanding source conflicts and model aliases have been reviewed.
+
+## API authentication
+
+The current [official API documentation](https://www.ifixit.com/api-docs)
+announces the end of anonymous API access on **January 1, 2027**, with test
+brownouts during December 2026. Anonymous reads still work during the transition.
+
+Sign in to iFixit and create a personal API key at
+[User → API keys](https://www.ifixit.com/User/api_keys). Copy it once and store it
+as the repository Actions secret **IFIXIT_TOKEN** (Settings → Secrets and variables
+→ Actions). The daily workflow passes this secret only to the Python collector;
+it is never placed in the public JSON or browser assets. Use a read-only key for
+this collector and monitor its expiry (keys last at most one year).
+
+Locally, supply `IFIXIT_TOKEN` through your environment. Proxy settings are ignored
+by default; set `IFIXIT_USE_PROXY=true` to opt in. A custom CA bundle can be supplied
+via `IFIXIT_CA_BUNDLE`; TLS verification stays enabled, including with a proxy.
+An authorization preflight runs before any output is written, and API 401/403
+responses always fail rather than being parsed as device data.
+
+API compatibility checked against the official OpenAPI download on 2026-11-09:
+the collector's `/guides` pagination/filter and category wiki endpoints remain
+covered. Rubric and repairability HTML pages are separate from the JSON API and
+remain protected by the existing parser regression checks. The site embeds its
+own Python client; updating the separate SDK alone does not update this collector.
