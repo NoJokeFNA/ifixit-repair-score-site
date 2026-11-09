@@ -139,7 +139,7 @@ function aggregateTeardownTags(teardownUrls = []) {
 }
 
 function renderTeardownLinks(teardownUrls = []) {
-    if (!teardownUrls || teardownUrls.length === 0) return '<span class="text-gray-500">-</span>';
+    if (!teardownUrls || teardownUrls.length === 0) return '<span class="text-gray-500" title="No teardown guide is available for this device">-</span>';
     const sortedTeardowns = sortTeardowns(teardownUrls);
     return sortedTeardowns.map(td => {
         const tags = sortTags(td.tags || []);
@@ -193,7 +193,7 @@ async function loadData() {
             const verified = match?.status === 'matched' && match.score === score &&
                 Number.isFinite(score) && score >= 0 && score <= 10 &&
                 Array.isArray(match.sources) && match.sources.length > 0 &&
-                match.sources.every(source => source.score === score && isFranceSourceUrl(source.url));
+                match.sources.every(source => source && source.score === score && isFranceSourceUrl(source.url));
             return {...device, france_repairability_score: verified ? score : null};
         });
         populateBrandFilter();
@@ -327,10 +327,10 @@ function populateTable(data) {
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
                 </td>
                 <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
-                <td class="px-6 py-4">${d.brand ?? '-'}</td>
+                <td class="px-6 py-4"${d.brand ? '' : ' title="Manufacturer information is unavailable"'}>${d.brand ?? '-'}</td>
                 <td class="px-6 py-4">
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
-                        ${d.repairability_score ?? '-'}/10
+                        ${d.repairability_score == null ? '<span title="No iFixit repairability score is available for this device">-</span>' : `${d.repairability_score}/10`}
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -339,7 +339,7 @@ function populateTable(data) {
                 <td class="px-6 py-4">
                   ${d.scorecard_version
                     ? `<span class="rubric-version">${d.scorecard_version}</span>`
-                    : `<span class="rubric-version rubric-missing">-</span>`
+                    : `<span class="rubric-version rubric-missing" title="No iFixit rubric version is available for this device">-</span>`
                   }
                 </td>`;
         // wire checkbox
@@ -531,20 +531,34 @@ function badge(score) {
     return 'bg-rose-500';
 }
 
+function franceScoreState(device) {
+    const match = device.france_repairability;
+    const sources = (Array.isArray(match?.sources) ? match.sources : []).filter(source => source && isFranceSourceUrl(source.url));
+    const score = device.france_repairability_score;
+    const verified = match?.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 &&
+        match.score === score && sources.length > 0 && sources.every(source => source.score === score);
+    const status = verified ? 'matched' : ['not_found', 'ambiguous', 'conflicting'].includes(match?.status) ? match.status : 'unverified';
+    const explanation = {
+        matched: 'A verified French repairability score is available.',
+        not_found: 'No verified French score was found for this model.',
+        ambiguous: 'Available French listings do not identify this exact variant. No score has been assigned.',
+        conflicting: 'French source entries have different scores for this model. No single score has been assigned.',
+        unverified: 'This saved score has not been verified against its sources. Refresh the data to verify it.'
+    };
+    if (status === 'ambiguous' && match.reason === 'model_identity_conflict') {
+        explanation.ambiguous = 'The source model numbers and variant names do not agree. No score has been assigned.';
+    }
+    return {match, sources, score, verified, status, explanation: explanation[status]};
+}
+
 function renderFranceScore(device) {
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
-    const match = device.france_repairability;
-    // Old caches predate evidence-based matching and can contain incorrect scores.
-    if (!match) return '<span class="france-score-missing" title="Refresh data to verify the French score">-</span>';
-    const sources = (Array.isArray(match.sources) ? match.sources : []).filter(source => isFranceSourceUrl(source.url));
-    const score = device.france_repairability_score;
-    const verified = match.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 && match.score === score && sources.length;
-    const label = verified ? `${score}/10` : (match.status === 'conflicting' ? 'Variants differ' : 'No verified match');
-    if (!sources.length) return `<span class="france-score-missing">${escape(label)}</span>`;
+    const state = franceScoreState(device);
+    const label = state.verified ? `${state.score}/10` : '-';
     return `<button type="button" class="france-score-trigger" data-france-device="${escape(device.name)}"
-        aria-haspopup="dialog" aria-controls="franceScoreModal"
-        aria-label="French score for ${escape(device.name)}: ${escape(label)}; show sources">
-        <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(verified ? score : null)}">${escape(label)}</span>
+        title="${escape(state.explanation)}" aria-haspopup="dialog" aria-controls="franceScoreModal"
+        aria-label="French score for ${escape(device.name)}: ${escape(label)}. ${escape(state.explanation)} Show details.">
+        <span class="${state.verified ? `px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(state.score)}` : 'france-score-missing'}">${escape(label)}</span>
         <span class="france-score-info" aria-hidden="true">i</span>
     </button>`;
 }
@@ -553,9 +567,26 @@ function openFranceScoreDialog(device) {
     const modal = document.getElementById('franceScoreModal');
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
     const display = value => escape(String(value ?? '').replace(/[\u2013\u2014\u2212]/g, '-'));
-    const sources = device.france_repairability.sources.filter(source => isFranceSourceUrl(source.url));
-    const score = device.france_repairability_score;
-    const matched = score !== null;
+    const {match, sources, score, verified: matched, status, explanation} = franceScoreState(device);
+    const matchedModels = Array.isArray(match?.model_numbers) ? match.model_numbers : [];
+    const apiModels = device.model_identification;
+    const models = matchedModels.length ? matchedModels : Array.isArray(apiModels?.model_numbers) ? apiModels.model_numbers : [];
+    const referenceValues = matchedModels.length ? match.model_reference_urls : apiModels?.reference_urls;
+    const references = (Array.isArray(referenceValues) ? referenceValues : []).filter(value => {
+        try {
+            const url = new URL(value);
+            return url.protocol === 'https:' && !url.username && !url.password &&
+                (url.hostname === 'www.samsung.com' ||
+                    (url.hostname === 'www.ifixit.com' && url.pathname.startsWith('/api/2.0/wikis/CATEGORY/')));
+        }
+        catch (_) { return false; }
+    });
+    const variants = (Array.isArray(device.model_identification?.variants) ? device.model_identification.variants : [])
+        .filter(variant => variant.name && Array.isArray(variant.model_numbers) && variant.model_numbers.some(model => models.includes(model)));
+    const heading = matched ? 'Published French score' : {
+        not_found: 'No verified score found', ambiguous: 'Variant not verified',
+        conflicting: 'Source scores disagree', unverified: 'Saved score not verified'
+    }[status];
     modal.innerHTML = `
         <header class="france-dialog-header">
             <div><p class="france-dialog-eyebrow">French repairability index</p>
@@ -564,17 +595,23 @@ function openFranceScoreDialog(device) {
         </header>
         <div class="france-dialog-overview">
             <span class="france-dialog-score ${badge(matched ? score : null)}">${matched ? `${escape(score)}<small>/10</small>` : '-'}</span>
-            <div><strong>${matched ? 'Published French score' : 'No single score assigned'}</strong>
-            <p id="franceScoreDescription">${matched ? `${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr` : 'Published scores differ across these variants.'}</p></div>
+            <div><strong>${heading}</strong>
+            <p id="franceScoreDescription">${matched ? `${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr` : explanation}</p></div>
         </div>
-        <div class="france-dialog-sources">
-            <h4>Source ${sources.length === 1 ? 'entry' : 'entries'}</h4>
+        ${models.length && references.length ? `
+        <section class="france-dialog-identity" aria-label="Verified model identification">
+            <span>${matchedModels.length ? 'Matched by model number' : 'Known iFixit model numbers'}</span><strong>${models.map(display).join(', ')}</strong>
+            ${variants.length ? `<ul>${variants.map(variant => `<li>${display(variant.name)}</li>`).join('')}</ul>` : ''}
+            ${references.map(url => `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${new URL(url).hostname === 'www.samsung.com' ? 'Manufacturer reference' : 'iFixit model reference'} ↗</a>`).join(' ')}
+        </section>` : ''}
+        ${sources.length ? `<div class="france-dialog-sources">
+            <h4>${status === 'ambiguous' ? 'Possible source entries' : sources.length === 1 ? 'Source entry' : 'Source entries'}</h4>
             <ul>${sources.map(source => `<li>
                 <div><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${display(source.name)} <span aria-hidden="true">↗</span></a>
-                <p>${source.last_updated ? `Calculated ${display(source.last_updated)}` : 'Calculation date not provided'}</p></div>
+                <p>${source.last_updated ? `Calculated ${display(source.last_updated)}` : 'Calculation date not provided'}</p>${source.model ? `<p>Model: ${display(source.model)}</p>` : ''}</div>
                 <span class="france-source-score">${escape(source.score)}<small>/10</small></span>
             </li>`).join('')}</ul>
-        </div>
+        </div>` : ''}
         <footer class="france-dialog-footer">The French index and iFixit use different scoring methods.</footer>`;
     modal.showModal();
 }

@@ -52,3 +52,9 @@ offline. Its browser fixtures are fixed independently of the real snapshot so
 new source listings and corrected scores are allowed. Run it with the same
 `NODE_PATH` as the other checks. French and iFixit scores are independent and
 are not expected to be equal.
+
+Missing French scores now show a compact `-` button with a descriptive tooltip
+and a keyboard/touch-accessible explanation. The France suite distinguishes no
+verified source, an unverified variant, conflicting source scores and legacy
+cached values. It also checks manufacturer/API model references and that a
+French source's Global model is not labelled as the US variant.
