@@ -58,3 +58,8 @@ and a keyboard/touch-accessible explanation. The France suite distinguishes no
 verified source, an unverified variant, conflicting source scores and legacy
 cached values. It also checks manufacturer/API model references and that a
 French source's Global model is not labelled as the US variant.
+
+Run `node tests/chart.cjs` with the same Playwright environment to check the
+compact distribution on mobile and desktop in both themes. Fixed fixtures cover
+visible count labels, scored-only tooltip percentages, score zero, filtering,
+and empty selections without stale bars.

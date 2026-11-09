@@ -30,5 +30,6 @@ jobs:
           node tests/browser.cjs
           node tests/rubric.cjs
           node tests/responsive.cjs
+          node tests/chart.cjs
           node tests/data.cjs
           node tests/france.cjs

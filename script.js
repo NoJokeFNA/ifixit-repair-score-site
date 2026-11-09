@@ -794,7 +794,7 @@ function applyTheme() {
     // Re-render chart with new palette if present
     try {
         const data = getFilteredData({ignoreScore: true});
-        if (data.length) {
+        if (data.length || window.Chart?.getChart('repairabilityChart')) {
             loadChartModuleIdle().then(() => {
                 if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
                     window.ChartModule.renderChart(data);
@@ -1262,13 +1262,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setSegmentState(initial);
         btnScored.addEventListener('click', () => {
             setSegmentState(false);
-            renderTable({skipChart: true});
+            renderTable();
             stateToQuery();
             notifyAction('Excluding devices without score');
         });
         btnAll.addEventListener('click', () => {
             setSegmentState(true);
-            renderTable({skipChart: true});
+            renderTable();
             stateToQuery();
             notifyAction('Including devices without score');
         });
