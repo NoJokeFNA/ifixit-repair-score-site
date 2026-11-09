@@ -10,6 +10,7 @@ import threading
 import time
 from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import UTC, datetime
 from decimal import Decimal
 from pathlib import Path
 
@@ -17,8 +18,10 @@ import requests
 import tqdm
 from bs4 import BeautifulSoup
 
+from data_quality import DataQualityError, compare_snapshots, read_snapshot, write_report
 from french_repairability_scraper import FrenchRepairabilityScraper
 from ifixit_api_client import IFixitAPIClient
+from model_identification import collect_model_identification
 from rate_limiter import _RateLimiter
 from utils import _DeviceDataUtils
 
@@ -380,6 +383,7 @@ def print_device_data(
         return [d for d in seq if not (d in seen or seen.add(d))]
 
     unique_devices = dedupe(devices)
+    model_identifications = {}
     if not unique_devices:
         logger.warning("No devices provided.")
         return
@@ -394,6 +398,15 @@ def print_device_data(
                 data = client.get_category(device_name=ifixit_title, params=None)
                 repairability_score = data.get("repairability_score")
                 manufacturer = _DeviceDataUtils.device_brand(data)
+                try:
+                    limiter.acquire()
+                    variants = client.get_category_variants(ifixit_title)
+                except (requests.RequestException, ValueError):
+                    logger.warning("Model variants unavailable for %s", device_name)
+                    variants = None
+                model_identifications[device_name] = collect_model_identification(
+                    data, variants, manufacturer, ifixit_title
+                )
 
                 repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
                 return (
@@ -447,6 +460,7 @@ def print_device_data(
             results.append(fut.result())
 
     with_score, without_score = partition_results(results)
+    french_scraper.set_api_model_identifications(model_identifications)
 
     def print_outputs() -> None:
         if without_score:
@@ -472,7 +486,10 @@ def print_device_data(
         logger.info("- Devices with matched teardown URLs: %d", matched)
 
     def create_device_entry(name, title, score, brand, link, teardown_guides):
-        french_match = french_scraper.match_device({"name": name, "title": title, "brand": brand})
+        model_identity = model_identifications.get(name)
+        french_match = french_scraper.match_device(
+            {"name": name, "title": title, "brand": brand, "model_identification": model_identity}
+        )
         return {
             "name": name,
             "title": title,
@@ -490,6 +507,7 @@ def print_device_data(
             ],
             "france_repairability_score": french_match["score"],
             "france_repairability": french_match,
+            "model_identification": model_identity,
         }
 
     print_outputs()
@@ -786,42 +804,68 @@ async def main_async() -> None:
         default="rubric.json",
         help="Output file for rubric JSON",
     )
-    args = parser.parse_args()
-
-    client = IFixitAPIClient(
-        log_level=log_level,
-        api_key=os.getenv("IFIXIT_TOKEN") or None,
-        proxy=os.getenv("IFIXIT_USE_PROXY", "").lower() in {"1", "true", "yes"},
-        ca_bundle=os.getenv("IFIXIT_CA_BUNDLE") or None,
-        raise_for_status=False,
+    parser.add_argument(
+        "--quality-report", default="data_quality_report.json", help="Path for the import quality report"
     )
-    # Check API authorization before writing any generated files.
-    client.get_guides(params={"limit": 1})
-    rate_limiter = _RateLimiter(rate_per_sec=4)
-
-    # Fetch French repairability scores
-    logger.info("Fetching French repairability scores from indicereparabilite.fr...")
-    french_scraper = FrenchRepairabilityScraper()
-    french_scores = await french_scraper.get_french_repairability_scores()
-    write_json_atomic(args.french_scores_output, french_scores)
-    logger.info(f"Saved French repairability scores to {args.french_scores_output}")
-
+    args = parser.parse_args()
+    report = {"checked_at": datetime.now(UTC).isoformat(), "status": "running", "errors": [], "warnings": []}
+    output_paths = [Path(args.scores_output).resolve(), Path(args.french_scores_output).resolve()]
     if args.generate_rubric:
-        generate_rubric_json(client=client, output_file=args.rubric_output, rate_limiter=rate_limiter)
-
-    exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
-    child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
-
-    devices = []
-    for cat in args.categories:
-        devices.extend(child_map.get(cat, []))
-
-    devices = list(dict.fromkeys(devices))
-    if not devices:
-        logger.warning("No demo devices found.")
-        return
-
-    print_device_data(client, devices, french_scraper, args.scores_output)
+        output_paths.append(Path(args.rubric_output).resolve())
+    if len(set(output_paths)) != len(output_paths) or Path(args.quality_report).resolve() in output_paths:
+        raise DataQualityError("Data output paths and quality report path must be distinct")
+    try:
+        previous_sources = read_snapshot(args.french_scores_output)
+        previous_devices = read_snapshot(args.scores_output)
+        client = IFixitAPIClient(
+            log_level=log_level,
+            api_key=os.getenv("IFIXIT_TOKEN") or None,
+            proxy=os.getenv("IFIXIT_USE_PROXY", "").lower() in {"1", "true", "yes"},
+            ca_bundle=os.getenv("IFIXIT_CA_BUNDLE") or None,
+            raise_for_status=False,
+        )
+        client.get_guides(params={"limit": 1})
+        rate_limiter = _RateLimiter(rate_per_sec=4)
+        french_scraper = FrenchRepairabilityScraper()
+        french_scores = await french_scraper.get_french_repairability_scores()
+        # Stage every generated file. A rejected candidate never touches the current outputs.
+        with tempfile.TemporaryDirectory(prefix="ifixit-import-") as directory:
+            stage = Path(directory)
+            if args.generate_rubric:
+                old_rubric = Path(args.rubric_output)
+                if old_rubric.exists():
+                    (stage / "rubric.json").write_bytes(old_rubric.read_bytes())
+                generate_rubric_json(client=client, output_file=str(stage / "rubric.json"), rate_limiter=rate_limiter)
+            exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
+            child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
+            devices = list(dict.fromkeys(name for category in args.categories for name in child_map.get(category, [])))
+            if not devices:
+                raise DataQualityError("No devices returned by iFixit; refusing to replace published data")
+            print_device_data(client, devices, french_scraper, str(stage / "devices.json"))
+            candidate_devices = read_snapshot(stage / "devices.json")
+            if candidate_devices is None:
+                raise DataQualityError("Device generation did not produce a candidate snapshot")
+            report = compare_snapshots(previous_sources, french_scores, previous_devices, candidate_devices)
+            write_report(args.quality_report, report)
+            if report["errors"]:
+                raise DataQualityError("; ".join(report["errors"]))
+            outputs = [(args.french_scores_output, french_scores), (args.scores_output, candidate_devices)]
+            if args.generate_rubric:
+                outputs.append((args.rubric_output, json.loads((stage / "rubric.json").read_text())))
+            for target, payload in outputs:
+                write_json_atomic(target, payload)
+            logger.info(
+                "Import quality %s; published %d devices and %d French source entries",
+                report["status"],
+                len(candidate_devices),
+                len(french_scores),
+            )
+    except Exception as error:
+        if report["status"] != "blocked":
+            report["errors"].append(str(error))
+        report["status"] = "blocked"
+        write_report(args.quality_report, report)
+        raise
 
 
 def run_main():

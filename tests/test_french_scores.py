@@ -250,6 +250,8 @@ class FrenchScrapingTests(unittest.IsolatedAsyncioTestCase):
                 str(french_output),
                 "--scores-output",
                 str(devices_output),
+                "--quality-report",
+                str(Path(directory) / "quality.json"),
             ]
             with (
                 patch("sys.argv", argv),

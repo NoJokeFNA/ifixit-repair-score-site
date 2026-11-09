@@ -1,13 +1,17 @@
 import asyncio
+import json
 import logging
 import math
 import re
 import unicodedata
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
 import aiohttp
 from bs4 import BeautifulSoup
+
+from model_identification import model_numbers
 
 logger = logging.getLogger(__name__)
 BASE_URL = "https://www.indicereparabilite.fr"
@@ -43,8 +47,75 @@ class FrenchScoreError(RuntimeError):
 class FrenchRepairabilityScraper:
     """Fetch complete source snapshots and match only unambiguous model scores."""
 
-    def __init__(self):
+    def __init__(self, model_registry: list[dict] | None = None):
         self.french_scores: list[dict[str, Any]] = []
+        if model_registry is None:
+            model_registry = json.loads(
+                (Path(__file__).resolve().parent.parent / "data/verified_model_numbers.json").read_text()
+            )
+        self.model_registry = model_registry
+        self._api_model_lookup = {}
+        self._model_lookup = {}
+        for entry in model_registry:
+            if not entry.get("model_numbers") or not entry.get("reference_urls"):
+                raise FrenchScoreError("Verified model numbers require reference URLs")
+            for name in entry["device_names"]:
+                key = self.normalize_device_name(name)
+                if key in self._model_lookup:
+                    raise FrenchScoreError(f"Duplicate verified model identity: {name}")
+                self._model_lookup[key] = entry
+
+    def set_api_model_identifications(self, identifications: dict) -> None:
+        self._api_model_lookup = {
+            self.normalize_device_name(name): identity
+            for name, identity in identifications.items()
+            if identity and identity.get("brand") and identity.get("model_numbers") and identity.get("reference_urls")
+        }
+
+    @classmethod
+    def source_model_numbers(cls, value, brand) -> set[str]:
+        return cls.samsung_model_numbers(value) if str(brand).casefold() == "samsung" else model_numbers(value, brand)
+
+    def identity_conflicts(self, row, identity) -> bool:
+        if row.get("brand") and self.brand_key(row["brand"]) != self.brand_key(identity["brand"]):
+            return True
+        expected = set(identity["model_numbers"])
+        source_codes = self.source_model_numbers(row.get("model"), identity["brand"])
+        if source_codes and not source_codes & expected:
+            return True
+        source_identity = self._api_model_lookup.get(row.get("normalized_name")) or self._model_lookup.get(
+            row.get("normalized_name")
+        )
+        return bool(source_identity and not set(source_identity["model_numbers"]) & expected)
+
+    @staticmethod
+    def brand_key(value) -> str:
+        key = " ".join(str(value).casefold().split())
+        return {
+            "fairphone b.v.": "fairphone",
+            "fairphone b.v": "fairphone",
+            "apple distribution international": "apple",
+        }.get(key, key)
+
+    @staticmethod
+    def samsung_model_numbers(value: str | None) -> set[str]:
+        """Read Samsung hardware model codes, retaining any extended hardware suffix.
+
+        A full retail SKU has exactly six color/storage/market characters after
+        its hardware model code (e.g. SM-A525FZWGEUH). Arbitrary partial prefixes
+        and retailer identifiers are never accepted as hardware model numbers.
+        """
+        if not isinstance(value, str):
+            return set()
+        result = set()
+        for token in re.split(r"[\s,;]+", value.upper().strip()):
+            token = re.sub(r"/DS(?:N)?$", "", token)
+            sku = re.fullmatch(r"(SM-[A-Z]\d{3}[A-Z])([A-Z][A-Z0-9]{5})", token)
+            if sku:
+                token = sku.group(1)
+            if re.fullmatch(r"SM-[A-Z]\d{3}[A-Z0-9]{1,2}", token):
+                result.add(token)
+        return result
 
     async def fetch_page(self, session: aiohttp.ClientSession, url: str, retries: int = 3) -> str | None:
         for attempt in range(retries):
@@ -170,8 +241,27 @@ class FrenchRepairabilityScraper:
     def match_device(self, device: dict) -> dict:
         """Return traceable evidence; conflicting variants never produce a scalar score."""
         key = self.normalize_device_name(device.get("name", ""))
+        identity = self._model_lookup.get(key)
+        api_identity = device.get("model_identification")
+        if isinstance(api_identity, dict) and api_identity.get("model_numbers") and api_identity.get("reference_urls"):
+            identity = {
+                "brand": api_identity["brand"],
+                "model_numbers": api_identity["model_numbers"],
+                "reference_urls": api_identity["reference_urls"],
+            }
+        model_candidates = []
+        if identity:
+            expected = set(identity["model_numbers"])
+            model_candidates = [
+                row
+                for row in self.french_scores
+                if self.brand_key(row.get("brand", "")) == self.brand_key(identity["brand"])
+                and (self.source_model_numbers(row.get("model"), identity["brand"])) & expected
+            ]
         candidates = [row for row in self.french_scores if key and row.get("normalized_name") == key]
-        if candidates:
+        if model_candidates:
+            candidates = model_candidates
+        elif candidates:
             # An unqualified listing may describe either network variant. It must
             # not override contradictory evidence for the same model family.
             family = re.sub(r"(?: [45]g)+$", "", key)
@@ -181,23 +271,52 @@ class FrenchRepairabilityScraper:
                 if row.get("normalized_name") in {key, family}
                 or (key == family and re.sub(r"(?: [45]g)+$", "", row.get("normalized_name", "")) == family)
             ]
+        identity_conflict = bool(identity) and any(self.identity_conflicts(row, identity) for row in candidates)
+        ambiguous = identity_conflict
+        if not candidates and key:
+            family = re.sub(r"(?: [45]g)+$", "", key)
+            candidates = [
+                row
+                for row in self.french_scores
+                if re.sub(r"(?: [45]g)+$", "", row.get("normalized_name", "")) == family
+            ]
+            ambiguous = bool(candidates)
         sources = [
             {
                 "name": row["name"],
                 "score": row.get("repairability_score"),
                 "url": row.get("source_url"),
                 "last_updated": row.get("last_updated"),
+                "model": row.get("model"),
             }
             for row in candidates
         ]
         values = {source["score"] for source in sources if self._valid_score(source["score"])}
         if not candidates:
             status = "not_found"
+        elif ambiguous:
+            status = "ambiguous"
         elif len(values) != 1 or any(not self._valid_score(source["score"]) for source in sources):
             status = "conflicting"
         else:
             status = "matched"
-        return {"status": status, "score": next(iter(values)) if status == "matched" else None, "sources": sources}
+        result = {"status": status, "score": next(iter(values)) if status == "matched" else None, "sources": sources}
+        if identity_conflict:
+            result["reason"] = "model_identity_conflict"
+        if model_candidates and not identity_conflict:
+            result["match_method"] = "model_number"
+            result["model_numbers"] = sorted(
+                {
+                    number
+                    for row in model_candidates
+                    for number in (self.source_model_numbers(row.get("model"), identity["brand"]))
+                }
+                & set(identity["model_numbers"])
+            )
+            result["model_reference_urls"] = identity["reference_urls"]
+        elif candidates and not ambiguous:
+            result["match_method"] = "exact_name"
+        return result
 
     @staticmethod
     def _valid_score(value):

@@ -1150,6 +1150,10 @@ class IFixitAPIClient:
         """
         return self._request("GET", f"/wikis/CATEGORY/{title}/identification")
 
+    def get_category_variants(self, title: str) -> dict:
+        """Get every regional/model variant; an unnamed entry is not a model code."""
+        return self._request("GET", f"/wikis/CATEGORY/{title}/topic_variants")
+
     def create_wiki(self, data: dict) -> dict:
         """Create a new wiki.
 

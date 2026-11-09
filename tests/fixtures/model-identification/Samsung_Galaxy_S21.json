@@ -1,0 +1,80 @@
+{
+  "category": {
+    "title": "Samsung Galaxy S21",
+    "description": "Repair and disassembly information for the Samsung Galaxy S21 5G Android smartphone, including model SM-G991U.",
+    "info": [
+      {
+        "name": "model_number",
+        "value": "SM-G991U",
+        "inheritedFrom": null
+      },
+      {
+        "name": "Device Brand",
+        "value": "Samsung",
+        "inheritedFrom": "Samsung Android Phone"
+      }
+    ],
+    "contents_raw": "== Identification ==\nThis page covers the Samsung Galaxy S21 5G, including the US SM-G991U variant. You can identify the phone by checking the model number in Settings > About phone, on the original packaging, or on the regulatory label.\n\n"
+  },
+  "variants": {
+    "topic_variants": [
+      {
+        "name": "SM-G9910 (China)",
+        "products": 12,
+        "schematics": 0,
+        "variantid": 12365,
+        "workbench": 5
+      },
+      {
+        "name": "SM-G991B (International)",
+        "products": 12,
+        "schematics": 0,
+        "variantid": 12359,
+        "workbench": 80
+      },
+      {
+        "name": "SM-G991B/DS (Dual-SIM International)",
+        "products": 12,
+        "schematics": 0,
+        "variantid": 12360,
+        "workbench": 148
+      },
+      {
+        "name": "SM-G991N (South Korea)",
+        "products": 12,
+        "schematics": 0,
+        "variantid": 12364,
+        "workbench": 12
+      },
+      {
+        "name": "SM-G991U (USA AT&T)",
+        "products": 8,
+        "schematics": 0,
+        "variantid": 13542,
+        "workbench": 51
+      },
+      {
+        "name": "SM-G991U (USA)",
+        "products": 18,
+        "schematics": 0,
+        "variantid": 12361,
+        "workbench": 87
+      },
+      {
+        "name": "SM-G991U1 (USA Unlocked)",
+        "products": 18,
+        "schematics": 0,
+        "variantid": 12362,
+        "workbench": 74
+      },
+      {
+        "name": "SM-G991W (Canada)",
+        "products": 12,
+        "schematics": 0,
+        "variantid": 12363,
+        "workbench": 19
+      }
+    ]
+  },
+  "brand": "Samsung"
+}

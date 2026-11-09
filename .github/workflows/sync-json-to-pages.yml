@@ -39,7 +39,20 @@ jobs:
         env:
           IFIXIT_TOKEN: ${{ secrets.IFIXIT_TOKEN }}
         run: |
-          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json
+          python master/src/fetch_device_data.py --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --quality-report /tmp/data-quality-report.json
+
+      - name: Summarize import quality
+        if: always()
+        run: python master/src/data_quality.py --summarize /tmp/data-quality-report.json
+
+      - name: Retain import quality report
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: import-quality-report
+          path: /tmp/data-quality-report.json
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Check rubric and device data before publishing
         working-directory: gh-pages

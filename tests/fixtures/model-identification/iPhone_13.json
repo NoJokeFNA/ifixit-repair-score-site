@@ -1,0 +1,54 @@
+{
+  "category": {
+    "title": "iPhone 13",
+    "description": "Apple's mainstream 2021 iPhone was released on September 24th and comes with a 6.1\" OLED display, a dual 12 MP camera system, and in five available colors. Successor to the iPhone 12.",
+    "info": [
+      {
+        "name": "Device Brand",
+        "value": "Apple",
+        "inheritedFrom": "iPhone"
+      }
+    ],
+    "contents_raw": "== Identification ==\nYou can identify the iPhone 13 by finding one of the model numbers either on the inner edge of the SIM card tray or within the phone's Settings app:\n\n* ***A2482***\n* ***A2631***\n* ***A2633***\n* ***A2634***\n* ***A2635***\n\n"
+  },
+  "variants": {
+    "topic_variants": [
+      {
+        "name": "A2482 US",
+        "products": 22,
+        "schematics": 0,
+        "variantid": 12388,
+        "workbench": 758
+      },
+      {
+        "name": "A2631 CA/MX/JP/SA",
+        "products": 22,
+        "schematics": 0,
+        "variantid": 12389,
+        "workbench": 168
+      },
+      {
+        "name": "A2633 Global",
+        "products": 22,
+        "schematics": 0,
+        "variantid": 12390,
+        "workbench": 864
+      },
+      {
+        "name": "A2634 China",
+        "products": 23,
+        "schematics": 0,
+        "variantid": 12391,
+        "workbench": 120
+      },
+      {
+        "name": "A2635 Russia",
+        "products": 22,
+        "schematics": 0,
+        "variantid": 12392,
+        "workbench": 58
+      }
+    ]
+  },
+  "brand": "Apple"
+}

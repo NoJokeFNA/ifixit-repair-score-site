@@ -24,7 +24,10 @@ Rubric maintenance:
 
 French score matching:
 - The French index and iFixit's score use different methods; differences between them are expected and are never treated as conflicts.
-- Network variants and iPhone SE generations remain distinct. Only exact normalized identities match; no fuzzy or prefix matching is used.
+- Each category imports `/wikis/CATEGORY/{title}/topic_variants`, its local `model_number` fields, and explicit model labels in the identification section. Every named regional variant and variant ID is retained; an unnamed variant is not treated as a model identifier.
+- Exact model numbers take precedence when available. The French score records only the model numbers actually present in its source entries, not every region listed by iFixit. Network variants, hardware suffixes such as U/U1, and iPhone SE generations remain distinct. No fuzzy matching is used.
+- `model_identification` stores codes, full variant names including regions/Dual-SIM, endpoint availability, and reference URLs. Manufacturer-verified fallbacks in `data/verified_model_numbers.json` cover categories with incomplete API metadata.
+- Variant requests share the existing rate limiter. Unsupported code formats remain in the raw variant names; they are not guessed into model identifiers.
 - Cosmetic/storage variants can share a score only if the matching source entries agree. Conflicts within the French source produce a null score with source evidence, never a majority vote.
 - `france_repairability` contains `status` (`matched`, `conflicting`, `not_found`), `score`, and the original source product names, URLs, scores and calculation dates. The scalar `france_repairability_score` remains available for existing consumers.
 - Fetches verify the advertised product count and unique product URLs across every page. Timeouts are retried; missing pages, changed markup and invalid scores stop the build before the French output is replaced.
@@ -55,3 +58,10 @@ the collector's `/guides` pagination/filter and category wiki endpoints remain
 covered. Rubric and repairability HTML pages are separate from the JSON API and
 remain protected by the existing parser regression checks. The site embeds its
 own Python client; updating the separate SDK alone does not update this collector.
+
+Import quality monitoring:
+- Generation uses temporary candidate files and compares them against the current output files before replacement. Parser failures or a rejected comparison retain the previous source, device, and rubric outputs.
+- A loss of at least 10% of previously published source URLs, devices, French scores, iFixit scores, model identifications, or named regional variants blocks the import. Added records cannot hide lost records. Smaller losses are recorded as warnings.
+- A manufacturer with at least three French scores losing half or more of them also blocks the import, even if its global share is small. A device with at least three named regional variants losing half or more of them is protected in the same way.
+- `--quality-report PATH` writes counts, exact lost identities, errors and warnings as JSON. The daily workflow adds a GitHub Actions summary and retains the report as an artifact for 30 days, including failed runs.
+- A legitimate large source removal requires reviewing the report and updating the baseline deliberately; the guard does not silently approve the loss.

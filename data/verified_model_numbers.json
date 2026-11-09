@@ -1,0 +1,51 @@
+[
+  {
+    "device_names": ["Samsung Galaxy A52", "Samsung Galaxy A52 4G"],
+    "model_numbers": ["SM-A525F"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/ro/support/model/SM-A525FZWGEUE/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy A52 5G"],
+    "model_numbers": ["SM-A526B"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/au/support/model/SM-A526BZKFATS/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy A72", "Samsung Galaxy A72 4G"],
+    "model_numbers": ["SM-A725F"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/de/apps/samsung-wallet/kompatible-geraete/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy S20 Plus", "Samsung Galaxy S20 Plus 4G"],
+    "model_numbers": ["SM-G985F"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/pl/support/model/SM-G985FZADEUE/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy S20 Plus 5G"],
+    "model_numbers": ["SM-G986B"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/es/support/model/SM-G986BZADEUB/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy S20 FE", "Samsung Galaxy S20 FE 4G"],
+    "model_numbers": ["SM-G780F", "SM-G780G"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/de/apps/samsung-wallet/kompatible-geraete/"],
+    "verified_on": "2026-11-09"
+  },
+  {
+    "device_names": ["Samsung Galaxy S20 FE 5G"],
+    "model_numbers": ["SM-G781B"],
+    "brand": "Samsung",
+    "reference_urls": ["https://www.samsung.com/de/apps/samsung-wallet/kompatible-geraete/"],
+    "verified_on": "2026-11-09"
+  }
+]

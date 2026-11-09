@@ -1,0 +1,20 @@
+{
+  "category": {
+    "title": "Fairphone 5",
+    "description": "The fifth generation of the Fairphone, made by the social enterprise with the same name. Released in September 2023.",
+    "info": [],
+    "contents_raw": "== Identification ==\nYou can identify the Fairphone 5 by checking the \"About\" section in the system's settings or removing the battery and checking the printed text at the bottom left corner of the battery well.\n\nYour device should say \"Fairphone 5 5G\" at the top and \"FP5\" at the bottom for its model number.\n\n{table\n| [image|3198772|size=medium]\n}\n\nTo find the IMEI and the serial number of your Fairphone 5 and its spare parts, [link|https://support.fairphone.com/hc/en-us/articles/18159859494289-Fairphone-5-IMEI-Serial-Numbers-of-the-Phone-and-its-Spare-Parts|click here|new_window=true].\n\n"
+  },
+  "variants": {
+    "topic_variants": [
+      {
+        "name": "",
+        "products": 0,
+        "schematics": 0,
+        "variantid": 545838,
+        "workbench": 0
+      }
+    ]
+  },
+  "brand": "Fairphone"
+}
