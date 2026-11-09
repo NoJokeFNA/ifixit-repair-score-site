@@ -1845,3 +1845,17 @@ body.theme-light .table-section h2 { color: #6d28d9; }
     background: var(--scrollbar-thumb);
     border-radius: 8px;
 }
+
+/* Refine the existing layout without changing its header or visual theme. */
+.compare-select-hitbox { display: inline-grid; place-items: center; vertical-align: middle; cursor: pointer; }
+.france-score-help { max-width: 85ch; line-height: 1.75; }
+@media (max-width: 640px) {
+    /* Keep the visible checkbox and column compact, with room to tap around it. */
+    .compare-select-hitbox { min-width: 44px; min-height: 44px; margin: -13px; }
+    .france-score-trigger, .teardown-toggle { min-height: 44px; align-items: center; }
+    .france-dialog-close { width: 44px; height: 44px; }
+    .france-dialog-overview p, .france-dialog-sources li p, .france-dialog-footer {
+        font-size: 0.75rem;
+        line-height: 1.7;
+    }
+}

@@ -321,7 +321,9 @@ function populateTable(data) {
 
         tr.innerHTML = `
                 <td class="px-4 py-4">
-                    <input type="checkbox" class="cmp" aria-label="Select ${d.name} for comparison" ${selectedForCompare.has(selId) ? 'checked' : ''}>
+                    <label class="compare-select-hitbox">
+                        <input type="checkbox" class="cmp" aria-label="Select ${d.name} for comparison" ${selectedForCompare.has(selId) ? 'checked' : ''}>
+                    </label>
                 </td>
                 <td class="px-6 py-4 font-medium">
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
