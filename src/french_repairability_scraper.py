@@ -2,7 +2,7 @@ import asyncio
 import logging
 import os
 import re
-from typing import Optional, Any
+from typing import Any
 
 import aiohttp
 from bs4 import BeautifulSoup
@@ -16,25 +16,31 @@ _RE_NETWORK = re.compile(r"\b(?:[45]\s*G)\b", flags=re.IGNORECASE)
 # Matches memory like "128GO", "256 Go", "64Gb", etc., capturing the start to cut the string.
 _RE_MEMORY = re.compile(r"\b\d+\s*(?:GO|Go|go|GB|Gb|gb)\b")
 _RE_SPACES = re.compile(r"\s+")
-_RE_WORDS = re.compile(r"\b(?:red|blue|green|yellow|orange|purple|black|white|gray|brown|pink|violet|vert|forêt"
-                       r"|tropical|gris|interstellaire|blanc|glacier|noir|de minuit|polaire|bleu|corail|rouge|boréal"
-                       r"|cosmos|céleste|silver|gold|ls deep|light|polar|lavande|argent|cyan)\b",
-                       flags=re.IGNORECASE)
+_RE_WORDS = re.compile(
+    r"\b(?:red|blue|green|yellow|orange|purple|black|white|gray|brown|pink|violet|vert|forêt"
+    r"|tropical|gris|interstellaire|blanc|glacier|noir|de minuit|polaire|bleu|corail|rouge|boréal"
+    r"|cosmos|céleste|silver|gold|ls deep|light|polar|lavande|argent|cyan)\b",
+    flags=re.IGNORECASE,
+)
 
 
 class FrenchRepairabilityScraper:
     """Class to scrape and match French repairability scores from indicereparabilite.fr."""
 
     def __init__(self):
-        self.http_proxy = os.getenv('HTTP_PROXY')
-        self.https_proxy = os.getenv('HTTPS_PROXY')
+        self.http_proxy = os.getenv("HTTP_PROXY")
+        self.https_proxy = os.getenv("HTTPS_PROXY")
         self.french_scores = []
 
-    async def fetch_page(self, session: aiohttp.ClientSession, url: str, retries: int = 3) -> Optional[str]:
+    async def fetch_page(self, session: aiohttp.ClientSession, url: str, retries: int = 3) -> str | None:
         """Fetch a page with retries and error handling."""
-        proxy = self.https_proxy if url.startswith(
-            'https://') and self.https_proxy else self.http_proxy if url.startswith(
-            'http://') and self.http_proxy else None
+        proxy = (
+            self.https_proxy
+            if url.startswith("https://") and self.https_proxy
+            else self.http_proxy
+            if url.startswith("http://") and self.http_proxy
+            else None
+        )
         for _ in range(retries):
             try:
                 async with session.get(url, proxy=proxy, timeout=10) as response:
@@ -59,21 +65,30 @@ class FrenchRepairabilityScraper:
             if score_elem:
                 score_text = score_elem.get_text(strip=True)
                 try:
-                    score_cleaned = score_text.replace('€', '').replace(',', '.')
+                    score_cleaned = score_text.replace("€", "").replace(",", ".")
                     repairability_score = float(score_cleaned)
                 except ValueError:
                     product_name = p.select_one("h4.card-title a")
                     product_name = product_name.get_text(strip=True) if product_name else "Unknown"
                     logger.warning(f"Failed to parse score '{score_text}' for product {product_name}")
 
-                name = (name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None)
-                name = re.sub(r'^\s*Smartphone[\s\-]*', '', name or '', flags=re.IGNORECASE)
-                brand = (brand.get_text(strip=True) if (brand := p.select_one(
-                    "div.card-description table tbody tr:nth-child(1) strong")) else None)
-                model = (model.get_text(strip=True) if (model := p.select_one(
-                    "div.card-description table tbody tr:nth-child(2) strong")) else None)
-                last_updated = (last_updated.get_text(strip=True) if (last_updated := p.select_one(
-                    "div.card-description table tbody tr:nth-child(3) strong")) else None)
+                name = name.get_text(strip=True) if (name := p.select_one("h4.card-title a")) else None
+                name = re.sub(r"^\s*Smartphone[\s\-]*", "", name or "", flags=re.IGNORECASE)
+                brand = (
+                    brand.get_text(strip=True)
+                    if (brand := p.select_one("div.card-description table tbody tr:nth-child(1) strong"))
+                    else None
+                )
+                model = (
+                    model.get_text(strip=True)
+                    if (model := p.select_one("div.card-description table tbody tr:nth-child(2) strong"))
+                    else None
+                )
+                last_updated = (
+                    last_updated.get_text(strip=True)
+                    if (last_updated := p.select_one("div.card-description table tbody tr:nth-child(3) strong"))
+                    else None
+                )
                 smartphone = {
                     "name": name,
                     "normalized_name": self.normalize_device_name(name),
@@ -100,7 +115,7 @@ class FrenchRepairabilityScraper:
         for item in pagination_items:
             if item.name == "a":
                 href = item.get("href", "")
-                match = re.search(r'/page/(\d+)/', href)
+                match = re.search(r"/page/(\d+)/", href)
                 if match:
                     page_numbers.append(int(match.group(1)))
             elif item.name == "span" and "current" in item.get("class", []):
@@ -142,7 +157,7 @@ class FrenchRepairabilityScraper:
             self.french_scores.sort(key=lambda x: x.get("name", "").lower())
             return self.french_scores
 
-    def match_device_to_french_score(self, device: dict) -> Optional[float]:
+    def match_device_to_french_score(self, device: dict) -> float | None:
         """Match a device to its French repairability score using normalization logic"""
         france_score_map = {}
         for french_device in self.french_scores:
@@ -160,7 +175,7 @@ class FrenchRepairabilityScraper:
 
         try:
             most_common_score = max(set(possible_scores), key=possible_scores.count)
-        except Exception:
+        except (TypeError, ValueError):
             most_common_score = possible_scores[0]
 
         return most_common_score
@@ -191,7 +206,7 @@ class FrenchRepairabilityScraper:
         if re.search(r"\biphone\s*se\b", s, flags=re.IGNORECASE):
             return "Apple iPhone SE"
 
-        xiaomi_match = re.search(r'(?i)\bredmi\s+note\s+(\d+)\s*s\b', s, flags=re.IGNORECASE)
+        xiaomi_match = re.search(r"(?i)\bredmi\s+note\s+(\d+)\s*s\b", s, flags=re.IGNORECASE)
         if xiaomi_match:
             return f"Xiaomi Redmi Note {xiaomi_match.group(1)} S"
 
@@ -222,11 +237,11 @@ class FrenchRepairabilityScraper:
         s = s.replace("Iphone", "iPhone")
         return s
 
-    def normalize_xiaomi_redmi_note_s(name: str) -> Optional[str]:
+    def normalize_xiaomi_redmi_note_s(name: str) -> str | None:
         """
         Normalize Xiaomi Redmi Note S variants to a canonical name.
         """
-        m = re.search(r'(?i)\bredmi\s+note\s+(\d+)\s*s\b', name)
+        m = re.search(r"(?i)\bredmi\s+note\s+(\d+)\s*s\b", name)
         if m:
             return f"Xiaomi Redmi Note {m.group(1)} S"
         return None

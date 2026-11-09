@@ -1,16 +1,14 @@
 import re
-from typing import List
 
-from constants import TAG_PRIORITIES, FLAG_TO_TAG, METADATA_KEYS
+from constants import FLAG_TO_TAG, METADATA_KEYS, TAG_PRIORITIES
 
 
 class _DeviceDataUtils:
-
     def __init__(self) -> None:
         pass
 
     @staticmethod
-    def tag_priority(tags: List[str]) -> int:
+    def tag_priority(tags: list[str]) -> int:
         """Returns the priority rank for a list of tags.
 
         Args:

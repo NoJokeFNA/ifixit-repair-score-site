@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 import urllib3
@@ -37,21 +37,21 @@ class IFixitAPIClient:
     https://www.ifixit.com/api/2.0/doc/
     """
 
-    BASE_URL = 'https://www.ifixit.com/api/2.0'
-    WIKI_BASE_URL = 'https://www.ifixit.com/Wiki'
-    REPAIRABILITY_URL = 'https://www.ifixit.com/repairability'
+    BASE_URL = "https://www.ifixit.com/api/2.0"
+    WIKI_BASE_URL = "https://www.ifixit.com/Wiki"
+    REPAIRABILITY_URL = "https://www.ifixit.com/repairability"
 
     def __init__(
-            self,
-            auth_token: Optional[str] = None,
-            app_id: Optional[str] = None,
-            retries: int = 3,
-            backoff_factor: float = 0.5,
-            timeout: int = 30,
-            log_level: int = logging.INFO,
-            proxy=False,
-            allow_http: bool = False,
-            raise_for_status: bool = True,
+        self,
+        auth_token: str | None = None,
+        app_id: str | None = None,
+        retries: int = 3,
+        backoff_factor: float = 0.5,
+        timeout: int = 30,
+        log_level: int = logging.INFO,
+        proxy=False,
+        allow_http: bool = False,
+        raise_for_status: bool = True,
     ):
         """Initialize the client.
 
@@ -78,14 +78,13 @@ class IFixitAPIClient:
             total=retries,
             backoff_factor=backoff_factor,
             status_forcelist=[429, 500, 502, 503, 504],
-            allowed_methods=['HEAD', 'GET', 'OPTIONS', 'POST', 'PATCH', 'PUT',
-                             'DELETE']
+            allowed_methods=["HEAD", "GET", "OPTIONS", "POST", "PATCH", "PUT", "DELETE"],
         )
 
         adapter = HTTPAdapter(max_retries=retry_strategy)
         # Mount adapters for retries regardless of proxy usage
-        self.session.mount('https://', adapter)
-        self.session.mount('http://', adapter)
+        self.session.mount("https://", adapter)
+        self.session.mount("http://", adapter)
 
         if self.proxy:
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -94,29 +93,29 @@ class IFixitAPIClient:
                 "https": os.getenv("HTTPS_PROXY"),
             }
 
-    def _build_headers(self) -> Dict[str, str]:
+    def _build_headers(self) -> dict[str, str]:
         """Build headers for API requests.
 
         Returns:
             Dict of headers.
         """
         headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            "Content-Type": "application/json",
+            "Accept": "application/json",
         }
         if self.auth_token:
-            headers['Authorization'] = f'api {self.auth_token}'
+            headers["Authorization"] = f"api {self.auth_token}"
         if self.app_id:
-            headers['X-App-Id'] = self.app_id
+            headers["X-App-Id"] = self.app_id
         return headers
 
     def _request(
-            self,
-            method: str,
-            endpoint: str,
-            params: Optional[Dict[str, Any]] = None,
-            json: Optional[Dict[str, Any]] = None,
-            **kwargs,
+        self,
+        method: str,
+        endpoint: str,
+        params: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
+        **kwargs,
     ) -> Any:
         """Make an API request.
 
@@ -134,10 +133,9 @@ class IFixitAPIClient:
             requests.exceptions.HTTPError: For HTTP errors.
             requests.exceptions.RequestException: For other request failures.
         """
-        url = f'{self.BASE_URL}/{endpoint.lstrip("/")}'
+        url = f"{self.BASE_URL}/{endpoint.lstrip('/')}"
         headers = self._build_headers()
-        logger.debug(f'Making {method} request to {url} with params={params}, '
-                     f'json={json}')
+        logger.debug(f"Making {method} request to {url} with params={params}, json={json}")
 
         try:
             response = self.session.request(
@@ -154,11 +152,10 @@ class IFixitAPIClient:
                 response.raise_for_status()
             return response.json() if response.content else None
         except requests.exceptions.HTTPError as e:
-            logger.error(f'HTTP error: {e.response.status_code} - '
-                         f'{e.response.text}')
+            logger.error(f"HTTP error: {e.response.status_code} - {e.response.text}")
             raise
         except requests.exceptions.RequestException as e:
-            logger.error(f'Request failed: {str(e)}')
+            logger.error(f"Request failed: {e!s}")
             raise
 
     def get_wiki_page_html(self, title: str) -> str:
@@ -174,8 +171,8 @@ class IFixitAPIClient:
             requests.exceptions.HTTPError: For HTTP errors.
             requests.exceptions.RequestException: For other request failures.
         """
-        url = f'{self.WIKI_BASE_URL}/{title}'
-        logger.debug(f'Fetching wiki page HTML from {url}')
+        url = f"{self.WIKI_BASE_URL}/{title}"
+        logger.debug(f"Fetching wiki page HTML from {url}")
 
         try:
             response = self.session.get(
@@ -187,10 +184,10 @@ class IFixitAPIClient:
                 response.raise_for_status()
             return response.text
         except requests.exceptions.HTTPError as e:
-            logger.error(f'HTTP error fetching wiki page {url}: {e.response.status_code} - {e.response.text}')
+            logger.error(f"HTTP error fetching wiki page {url}: {e.response.status_code} - {e.response.text}")
             raise
         except requests.exceptions.RequestException as e:
-            logger.error(f'Request failed for wiki page {url}: {str(e)}')
+            logger.error(f"Request failed for wiki page {url}: {e!s}")
             raise
 
     def get_repairability_page_html(self, old_devices: bool = False) -> str:
@@ -206,9 +203,9 @@ class IFixitAPIClient:
             requests.exceptions.HTTPError: For HTTP errors.
             requests.exceptions.RequestException: For other request failures.
         """
-        title = ('smartphone-repairability-scores' if old_devices else 'legacy-smartphone-scores')
-        url = f'{self.REPAIRABILITY_URL}/{title}'
-        logger.debug(f'Fetching repairability page HTML from {url}')
+        title = "smartphone-repairability-scores" if old_devices else "legacy-smartphone-scores"
+        url = f"{self.REPAIRABILITY_URL}/{title}"
+        logger.debug(f"Fetching repairability page HTML from {url}")
 
         try:
             response = self.session.get(
@@ -220,15 +217,15 @@ class IFixitAPIClient:
                 response.raise_for_status()
             return response.text
         except requests.exceptions.HTTPError as e:
-            logger.error(f'HTTP error fetching repairability page {url}: {e.response.status_code} - {e.response.text}')
+            logger.error(f"HTTP error fetching repairability page {url}: {e.response.status_code} - {e.response.text}")
             raise
         except requests.exceptions.RequestException as e:
-            logger.error(f'Request failed for repairability page {url}: {str(e)}')
+            logger.error(f"Request failed for repairability page {url}: {e!s}")
             raise
 
     # --- Cart Endpoints ---
 
-    def get_cart_product(self, itemcode: str, langid: str) -> Dict:
+    def get_cart_product(self, itemcode: str, langid: str) -> dict:
         """Get a product from the cart.
 
         Args:
@@ -238,11 +235,11 @@ class IFixitAPIClient:
         Returns:
             Product details.
         """
-        return self._request('GET', f'/cart/product/{itemcode}/{langid}')
+        return self._request("GET", f"/cart/product/{itemcode}/{langid}")
 
     # --- Authentication Endpoints ---
 
-    def create_user_token(self, data: Dict) -> Dict:
+    def create_user_token(self, data: dict) -> dict:
         """Create a user token.
 
         Args:
@@ -251,9 +248,9 @@ class IFixitAPIClient:
         Returns:
             Token details.
         """
-        return self._request('POST', '/user/token', json=data)
+        return self._request("POST", "/user/token", json=data)
 
-    def reset_password(self, data: Dict) -> Dict:
+    def reset_password(self, data: dict) -> dict:
         """Reset user password.
 
         Args:
@@ -262,9 +259,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('POST', '/users/reset_password', json=data)
+        return self._request("POST", "/users/reset_password", json=data)
 
-    def create_user(self, data: Dict) -> Dict:
+    def create_user(self, data: dict) -> dict:
         """Create a new user.
 
         Args:
@@ -273,23 +270,23 @@ class IFixitAPIClient:
         Returns:
             User details.
         """
-        return self._request('POST', '/users', json=data)
+        return self._request("POST", "/users", json=data)
 
     def delete_user_token(self) -> None:
         """Delete the current user token."""
-        return self._request('DELETE', '/user/token')
+        return self._request("DELETE", "/user/token")
 
     # --- Badges Endpoints ---
 
-    def get_badges(self) -> List[Dict]:
+    def get_badges(self) -> list[dict]:
         """Get all badges.
 
         Returns:
             List of badges.
         """
-        return self._request('GET', '/badges')
+        return self._request("GET", "/badges")
 
-    def get_badge(self, badgeid: int) -> Dict:
+    def get_badge(self, badgeid: int) -> dict:
         """Get a specific badge.
 
         Args:
@@ -298,21 +295,21 @@ class IFixitAPIClient:
         Returns:
             Badge details.
         """
-        return self._request('GET', f'/badges/{badgeid}')
+        return self._request("GET", f"/badges/{badgeid}")
 
     # --- Content Hierarchy Endpoints ---
 
-    def get_categories(self) -> List[Dict]:
+    def get_categories(self) -> list[dict]:
         """Get all categories.
 
         Returns:
             List of categories.
         """
-        return self._request('GET', '/categories')
+        return self._request("GET", "/categories")
 
     # --- Media Endpoints ---
 
-    def get_image(self, imageid: str) -> Dict:
+    def get_image(self, imageid: str) -> dict:
         """Get an image.
 
         Args:
@@ -321,9 +318,9 @@ class IFixitAPIClient:
         Returns:
             Image details.
         """
-        return self._request('GET', f'/media/images/{imageid}')
+        return self._request("GET", f"/media/images/{imageid}")
 
-    def get_video(self, videoid: str) -> Dict:
+    def get_video(self, videoid: str) -> dict:
         """Get a video.
 
         Args:
@@ -332,11 +329,11 @@ class IFixitAPIClient:
         Returns:
             Video details.
         """
-        return self._request('GET', f'/media/videos/{videoid}')
+        return self._request("GET", f"/media/videos/{videoid}")
 
     # --- Guides Endpoints ---
 
-    def get_guides(self, params: Optional[Dict] = None) -> List[Dict]:
+    def get_guides(self, params: dict | None = None) -> list[dict]:
         """Get a list of guides.
 
         Args:
@@ -345,9 +342,9 @@ class IFixitAPIClient:
         Returns:
             List of guides.
         """
-        return self._request('GET', '/guides', params=params)
+        return self._request("GET", "/guides", params=params)
 
-    def get_all_guides(self, page_size: int = 100) -> List[Dict]:
+    def get_all_guides(self, page_size: int = 100) -> list[dict]:
         """Get all guides by handling pagination.
 
         Args:
@@ -356,7 +353,7 @@ class IFixitAPIClient:
         Returns:
             List of all guides.
         """
-        all_guides: List[Dict] = []
+        all_guides: list[dict] = []
         offset = 0
         while True:
             batch = self.get_guides(limit=page_size, offset=offset)
@@ -369,7 +366,7 @@ class IFixitAPIClient:
                 break
         return all_guides
 
-    def get_guide(self, guideid: int) -> Dict:
+    def get_guide(self, guideid: int) -> dict:
         """Get a specific guide.
 
         Args:
@@ -378,9 +375,9 @@ class IFixitAPIClient:
         Returns:
             Guide details.
         """
-        return self._request('GET', f'/guides/{guideid}')
+        return self._request("GET", f"/guides/{guideid}")
 
-    def get_guide_tags(self, guideid: int) -> List[str]:
+    def get_guide_tags(self, guideid: int) -> list[str]:
         """Get tags for a guide.
 
         Args:
@@ -389,9 +386,9 @@ class IFixitAPIClient:
         Returns:
             List of tags.
         """
-        return self._request('GET', f'/guides/{guideid}/tags')
+        return self._request("GET", f"/guides/{guideid}/tags")
 
-    def create_guide(self, data: Dict) -> Dict:
+    def create_guide(self, data: dict) -> dict:
         """Create a new guide.
 
         Args:
@@ -400,10 +397,9 @@ class IFixitAPIClient:
         Returns:
             Created guide details.
         """
-        return self._request('POST', '/guides', json=data)
+        return self._request("POST", "/guides", json=data)
 
-    def update_guide(self, guideid: int, data: Dict,
-                     revisionid: Optional[int] = None) -> Dict:
+    def update_guide(self, guideid: int, data: dict, revisionid: int | None = None) -> dict:
         """Update a guide.
 
         Args:
@@ -414,9 +410,8 @@ class IFixitAPIClient:
         Returns:
             Updated guide details.
         """
-        params = {'revisionid': revisionid} if revisionid else None
-        return self._request('PATCH', f'/guides/{guideid}', json=data,
-                             params=params)
+        params = {"revisionid": revisionid} if revisionid else None
+        return self._request("PATCH", f"/guides/{guideid}", json=data, params=params)
 
     def delete_guide(self, guideid: int) -> None:
         """Delete a guide.
@@ -424,9 +419,9 @@ class IFixitAPIClient:
         Args:
             guideid: Guide ID.
         """
-        return self._request('DELETE', f'/guides/{guideid}')
+        return self._request("DELETE", f"/guides/{guideid}")
 
-    def restore_guide(self, guideid: int, langid: str) -> Dict:
+    def restore_guide(self, guideid: int, langid: str) -> dict:
         """Restore a guide.
 
         Args:
@@ -436,9 +431,9 @@ class IFixitAPIClient:
         Returns:
             Restored guide details.
         """
-        return self._request('POST', f'/guides/{guideid}/{langid}/restore')
+        return self._request("POST", f"/guides/{guideid}/{langid}/restore")
 
-    def complete_guide(self, guideid: int) -> Dict:
+    def complete_guide(self, guideid: int) -> dict:
         """Mark a guide as completed.
 
         Args:
@@ -447,7 +442,7 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/completed')
+        return self._request("PUT", f"/guides/{guideid}/completed")
 
     def uncomplete_guide(self, guideid: int) -> None:
         """Unmark a guide as completed.
@@ -455,9 +450,9 @@ class IFixitAPIClient:
         Args:
             guideid: Guide ID.
         """
-        return self._request('DELETE', f'/guides/{guideid}/completed')
+        return self._request("DELETE", f"/guides/{guideid}/completed")
 
-    def make_guide_public(self, guideid: int) -> Dict:
+    def make_guide_public(self, guideid: int) -> dict:
         """Make a guide public.
 
         Args:
@@ -466,9 +461,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/public')
+        return self._request("PUT", f"/guides/{guideid}/public")
 
-    def make_guide_private(self, guideid: int) -> Dict:
+    def make_guide_private(self, guideid: int) -> dict:
         """Make a guide private.
 
         Args:
@@ -477,9 +472,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('DELETE', f'/guides/{guideid}/public')
+        return self._request("DELETE", f"/guides/{guideid}/public")
 
-    def create_guide_step(self, guideid: int, data: Dict) -> Dict:
+    def create_guide_step(self, guideid: int, data: dict) -> dict:
         """Create a step in a guide.
 
         Args:
@@ -489,9 +484,9 @@ class IFixitAPIClient:
         Returns:
             Created step details.
         """
-        return self._request('POST', f'/guides/{guideid}/steps', json=data)
+        return self._request("POST", f"/guides/{guideid}/steps", json=data)
 
-    def update_guide_step(self, guideid: int, stepid: int, data: Dict) -> Dict:
+    def update_guide_step(self, guideid: int, stepid: int, data: dict) -> dict:
         """Update a guide step.
 
         Args:
@@ -502,8 +497,7 @@ class IFixitAPIClient:
         Returns:
             Updated step details.
         """
-        return self._request('PATCH', f'/guides/{guideid}/steps/{stepid}',
-                             json=data)
+        return self._request("PATCH", f"/guides/{guideid}/steps/{stepid}", json=data)
 
     def delete_guide_step(self, guideid: int, stepid: int) -> None:
         """Delete a guide step.
@@ -512,9 +506,9 @@ class IFixitAPIClient:
             guideid: Guide ID.
             stepid: Step ID.
         """
-        return self._request('DELETE', f'/guides/{guideid}/steps/{stepid}')
+        return self._request("DELETE", f"/guides/{guideid}/steps/{stepid}")
 
-    def update_guide_step_order(self, guideid: int, data: Dict) -> Dict:
+    def update_guide_step_order(self, guideid: int, data: dict) -> dict:
         """Update the order of steps in a guide.
 
         Args:
@@ -524,9 +518,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/steporder', json=data)
+        return self._request("PUT", f"/guides/{guideid}/steporder", json=data)
 
-    def get_guide_users(self, guideid: int) -> List[Dict]:
+    def get_guide_users(self, guideid: int) -> list[dict]:
         """Get users associated with a guide.
 
         Args:
@@ -535,9 +529,9 @@ class IFixitAPIClient:
         Returns:
             List of users.
         """
-        return self._request('GET', f'/guides/{guideid}/users')
+        return self._request("GET", f"/guides/{guideid}/users")
 
-    def add_user_to_guide(self, guideid: int, userid: int) -> Dict:
+    def add_user_to_guide(self, guideid: int, userid: int) -> dict:
         """Add a user to a guide.
 
         Args:
@@ -547,7 +541,7 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/users/{userid}')
+        return self._request("PUT", f"/guides/{guideid}/users/{userid}")
 
     def remove_user_from_guide(self, guideid: int, userid: int) -> None:
         """Remove a user from a guide.
@@ -556,9 +550,9 @@ class IFixitAPIClient:
             guideid: Guide ID.
             userid: User ID.
         """
-        return self._request('DELETE', f'/guides/{guideid}/users/{userid}')
+        return self._request("DELETE", f"/guides/{guideid}/users/{userid}")
 
-    def get_guide_teams(self, guideid: int) -> List[Dict]:
+    def get_guide_teams(self, guideid: int) -> list[dict]:
         """Get teams associated with a guide.
 
         Args:
@@ -567,9 +561,9 @@ class IFixitAPIClient:
         Returns:
             List of teams.
         """
-        return self._request('GET', f'/guides/{guideid}/teams')
+        return self._request("GET", f"/guides/{guideid}/teams")
 
-    def add_team_to_guide(self, guideid: int, teamid: int) -> Dict:
+    def add_team_to_guide(self, guideid: int, teamid: int) -> dict:
         """Add a team to a guide.
 
         Args:
@@ -579,7 +573,7 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/teams/{teamid}')
+        return self._request("PUT", f"/guides/{guideid}/teams/{teamid}")
 
     def remove_team_from_guide(self, guideid: int, teamid: int) -> None:
         """Remove a team from a guide.
@@ -588,15 +582,15 @@ class IFixitAPIClient:
             guideid: Guide ID.
             teamid: Team ID.
         """
-        return self._request('DELETE', f'/guides/{guideid}/teams/{teamid}')
+        return self._request("DELETE", f"/guides/{guideid}/teams/{teamid}")
 
-    def get_guide_releases(self) -> List[Dict]:
+    def get_guide_releases(self) -> list[dict]:
         """Get all guide releases.
 
         Returns:
             List of releases.
         """
-        return self._request('GET', '/guides/releases')
+        return self._request("GET", "/guides/releases")
 
     def delete_guide_release(self, releaseid: int) -> None:
         """Delete a guide release.
@@ -604,9 +598,9 @@ class IFixitAPIClient:
         Args:
             releaseid: Release ID.
         """
-        return self._request('DELETE', f'/guides/releases/{releaseid}')
+        return self._request("DELETE", f"/guides/releases/{releaseid}")
 
-    def get_guide_specific_releases(self, guideid: int) -> List[Dict]:
+    def get_guide_specific_releases(self, guideid: int) -> list[dict]:
         """Get releases for a specific guide.
 
         Args:
@@ -615,9 +609,9 @@ class IFixitAPIClient:
         Returns:
             List of releases.
         """
-        return self._request('GET', f'/guides/{guideid}/releases')
+        return self._request("GET", f"/guides/{guideid}/releases")
 
-    def create_guide_release(self, data: Dict) -> Dict:
+    def create_guide_release(self, data: dict) -> dict:
         """Create a guide release.
 
         Args:
@@ -626,9 +620,9 @@ class IFixitAPIClient:
         Returns:
             Created release details.
         """
-        return self._request('POST', '/guides/releases', json=data)
+        return self._request("POST", "/guides/releases", json=data)
 
-    def update_guide_release(self, releaseid: int, data: Dict) -> Dict:
+    def update_guide_release(self, releaseid: int, data: dict) -> dict:
         """Update a guide release.
 
         Args:
@@ -638,10 +632,9 @@ class IFixitAPIClient:
         Returns:
             Updated release details.
         """
-        return self._request('PATCH', f'/guides/releases/{releaseid}',
-                             json=data)
+        return self._request("PATCH", f"/guides/releases/{releaseid}", json=data)
 
-    def add_guide_tag(self, guideid: int, data: Dict) -> Dict:
+    def add_guide_tag(self, guideid: int, data: dict) -> dict:
         """Add a tag to a guide.
 
         Args:
@@ -651,28 +644,28 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/guides/{guideid}/tag', json=data)
+        return self._request("PUT", f"/guides/{guideid}/tag", json=data)
 
-    def remove_guide_tag(self, guideid: int, data: Dict) -> None:
+    def remove_guide_tag(self, guideid: int, data: dict) -> None:
         """Remove a tag from a guide.
 
         Args:
             guideid: Guide ID.
             data: Tag payload.
         """
-        return self._request('DELETE', f'/guides/{guideid}/tag', json=data)
+        return self._request("DELETE", f"/guides/{guideid}/tag", json=data)
 
     # --- Comments Endpoints ---
 
-    def get_comments(self) -> List[Dict]:
+    def get_comments(self) -> list[dict]:
         """Get all comments.
 
         Returns:
             List of comments.
         """
-        return self._request('GET', '/comments')
+        return self._request("GET", "/comments")
 
-    def get_comment(self, commentid: int) -> Dict:
+    def get_comment(self, commentid: int) -> dict:
         """Get a specific comment.
 
         Args:
@@ -681,9 +674,9 @@ class IFixitAPIClient:
         Returns:
             Comment details.
         """
-        return self._request('GET', f'/comments/{commentid}')
+        return self._request("GET", f"/comments/{commentid}")
 
-    def create_comment(self, context: str, contextid: int, data: Dict) -> Dict:
+    def create_comment(self, context: str, contextid: int, data: dict) -> dict:
         """Create a comment.
 
         Args:
@@ -694,10 +687,9 @@ class IFixitAPIClient:
         Returns:
             Created comment details.
         """
-        return self._request('POST', f'/comments/{context}/{contextid}',
-                             json=data)
+        return self._request("POST", f"/comments/{context}/{contextid}", json=data)
 
-    def update_comment(self, commentid: int, data: Dict) -> Dict:
+    def update_comment(self, commentid: int, data: dict) -> dict:
         """Update a comment.
 
         Args:
@@ -707,7 +699,7 @@ class IFixitAPIClient:
         Returns:
             Updated comment details.
         """
-        return self._request('PATCH', f'/comments/{commentid}', json=data)
+        return self._request("PATCH", f"/comments/{commentid}", json=data)
 
     def delete_comment(self, commentid: int) -> None:
         """Delete a comment.
@@ -715,11 +707,11 @@ class IFixitAPIClient:
         Args:
             commentid: Comment ID.
         """
-        return self._request('DELETE', f'/comments/{commentid}')
+        return self._request("DELETE", f"/comments/{commentid}")
 
     # --- Suggest Endpoints ---
 
-    def suggest(self, query: str, doctypes: str = 'all') -> List[Dict]:
+    def suggest(self, query: str, doctypes: str = "all") -> list[dict]:
         """Get suggestions based on a query.
 
         Args:
@@ -729,20 +721,20 @@ class IFixitAPIClient:
         Returns:
             List of suggestions.
         """
-        params = {'doctypes': doctypes}
-        return self._request('GET', f'/suggest/{query}', params=params)
+        params = {"doctypes": doctypes}
+        return self._request("GET", f"/suggest/{query}", params=params)
 
     # --- Stories Endpoints ---
 
-    def get_stories(self) -> List[Dict]:
+    def get_stories(self) -> list[dict]:
         """Get all stories.
 
         Returns:
             List of stories.
         """
-        return self._request('GET', '/stories')
+        return self._request("GET", "/stories")
 
-    def get_story(self, storyid: int) -> Dict:
+    def get_story(self, storyid: int) -> dict:
         """Get a specific story.
 
         Args:
@@ -751,9 +743,9 @@ class IFixitAPIClient:
         Returns:
             Story details.
         """
-        return self._request('GET', f'/stories/{storyid}')
+        return self._request("GET", f"/stories/{storyid}")
 
-    def create_story(self, data: Dict) -> Dict:
+    def create_story(self, data: dict) -> dict:
         """Create a story.
 
         Args:
@@ -762,9 +754,9 @@ class IFixitAPIClient:
         Returns:
             Created story details.
         """
-        return self._request('POST', '/stories', json=data)
+        return self._request("POST", "/stories", json=data)
 
-    def update_story(self, storyid: int, data: Dict) -> Dict:
+    def update_story(self, storyid: int, data: dict) -> dict:
         """Update a story.
 
         Args:
@@ -774,19 +766,19 @@ class IFixitAPIClient:
         Returns:
             Updated story details.
         """
-        return self._request('PATCH', f'/stories/{storyid}', json=data)
+        return self._request("PATCH", f"/stories/{storyid}", json=data)
 
     # --- Tags Endpoints ---
 
-    def get_tags(self) -> List[Dict]:
+    def get_tags(self) -> list[dict]:
         """Get all tags.
 
         Returns:
             List of tags.
         """
-        return self._request('GET', '/tags')
+        return self._request("GET", "/tags")
 
-    def add_wiki_tag(self, namespace: str, title: str, data: Dict) -> Dict:
+    def add_wiki_tag(self, namespace: str, title: str, data: dict) -> dict:
         """Add a tag to a wiki.
 
         Args:
@@ -797,10 +789,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/wikis/{namespace}/{title}/tag',
-                             json=data)
+        return self._request("PUT", f"/wikis/{namespace}/{title}/tag", json=data)
 
-    def remove_wiki_tag(self, namespace: str, title: str, data: Dict) -> None:
+    def remove_wiki_tag(self, namespace: str, title: str, data: dict) -> None:
         """Remove a tag from a wiki.
 
         Args:
@@ -808,20 +799,19 @@ class IFixitAPIClient:
             title: Wiki title.
             data: Tag payload.
         """
-        return self._request('DELETE', f'/wikis/{namespace}/{title}/tag',
-                             json=data)
+        return self._request("DELETE", f"/wikis/{namespace}/{title}/tag", json=data)
 
     # --- Teams Endpoints ---
 
-    def get_teams(self) -> List[Dict]:
+    def get_teams(self) -> list[dict]:
         """Get all teams.
 
         Returns:
             List of teams.
         """
-        return self._request('GET', '/teams')
+        return self._request("GET", "/teams")
 
-    def get_team_members(self, teamid: int) -> List[Dict]:
+    def get_team_members(self, teamid: int) -> list[dict]:
         """Get members of a team.
 
         Args:
@@ -830,9 +820,9 @@ class IFixitAPIClient:
         Returns:
             List of members.
         """
-        return self._request('GET', f'/teams/{teamid}')
+        return self._request("GET", f"/teams/{teamid}")
 
-    def add_user_to_team(self, teamid: int, userid: int) -> Dict:
+    def add_user_to_team(self, teamid: int, userid: int) -> dict:
         """Add a user to a team.
 
         Args:
@@ -842,7 +832,7 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/teams/{teamid}/users/{userid}')
+        return self._request("PUT", f"/teams/{teamid}/users/{userid}")
 
     def remove_user_from_team(self, teamid: int, userid: int) -> None:
         """Remove a user from a team.
@@ -851,19 +841,19 @@ class IFixitAPIClient:
             teamid: Team ID.
             userid: User ID.
         """
-        return self._request('DELETE', f'/teams/{teamid}/users/{userid}')
+        return self._request("DELETE", f"/teams/{teamid}/users/{userid}")
 
     # --- Users Endpoints ---
 
-    def get_users(self) -> List[Dict]:
+    def get_users(self) -> list[dict]:
         """Get all users.
 
         Returns:
             List of users.
         """
-        return self._request('GET', '/users')
+        return self._request("GET", "/users")
 
-    def search_users(self, search: str) -> List[Dict]:
+    def search_users(self, search: str) -> list[dict]:
         """Search for users.
 
         Args:
@@ -872,9 +862,9 @@ class IFixitAPIClient:
         Returns:
             List of matching users.
         """
-        return self._request('GET', f'/users/search/{search}')
+        return self._request("GET", f"/users/search/{search}")
 
-    def get_user(self, userid: int) -> Dict:
+    def get_user(self, userid: int) -> dict:
         """Get a specific user.
 
         Args:
@@ -883,9 +873,9 @@ class IFixitAPIClient:
         Returns:
             User details.
         """
-        return self._request('GET', f'/users/{userid}')
+        return self._request("GET", f"/users/{userid}")
 
-    def get_user_by_sso(self, sso_userid: str) -> Dict:
+    def get_user_by_sso(self, sso_userid: str) -> dict:
         """Get a user by SSO ID.
 
         Args:
@@ -894,9 +884,9 @@ class IFixitAPIClient:
         Returns:
             User details.
         """
-        return self._request('GET', f'/users/sso/{sso_userid}')
+        return self._request("GET", f"/users/sso/{sso_userid}")
 
-    def get_user_by_email(self, email: str) -> Dict:
+    def get_user_by_email(self, email: str) -> dict:
         """Get a user by email.
 
         Args:
@@ -905,9 +895,9 @@ class IFixitAPIClient:
         Returns:
             User details.
         """
-        return self._request('GET', f'/users/email/{email}')
+        return self._request("GET", f"/users/email/{email}")
 
-    def get_user_badges(self, userid: int) -> List[Dict]:
+    def get_user_badges(self, userid: int) -> list[dict]:
         """Get badges for a user.
 
         Args:
@@ -916,9 +906,9 @@ class IFixitAPIClient:
         Returns:
             List of badges.
         """
-        return self._request('GET', f'/users/{userid}/badges')
+        return self._request("GET", f"/users/{userid}/badges")
 
-    def get_user_favorite_guides(self, userid: int) -> List[Dict]:
+    def get_user_favorite_guides(self, userid: int) -> list[dict]:
         """Get favorite guides for a user.
 
         Args:
@@ -927,9 +917,9 @@ class IFixitAPIClient:
         Returns:
             List of favorite guides.
         """
-        return self._request('GET', f'/users/{userid}/favorites/guides')
+        return self._request("GET", f"/users/{userid}/favorites/guides")
 
-    def get_user_guides(self, userid: int) -> List[Dict]:
+    def get_user_guides(self, userid: int) -> list[dict]:
         """Get guides for a user.
 
         Args:
@@ -938,9 +928,9 @@ class IFixitAPIClient:
         Returns:
             List of guides.
         """
-        return self._request('GET', f'/users/{userid}/guides')
+        return self._request("GET", f"/users/{userid}/guides")
 
-    def get_user_completions(self, userid: int) -> List[Dict]:
+    def get_user_completions(self, userid: int) -> list[dict]:
         """Get completions for a user.
 
         Args:
@@ -949,33 +939,33 @@ class IFixitAPIClient:
         Returns:
             List of completions.
         """
-        return self._request('GET', f'/users/{userid}/completions')
+        return self._request("GET", f"/users/{userid}/completions")
 
-    def get_current_user(self) -> Dict:
+    def get_current_user(self) -> dict:
         """Get the current authenticated user.
 
         Returns:
             User details.
         """
-        return self._request('GET', '/user')
+        return self._request("GET", "/user")
 
-    def get_current_user_badges(self) -> List[Dict]:
+    def get_current_user_badges(self) -> list[dict]:
         """Get badges for the current user.
 
         Returns:
             List of badges.
         """
-        return self._request('GET', '/user/badges')
+        return self._request("GET", "/user/badges")
 
-    def get_current_user_favorite_guides(self) -> List[Dict]:
+    def get_current_user_favorite_guides(self) -> list[dict]:
         """Get favorite guides for the current user.
 
         Returns:
             List of favorite guides.
         """
-        return self._request('GET', '/user/favorites/guides')
+        return self._request("GET", "/user/favorites/guides")
 
-    def favorite_guide(self, guideid: int) -> Dict:
+    def favorite_guide(self, guideid: int) -> dict:
         """Favorite a guide for the current user.
 
         Args:
@@ -984,7 +974,7 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/user/favorites/guides/{guideid}')
+        return self._request("PUT", f"/user/favorites/guides/{guideid}")
 
     def unfavorite_guide(self, guideid: int) -> None:
         """Unfavorite a guide for the current user.
@@ -992,41 +982,41 @@ class IFixitAPIClient:
         Args:
             guideid: Guide ID.
         """
-        return self._request('DELETE', f'/user/favorites/guides/{guideid}')
+        return self._request("DELETE", f"/user/favorites/guides/{guideid}")
 
-    def get_current_user_guides(self) -> List[Dict]:
+    def get_current_user_guides(self) -> list[dict]:
         """Get guides for the current user.
 
         Returns:
             List of guides.
         """
-        return self._request('GET', '/user/guides')
+        return self._request("GET", "/user/guides")
 
-    def get_current_user_flags(self) -> List[Dict]:
+    def get_current_user_flags(self) -> list[dict]:
         """Get flags for the current user.
 
         Returns:
             List of flags.
         """
-        return self._request('GET', '/user/flags')
+        return self._request("GET", "/user/flags")
 
-    def get_current_user_completions(self) -> List[Dict]:
+    def get_current_user_completions(self) -> list[dict]:
         """Get completions for the current user.
 
         Returns:
             List of completions.
         """
-        return self._request('GET', '/user/completions')
+        return self._request("GET", "/user/completions")
 
-    def get_current_user_images(self) -> List[Dict]:
+    def get_current_user_images(self) -> list[dict]:
         """Get images for the current user.
 
         Returns:
             List of images.
         """
-        return self._request('GET', '/user/media/images')
+        return self._request("GET", "/user/media/images")
 
-    def upload_user_image(self, data: Dict) -> Dict:
+    def upload_user_image(self, data: dict) -> dict:
         """Upload an image for the current user.
 
         Args:
@@ -1035,7 +1025,7 @@ class IFixitAPIClient:
         Returns:
             Uploaded image details.
         """
-        return self._request('POST', '/user/media/images', json=data)
+        return self._request("POST", "/user/media/images", json=data)
 
     def delete_user_images(self, imageids: str) -> None:
         """Delete images for the current user.
@@ -1043,9 +1033,9 @@ class IFixitAPIClient:
         Args:
             imageids: Comma-separated image IDs.
         """
-        return self._request('DELETE', f'/user/media/images/{imageids}')
+        return self._request("DELETE", f"/user/media/images/{imageids}")
 
-    def update_user_image(self, imageid: str, data: Dict) -> Dict:
+    def update_user_image(self, imageid: str, data: dict) -> dict:
         """Update a user image.
 
         Args:
@@ -1055,18 +1045,17 @@ class IFixitAPIClient:
         Returns:
             Updated image details.
         """
-        return self._request('POST', f'/user/media/images/{imageid}',
-                             json=data)
+        return self._request("POST", f"/user/media/images/{imageid}", json=data)
 
-    def get_current_user_videos(self) -> List[Dict]:
+    def get_current_user_videos(self) -> list[dict]:
         """Get videos for the current user.
 
         Returns:
             List of videos.
         """
-        return self._request('GET', '/user/media/videos')
+        return self._request("GET", "/user/media/videos")
 
-    def update_user(self, userid: int, data: Dict) -> Dict:
+    def update_user(self, userid: int, data: dict) -> dict:
         """Update a user.
 
         Args:
@@ -1076,11 +1065,11 @@ class IFixitAPIClient:
         Returns:
             Updated user details.
         """
-        return self._request('PATCH', f'/users/{userid}', json=data)
+        return self._request("PATCH", f"/users/{userid}", json=data)
 
     # --- Wikis Endpoints ---
 
-    def get_category(self, device_name: Optional[str] = None, params: Optional[dict] = None) -> Dict:
+    def get_category(self, device_name: str | None = None, params: dict | None = None) -> dict:
         """Get the category hierarchy.
 
         Args:
@@ -1090,14 +1079,14 @@ class IFixitAPIClient:
         Returns:
             Hierarchy details.
         """
-        endpoint = '/wikis/CATEGORY'
+        endpoint = "/wikis/CATEGORY"
         if device_name:
-            endpoint += f'/{device_name}'
+            endpoint += f"/{device_name}"
         if not params:
-            params = {'display': 'hierarchy'}
-        return self._request('GET', endpoint, params=params)
+            params = {"display": "hierarchy"}
+        return self._request("GET", endpoint, params=params)
 
-    def get_wikis(self, namespace: str) -> List[Dict]:
+    def get_wikis(self, namespace: str) -> list[dict]:
         """Get wikis in a namespace.
 
         Args:
@@ -1106,9 +1095,9 @@ class IFixitAPIClient:
         Returns:
             List of wikis.
         """
-        return self._request('GET', f'/wikis/{namespace}')
+        return self._request("GET", f"/wikis/{namespace}")
 
-    def get_wiki(self, namespace: str, title: str) -> Dict:
+    def get_wiki(self, namespace: str, title: str) -> dict:
         """Get a specific wiki.
 
         Args:
@@ -1118,9 +1107,9 @@ class IFixitAPIClient:
         Returns:
             Wiki details.
         """
-        return self._request('GET', f'/wikis/{namespace}/{title}')
+        return self._request("GET", f"/wikis/{namespace}/{title}")
 
-    def get_wiki_tags(self, namespace: str, title: str) -> List[str]:
+    def get_wiki_tags(self, namespace: str, title: str) -> list[str]:
         """Get tags for a wiki.
 
         Args:
@@ -1130,9 +1119,9 @@ class IFixitAPIClient:
         Returns:
             List of tags.
         """
-        return self._request('GET', f'/wikis/{namespace}/{title}/tags')
+        return self._request("GET", f"/wikis/{namespace}/{title}/tags")
 
-    def get_category_children(self, title: str) -> List[Dict]:
+    def get_category_children(self, title: str) -> list[dict]:
         """Get children of a category.
 
         Args:
@@ -1141,7 +1130,7 @@ class IFixitAPIClient:
         Returns:
             List of children.
         """
-        return self._request('GET', f'/wikis/CATEGORY/{title}/children')
+        return self._request("GET", f"/wikis/CATEGORY/{title}/children")
 
     def get_category_identification(self, title: str) -> str:
         """Get identification for a category.
@@ -1152,9 +1141,9 @@ class IFixitAPIClient:
         Returns:
             Identification string.
         """
-        return self._request('GET', f'/wikis/CATEGORY/{title}/identification')
+        return self._request("GET", f"/wikis/CATEGORY/{title}/identification")
 
-    def create_wiki(self, data: Dict) -> Dict:
+    def create_wiki(self, data: dict) -> dict:
         """Create a new wiki.
 
         Args:
@@ -1163,10 +1152,9 @@ class IFixitAPIClient:
         Returns:
             Created wiki details.
         """
-        return self._request('POST', '/wikis', json=data)
+        return self._request("POST", "/wikis", json=data)
 
-    def update_wiki(self, namespace: str, title: str, data: Dict,
-                    revisionid: Optional[int] = None) -> Dict:
+    def update_wiki(self, namespace: str, title: str, data: dict, revisionid: int | None = None) -> dict:
         """Update a wiki.
 
         Args:
@@ -1178,9 +1166,8 @@ class IFixitAPIClient:
         Returns:
             Updated wiki details.
         """
-        params = {'revisionid': revisionid} if revisionid else None
-        return self._request('PATCH', f'/wikis/{namespace}/{title}',
-                             json=data, params=params)
+        params = {"revisionid": revisionid} if revisionid else None
+        return self._request("PATCH", f"/wikis/{namespace}/{title}", json=data, params=params)
 
     def delete_wiki(self, namespace: str, title: str) -> None:
         """Delete a wiki.
@@ -1189,9 +1176,9 @@ class IFixitAPIClient:
             namespace: Wiki namespace.
             title: Wiki title.
         """
-        return self._request('DELETE', f'/wikis/{namespace}/{title}')
+        return self._request("DELETE", f"/wikis/{namespace}/{title}")
 
-    def revert_wiki(self, namespace: str, title: str, data: Dict) -> Dict:
+    def revert_wiki(self, namespace: str, title: str, data: dict) -> dict:
         """Revert a wiki to a previous state.
 
         Args:
@@ -1202,10 +1189,9 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('POST', f'/wikis/{namespace}/{title}/revert',
-                             json=data)
+        return self._request("POST", f"/wikis/{namespace}/{title}/revert", json=data)
 
-    def set_wiki_parent(self, title: str, data: Dict) -> Dict:
+    def set_wiki_parent(self, title: str, data: dict) -> dict:
         """Set the parent for a category wiki.
 
         Args:
@@ -1215,12 +1201,11 @@ class IFixitAPIClient:
         Returns:
             Response details.
         """
-        return self._request('PUT', f'/wikis/CATEGORY/{title}/parent',
-                             json=data)
+        return self._request("PUT", f"/wikis/CATEGORY/{title}/parent", json=data)
 
     # --- User View History Endpoints ---
 
-    def get_user_view_history(self, userid: int) -> List[Dict]:
+    def get_user_view_history(self, userid: int) -> list[dict]:
         """Get view history for a user.
 
         Args:
@@ -1229,9 +1214,9 @@ class IFixitAPIClient:
         Returns:
             List of view history entries.
         """
-        return self._request('GET', f'/user_view_history/user/{userid}')
+        return self._request("GET", f"/user_view_history/user/{userid}")
 
-    def get_document_view_history(self, doc_type: str, docid: int) -> List[Dict]:
+    def get_document_view_history(self, doc_type: str, docid: int) -> list[dict]:
         """Get view history for a document.
 
         Args:
@@ -1241,11 +1226,11 @@ class IFixitAPIClient:
         Returns:
             List of view history entries.
         """
-        return self._request('GET', f'/user_view_history/{doc_type}/{docid}')
+        return self._request("GET", f"/user_view_history/{doc_type}/{docid}")
 
     # --- Documents Endpoints ---
 
-    def get_document(self, id_or_guid: str) -> Dict:
+    def get_document(self, id_or_guid: str) -> dict:
         """Get a document.
 
         Args:
@@ -1254,4 +1239,4 @@ class IFixitAPIClient:
         Returns:
             Document details.
         """
-        return self._request('GET', f'/documents/{id_or_guid}')
+        return self._request("GET", f"/documents/{id_or_guid}")

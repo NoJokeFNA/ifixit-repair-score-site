@@ -1,13 +1,12 @@
 import threading
 import time
 from time import perf_counter
-from typing import Optional
 
 
 class _RateLimiter:
     """Token-bucket rate limiter for controlling API request rate."""
 
-    def __init__(self, rate_per_sec: int, burst: Optional[int] = None) -> None:
+    def __init__(self, rate_per_sec: int, burst: int | None = None) -> None:
         self.rate: float = max(1, rate_per_sec)
         self.capacity: float = burst if burst is not None else self.rate
         self._tokens: float = self.capacity

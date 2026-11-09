@@ -14,3 +14,10 @@ Workflows:
 
 Local run example:
 - python src/fetch_device_data.py --categories "iPhone" "Android Phone" --scores-output devices_with_scores.json
+
+Rubric maintenance:
+- The daily build probes version numbers 1.0 through 10.9 (one minor digit), including gaps.
+- New criteria are added automatically when the source scoring table uses the existing layout.
+- Missing previously published versions or an unrecognized scoring table fail the build and preserve the previous rubric output.
+- Python regression tests: `PYTHONPATH=src python -m unittest discover -s tests -v`.
+- Before publishing, the daily workflow runs browser checks for every generated version, including its details dialog, sorting, and a simulated future criterion. Changes to iFixit's URL scheme, version numbering, or table layout may require a parser update.

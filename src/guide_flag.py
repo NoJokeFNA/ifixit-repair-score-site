@@ -17,9 +17,7 @@ class GuideFlag(Enum):
         return self.name.lower()
 
 
-FLAG_TO_TAG: Final[dict[str, str]] = {
-    flag.value: flag.tag for flag in GuideFlag
-}
+FLAG_TO_TAG: Final[dict[str, str]] = {flag.value: flag.tag for flag in GuideFlag}
 
 TAG_PRIORITIES: Final[dict[str, int]] = {
     GuideFlag.STARRED.tag: 0,

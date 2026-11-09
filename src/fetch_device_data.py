@@ -8,10 +8,10 @@ import re
 import tempfile
 import threading
 import time
+from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from decimal import Decimal
 from pathlib import Path
-from typing import Iterable, Optional, Set
 
 import requests
 import tqdm
@@ -64,9 +64,7 @@ def write_json_atomic(path: str, data: object) -> None:
     os.replace(tmp_name, target)
 
 
-def _collect_leaf_device_names(
-    node: JsonValue, excluded_keys: Set[str] | None = None
-) -> Iterable[str]:
+def _collect_leaf_device_names(node: JsonValue, excluded_keys: set[str] | None = None) -> Iterable[str]:
     """Yields leaf device names under a node.
 
     A leaf device is represented by:
@@ -87,7 +85,7 @@ def _collect_leaf_device_names(
             elif isinstance(v, list):
                 yield from from_list(v, parent_key=k)
 
-    def from_list(items: list[JsonValue], parent_key: Optional[str] = None) -> Iterable[str]:
+    def from_list(items: list[JsonValue], parent_key: str | None = None) -> Iterable[str]:
         for it in items:
             if isinstance(it, dict):
                 yield from _collect_leaf_device_names(it, excluded)
@@ -105,10 +103,10 @@ def _collect_leaf_device_names(
 def _find_and_collect_for_targets(
     node: JsonValue,
     target_categories: Iterable[str],
-    exclude_map: dict[str, Set[str]] | None = None,
+    exclude_map: dict[str, set[str]] | None = None,
 ) -> dict[str, list[str]]:
     """Find target categories in the tree and collect leaf devices under them."""
-    targets: Set[str] = set(target_categories)
+    targets: set[str] = set(target_categories)
     out: dict[str, list[str]] = {t: [] for t in targets}
 
     def handle_match(cat: str, value: JsonValue) -> None:
@@ -134,9 +132,9 @@ def _find_and_collect_for_targets(
 
     dfs(node)
 
-    for category in out:
-        seen: Set[str] = set()
-        unique_ordered = [x for x in out[category] if not (x in seen or seen.add(x))]
+    for category, names in out.items():
+        seen: set[str] = set()
+        unique_ordered = [x for x in names if not (x in seen or seen.add(x))]
         out[category] = sorted(unique_ordered)
     return out
 
@@ -204,7 +202,7 @@ def get_child_devices_for_categories(
             logger.debug("Category not found (404), returning empty results")
             data = {}
         else:
-            logger.error("Failed to fetch category: %s", e, exc_info=True)
+            logger.exception("Failed to fetch category")
             data = {}
 
     logger.info("Collecting child devices...")
@@ -254,11 +252,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, list[dict[str, o
             guides = client.get_guides(params=page_params)
             page_results: dict[str, list[dict[str, object]]] = {}
             for guide in guides:
-                if (
-                    guide.get("url") is None
-                    or guide.get("category") is None
-                    or guide.get("title") is None
-                ):
+                if guide.get("url") is None or guide.get("category") is None or guide.get("title") is None:
                     continue
                 category = guide["category"]
                 raw_flags = guide.get("flags", []) or []
@@ -275,8 +269,8 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, list[dict[str, o
                     }
                 )
             return page_results
-        except Exception as e:
-            logger.error("Failed to fetch offset %d: %s", page_offset, e)
+        except Exception:
+            logger.exception("Failed to fetch offset %d", page_offset)
             return {}
 
     def extend_map(dst: dict[str, list[dict[str, object]]], src: dict[str, list[dict[str, object]]]) -> None:
@@ -327,7 +321,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, list[dict[str, o
             A stable, deduplicated, and sorted list of guides.
         """
         # Dedupe by (title, url).
-        seen: Set[tuple[str, str]] = set()
+        seen: set[tuple[str, str]] = set()
         unique: list[dict[str, object]] = []
         for g in guides:
             title = str(g.get("title", "") or "").strip()
@@ -375,14 +369,14 @@ def print_device_data(
     client: IFixitAPIClient,
     devices: list[str],
     french_scraper: FrenchRepairabilityScraper,
-    output_file: Optional[str] = None,
+    output_file: str | None = None,
 ) -> None:
     """Fetches and prints device repairability scores and guide URLs concurrently."""
     logger.info("Fetching teardown guides for matching...")
     teardown_guides = fetch_teardown_guides(client)
 
     def dedupe(seq: list[str]) -> list[str]:
-        seen: Set[str] = set()
+        seen: set[str] = set()
         return [d for d in seq if not (d in seen or seen.add(d))]
 
     unique_devices = dedupe(devices)
@@ -392,7 +386,7 @@ def print_device_data(
 
     def _fetch_score(
         device_name: str, max_retries: int = 3, base_backoff: float = 0.75
-    ) -> tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]:
+    ) -> tuple[str, str, float | None, str | None, str | None, str | None]:
         ifixit_title = _DeviceDataUtils.to_ifixit_title(device_name)
         for attempt in range(max_retries):
             try:
@@ -400,11 +394,7 @@ def print_device_data(
                 data = client.get_category(device_name=ifixit_title, params=None)
                 repairability_score = data.get("repairability_score")
                 manufacturer = next(
-                    (
-                        entry.get("value")
-                        for entry in data.get("info", [])
-                        if entry.get("name") == "Device Brand"
-                    ),
+                    (entry.get("value") for entry in data.get("info", []) if entry.get("name") == "Device Brand"),
                     None,
                 )
 
@@ -420,12 +410,8 @@ def print_device_data(
             except Exception as e:
                 response = getattr(e, "response", None)
                 status_code = getattr(response, "status_code", None) if response else None
-                retry_after = (
-                    getattr(response, "headers", {}).get("Retry-After")
-                    if response
-                    else None
-                )
-                sleep_s = float(retry_after) if retry_after else base_backoff * (2 ** attempt)
+                retry_after = getattr(response, "headers", {}).get("Retry-After") if response else None
+                sleep_s = float(retry_after) if retry_after else base_backoff * (2**attempt)
                 if status_code in {429, 500, 502, 503, 504} and attempt < max_retries - 1:
                     time.sleep(sleep_s)
                     continue
@@ -440,13 +426,9 @@ def print_device_data(
         return device_name, ifixit_title, None, None, None, "Max retries exceeded"
 
     def partition_results(
-        rows: list[tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]]
-    ) -> tuple[list[tuple[str, str, Optional[float], Optional[str], Optional[str]]], list[tuple[str, str]]]:
-        with_score = [
-            (n, t, s, brand, link_)
-            for n, t, s, brand, link_, err in rows
-            if s is not None
-        ]
+        rows: list[tuple[str, str, float | None, str | None, str | None, str | None]],
+    ) -> tuple[list[tuple[str, str, float | None, str | None, str | None]], list[tuple[str, str]]]:
+        with_score = [(n, t, s, brand, link_) for n, t, s, brand, link_, err in rows if s is not None]
         without_score = [(n, t) for n, t, s, _brand, _link, err in rows if s is None]
         with_score.sort(key=lambda x: x[0])
         return with_score, without_score
@@ -455,7 +437,7 @@ def print_device_data(
     requests_per_second = 4
     limiter = _RateLimiter(rate_per_sec=requests_per_second)
 
-    results: list[tuple[str, str, Optional[float], Optional[str], Optional[str], Optional[str]]] = []
+    results: list[tuple[str, str, float | None, str | None, str | None, str | None]] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_map = {executor.submit(_fetch_score, name): name for name in unique_devices}
         for fut in tqdm.tqdm(
@@ -479,8 +461,7 @@ def print_device_data(
             teardown_items = teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             if teardown_items:
                 titles_and_urls = [
-                    f"{g['title']} ({', '.join(g.get('tags', []))}) : {g['url']}"
-                    for g in teardown_items
+                    f"{g['title']} ({', '.join(g.get('tags', []))}) : {g['url']}" for g in teardown_items
                 ]
                 logger.info("- %s (%s): %s, Teardown URLs: %s", name, title, score, titles_and_urls)
             else:
@@ -489,7 +470,8 @@ def print_device_data(
         logger.info("- Devices with a repairability score: %d", len(with_score))
         logger.info("- Total devices processed: %d", len(results))
         matched = sum(
-            1 for name, _t, _s, _b, _l in with_score if _DeviceDataUtils.normalize_key(name) in teardown_guides)
+            1 for name, _t, _s, _b, _l in with_score if _DeviceDataUtils.normalize_key(name) in teardown_guides
+        )
         logger.info("- Devices with matched teardown URLs: %d", matched)
 
     def create_device_entry(name, title, score, brand, link, teardown_guides):
@@ -509,7 +491,8 @@ def print_device_data(
                 for guide in teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             ],
             "france_repairability_score": french_scraper.match_device_to_french_score(
-                {"name": name, "title": title, "brand": brand}),
+                {"name": name, "title": title, "brand": brand}
+            ),
         }
 
     print_outputs()
@@ -549,15 +532,15 @@ def print_device_data(
                     updated_entries.append(entry)
 
             write_json_atomic(output_file, updated_entries)
-            logger.info("Wrote %d devices (including those without scores) to: %s",
-                        len(all_entries), output_file)
-        except Exception as e:
-            logger.error("Failed to write results to %s: %s", output_file, e, exc_info=True)
+            logger.info("Wrote %d devices (including those without scores) to: %s", len(all_entries), output_file)
+        except Exception:
+            logger.exception("Failed to write results to %s", output_file)
             raise
 
 
-def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.json",
-                         rate_limiter: Optional[_RateLimiter] = None) -> None:
+def generate_rubric_json(
+    client: IFixitAPIClient, output_file: str = "rubric.json", rate_limiter: _RateLimiter | None = None
+) -> None:
     """
     Scrape iFixit wiki pages to generate rubric.json with version-specific criteria, weights, notes,
     factors not considered, and revisions.
@@ -568,23 +551,28 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
         rate_limiter: Optional _RateLimiter instance for rate-limiting requests.
     """
 
-    def fetch_page(version: str) -> Optional[BeautifulSoup]:
+    def fetch_page(version: str) -> BeautifulSoup | None:
         """Fetch and parse a wiki page for a given version using IFixitAPIClient."""
         title = f"Repairability_Scoring_Rubric_v{version}"
         try:
             if rate_limiter:
                 rate_limiter.acquire()
             html = client.get_wiki_page_html(title)
-            return BeautifulSoup(html, 'html.parser')
+            return BeautifulSoup(html, "html.parser")
         except requests.RequestException as e:
             logger.error(f"Failed to fetch wiki page for version {version}: {e}")
             return None
 
-    def is_valid_page(soup: Optional[BeautifulSoup]) -> bool:
+    def is_valid_page(soup: BeautifulSoup | None) -> bool:
         if not soup:
             return False
         text = soup.get_text(" ")
-        return not re.search(r"there is no article with this exact name", text, re.I)
+        heading = soup.find("h1")
+        return bool(
+            heading
+            and re.search(r"Repairability Scoring Rubric", heading.get_text(" "), re.IGNORECASE)
+            and not re.search(r"there is no article with this exact name", text, re.IGNORECASE)
+        )
 
     def iter_versions(start: str = "1.0", step: str = "0.1", max_steps: int = 100):
         cur = Decimal(start)
@@ -595,16 +583,16 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
 
     versions: list[str] = []
     criteria_names = [
-        "Design for Repair", "Service Manual", "Parts Availability", "Parts Availability & Cost",
-        "Unique Product Identifier", "Parts Pairing", "Software Updates"
+        "Design for Repair",
+        "Service Manual",
+        "Parts Availability",
+        "Parts Availability & Cost",
+        "Unique Product Identifier",
+        "Parts Pairing",
+        "Software Updates",
     ]
     criteria = [
-        {
-            "name": name,
-            "included": [False] * len(versions),
-            "weights": {},
-            "notes": {}
-        } for name in criteria_names
+        {"name": name, "included": [False] * len(versions), "weights": {}, "notes": {}} for name in criteria_names
     ]
     factors_not_considered: list[dict[str, object]] = []
     revisions: list[dict[str, object]] = []
@@ -614,13 +602,11 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
         soup = fetch_page(version)
         if not soup:
             logger.warning(f"Skipping version {version} due to fetch failure")
-            factors_not_considered.append({"version": version, "items": []})
-            revisions.append({"version": version, "items": []})
             continue
 
         if not is_valid_page(soup):
-            logger.info(f"Skipping version {version} due to invalid page content")
-            break
+            logger.debug("Skipping unavailable rubric version %s", version)
+            continue
 
         versions.append(version)
         for c in criteria:
@@ -628,24 +614,45 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
 
         # Extract Scoring Factors
         scoring_factors = []
-        scoring_heading = soup.find('p', string=re.compile('Scoring Factors', re.I))
+        scoring_heading = soup.find("p", string=re.compile("Scoring Factors", re.IGNORECASE))
         if scoring_heading:
-            table = scoring_heading.find_next('table')
+            table = scoring_heading.find_next("table")
             if table:
-                rows = table.find_all('tr')[1:]  # Skip header
+                table_rows = table.find_all("tr")
+                if not table_rows:
+                    raise ValueError(f"Rubric v{version} has an empty scoring table")
+                headers = [cell.get_text(" ", strip=True).casefold() for cell in table_rows[0].find_all(["th", "td"])]
+                if len(headers) != 3 or headers[1:] != ["weight", "note"]:
+                    raise ValueError(f"Rubric v{version} scoring columns changed: {headers}")
+                rows = table_rows[1:]
                 for row in rows:
-                    cells = row.find_all('td')
+                    cells = row.find_all("td")
+                    if cells and len(cells) != 3:
+                        raise ValueError(f"Rubric v{version} contains an unrecognized scoring row")
                     if len(cells) >= 3:  # Expect criterion, weight, note
                         criterion = cells[0].text.strip()
                         weight = cells[1].text.strip()
                         note = cells[2].text.strip()
                         scoring_factors.append({"criterion": criterion, "weight": weight, "note": note})
 
+        if not scoring_factors:
+            raise ValueError(
+                f"Rubric v{version} has no recognizable scoring table; refusing to publish incomplete data"
+            )
+
+        # New criteria must appear automatically, with earlier versions marked as absent.
+        known_names = {c["name"].casefold() for c in criteria}
+        for factor in scoring_factors:
+            name = re.sub(r"\s*\(if any\)", "", factor["criterion"], flags=re.IGNORECASE).strip()
+            if name.casefold() not in known_names:
+                criteria.append({"name": name, "included": [False] * len(versions), "weights": {}, "notes": {}})
+                known_names.add(name.casefold())
+
         # Update criteria inclusion, weights, and notes
         for criterion in criteria:
             for sf in scoring_factors:
                 # Normalize criterion name (e.g., "Service Manual (if any)" -> "Service Manual")
-                sf_criterion = re.sub(r'\s*\(if any\)', '', sf["criterion"], flags=re.I).strip()
+                sf_criterion = re.sub(r"\s*\(if any\)", "", sf["criterion"], flags=re.IGNORECASE).strip()
                 if criterion["name"].lower() == sf_criterion.lower():
                     criterion["included"][-1] = True
                     criterion["weights"][version] = sf["weight"]
@@ -653,13 +660,13 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
 
         # Extract Factors Not Considered
         fnc_items = []
-        fnc_heading = soup.find('p', string=re.compile('Factors Not Considered', re.I))
+        fnc_heading = soup.find("p", string=re.compile("Factors Not Considered", re.IGNORECASE))
         if fnc_heading:
-            table = fnc_heading.find_next('table')
+            table = fnc_heading.find_next("table")
             if table:
-                rows = table.find_all('tr')  # Include all rows
+                rows = table.find_all("tr")  # Include all rows
                 for row in rows:
-                    cells = row.find_all('td')
+                    cells = row.find_all("td")
                     if len(cells) >= 2:  # Expect criterion, note
                         note = cells[1].text.strip()
                         fnc_items.append(note)
@@ -667,32 +674,43 @@ def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.jso
 
         # Extract Revisions
         rev_items = []
-        rev_heading = soup.find('p', string=re.compile('Revisions( From Previous Version)?', re.I))
+        rev_heading = soup.find("p", string=re.compile("Revisions( From Previous Version)?", re.IGNORECASE))
         if rev_heading:
-            table = rev_heading.find_next('table')
+            table = rev_heading.find_next("table")
             if table:
-                rows = table.find_all('tr')  # Include all rows
+                rows = table.find_all("tr")  # Include all rows
                 for row in rows:
-                    cells = row.find_all('td')
+                    cells = row.find_all("td")
                     if len(cells) >= 2:
                         note = cells[1].text.strip()
                         # Include "Initial release" only for v1.0
                         if note.lower() != "initial release" or version == "1.0":
-                            rev_items.append(note)
+                            topic = cells[0].get_text(" ", strip=True)
+                            rev_items.append(
+                                f"{topic}: {note}" if topic and topic.casefold() not in {"none", "n/a"} else note
+                            )
         revisions.append({"version": version, "items": rev_items})
+
+    if not versions:
+        raise ValueError("No rubric versions fetched; keeping the previous output")
+    if Path(output_file).exists():
+        previous = json.loads(Path(output_file).read_text(encoding="utf-8"))
+        missing = set(previous.get("versions", [])) - set(versions)
+        if missing:
+            raise ValueError(f"Previously published rubric versions missing: {sorted(missing)}")
 
     rubric_data = {
         "versions": versions,
         "criteria": criteria,
         "factors_not_considered": factors_not_considered,
-        "revisions": revisions
+        "revisions": revisions,
     }
 
     try:
         write_json_atomic(output_file, rubric_data)
         logger.info(f"Wrote rubric data to {output_file}")
-    except Exception as e:
-        logger.error(f"Failed to write rubric.json: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Failed to write rubric.json")
         raise
 
 
@@ -702,8 +720,9 @@ def get_rubric_versions_for_devices(client) -> list[dict[str, str]]:
     html_old = client.get_repairability_page_html(old_devices=True)
     for html in [html_new, html_old]:
         soup = BeautifulSoup(html, "html.parser")
-        for device_block in soup.find_all("div",
-                                          class_="wp-block-column is-layout-flow wp-block-column-is-layout-flow"):
+        for device_block in soup.find_all(
+            "div", class_="wp-block-column is-layout-flow wp-block-column-is-layout-flow"
+        ):
             h1 = device_block.find("h1", class_="wp-block-heading")
             if not h1:
                 continue
@@ -721,18 +740,20 @@ def get_rubric_versions_for_devices(client) -> list[dict[str, str]]:
             if scorecard_p:
                 a = scorecard_p.find("a", href=True)
                 if a:
-                    match = re.search(r'v(\d+\.\d+)', a.get_text())
+                    match = re.search(r"v(\d+\.\d+)", a.get_text())
                     if match:
                         scorecard_version = match.group(1)
                         scorecard_url = a["href"]
             if device_name and scorecard_version and scorecard_url and device_url:
-                results.append({
-                    "device_name": device_name,
-                    "device_url": device_url,
-                    "scorecard_version": scorecard_version,
-                    "scorecard_url": scorecard_url
-                })
-    logging.info(f"Found {len(results)} devices with scorecard versions")
+                results.append(
+                    {
+                        "device_name": device_name,
+                        "device_url": device_url,
+                        "scorecard_version": scorecard_version,
+                        "scorecard_url": scorecard_url,
+                    }
+                )
+    logger.info("Found %d devices with scorecard versions", len(results))
     return results
 
 
@@ -741,9 +762,7 @@ async def main_async() -> None:
 
     Builds the devices_with_scores.json from iFixit data using in-memory category traversal.
     """
-    parser = argparse.ArgumentParser(
-        description="Fetch iFixit device data"
-    )
+    parser = argparse.ArgumentParser(description="Fetch iFixit device data")
     parser.add_argument(
         "--categories",
         nargs="+",
