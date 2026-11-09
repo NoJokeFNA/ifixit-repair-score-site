@@ -30,18 +30,23 @@ const viewports = [
         await page.evaluate(() => document.fonts.ready);
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${name}: page overflow`);
         assert.equal(await page.locator('.dashboard-legend').getAttribute('open'), null);
-        assert.equal(await page.locator('.about-dashboard').getAttribute('open'), null);
+        assert.equal(await page.locator('body > header details').count(), 0);
+        assert.equal(await page.locator('body > header .header-info').count(), 2);
+        for (const card of await page.locator('body > header .header-info').all()) assert(await card.isVisible());
         const search = await page.locator('#searchInput').boundingBox();
-        assert(search.y < height, `${name}: search is below first screen (${search.y})`);
+        await page.locator('#searchInput').scrollIntoViewIfNeeded();
+        await page.waitForFunction(() => {
+          const rect = document.querySelector('#searchInput').getBoundingClientRect();
+          return rect.top >= -1 && rect.bottom <= innerHeight + 1;
+        });
+        const visibleSearch = await page.locator('#searchInput').boundingBox();
+        assert(visibleSearch.y >= -1 && visibleSearch.y + visibleSearch.height <= height + 1, `${name}: search cannot be reached`);
         if (width >= 2560) assert((await page.locator('.table-section').boundingBox()).width > 1900);
         const columnKeys = await page.locator('.device-table th[data-sort-key]').evaluateAll(headers => headers.map(th => th.dataset.sortKey));
         assert.deepEqual(columnKeys, ['name', 'teardown', 'brand', 'repairability_score', 'france_repairability_score', 'scoring_rubric']);
         await page.locator('.dashboard-legend summary').click();
         assert(await page.locator('.tags-legend').isVisible());
         await page.locator('.dashboard-legend summary').click();
-        await page.locator('.about-dashboard summary').click();
-        assert(await page.locator('.header-info').first().isVisible());
-        await page.locator('.about-dashboard summary').click();
         await page.locator('#moreOptionsToggle').scrollIntoViewIfNeeded();
         const optionsBefore = await page.locator('#moreOptionsToggle').boundingBox();
         await page.locator('#moreOptionsToggle').click();

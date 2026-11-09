@@ -541,15 +541,41 @@ function renderFranceScore(device) {
     const verified = match.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 && match.score === score && sources.length;
     const label = verified ? `${score}/10` : (match.status === 'conflicting' ? 'Variants differ' : 'No verified match');
     if (!sources.length) return `<span class="france-score-missing">${escape(label)}</span>`;
-    return `<details class="france-score-details">
-        <summary aria-label="French score for ${escape(device.name)}: ${escape(label)}; show sources">
-            <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(verified ? score : null)}">${escape(label)}</span>
-        </summary>
-        <div class="france-score-evidence">
-            <p>${verified ? 'Matching source entries agree on this score.' : 'Source variants have different scores. No single score is assigned.'}</p>
-            <ul>${sources.map(source => `<li><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.name)}</a>: ${escape(source.score)}/10${source.last_updated ? ` (calculated ${escape(source.last_updated)})` : ''}</li>`).join('')}</ul>
+    return `<button type="button" class="france-score-trigger" data-france-device="${escape(device.name)}"
+        aria-haspopup="dialog" aria-controls="franceScoreModal"
+        aria-label="French score for ${escape(device.name)}: ${escape(label)}; show sources">
+        <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(verified ? score : null)}">${escape(label)}</span>
+        <span class="france-score-info" aria-hidden="true">i</span>
+    </button>`;
+}
+
+function openFranceScoreDialog(device) {
+    const modal = document.getElementById('franceScoreModal');
+    const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
+    const sources = device.france_repairability.sources.filter(source => isFranceSourceUrl(source.url));
+    const score = device.france_repairability_score;
+    const matched = score !== null;
+    modal.innerHTML = `
+        <header class="france-dialog-header">
+            <div><p class="france-dialog-eyebrow">French repairability index</p>
+            <h3 id="franceScoreTitle">${escape(device.name)}</h3></div>
+            <button type="button" class="france-dialog-close" data-close-france aria-label="Close French score sources" autofocus>×</button>
+        </header>
+        <div class="france-dialog-overview">
+            <span class="france-dialog-score ${badge(matched ? score : null)}">${matched ? `${escape(score)}<small>/10</small>` : '—'}</span>
+            <div><strong>${matched ? 'Published French score' : 'No single score assigned'}</strong>
+            <p id="franceScoreDescription">${matched ? `${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr` : 'Published scores differ across these variants.'}</p></div>
         </div>
-    </details>`;
+        <div class="france-dialog-sources">
+            <h4>Source ${sources.length === 1 ? 'entry' : 'entries'}</h4>
+            <ul>${sources.map(source => `<li>
+                <div><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.name)} <span aria-hidden="true">↗</span></a>
+                <p>${source.last_updated ? `Calculated ${escape(source.last_updated)}` : 'Calculation date not provided'}</p></div>
+                <span class="france-source-score">${escape(source.score)}<small>/10</small></span>
+            </li>`).join('')}</ul>
+        </div>
+        <footer class="france-dialog-footer">The French index and iFixit use different scoring methods.</footer>`;
+    modal.showModal();
 }
 
 function isFranceSourceUrl(value) {
@@ -1100,6 +1126,19 @@ function renderRubricTable() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', event => {
+        const button = event.target.closest('[data-france-device]');
+        if (!button) return;
+        const device = devicesData.find(item => item.name === button.dataset.franceDevice);
+        if (device) openFranceScoreDialog(device);
+    });
+    const franceModal = document.getElementById('franceScoreModal');
+    franceModal.addEventListener('click', event => {
+        const rect = franceModal.getBoundingClientRect();
+        const outside = event.target === franceModal &&
+            (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom);
+        if (outside || event.target.closest('[data-close-france]')) franceModal.close();
+    });
     applyTheme();
     const mm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     if (mm && mm.addEventListener) {
@@ -1443,7 +1482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         document.addEventListener('keydown', function esc(e) {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' && !document.querySelector('dialog[open]')) {
                 modal.classList.remove('show');
                 document.removeEventListener('keydown', esc);
             }

@@ -24,48 +24,43 @@
 <canvas id="bgCanvas"></canvas>
 
 <header class="bg-slate-950/80 py-6 border-b border-slate-800 shadow-2xl">
-    <div class="page-shell header-layout">
+    <div class="container mx-auto px-6 grid gap-4 md:grid-cols-3 items-start">
         <div>
             <h1 class="text-4xl font-bold neon-glow">iFixit Repairability Scores</h1>
             <p class="mt-1 text-cyan-400 font-mono text-sm">Dashboard Edition</p>
         </div>
-        <details class="about-dashboard">
-            <summary>About this dashboard</summary>
-            <div class="about-content">
-                <div class="glass-card p-4 text-gray-200 header-info">
-                    <div class="flex items-start gap-2">
-                        <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
-                        <div>
-                            <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's
-                                repairability scores.</p>
-                            <p class="header-info-text">
-                                Inspired by
-                                <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores/" target="_blank"
-                                   class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
-                                <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
-                                   class="text-cyan-400 underline">the original webpage</a>.
-                                Rewritten with latest data.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-2 header-info-divider"></div>
-                </div>
-                <div class="glass-card p-4 text-gray-200 header-info">
-                    <div class="flex items-start gap-2">
-                        <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
-                        <p class="header-info-text">
-                            Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
-                            inspect teardown links labeled Featured, Community, and Archived.
-                            <br/>
-                            <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
-                               class="text-cyan-400 underline">View source code on GitHub</a>
-                            <br/>
-                        </p>
-                    </div>
-                    <div class="mt-2 header-info-divider"></div>
+        <div class="glass-card p-4 text-gray-200 header-info">
+            <div class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                <div>
+                    <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's
+                        repairability scores.</p>
+                    <p class="header-info-text">
+                        Inspired by
+                        <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores/" target="_blank"
+                           class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
+                        <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
+                           class="text-cyan-400 underline">the original webpage</a>.
+                        Rewritten with latest data.
+                    </p>
                 </div>
             </div>
-        </details>
+            <div class="mt-2 header-info-divider"></div>
+        </div>
+        <div class="glass-card p-4 text-gray-200 header-info">
+            <div class="flex items-start gap-2">
+                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                <p class="header-info-text">
+                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
+                    inspect teardown links labeled Featured, Community, and Archived.
+                    <br/>
+                    <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
+                       class="text-cyan-400 underline">View source code on GitHub</a>
+                    <br/>
+                </p>
+            </div>
+            <div class="mt-2 header-info-divider"></div>
+        </div>
     </div>
 </header>
 
@@ -343,6 +338,8 @@
 </dialog>
 
 <div id="portal-root"></div>
+
+<dialog id="franceScoreModal" class="france-score-modal" aria-labelledby="franceScoreTitle" aria-describedby="franceScoreDescription"></dialog>
 
 <script defer src="script.js"></script>
 </body>

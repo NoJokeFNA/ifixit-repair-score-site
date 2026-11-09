@@ -36,7 +36,7 @@ async function run(name,w,h,opts={}) {
    await page.waitForFunction(()=>document.querySelector('#brandFilter').options.length>1);
    if(!opts.noChart) await page.waitForFunction(()=>!!window.Chart?.getChart('repairabilityChart'));
  }
- const result=await page.evaluate(()=>({rows:document.querySelectorAll('#deviceTable tr[data-name], #deviceTable tr').length,brands:document.querySelector('#brandFilter').options.length,text:document.querySelector('#deviceTable').innerText.slice(0,90),brand:document.querySelector('#brandFilter').value,overflow:document.documentElement.scrollWidth>innerWidth,chart:!!window.Chart?.getChart('repairabilityChart'),clipped:[...document.querySelectorAll('button,input,select,h1,h2')].filter(e=>{const r=e.getBoundingClientRect();return r.width&& (r.right>innerWidth+1||r.left< -1)}).map(e=>e.id||e.textContent.slice(0,20))}));
+ const result=await page.evaluate(()=>({rows:document.querySelectorAll('#deviceTable tr[data-name], #deviceTable tr').length,brands:document.querySelector('#brandFilter').options.length,text:document.querySelector('#deviceTable').innerText.slice(0,90),brand:document.querySelector('#brandFilter').value,overflow:document.documentElement.scrollWidth>innerWidth,chart:!!window.Chart?.getChart('repairabilityChart'),clipped:[...document.querySelectorAll('button,input,select,h1,h2')].filter(e=>{if(e.closest('.device-table-scroll'))return false;const r=e.getBoundingClientRect();return r.width&& (r.right>innerWidth+1||r.left< -1)}).map(e=>e.id||e.textContent.slice(0,20))}));
  console.log(name,JSON.stringify({...result,errors}));
  assert.equal(errors.length,0,name+' browser errors');
  if(!opts.fail || opts.cache) {

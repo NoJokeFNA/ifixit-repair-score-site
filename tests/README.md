@@ -29,8 +29,9 @@ with a new criterion to verify that no frontend code change is needed to display
 new rubric data. Both scripts run in the browser regression workflow on gh-pages.
 
 `responsive.cjs` covers 3440×1440, 1920×1080, 1280×720, 768×1024,
-1024×768, 390×844, and 320×740 in both themes. It checks that search is on
-the first screen, the original column order is preserved, the More options
+1024×768, 390×844, and 320×740 in both themes. It checks that both original header
+information cards are visible without expanding anything, search remains reachable,
+the original column order is preserved, the More options
 trigger stays in place, and expandable controls remain accessible. Actual chart
 clicks test selection, same-bar cancellation, both clear buttons, URL/reload
 persistence, and Reset. Search/manufacturer filters must survive a chart click;
@@ -44,7 +45,8 @@ The daily data workflow also runs this check before publishing generated data.
 
 `france.cjs` checks every device's French score against the source snapshot and
 its original product URL, score and calculation date. It also tests matched,
-conflicting and missing scores, source disclosure with the keyboard, decimal
+conflicting and missing scores, the compact source dialog with the keyboard,
+unchanged table row heights, long source lists, Escape/backdrop dismissal, decimal
 sorting, comparison, desktop/mobile themes, and unsafe legacy caches while
 offline. Its browser fixtures are fixed independently of the real snapshot so
 new source listings and corrected scores are allowed. Run it with the same
