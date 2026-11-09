@@ -41,3 +41,12 @@ unique names. It tests Fairphone manufacturer filtering and separate model names
 CSV column/value alignment with one row per device, JSON export, and consistent
 scrollbar colors in both themes.
 The daily data workflow also runs this check before publishing generated data.
+
+`france.cjs` checks every device's French score against the source snapshot and
+its original product URL, score and calculation date. It also tests matched,
+conflicting and missing scores, source disclosure with the keyboard, decimal
+sorting, comparison, desktop/mobile themes, and unsafe legacy caches while
+offline. Its browser fixtures are fixed independently of the real snapshot so
+new source listings and corrected scores are allowed. Run it with the same
+`NODE_PATH` as the other checks. French and iFixit scores are independent and
+are not expected to be equal.

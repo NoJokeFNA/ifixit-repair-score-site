@@ -256,7 +256,7 @@
             <div id="activeFilters" class="score-filter-status" aria-live="polite"></div>
             <p class="table-scroll-hint">Swipe sideways to view all columns.</p>
             <div class="device-table-scroll overflow-x-auto rounded-xl" role="region" aria-label="Device scores; scroll horizontally for more columns" tabindex="0">
-                <table class="device-table min-w-full divide-y divide-slate-700" aria-describedby="chartCaption">
+                <table class="device-table min-w-full divide-y divide-slate-700" aria-describedby="chartCaption franceScoreHelp">
                     <caption class="sr-only">Device repairability scores table</caption>
                     <thead class="bg-slate-800/80 sticky top-0 z-10">
                     <tr>
@@ -297,6 +297,13 @@
                     </tbody>
                 </table>
             </div>
+            <p id="franceScoreHelp" class="france-score-help">
+                France: the French repairability index from
+                <a href="https://www.indicereparabilite.fr/appareils/smartphone/" target="_blank" rel="noopener noreferrer">indicereparabilite.fr</a>.
+                Only unambiguous model matches with agreeing source scores are shown. Select a score to inspect its sources.
+                “Variants differ” means no single score can be assigned; “No verified match” means the model could not be verified.
+                This index uses a different method from iFixit's score. Use All devices to include phones without an iFixit score.
+            </p>
         </div>
     </section>
 </main>

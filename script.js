@@ -187,7 +187,15 @@ async function loadData() {
         if (!Array.isArray(data) || !data.every(d => d && typeof d === 'object' && typeof d.name === 'string')) {
             throw new Error('Invalid device data');
         }
-        devicesData = data;
+        devicesData = data.map(device => {
+            const match = device.france_repairability;
+            const score = device.france_repairability_score;
+            const verified = match?.status === 'matched' && match.score === score &&
+                Number.isFinite(score) && score >= 0 && score <= 10 &&
+                Array.isArray(match.sources) && match.sources.length > 0 &&
+                match.sources.every(source => source.score === score && isFranceSourceUrl(source.url));
+            return {...device, france_repairability_score: verified ? score : null};
+        });
         populateBrandFilter();
         renderTable();
     }
@@ -326,9 +334,7 @@ function populateTable(data) {
                     </span>
                 </td>
                 <td class="px-6 py-4">
-                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
-                        ${d.france_repairability_score ?? '—'}/10
-                    </span>
+                    ${renderFranceScore(d)}
                 </td>
                 <td class="px-6 py-4">
                   ${d.scorecard_version
@@ -506,6 +512,7 @@ function populateTable(data) {
 
     tbody.querySelectorAll('tr').forEach((row, index) => {
         row.addEventListener('keydown', (e) => {
+            if (e.target !== row) return;
             if (e.key === 'Enter' || e.key === ' ') {
                 row.querySelector('a')?.click();
             } else if (e.key === 'ArrowDown' && index < data.length - 1) {
@@ -522,6 +529,34 @@ function badge(score) {
     if (score >= 8) return 'bg-emerald-500';
     if (score >= 5) return 'bg-yellow-500 text-black';
     return 'bg-rose-500';
+}
+
+function renderFranceScore(device) {
+    const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
+    const match = device.france_repairability;
+    // Old caches predate evidence-based matching and can contain incorrect scores.
+    if (!match) return '<span class="france-score-missing" title="Refresh data to verify the French score">—</span>';
+    const sources = (Array.isArray(match.sources) ? match.sources : []).filter(source => isFranceSourceUrl(source.url));
+    const score = device.france_repairability_score;
+    const verified = match.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 && match.score === score && sources.length;
+    const label = verified ? `${score}/10` : (match.status === 'conflicting' ? 'Variants differ' : 'No verified match');
+    if (!sources.length) return `<span class="france-score-missing">${escape(label)}</span>`;
+    return `<details class="france-score-details">
+        <summary aria-label="French score for ${escape(device.name)}: ${escape(label)}; show sources">
+            <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(verified ? score : null)}">${escape(label)}</span>
+        </summary>
+        <div class="france-score-evidence">
+            <p>${verified ? 'Matching source entries agree on this score.' : 'Source variants have different scores. No single score is assigned.'}</p>
+            <ul>${sources.map(source => `<li><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.name)}</a>: ${escape(source.score)}/10${source.last_updated ? ` (calculated ${escape(source.last_updated)})` : ''}</li>`).join('')}</ul>
+        </div>
+    </details>`;
+}
+
+function isFranceSourceUrl(value) {
+    try {
+        const url = new URL(value);
+        return url.protocol === 'https:' && url.hostname === 'www.indicereparabilite.fr' && !url.username && !url.password;
+    } catch (_) { return false; }
 }
 
 function populateBrandFilter() {
@@ -1266,7 +1301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         portalRoot.appendChild(exportPortal);
         exportPortal.style.position = 'fixed';
-        exportPortal.style.top = `${rect.bottom + 6}px`;
+        exportPortal.style.top = `${Math.max(8, Math.min(rect.bottom + 6, window.innerHeight - exportPortal.offsetHeight - 8))}px`;
         exportPortal.style.left = `${Math.min(rect.left, window.innerWidth - 220)}px`;
         exportBtn.setAttribute('aria-expanded', 'true');
         exportPortal.addEventListener('click', (e) => {
@@ -1392,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       <div class="text-sm text-slate-400">${it.brand ?? '—'}</div>
                       <div class="text-lg font-semibold text-cyan-300 mb-1">${it.name}</div>
                       <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.repairability_score)}">${it.repairability_score ?? '—'}/10</span></div>
-                      <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.france_repairability_score)}">${it.france_repairability_score ?? '—'}/10</span></div>
+                      <div class="mb-2">France: ${renderFranceScore(it)}</div>
                       <div class="text-sm mb-2"><a href="${it.link}" target="_blank" class="text-cyan-400 underline">iFixit page</a></div>
                       <div class="text-sm">Teardowns:</div>
                       <div class="mt-1 space-y-1">${renderTeardownLinks(it.teardown_urls || [])}</div>

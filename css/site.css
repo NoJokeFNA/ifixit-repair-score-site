@@ -3,6 +3,18 @@ html, body {
     margin: 0;
 }
 
+.france-score-missing, .france-score-help {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+.france-score-help { margin-top: 1rem; line-height: 1.6; }
+.france-score-details summary { cursor: pointer; white-space: nowrap; }
+.france-score-details summary:focus-visible { outline: 2px solid #22d3ee; outline-offset: 4px; }
+.france-score-evidence { width: 20rem; max-width: 70vw; padding-top: 0.75rem; white-space: normal; font-size: 0.75rem; }
+.france-score-evidence li { margin-top: 0.5rem; overflow-wrap: anywhere; }
+.france-score-evidence a, .france-score-help a { text-decoration: underline; }
+body.theme-light :is(.france-score-missing, .france-score-help) { color: #475569; }
+
 .sr-only {
     position: absolute;
     width: 1px;
