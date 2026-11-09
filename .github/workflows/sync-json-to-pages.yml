@@ -44,9 +44,7 @@ jobs:
         run: |
           npm install --prefix /tmp/browser-tools playwright@1.65.0
           /tmp/browser-tools/node_modules/.bin/playwright install --with-deps chromium
-          curl -fLsS https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js -o /tmp/chart.js
           export NODE_PATH=/tmp/browser-tools/node_modules
-          export CHART_JS_PATH=/tmp/chart.js
           export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
           node tests/rubric.cjs
 
