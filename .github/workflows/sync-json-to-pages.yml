@@ -48,6 +48,7 @@ jobs:
           export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
           node tests/rubric.cjs
           node tests/data.cjs
+          node tests/france.cjs
 
       - name: Commit to gh-pages if changed
         working-directory: gh-pages

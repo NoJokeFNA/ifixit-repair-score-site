@@ -44,7 +44,7 @@ class ManufacturerTests(unittest.TestCase):
             "ancestors": [{"namespace": "CATEGORY", "title": "Fairphone"}],
         }
         french_scraper = Mock()
-        french_scraper.match_device_to_french_score.return_value = 9.3
+        french_scraper.match_device.return_value = {"status": "matched", "score": 9.3, "sources": []}
         with (
             tempfile.TemporaryDirectory() as directory,
             patch("fetch_device_data.fetch_teardown_guides", return_value={}),

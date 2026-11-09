@@ -21,3 +21,12 @@ Rubric maintenance:
 - Missing previously published versions or an unrecognized scoring table fail the build and preserve the previous rubric output.
 - Python regression tests: `PYTHONPATH=src python -m unittest discover -s tests -v`.
 - Before publishing, the daily workflow runs browser checks for every generated version, including its details dialog, sorting, and a simulated future criterion. Changes to iFixit's URL scheme, version numbering, or table layout may require a parser update.
+
+French score matching:
+- The French index and iFixit's score use different methods; differences between them are expected and are never treated as conflicts.
+- Network variants and iPhone SE generations remain distinct. Only exact normalized identities match; no fuzzy or prefix matching is used.
+- Cosmetic/storage variants can share a score only if the matching source entries agree. Conflicts within the French source produce a null score with source evidence, never a majority vote.
+- `france_repairability` contains `status` (`matched`, `conflicting`, `not_found`), `score`, and the original source product names, URLs, scores and calculation dates. The scalar `france_repairability_score` remains available for existing consumers.
+- Fetches verify the advertised product count and unique product URLs across every page. Timeouts are retried; missing pages, changed markup and invalid scores stop the build before the French output is replaced.
+- Intentionally conservative: a source listing without 5G cannot establish a score for a 5G device. Missing matches do not mean the device is unrepairable. Additional aliases require model-specific evidence and regression tests.
+- Coordinate rollout with the `gh-pages` frontend containing `tests/france.cjs`; the daily publication workflow requires that check. Keep the Beta label until outstanding source conflicts and model aliases have been reviewed.

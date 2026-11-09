@@ -472,6 +472,7 @@ def print_device_data(
         logger.info("- Devices with matched teardown URLs: %d", matched)
 
     def create_device_entry(name, title, score, brand, link, teardown_guides):
+        french_match = french_scraper.match_device({"name": name, "title": title, "brand": brand})
         return {
             "name": name,
             "title": title,
@@ -487,9 +488,8 @@ def print_device_data(
                 }
                 for guide in teardown_guides.get(_DeviceDataUtils.normalize_key(name), [])
             ],
-            "france_repairability_score": french_scraper.match_device_to_french_score(
-                {"name": name, "title": title, "brand": brand}
-            ),
+            "france_repairability_score": french_match["score"],
+            "france_repairability": french_match,
         }
 
     print_outputs()
