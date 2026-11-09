@@ -38,7 +38,7 @@
     if (myChart) myChart.destroy();
 
     const isLight = document.body.classList.contains('theme-light');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 460);
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.clientHeight);
     gradient.addColorStop(0, isLight ? 'rgba(2,132,199,0.95)' : 'rgba(6,182,212,0.95)');
     gradient.addColorStop(1, isLight ? 'rgba(124,58,237,0.95)' : 'rgba(139,92,246,0.95)');
 
@@ -50,7 +50,7 @@
         datasets: [{
           data: buckets,
           backgroundColor: gradient,
-          borderRadius: 14,
+          borderRadius: 5,
           barPercentage: 0.65,
           categoryPercentage: 0.8
         }]
@@ -85,18 +85,18 @@
               display: true,
               text: 'Repairability Score',
               color: isLight ? '#0ea5e9' : '#67e8f9',
-              font: { size: 14, weight: 'bold' }
+              font: { size: 11, weight: 'normal' }
             }
           },
           y: {
             beginAtZero: true,
-            ticks: { stepSize: 1, color: isLight ? '#475569' : '#94a3b8' },
+            ticks: { precision: 0, maxTicksLimit: 6, color: isLight ? '#475569' : '#94a3b8' },
             grid: { color: isLight ? 'rgba(15,23,42,0.06)' : 'rgba(255,255,255,0.05)' },
             title: {
               display: true,
               text: 'Device count',
               color: isLight ? '#0ea5e9' : '#67e8f9',
-              font: { size: 14, weight: 'bold' }
+              font: { size: 11, weight: 'normal' }
             }
           }
         },

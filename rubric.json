@@ -427,103 +427,103 @@
     {
       "version": "1.1",
       "items": [
-        "Added proxy times for various reassembly actions and design features. Over-reliance on adhesives is now directly penalized due to added time for cleaning, prepping, and bonding, the need for additional tools/fixtures, the need for consumables/supplies, and increased possibility of user frustration/error. Devices that use adhesives but can be reliably re-assembled by other means (i.e. reusable fasteners) receive a reduced penalty."
+        "Reassembly: Added proxy times for various reassembly actions and design features. Over-reliance on adhesives is now directly penalized due to added time for cleaning, prepping, and bonding, the need for additional tools/fixtures, the need for consumables/supplies, and increased possibility of user frustration/error. Devices that use adhesives but can be reliably re-assembled by other means (i.e. reusable fasteners) receive a reduced penalty."
       ]
     },
     {
       "version": "1.2",
       "items": [
-        "Refined proxy times associated with various actions, and incorporated new actions.",
-        "Added criteria for repairability scoring of desktop keyboards."
+        "Proxy Times: Refined proxy times associated with various actions, and incorporated new actions.",
+        "Device Categories: Added criteria for repairability scoring of desktop keyboards."
       ]
     },
     {
       "version": "1.3",
       "items": [
-        "Refined scoring model for laptops, where disassembly/reassembly proxy times specific to I/O ports repair procedures are replaced with a simple modularity score."
+        "Laptop Priority Part Modularity: Refined scoring model for laptops, where disassembly/reassembly proxy times specific to I/O ports repair procedures are replaced with a simple modularity score."
       ]
     },
     {
       "version": "1.4",
       "items": [
-        "Incorporated a gating function for full credit on documentation and parts availability criteria. Maximum points are reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working state, making it straightforward to find compatible parts and instructions.",
-        "Refined scoring ranges for various device categories.",
-        "Finalized and incorporated scoring for availability of replacement parts directly from the OEM (or from an endorsed third party, linked from the OEM's support website.",
-        "Refined the scoring calculation for documentation. Criteria for full credit include: repair documentation must be free and publicly available from the OEM support website (or linked therefrom); no registration requirement; presence of tools lists, parts lists with part numbers (or other means of checking compatibility), exploded diagram(s), troubleshooting procedures, schematics, and service procedures for all priority parts."
+        "Unique Product Identifier: Incorporated a gating function for full credit on documentation and parts availability criteria. Maximum points are reserved for devices which can be readily identified (model number, service tag, etc.) in a non-working state, making it straightforward to find compatible parts and instructions.",
+        "Scoring Ranges: Refined scoring ranges for various device categories.",
+        "Replacement Parts: Finalized and incorporated scoring for availability of replacement parts directly from the OEM (or from an endorsed third party, linked from the OEM's support website.",
+        "Documentation: Refined the scoring calculation for documentation. Criteria for full credit include: repair documentation must be free and publicly available from the OEM support website (or linked therefrom); no registration requirement; presence of tools lists, parts lists with part numbers (or other means of checking compatibility), exploded diagram(s), troubleshooting procedures, schematics, and service procedures for all priority parts."
       ]
     },
     {
       "version": "1.5",
       "items": [
-        "Incorporated weighted penalties for various parts pairing scenarios into scoring model."
+        "Parts Pairing: Incorporated weighted penalties for various parts pairing scenarios into scoring model."
       ]
     },
     {
       "version": "1.6",
       "items": [
-        "Refined scoring penalty for parts pairing, with additional categories.",
-        "Refined proxy times for various degluing actions."
+        "Parts Pairing: Refined scoring penalty for parts pairing, with additional categories.",
+        "Proxy Times: Refined proxy times for various degluing actions."
       ]
     },
     {
       "version": "1.7",
       "items": [
-        "Refined scoring criteria for tablets, and formalized scoring criteria for foldables under the existing smartphone scoring framework.",
-        "Added actions and associated proxy times for additional tablet design features.",
-        "Revised documentation scoring criteria so that a hardware troubleshooting section is required for full credit."
+        "Tablets & Foldables: Refined scoring criteria for tablets, and formalized scoring criteria for foldables under the existing smartphone scoring framework.",
+        "Proxy Times: Added actions and associated proxy times for additional tablet design features.",
+        "Documentation: Troubleshooting: Revised documentation scoring criteria so that a hardware troubleshooting section is required for full credit."
       ]
     },
     {
       "version": "1.8",
       "items": [
-        "Formalized and refined scoring criteria for smartwatches and wireless earbuds.",
-        "Added actions and associated proxy times for additional wearables design features.",
-        "Revised documentation scoring criteria, with more specific guidance for individually scored repair procedures."
+        "Wearables: Formalized and refined scoring criteria for smartwatches and wireless earbuds.",
+        "Proxy Times: Added actions and associated proxy times for additional wearables design features.",
+        "Documentation: Repair Procedures: Revised documentation scoring criteria, with more specific guidance for individually scored repair procedures."
       ]
     },
     {
       "version": "1.9",
       "items": [
-        "Formalized and refined scoring criteria for e-readers as a separate product group from tablets.",
-        "Added actions and associated proxy times for additional e-reader design features.",
-        "Refined scoring criteria for schematics based on feedback from board-level repair professionals."
+        "E-Readers and Tablets: Formalized and refined scoring criteria for e-readers as a separate product group from tablets.",
+        "Proxy Times: Added actions and associated proxy times for additional e-reader design features.",
+        "Documentation: Schematics: Refined scoring criteria for schematics based on feedback from board-level repair professionals."
       ]
     },
     {
       "version": "2.0",
       "items": [
-        "Added new tools and adjusted tool categorizations and scaling factors.",
-        "Removed/replaced deprecated actions and prioritized actions and proxy times associated with specific hardware design features.",
-        "Refined internal definitions and guidance for numerous scoring criteria for greater consistency and ease of use."
+        "Tools and Scaling Factors: Added new tools and adjusted tool categorizations and scaling factors.",
+        "Proxy Times: Removed/replaced deprecated actions and prioritized actions and proxy times associated with specific hardware design features.",
+        "Scoring Definitions and Guidance: Refined internal definitions and guidance for numerous scoring criteria for greater consistency and ease of use."
       ]
     },
     {
       "version": "2.1",
       "items": [
-        "Formalized and refined scoring criteria and product group classification for game consoles (handheld).",
-        "Adjusted tool multipliers for heat sources."
+        "Handheld Gaming Consoles: Formalized and refined scoring criteria and product group classification for game consoles (handheld).",
+        "Tools: Adjusted tool multipliers for heat sources."
       ]
     },
     {
       "version": "2.2",
       "items": [
-        "Overhauled actions + proxy times for clarity and consistency; retired and replaced some actions used in older scorecards.",
-        "Adjusted tool multiplier value (bonus/malus) for T2 Torx / Torx Plus as these have become more widely available."
+        "Proxy Times: Overhauled actions + proxy times for clarity and consistency; retired and replaced some actions used in older scorecards.",
+        "Tools: Adjusted tool multiplier value (bonus/malus) for T2 Torx / Torx Plus as these have become more widely available."
       ]
     },
     {
       "version": "2.3",
       "items": [
-        "Formalized and refined scoring criteria for wireless headphones.",
-        "Added proxy times for common soldering actions and adjusted existing soldering actions."
+        "Wireless Headphones: Formalized and refined scoring criteria for wireless headphones.",
+        "Proxy Times: Added proxy times for common soldering actions and adjusted existing soldering actions."
       ]
     },
     {
       "version": "2.4",
       "items": [
-        "Formalized and refined scoring criteria for portable wireless speakers.",
-        "Added proxy times for actions common to portable wireless speaker repair. Adjusted proxy times for separating thermal compounds.",
-        "Adjusted tool multipliers for combination (i.e. multiple simultaneous) tools."
+        "Portable Wireless Speakers: Formalized and refined scoring criteria for portable wireless speakers.",
+        "Proxy Times: Added proxy times for actions common to portable wireless speaker repair. Adjusted proxy times for separating thermal compounds.",
+        "Tools: Adjusted tool multipliers for combination (i.e. multiple simultaneous) tools."
       ]
     }
   ]

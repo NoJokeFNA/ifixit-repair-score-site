@@ -34,7 +34,7 @@ function loadChartJsIdle() {
     chartJsReady = new Promise((resolve) => {
         const start = () => {
             const s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+            s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js';
             s.async = true;
             s.onload = () => resolve(true);
             s.onerror = () => resolve(false);
@@ -237,6 +237,11 @@ function getFilteredData() {
 function sortData(data) {
     const {key, direction} = currentSort;
     return data.sort((a, b) => {
+        if (key === 'scoring_rubric') {
+            const result = String(a.scorecard_version ?? '').localeCompare(
+                String(b.scorecard_version ?? ''), undefined, {numeric: true});
+            return direction === 'asc' ? result : -result;
+        }
         let A = a[key], B = b[key];
         if (key === 'teardown') {
             // Sort by number of teardowns (teardown_urls length)
@@ -327,8 +332,8 @@ function populateTable(data) {
                 </td>
                 <td class="px-6 py-4">
                   ${d.scorecard_version
-                    ? `<span class="chip chip-m">${d.scorecard_version}</span>`
-                    : `<span class="chip chip-archived">—</span>`
+                    ? `<span class="rubric-version">${d.scorecard_version}</span>`
+                    : `<span class="rubric-version rubric-missing">—</span>`
                   }
                 </td>`;
         // wire checkbox
@@ -946,48 +951,48 @@ function renderRubricTable() {
             return response.json();
         })
         .then(data => {
+            const orderedVersions = [...data.versions].sort((a, b) => a.localeCompare(b, undefined, {numeric: true}));
+            const latest = orderedVersions.at(-1);
+            if (!latest) throw new Error('No rubric versions available');
+            document.getElementById('rubricVersionSummary').textContent = `Versions ${orderedVersions[0]} through ${latest} are available.`;
+            const latestLink = document.getElementById('latestRubricLink');
+            latestLink.href = `https://www.ifixit.com/Wiki/Repairability_Scoring_Rubric_v${encodeURIComponent(latest)}`;
+            latestLink.textContent = `See the current rubric (v${latest})`;
             const thead = rubricTableContainer.querySelector('thead tr');
             data.versions.forEach(version => {
                 const th = document.createElement('th');
                 th.scope = 'col';
                 th.className = 'px-2 py-1 text-center text-xs font-semibold text-gray-300 uppercase';
                 th.innerHTML = `
-                    ${version}
-                    <button class="ml-2 p-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition border border-cyan-400 font-mono text-sm" aria-label="Show details for version ${version}">
-                        Info
+                    <button class="rubric-version-button" aria-haspopup="dialog" aria-label="Show details for version ${version}">
+                        <span>${version}</span><span class="rubric-info-icon" aria-hidden="true">i</span>
                     </button>`;
                 const button = th.querySelector('button');
                 button.addEventListener('click', () => {
-                    console.log(`Opening modal for version ${version}`); // Debug: Confirm click
+                    const versionIndex = orderedVersions.indexOf(version);
+                    const previous = orderedVersions[versionIndex - 1];
+                    const changes = data.revisions.find(r => r.version === version)?.items || [];
+                    const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
                     modalContent.innerHTML = `
-                        <h3 class="text-base font-semibold text-cyan-300 font-mono">Version ${version}</h3>
-                        <div class="space-y-3">
-                            <div>
-                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Criteria</h4>
-                                <div class="grid gap-2">
-                                    ${data.criteria.map(c => `
-                                        <div class="bg-slate-700/50 p-2 rounded-lg">
-                                            <p><strong class="text-cyan-400">${c.name}</strong></p>
-                                            <p>Included: ${c.included[data.versions.indexOf(version)] ? 'Yes' : 'No'}</p>
-                                            <p>Weight: ${c.weights[version] || 'N/A'}</p>
-                                            <p>Notes: ${c.notes[version] || 'N/A'}</p>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Factors Not Considered</h4>
-                                <ul class="list-disc pl-4 text-xs text-gray-100">
-                                    ${data.factors_not_considered.find(f => f.version === version)?.items.map(item => `<li>${item}</li>`).join('') || '<li>None</li>'}
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-semibold text-gray-300 uppercase">Revisions</h4>
-                                <ul class="list-disc pl-4 text-xs text-gray-100">
-                                    ${data.revisions.find(r => r.version === version)?.items.map(item => `<li>${item}</li>`).join('') || '<li>None</li>'}
-                                </ul>
-                            </div>
-                        </div>`;
+                        <h3 id="rubricModalTitle" class="text-base font-semibold font-mono">Rubric ${escape(version)}</h3>
+                        <section class="rubric-revisions">
+                            <h4>${previous ? `Changes from v${escape(previous)}` : 'Initial release'}</h4>
+                            <ul>${changes.length ? changes.map(item => `<li>${escape(item)}</li>`).join('') : '<li>No revision notes published for this version.</li>'}</ul>
+                            <a href="https://www.ifixit.com/Wiki/Repairability_Scoring_Rubric_v${encodeURIComponent(version)}" target="_blank" rel="noopener noreferrer">Read the original rubric ↗</a>
+                        </section>
+                        <section class="rubric-criteria">
+                            <h4>Criteria and weights</h4>
+                            ${data.criteria.map(c => `
+                                <div class="rubric-criterion">
+                                    <strong>${escape(c.name)}</strong>
+                                    <p>${c.included[data.versions.indexOf(version)] ? `Weight: ${escape(c.weights?.[version] ?? 'N/A')}` : 'Not scored in this version'}</p>
+                                    ${c.notes?.[version] ? `<p>${escape(c.notes[version])}</p>` : ''}
+                                </div>`).join('')}
+                        </section>
+                        <section class="rubric-exclusions">
+                            <h4>Factors not considered</h4>
+                            <ul>${(data.factors_not_considered.find(f => f.version === version)?.items || []).map(item => `<li>${escape(item)}</li>`).join('') || '<li>None listed.</li>'}</ul>
+                        </section>`;
                     modal.showModal();
                 });
                 thead.appendChild(th);

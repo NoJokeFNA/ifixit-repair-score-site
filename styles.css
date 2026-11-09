@@ -1093,12 +1093,52 @@ html, body {
 }
 
 .glass-card.chart-section {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(34, 211, 238, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    transition: box-shadow 0.3s ease-in-out;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: none;
 }
 
-.glass-card.chart-section:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(34, 211, 238, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+.chart-heading {
+    margin-bottom: 1rem;
+}
+
+.chart-title {
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.score-chart {
+    position: relative;
+    height: 240px;
+}
+
+.rubric-toggle {
+    padding: 0.375rem 0.625rem;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.rubric-toggle:hover {
+    background-color: rgba(148, 163, 184, 0.12);
+}
+
+.rubric-toggle:focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+}
+
+.rubric-version {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.rubric-missing {
+    color: #64748b;
 }
 
 .glass-card.table-section {
@@ -1604,8 +1644,8 @@ body.theme-light .actions-menu button:hover {
         padding: 1rem !important;
     }
 
-    figure[style] {
-        height: 320px !important;
+    .score-chart {
+        height: 200px;
     }
 
     .table-section .flex.flex-col.sm\:flex-row {
@@ -1644,8 +1684,8 @@ body.theme-light .actions-menu button:hover {
         padding: 1.25rem !important;
     }
 
-    figure[style] {
-        height: 400px !important;
+    .score-chart {
+        height: 220px;
     }
 
     table thead th {
@@ -2091,11 +2131,21 @@ body.theme-light .glass-card {
 }
 
 body.theme-light .glass-card.chart-section {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 15px rgba(2, 132, 199, 0.08), inset 0 1px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: none;
 }
 
-body.theme-light .glass-card.chart-section:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 35px rgba(2, 132, 199, 0.25), inset 0 1px 0 rgba(0, 0, 0, 0.02);
+body.theme-light .chart-title,
+body.theme-light .rubric-toggle,
+body.theme-light .rubric-version {
+    color: #475569;
+}
+
+body.theme-light .rubric-toggle {
+    border-color: #cbd5e1;
+}
+
+body.theme-light .rubric-missing {
+    color: #64748b;
 }
 
 body.theme-light .glass-card.table-section {
@@ -2791,19 +2841,7 @@ input.cmp:checked::before {
 }
 
 #rubricTableContainer:not(.hidden) {
-    margin-top: 2rem;
-}
-
-/* Button styling */
-button[aria-label*="Show details for version"] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-button[aria-label*="Show details for version"]:hover {
-    transform: scale(1.05);
+    margin-top: 1.25rem;
 }
 
 /* Modal styling */
@@ -2987,3 +3025,60 @@ body.theme-light .segmented .btn-neon.is-active {
         flex-wrap: wrap;
     }
 }
+
+/* Rubric details use quiet controls; each version heading opens its details. */
+.rubric-table th, .rubric-table td {
+    padding: 0.625rem 0.75rem;
+}
+.rubric-table th:not(:first-child) {
+    min-width: 4.5rem;
+}
+.rubric-version-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0;
+    color: #cbd5e1;
+    font-weight: 500;
+    cursor: pointer;
+}
+.rubric-info-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 0.875rem;
+    height: 0.875rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 0.625rem;
+    text-transform: none;
+    color: #94a3b8;
+}
+.rubric-version-button:hover { color: #67e8f9; }
+.rubric-version-button:focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+body.theme-light .rubric-version-button { color: #475569; }
+body.theme-light .rubric-version-button:hover { color: #0369a1; }
+body.theme-light .rubric-table td { color: #334155; }
+#rubricModal {
+    margin: auto;
+    width: min(34rem, calc(100vw - 2rem));
+    max-width: 34rem;
+    max-height: 75vh;
+    padding: 1.5rem;
+}
+body.theme-light #rubricModal { background: #fff; color: #334155; }
+body.theme-light #rubricModal h4,
+body.theme-light #rubricModal p,
+body.theme-light #rubricModal ul { color: #334155; }
+
+#rubricModal { box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25); }
+#rubricModal section { margin-top: 1.25rem; }
+#rubricModal h4 { font-weight: 600; margin-bottom: 0.625rem; }
+#rubricModal ul { padding-left: 1rem; list-style: disc; }
+#rubricModal li + li { margin-top: 0.625rem; }
+#rubricModal .rubric-revisions a { display: inline-block; margin-top: 0.75rem; text-decoration: underline; }
+.rubric-criterion { padding: 0.625rem 0; border-bottom: 1px solid rgba(148, 163, 184, 0.18); }
+.rubric-criterion p { margin-top: 0.25rem; color: #cbd5e1; }
