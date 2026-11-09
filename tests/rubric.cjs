@@ -62,7 +62,8 @@ const root = path.resolve(__dirname, '..');
         for (const light of [false, true]) {
           await page.evaluate(value => document.body.classList.toggle('theme-light', value), light);
           assert((await page.locator('.score-chart').boundingBox()).height <= 240);
-          assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+          await page.waitForFunction(() => document.documentElement.scrollWidth <= innerWidth, null, {timeout: 5000});
+          assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `Rubric overflow at ${width}px (${light ? 'light' : 'dark'}, future=${future})`);
           if (!future && process.env.WEB_TEST_OUTPUT) {
             await page.locator('.chart-section').screenshot({path: path.join(process.env.WEB_TEST_OUTPUT, `rubric-${width}-${light ? 'light' : 'dark'}.png`)});
           }

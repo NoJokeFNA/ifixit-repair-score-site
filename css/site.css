@@ -1783,3 +1783,5 @@ body.theme-light .table-section h2 { color: #6d28d9; }
 
 .device-table td[colspan] { position: static !important; }
 .table-status { max-width: calc(100vw - 5rem); text-align: left; }
+/* Keep Chart.js's previous inline canvas width inside its parent during resize. */
+#repairabilityChart { max-width: 100%; }
