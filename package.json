@@ -1,0 +1,14 @@
+{
+  "name": "ifixit-repair-score-site",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/vendor.mjs && tailwindcss -i css/input.css -o styles.css --minify",
+    "check:assets": "npm run build && git diff --exit-code -- styles.css assets"
+  },
+  "devDependencies": {
+    "@fontsource-variable/jetbrains-mono": "5.2.8",
+    "@tailwindcss/cli": "4.3.5",
+    "chart.js": "4.6.1",
+    "tailwindcss": "4.3.5"
+  }
+}

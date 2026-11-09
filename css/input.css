@@ -1,0 +1,12 @@
+@import "tailwindcss" source(none);
+@import "./site.css";
+
+@source "../index.html";
+@source "../script.js";
+@source "../chart-module.js";
+
+@theme {
+    --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --container-6xl: 90rem;
+}

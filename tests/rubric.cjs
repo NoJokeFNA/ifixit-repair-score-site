@@ -22,10 +22,6 @@ const root = path.resolve(__dirname, '..');
       page.on('pageerror', e => errors.push(e.message));
       await page.route('**/*', route => {
         const url = new URL(route.request().url());
-        if (url.hostname === 'cdn.jsdelivr.net') {
-          assert.equal(url.pathname, '/npm/chart.js@4.6.1/dist/chart.umd.min.js');
-          return route.fulfill({path: process.env.CHART_JS_PATH, contentType: 'text/javascript'});
-        }
         if (url.hostname !== 'site.test') return route.abort();
         if (url.pathname === '/rubric.json') return route.fulfill({json: rubric});
         return route.fulfill({path: path.join(root, url.pathname === '/' ? 'index.html' : url.pathname)});

@@ -51,6 +51,8 @@
           data: buckets,
           backgroundColor: gradient,
           borderRadius: 5,
+          borderWidth: buckets.map((_, index) => String(index) === document.getElementById('scoreFilter')?.value ? 2 : 0),
+          borderColor: isLight ? '#0f172a' : '#e2e8f0',
           barPercentage: 0.65,
           categoryPercentage: 0.8
         }]
@@ -104,20 +106,10 @@
         onClick: (event, elements) => {
           if (elements.length) {
             const score = elements[0].index;
-            const si = document.getElementById('searchInput');
-            const bf = document.getElementById('brandFilter');
-            if (si) si.value = '';
-            if (bf) bf.value = '';
-            document.getElementById('scoreFilter')?.remove();
-            const scoreFilter = document.createElement('input');
-            scoreFilter.type = 'hidden';
-            scoreFilter.id = 'scoreFilter';
-            scoreFilter.value = score;
-            const tableParent = document.getElementById('deviceTable')?.parentElement;
-            if (tableParent) tableParent.appendChild(scoreFilter);
-            if (typeof window.renderTable === 'function') window.renderTable();
-            if (typeof window.stateToQuery === 'function') window.stateToQuery();
-            if (typeof window.notifyAction === 'function') window.notifyAction(`Filtered by score ${score}. ${window.lastFiltered?.length ?? ''} results.`);
+            const active = document.getElementById('scoreFilter')?.value;
+            if (typeof window.setScoreFilter === 'function') {
+              window.setScoreFilter(active === String(score) ? null : score);
+            }
           }
         }
       }

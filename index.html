@@ -7,8 +7,6 @@
     <meta name="description"
           content="Discover the interactive iFixit Repairability Dashboard: search, filter, and sort devices, analyze score distribution, and export data as CSV or JSON.">
     <link rel="canonical" href="/index.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta property="og:title" content="iFixit Repairability Scores - Dashboard">
     <meta property="og:description"
           content="Explore repairability scores, filter by brand, and view teardowns. Export CSV/JSON and share deep links.">
@@ -18,57 +16,62 @@
     <meta name="twitter:title" content="iFixit Repairability Scores — Dashboard">
     <meta name="twitter:description" content="Explore repairability scores, filter by brand, and view teardowns.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="preload" href="assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="assets/fonts/fonts.css" rel="stylesheet"/>
     <link href="styles.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-          rel="stylesheet">
 </head>
 <body class="bg-slate-900 text-gray-100 overflow-x-hidden">
 <canvas id="bgCanvas"></canvas>
 
 <header class="bg-slate-950/80 py-6 border-b border-slate-800 shadow-2xl">
-    <div class="container mx-auto px-6 grid gap-4 md:grid-cols-3 items-start">
+    <div class="page-shell header-layout">
         <div>
             <h1 class="text-4xl font-bold neon-glow">iFixit Repairability Scores</h1>
             <p class="mt-1 text-cyan-400 font-mono text-sm">Dashboard Edition</p>
         </div>
-        <div class="glass-card p-4 text-gray-200 header-info">
-            <div class="flex items-start gap-2">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
-                <div>
-                    <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's
-                        repairability scores.</p>
-                    <p class="header-info-text">
-                        Inspired by
-                        <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores/" target="_blank"
-                           class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
-                        <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
-                           class="text-cyan-400 underline">the original webpage</a>.
-                        Rewritten with latest data.
-                    </p>
+        <details class="about-dashboard">
+            <summary>About this dashboard</summary>
+            <div class="about-content">
+                <div class="glass-card p-4 text-gray-200 header-info">
+                    <div class="flex items-start gap-2">
+                        <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                        <div>
+                            <p class="header-info-text font-semibold mb-1">The officially unofficial listing of iFixit's
+                                repairability scores.</p>
+                            <p class="header-info-text">
+                                Inspired by
+                                <a href="https://github.com/xiongchiamiov/ifixit-repairability-scores/" target="_blank"
+                                   class="text-cyan-400 underline">xiongchiamiov's GitHub</a> and
+                                <a href="https://changedmy.name/ifixit-repairability-scores/" target="_blank"
+                                   class="text-cyan-400 underline">the original webpage</a>.
+                                Rewritten with latest data.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-2 header-info-divider"></div>
+                </div>
+                <div class="glass-card p-4 text-gray-200 header-info">
+                    <div class="flex items-start gap-2">
+                        <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
+                        <p class="header-info-text">
+                            Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
+                            inspect teardown links labeled Featured, Community, and Archived.
+                            <br/>
+                            <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
+                               class="text-cyan-400 underline">View source code on GitHub</a>
+                            <br/>
+                        </p>
+                    </div>
+                    <div class="mt-2 header-info-divider"></div>
                 </div>
             </div>
-            <div class="mt-2 header-info-divider"></div>
-        </div>
-        <div class="glass-card p-4 text-gray-200 header-info">
-            <div class="flex items-start gap-2">
-                <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
-                <p class="header-info-text">
-                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
-                    inspect teardown links labeled Featured, Community, and Archived.
-                    <br/>
-                    <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
-                       class="text-cyan-400 underline">View source code on GitHub</a>
-                    <br/>
-                </p>
-            </div>
-            <div class="mt-2 header-info-divider"></div>
-        </div>
+        </details>
     </div>
 </header>
 
-<main id="content" class="container mx-auto px-6 py-12 space-y-16">
+<main id="content" class="page-shell dashboard-content">
     <section>
-        <div class="glass-card chart-section w-full max-w-6xl mx-auto">
+        <div class="glass-card chart-section w-full mx-auto">
             <div class="chart-heading flex justify-between items-center">
                 <h2 class="chart-title font-semibold font-mono">
                 <span class="relative inline-flex items-center gap-2">
@@ -112,6 +115,8 @@
                 </figcaption>
                 <div id="chartError" class="chart-error hidden" role="alert">Failed to load chart</div>
             </figure>
+            <div id="chartFilters" class="score-filter-status" aria-live="polite"></div>
+            <p class="chart-help">Select a bar to filter devices by score. Select it again to clear.</p>
             <div id="rubricTableContainer" class="hidden mt-6 overflow-x-auto rounded-xl max-h-96">
                 <div class="rubric-legend mt-2 mb-2 text-xs text-slate-300 font-mono flex items-start gap-2"
                          role="note">
@@ -142,73 +147,76 @@
     </section>
 
     <section>
-        <div class="glass-card table-section p-10 w-full max-w-6xl mx-auto">
+        <div class="glass-card table-section p-10 w-full mx-auto">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-semibold text-violet-300 font-mono">Device Details</h2>
                 <span id="deviceCount" aria-live="polite" class="text-sm text-cyan-400 font-mono"></span>
             </div>
-            <div class="mb-6">
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-wider text-slate-400">Tags</span>
-                    <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
-                </div>
-                <ul class="difficulty-chips flex flex-wrap gap-3 tags-legend" role="list">
-                    <li class="difficulty-item">
-                        <span class="chip chip-featured"
-                              title="Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
-                        <p class="chip-desc">Featured Guide — This guide has been found to be exceptionally cool by the
-                            iFixit staff.</p>
-                    </li>
-                    <li class="difficulty-item">
-                        <span class="chip chip-community"
-                              title="Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
-                        <p class="chip-desc">Community-Contributed Guide — An awesome member of our community made this
-                            guide. It was not created by iFixit staff.</p>
-                    </li>
-                    <li class="difficulty-item">
-                        <span class="chip chip-archived"
-                              title="Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
-                        <p class="chip-desc">Archived Guide — This guide is retained solely for historical purposes. Use
-                            the updated version of the guide to perform your repair.</p>
-                    </li>
-                </ul>
-                <!-- Difficulty Levels Legend -->
-                <div class="mt-6 difficulty-legend">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="text-xs uppercase tracking-wider text-slate-400">Difficulty Levels</span>
+            <details class="dashboard-legend">
+                <summary>Tags and difficulty explained</summary>
+                <div class="mb-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-slate-400">Tags</span>
                         <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
                     </div>
-                    <ul class="difficulty-chips flex flex-wrap gap-3" role="list">
+                    <ul class="difficulty-chips flex flex-wrap gap-3 tags-legend" role="list">
                         <li class="difficulty-item">
-                            <span class="chip chip-vd"
-                                  title="Requires disassembling almost all of the device. Not recommended for non-professionals.">Very Difficult</span>
-                            <p class="chip-desc">Requires disassembling almost all of the device. Not recommended for
-                                non-professionals.</p>
+                            <span class="chip chip-featured"
+                                  title="Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
+                            <p class="chip-desc">Featured Guide — This guide has been found to be exceptionally cool by the
+                                iFixit staff.</p>
                         </li>
                         <li class="difficulty-item">
-                            <span class="chip chip-d" title="Requires significant disassembly and repair knowledge.">Difficult</span>
-                            <p class="chip-desc">Requires significant disassembly and repair knowledge.</p>
+                            <span class="chip chip-community"
+                                  title="Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
+                            <p class="chip-desc">Community-Contributed Guide — An awesome member of our community made this
+                                guide. It was not created by iFixit staff.</p>
                         </li>
                         <li class="difficulty-item">
-                            <span class="chip chip-m"
-                                  title="Requires some disassembly, additional tools, and basic repair knowledge.">Moderate</span>
-                            <p class="chip-desc">Requires some disassembly, additional tools, and basic repair
-                                knowledge.</p>
-                        </li>
-                        <li class="difficulty-item">
-                            <span class="chip chip-e"
-                                  title="Requires minimal disassembly, requires only Phillips or flat-head screwdriver.">Easy</span>
-                            <p class="chip-desc">Requires minimal disassembly, requires only Phillips or flat-head
-                                screwdriver.</p>
-                        </li>
-                        <li class="difficulty-item">
-                            <span class="chip chip-ve" title="Does not require opening device.">Very Easy</span>
-                            <p class="chip-desc">Does not require opening device.</p>
+                            <span class="chip chip-archived"
+                                  title="Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
+                            <p class="chip-desc">Archived Guide — This guide is retained solely for historical purposes. Use
+                                the updated version of the guide to perform your repair.</p>
                         </li>
                     </ul>
+                    <!-- Difficulty Levels Legend -->
+                    <div class="mt-6 difficulty-legend">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs uppercase tracking-wider text-slate-400">Difficulty Levels</span>
+                            <div class="h-px flex-1 bg-gradient-to-r from-slate-700 via-slate-600 to-transparent"></div>
+                        </div>
+                        <ul class="difficulty-chips flex flex-wrap gap-3" role="list">
+                            <li class="difficulty-item">
+                                <span class="chip chip-vd"
+                                      title="Requires disassembling almost all of the device. Not recommended for non-professionals.">Very Difficult</span>
+                                <p class="chip-desc">Requires disassembling almost all of the device. Not recommended for
+                                    non-professionals.</p>
+                            </li>
+                            <li class="difficulty-item">
+                                <span class="chip chip-d" title="Requires significant disassembly and repair knowledge.">Difficult</span>
+                                <p class="chip-desc">Requires significant disassembly and repair knowledge.</p>
+                            </li>
+                            <li class="difficulty-item">
+                                <span class="chip chip-m"
+                                      title="Requires some disassembly, additional tools, and basic repair knowledge.">Moderate</span>
+                                <p class="chip-desc">Requires some disassembly, additional tools, and basic repair
+                                    knowledge.</p>
+                            </li>
+                            <li class="difficulty-item">
+                                <span class="chip chip-e"
+                                      title="Requires minimal disassembly, requires only Phillips or flat-head screwdriver.">Easy</span>
+                                <p class="chip-desc">Requires minimal disassembly, requires only Phillips or flat-head
+                                    screwdriver.</p>
+                            </li>
+                            <li class="difficulty-item">
+                                <span class="chip chip-ve" title="Does not require opening device.">Very Easy</span>
+                                <p class="chip-desc">Does not require opening device.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="device-controls flex flex-col sm:flex-row justify-between mb-6 gap-4">
+            </details>
+            <div class="device-controls">
                 <div id="actionLive" aria-live="polite" class="sr-only"></div>
                 <input type="text"
                        id="searchInput"
@@ -220,7 +228,7 @@
                         class="px-4 py-2 rounded-lg bg-slate-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400">
                     <option value="">All manufacturers</option>
                 </select>
-                <div class="flex items-center gap-3">
+                <div class="listing-scope">
                     <div class="segmented" role="group" aria-label="Device listing scope">
                         <button type="button" id="segScored" class="px-3 py-2 btn-neon transition seg-left"
                                 aria-pressed="true">Scored only
@@ -229,22 +237,29 @@
                                 aria-pressed="false">All devices
                         </button>
                     </div>
-                    <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu"
-                            aria-expanded="false" title="Export data">Export ▾
-                    </button>
-                    <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density:
-                        Compact
-                    </button>
-                    <button id="resetFilters" class="px-3 py-2 btn-neon transition" title="Reset all filters">Reset
-                    </button>
-                    <button id="themeToggle" class="px-3 py-2 btn-neon transition theme-switch" role="switch"
-                            aria-checked="false" title="Toggle color theme">Theme
-                    </button>
                 </div>
+                <details class="more-options">
+                    <summary>More options</summary>
+                    <div class="more-options-content">
+                        <button id="exportBtn" class="px-3 py-2 btn-neon transition" aria-haspopup="menu"
+                                aria-expanded="false" title="Export data">Export ▾
+                        </button>
+                        <button id="densityToggle" class="px-3 py-2 btn-neon transition" title="Toggle row density">Density:
+                            Compact
+                        </button>
+                        <button id="resetFilters" class="px-3 py-2 btn-neon transition" title="Reset all filters">Reset
+                        </button>
+                    </div>
+                </details>
+                <button id="themeToggle" class="px-3 py-2 btn-neon transition theme-switch" role="switch"
+                        aria-checked="false" title="Toggle color theme">Theme
+                </button>
             </div>
-            <div id="activeFilters" class="mb-3 items-center gap-2"></div>
-            <div class="overflow-x-auto rounded-xl">
-                <table class="min-w-full divide-y divide-slate-700" aria-describedby="chartCaption">
+            <div id="activeFilters" class="score-filter-status" aria-live="polite"></div>
+            <p class="table-scroll-hint" id="tableScrollHint">Swipe sideways for teardowns, manufacturer and France score. Device names stay visible.</p>
+            <div class="device-table-scroll overflow-x-auto rounded-xl" role="region" aria-label="Device scores; scroll horizontally for more columns" tabindex="0">
+                <table class="device-table min-w-full divide-y divide-slate-700" aria-describedby="tableScrollHint">
+                    <colgroup><col class="col-select"><col class="col-device"><col class="col-score"><col class="col-rubric"><col class="col-teardown"><col class="col-brand"><col class="col-france"></colgroup>
                     <caption class="sr-only">Device repairability scores table</caption>
                     <thead class="bg-slate-800/80 sticky top-0 z-10">
                     <tr>
@@ -254,6 +269,14 @@
                             class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
                             Device <span class="sort-icon inline-block ml-1"></span>
                         </th>
+                        <th scope="col" data-sort-key="repairability_score" role="button" tabindex="0" aria-sort="none"
+                            class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
+                            Score <span class="sort-icon inline-block ml-1"></span>
+                        </th>
+                        <th scope="col" data-sort-key="scoring_rubric" role="button" tabindex="0" aria-sort="none"
+                            class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
+                            Rubric <span class="sort-icon inline-block ml-1"></span>
+                        </th>
                         <th scope="col" data-sort-key="teardown" role="button" tabindex="0" aria-sort="none"
                             class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
                             Teardown <span class="sort-icon inline-block ml-1"></span>
@@ -262,18 +285,10 @@
                             class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
                             Manufacturer <span class="sort-icon inline-block ml-1"></span>
                         </th>
-                        <th scope="col" data-sort-key="repairability_score" role="button" tabindex="0" aria-sort="none"
-                            class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
-                            Score <span class="sort-icon inline-block ml-1"></span>
-                        </th>
                         <th scope="col" data-sort-key="france_repairability_score" role="button" tabindex="0" aria-sort="none"
                             class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
                             Score (France)
                             <span class="chip chip-featured ml-2" style="font-size:10px;padding:2px 6px;">Beta</span>
-                        </th>
-                        <th scope="col" data-sort-key="scoring_rubric" role="button" tabindex="0" aria-sort="none"
-                            class="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded">
-                            Rubric <span class="sort-icon inline-block ml-1"></span>
                         </th>
                     </tr>
                     </thead>

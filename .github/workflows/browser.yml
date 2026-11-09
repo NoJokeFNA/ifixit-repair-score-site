@@ -2,7 +2,7 @@ name: Browser regression checks
 on:
   push:
     branches: [gh-pages]
-    paths: ['*.html', '*.css', '*.js', '*.json', 'tests/**', '.github/workflows/browser.yml']
+    paths: ['*.html', '*.css', '*.js', '*.json', 'css/**', 'scripts/**', 'assets/**', 'tests/**', '.github/workflows/browser.yml']
   pull_request:
     branches: [gh-pages]
   workflow_dispatch:
@@ -18,14 +18,15 @@ jobs:
           node-version: '24'
       - name: Install browser tools
         run: |
+          npm ci
+          npm run check:assets
           npm install --prefix /tmp/browser-tools playwright@1.65.0
           /tmp/browser-tools/node_modules/.bin/playwright install --with-deps chromium
-          curl -fLsS https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js -o /tmp/chart.js
       - name: Check dashboard and all rubric versions
         env:
           NODE_PATH: /tmp/browser-tools/node_modules
-          CHART_JS_PATH: /tmp/chart.js
         run: |
           export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
           node tests/browser.cjs
           node tests/rubric.cjs
+          node tests/responsive.cjs

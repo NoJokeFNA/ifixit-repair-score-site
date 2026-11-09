@@ -34,7 +34,7 @@ function loadChartJsIdle() {
     chartJsReady = new Promise((resolve) => {
         const start = () => {
             const s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js';
+            s.src = 'assets/vendor/chart.umd.min.js';
             s.async = true;
             s.onload = () => resolve(true);
             s.onerror = () => resolve(false);
@@ -211,14 +211,14 @@ async function loadData() {
         if (devicesData.length) {
             notifyAction('Could not refresh data. Showing cached devices.');
         } else {
-            tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-rose-500" role="alert">Failed to load data. <button type="button" class="btn-neon px-3 py-2" id="retryData">Retry</button></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-rose-500" role="alert"><div class="table-status">Failed to load data. <button type="button" class="btn-neon px-3 py-2" id="retryData">Retry</button></div></td></tr>';
             document.getElementById('retryData').addEventListener('click', loadData);
             chartError.classList.remove('hidden');
         }
     }
 }
 
-function getFilteredData() {
+function getFilteredData({ignoreScore = false} = {}) {
     // Builds filtered dataset and also exposes the "last filtered result" for exports
     const searchValue = document.getElementById('searchInput').value.toLowerCase();
     const brandValue = document.getElementById('brandFilter').value;
@@ -228,7 +228,7 @@ function getFilteredData() {
     return devicesData.filter(d => {
         const matchesSearch = d.name.toLowerCase().includes(searchValue);
         const matchesBrand = !brandValue || d.brand === brandValue;
-        const matchesScore = !scoreFilter || d.repairability_score === parseInt(scoreFilter);
+        const matchesScore = ignoreScore || !scoreFilter || d.repairability_score === parseInt(scoreFilter);
         const hasScoreOk = includeNoScore ? true : (d.repairability_score != null);
         return matchesSearch && matchesBrand && matchesScore && hasScoreOk;
     });
@@ -283,7 +283,7 @@ function populateTable(data) {
     const tbody = document.getElementById('deviceTable');
     tbody.innerHTML = '';
     if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No devices found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-gray-500"><div class="table-status">No devices found</div></td></tr>';
         return;
     }
 
@@ -318,16 +318,9 @@ function populateTable(data) {
                 <td class="px-6 py-4 font-medium">
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
                 </td>
-                <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
-                <td class="px-6 py-4">${d.brand ?? '—'}</td>
                 <td class="px-6 py-4">
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
                         ${d.repairability_score ?? '—'}/10
-                    </span>
-                </td>
-                <td class="px-6 py-4">
-                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
-                        ${d.france_repairability_score ?? '—'}/10
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -335,6 +328,13 @@ function populateTable(data) {
                     ? `<span class="rubric-version">${d.scorecard_version}</span>`
                     : `<span class="rubric-version rubric-missing">—</span>`
                   }
+                </td>
+                <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
+                <td class="px-6 py-4">${d.brand ?? '—'}</td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
+                        ${d.france_repairability_score ?? '—'}/10
+                    </span>
                 </td>`;
         // wire checkbox
         setTimeout(() => {
@@ -641,7 +641,7 @@ function renderTable(options = {}) {
         loadChartModuleIdle().then(() => {
             try {
                 if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
-                    window.ChartModule.renderChart(data);
+                    window.ChartModule.renderChart(getFilteredData({ignoreScore: true}));
                 }
             } catch (e) {
                 console.error('Chart rendering failed:', e);
@@ -692,7 +692,7 @@ function applyTheme() {
     }
     // Re-render chart with new palette if present
     try {
-        const data = window.lastFiltered || devicesData || [];
+        const data = getFilteredData({ignoreScore: true});
         if (data.length) {
             loadChartModuleIdle().then(() => {
                 if (window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
@@ -873,12 +873,12 @@ function queryToState() {
     const noscore = params.get('noscore') === '1';
     document.getElementById('searchInput').value = q;
     document.getElementById('brandFilter').dataset.pendingBrand = brand;
-    if (score) {
+    if (/^(?:[0-9]|10)$/.test(score)) {
         const scoreFilter = document.createElement('input');
         scoreFilter.type = 'hidden';
         scoreFilter.id = 'scoreFilter';
         scoreFilter.value = score;
-        document.getElementById('deviceTable').parentElement.appendChild(scoreFilter);
+        document.body.appendChild(scoreFilter);
     }
     if (sort.includes(':')) {
         const [key, dir] = sort.split(':');
@@ -903,31 +903,44 @@ function notifyAction(msg) {
     }
 }
 
+function setScoreFilter(score) {
+    document.getElementById('scoreFilter')?.remove();
+    if (score !== null && score !== '' && Number.isInteger(Number(score)) && Number(score) >= 0 && Number(score) <= 10) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.id = 'scoreFilter';
+        input.value = String(Number(score));
+        document.body.appendChild(input);
+    }
+    renderTable();
+    stateToQuery();
+    notifyAction(score === null ? 'Score filter cleared' : `Filtered by score ${score}. ${window.lastFiltered.length} results.`);
+}
+
 function renderActiveFiltersChip() {
-    const wrap = document.getElementById('activeFilters');
-    if (!wrap) return;
     const score = document.getElementById('scoreFilter')?.value;
-    wrap.innerHTML = '';
-    let any = false;
-    if (score !== undefined && score !== null && score !== '') {
+    for (const id of ['activeFilters', 'chartFilters']) {
+        const wrap = document.getElementById(id);
+        if (!wrap) continue;
+        wrap.replaceChildren();
+        const active = score !== undefined && score !== null && score !== '';
+        wrap.classList.toggle('show', active);
+        if (!active) continue;
         const chip = document.createElement('div');
         chip.className = 'filter-chip';
-        chip.innerHTML = `<span>Score: ${score}</span><button type="button" aria-label="Clear score filter">✕</button>`;
-        chip.querySelector('button').addEventListener('click', () => {
-            document.getElementById('scoreFilter')?.remove();
-            renderTable();
-            stateToQuery();
-            notifyAction('Score filter cleared');
+        const label = document.createElement('span');
+        label.textContent = `Score: ${score}/10`;
+        const clear = document.createElement('button');
+        clear.type = 'button';
+        clear.textContent = 'Clear filter ×';
+        clear.setAttribute('aria-label', 'Clear score filter');
+        clear.addEventListener('click', () => {
+            setScoreFilter(null);
+            document.getElementById(id === 'chartFilters' ? 'toggleRubricTable' : 'searchInput').focus({preventScroll: true});
         });
+        chip.append(label, clear);
         wrap.appendChild(chip);
-        any = true;
     }
-    const includeNo = document.getElementById('includeNoScore')?.checked === true;
-    if (includeNo) {
-        // Per request, do not show a chip for "All devices" anymore.
-        // Keep 'any' unchanged; we no longer toggle based on includeNo.
-    }
-    wrap.classList.toggle('show', any);
 }
 
 function renderRubricTable() {
@@ -1063,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeBtn = document.getElementById('themeToggle');
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
-            const curr = getStoredTheme();
+            const curr = computeActiveTheme();
             // Toggle only between light and dark; clicking sets explicit preference
             const next = curr === 'light' ? 'dark' : 'light';
             storage.setItem('theme', next);
@@ -1074,7 +1087,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Load Chart + chart module during idle; render only when we have data
     loadChartModuleIdle().then(() => {
-        const data = window.lastFiltered || devicesData;
+        const data = getFilteredData({ignoreScore: true});
         if (data && data.length && window.ChartModule && typeof window.ChartModule.renderChart === 'function') {
             try {
                 window.ChartModule.renderChart(data);
@@ -1410,17 +1423,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable();
         notifyAction('Selection cleared');
     });
-
-    // Auto wide layout for ultrawide screens
-    function applyWideLayoutAuto() {
-        const shouldWide = window.innerWidth >= 1920; // 2K and above
-        document.body.classList.toggle('layout-wide', shouldWide);
-    }
-
-    applyWideLayoutAuto();
-    window.addEventListener('resize', () => {
-        applyWideLayoutAuto();
-    }, {passive: true});
 
     // Export helpers used by actions menu
     function toCsvRow(fields) {
