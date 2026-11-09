@@ -318,9 +318,16 @@ function populateTable(data) {
                 <td class="px-6 py-4 font-medium">
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
                 </td>
+                <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
+                <td class="px-6 py-4">${d.brand ?? '—'}</td>
                 <td class="px-6 py-4">
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
                         ${d.repairability_score ?? '—'}/10
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
+                        ${d.france_repairability_score ?? '—'}/10
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -328,13 +335,6 @@ function populateTable(data) {
                     ? `<span class="rubric-version">${d.scorecard_version}</span>`
                     : `<span class="rubric-version rubric-missing">—</span>`
                   }
-                </td>
-                <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
-                <td class="px-6 py-4">${d.brand ?? '—'}</td>
-                <td class="px-6 py-4">
-                    <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.france_repairability_score)}">
-                        ${d.france_repairability_score ?? '—'}/10
-                    </span>
                 </td>`;
         // wire checkbox
         setTimeout(() => {
@@ -1307,6 +1307,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Density toggle and Reset
+    const moreOptionsBtn = document.getElementById('moreOptionsToggle');
+    const moreOptionsPanel = document.getElementById('moreOptionsPanel');
+    moreOptionsBtn.addEventListener('click', () => {
+        const expanded = moreOptionsBtn.getAttribute('aria-expanded') === 'true';
+        moreOptionsBtn.setAttribute('aria-expanded', String(!expanded));
+        moreOptionsPanel.hidden = expanded;
+    });
+
     const densityBtn = document.getElementById('densityToggle');
     if (densityBtn) {
         densityBtn.addEventListener('click', () => {

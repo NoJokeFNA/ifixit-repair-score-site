@@ -29,8 +29,8 @@ new rubric data. Both scripts run in the browser regression workflow on gh-pages
 
 `responsive.cjs` covers 3440×1440, 1920×1080, 1280×720, 768×1024,
 1024×768, 390×844, and 320×740 in both themes. It checks that search is on
-the first screen, Score and Rubric are initially visible, device names stay fixed
-while the table scrolls, and expandable controls remain accessible. Actual chart
+the first screen, the original column order is preserved, the More options
+trigger stays in place, and expandable controls remain accessible. Actual chart
 clicks test selection, same-bar cancellation, both clear buttons, URL/reload
 persistence, and Reset. Search/manufacturer filters must survive a chart click;
 other bars must remain available. No external asset request is allowed.

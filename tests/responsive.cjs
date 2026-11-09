@@ -34,25 +34,23 @@ const viewports = [
         const search = await page.locator('#searchInput').boundingBox();
         assert(search.y < height, `${name}: search is below first screen (${search.y})`);
         if (width >= 2560) assert((await page.locator('.table-section').boundingBox()).width > 1900);
-        const tableViewport = await page.locator('.device-table-scroll').boundingBox();
-        for (const key of ['repairability_score', 'scoring_rubric']) {
-          const cell = await page.locator(`[data-sort-key="${key}"]`).boundingBox();
-          assert(cell.x >= tableViewport.x && cell.x + cell.width <= tableViewport.x + tableViewport.width + 1, `${name}: ${key} initially clipped`);
-        }
-        const nameBefore = await page.locator('#deviceTable tr:first-child td:nth-child(2)').boundingBox();
-        await page.locator('.device-table-scroll').evaluate(el => el.scrollLeft = 180);
-        const nameAfter = await page.locator('#deviceTable tr:first-child td:nth-child(2)').boundingBox();
-        assert(Math.abs(nameBefore.x - nameAfter.x) < 1, `${name}: device name did not stay fixed`);
-        await page.locator('.device-table-scroll').evaluate(el => el.scrollLeft = 0);
+        const columnKeys = await page.locator('.device-table th[data-sort-key]').evaluateAll(headers => headers.map(th => th.dataset.sortKey));
+        assert.deepEqual(columnKeys, ['name', 'teardown', 'brand', 'repairability_score', 'france_repairability_score', 'scoring_rubric']);
         await page.locator('.dashboard-legend summary').click();
         assert(await page.locator('.tags-legend').isVisible());
         await page.locator('.dashboard-legend summary').click();
         await page.locator('.about-dashboard summary').click();
         assert(await page.locator('.header-info').first().isVisible());
         await page.locator('.about-dashboard summary').click();
-        await page.locator('.more-options summary').click();
+        await page.locator('#moreOptionsToggle').scrollIntoViewIfNeeded();
+        const optionsBefore = await page.locator('#moreOptionsToggle').boundingBox();
+        await page.locator('#moreOptionsToggle').click();
         assert(await page.locator('#exportBtn').isVisible());
-        await page.locator('.more-options summary').click();
+        const optionsOpen = await page.locator('#moreOptionsToggle').boundingBox();
+        assert(Math.abs(optionsBefore.x - optionsOpen.x) < 1 && Math.abs(optionsBefore.y - optionsOpen.y) < 1, `${name}: More options moved when opened`);
+        await page.locator('#moreOptionsToggle').click();
+        const optionsClosed = await page.locator('#moreOptionsToggle').boundingBox();
+        assert(Math.abs(optionsBefore.x - optionsClosed.x) < 1 && Math.abs(optionsBefore.y - optionsClosed.y) < 1, `${name}: More options moved when closed`);
         const unfiltered = await page.locator('#deviceTable tr').count();
         await page.locator('#brandFilter').selectOption('Apple');
         await page.locator('#searchInput').fill('iPhone');
@@ -93,12 +91,12 @@ const viewports = [
         assert.equal(await page.locator('#scoreFilter').inputValue(), '6');
         await page.locator('#activeFilters button').click();
         assert.equal(await page.locator('#scoreFilter').count(), 0);
-        await page.locator('.more-options summary').click();
+        await page.locator('#moreOptionsToggle').click();
         await page.locator('#resetFilters').click();
         assert.equal(await page.locator('#searchInput').inputValue(), '');
         assert.equal(await page.locator('#brandFilter').inputValue(), '');
         assert.equal(await page.locator('#deviceTable tr').count(), unfiltered);
-        await page.locator('.more-options summary').click();
+        await page.locator('#moreOptionsToggle').click();
         await page.evaluate(() => scrollTo(0, 0));
         if (output) {
           await page.screenshot({path: path.join(output, `responsive-${name}-${colorScheme}.png`)});
