@@ -2,7 +2,7 @@ name: Browser regression checks
 on:
   push:
     branches: [gh-pages]
-    paths: ['*.html', '*.css', '*.js', '*.json', 'css/**', 'scripts/**', 'assets/**', 'tests/**', '.github/workflows/browser.yml']
+    paths: ['*.html', '*.css', '*.js', '*.json', 'css/**', 'scripts/**', 'assets/**', 'design-preview/**', 'tests/**', '.github/workflows/browser.yml']
   pull_request:
     branches: [gh-pages]
   workflow_dispatch:
@@ -32,3 +32,4 @@ jobs:
           node tests/responsive.cjs
           node tests/data.cjs
           node tests/france.cjs
+          node tests/design-preview.cjs
