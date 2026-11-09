@@ -393,10 +393,7 @@ def print_device_data(
                 limiter.acquire()
                 data = client.get_category(device_name=ifixit_title, params=None)
                 repairability_score = data.get("repairability_score")
-                manufacturer = next(
-                    (entry.get("value") for entry in data.get("info", []) if entry.get("name") == "Device Brand"),
-                    None,
-                )
+                manufacturer = _DeviceDataUtils.device_brand(data)
 
                 repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
                 return (

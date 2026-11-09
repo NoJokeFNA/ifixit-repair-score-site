@@ -8,6 +8,28 @@ class _DeviceDataUtils:
         pass
 
     @staticmethod
+    def device_brand(category: dict) -> str | None:
+        """Read explicit brand metadata, then use a verified brand-category fallback.
+
+        Fairphone's device pages omit Device Brand but belong to the Fairphone
+        category. Do not guess a brand from arbitrary model names or parent nodes:
+        for example, HMD models also appear under Nokia's category on iFixit.
+        """
+        for entry in category.get("info") or []:
+            if isinstance(entry, dict) and entry.get("name") == "Device Brand":
+                value = entry.get("value")
+                if isinstance(value, str) and value.strip():
+                    return value.strip()
+        for ancestor in category.get("ancestors") or []:
+            if (
+                isinstance(ancestor, dict)
+                and ancestor.get("namespace") == "CATEGORY"
+                and ancestor.get("title") == "Fairphone"
+            ):
+                return "Fairphone"
+        return None
+
+    @staticmethod
     def tag_priority(tags: list[str]) -> int:
         """Returns the priority rank for a list of tags.
 
