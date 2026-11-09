@@ -3,6 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
+const chartVersion = require('../package.json').devDependencies['chart.js'];
+assert.match(chartVersion, /^\d+\.\d+\.\d+$/, 'Chart.js must stay pinned to an exact version');
 
 (async () => {
   const browser = await chromium.launch({executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox']});
@@ -28,7 +30,7 @@ const root = path.resolve(__dirname, '..');
       });
       await page.goto('http://site.test/');
       await page.waitForFunction(() => window.Chart?.getChart('repairabilityChart') && document.querySelectorAll('.rubric-version-button').length);
-      assert.equal(await page.evaluate(() => Chart.version), '4.6.1');
+      assert.equal(await page.evaluate(() => Chart.version), chartVersion);
       await page.locator('#toggleRubricTable').click();
       assert.equal(await page.locator('.rubric-version-button').count(), rubric.versions.length);
       for (const version of rubric.versions) {
