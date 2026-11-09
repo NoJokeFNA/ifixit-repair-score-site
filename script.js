@@ -139,7 +139,7 @@ function aggregateTeardownTags(teardownUrls = []) {
 }
 
 function renderTeardownLinks(teardownUrls = []) {
-    if (!teardownUrls || teardownUrls.length === 0) return '<span class="text-gray-500">—</span>';
+    if (!teardownUrls || teardownUrls.length === 0) return '<span class="text-gray-500">-</span>';
     const sortedTeardowns = sortTeardowns(teardownUrls);
     return sortedTeardowns.map(td => {
         const tags = sortTags(td.tags || []);
@@ -303,7 +303,7 @@ function populateTable(data) {
         tr.tabIndex = 0;
         const selId = `${d.name}__${d.brand ?? ''}`;
 
-        let teardownHtml = '—';
+        let teardownHtml = '-';
         if (d.teardown_urls && d.teardown_urls.length > 0) {
             // Badges direkt neben dem Toggle (aggregiert über alle Teardowns)
             const aggTags = aggregateTeardownTags(d.teardown_urls);
@@ -327,10 +327,10 @@ function populateTable(data) {
                     <a href="${d.link}" target="_blank" class="text-cyan-400 underline">${d.name}</a>
                 </td>
                 <td class="px-6 py-4 font-medium teardown-cell">${teardownHtml}</td>
-                <td class="px-6 py-4">${d.brand ?? '—'}</td>
+                <td class="px-6 py-4">${d.brand ?? '-'}</td>
                 <td class="px-6 py-4">
                     <span class="px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(d.repairability_score)}">
-                        ${d.repairability_score ?? '—'}/10
+                        ${d.repairability_score ?? '-'}/10
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -339,7 +339,7 @@ function populateTable(data) {
                 <td class="px-6 py-4">
                   ${d.scorecard_version
                     ? `<span class="rubric-version">${d.scorecard_version}</span>`
-                    : `<span class="rubric-version rubric-missing">—</span>`
+                    : `<span class="rubric-version rubric-missing">-</span>`
                   }
                 </td>`;
         // wire checkbox
@@ -535,7 +535,7 @@ function renderFranceScore(device) {
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
     const match = device.france_repairability;
     // Old caches predate evidence-based matching and can contain incorrect scores.
-    if (!match) return '<span class="france-score-missing" title="Refresh data to verify the French score">—</span>';
+    if (!match) return '<span class="france-score-missing" title="Refresh data to verify the French score">-</span>';
     const sources = (Array.isArray(match.sources) ? match.sources : []).filter(source => isFranceSourceUrl(source.url));
     const score = device.france_repairability_score;
     const verified = match.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 && match.score === score && sources.length;
@@ -552,25 +552,26 @@ function renderFranceScore(device) {
 function openFranceScoreDialog(device) {
     const modal = document.getElementById('franceScoreModal');
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
+    const display = value => escape(String(value ?? '').replace(/[\u2013\u2014\u2212]/g, '-'));
     const sources = device.france_repairability.sources.filter(source => isFranceSourceUrl(source.url));
     const score = device.france_repairability_score;
     const matched = score !== null;
     modal.innerHTML = `
         <header class="france-dialog-header">
             <div><p class="france-dialog-eyebrow">French repairability index</p>
-            <h3 id="franceScoreTitle">${escape(device.name)}</h3></div>
+            <h3 id="franceScoreTitle">${display(device.name)}</h3></div>
             <button type="button" class="france-dialog-close" data-close-france aria-label="Close French score sources" autofocus>×</button>
         </header>
         <div class="france-dialog-overview">
-            <span class="france-dialog-score ${badge(matched ? score : null)}">${matched ? `${escape(score)}<small>/10</small>` : '—'}</span>
+            <span class="france-dialog-score ${badge(matched ? score : null)}">${matched ? `${escape(score)}<small>/10</small>` : '-'}</span>
             <div><strong>${matched ? 'Published French score' : 'No single score assigned'}</strong>
             <p id="franceScoreDescription">${matched ? `${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr` : 'Published scores differ across these variants.'}</p></div>
         </div>
         <div class="france-dialog-sources">
             <h4>Source ${sources.length === 1 ? 'entry' : 'entries'}</h4>
             <ul>${sources.map(source => `<li>
-                <div><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.name)} <span aria-hidden="true">↗</span></a>
-                <p>${source.last_updated ? `Calculated ${escape(source.last_updated)}` : 'Calculation date not provided'}</p></div>
+                <div><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${display(source.name)} <span aria-hidden="true">↗</span></a>
+                <p>${source.last_updated ? `Calculated ${display(source.last_updated)}` : 'Calculation date not provided'}</p></div>
                 <span class="france-source-score">${escape(source.score)}<small>/10</small></span>
             </li>`).join('')}</ul>
         </div>
@@ -1463,9 +1464,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="grid" style="grid-template-columns: repeat(${items.length}, minmax(220px, 1fr)); gap: 12px;">
                   ${items.map(it => `
                     <article class="compare-card">
-                      <div class="text-sm text-slate-400">${it.brand ?? '—'}</div>
+                      <div class="text-sm text-slate-400">${it.brand ?? '-'}</div>
                       <div class="text-lg font-semibold text-cyan-300 mb-1">${it.name}</div>
-                      <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.repairability_score)}">${it.repairability_score ?? '—'}/10</span></div>
+                      <div class="mb-2"><span class="px-2 py-1 rounded-full text-white text-sm font-semibold ${badge(it.repairability_score)}">${it.repairability_score ?? '-'}/10</span></div>
                       <div class="mb-2">France: ${renderFranceScore(it)}</div>
                       <div class="text-sm mb-2"><a href="${it.link}" target="_blank" class="text-cyan-400 underline">iFixit page</a></div>
                       <div class="text-sm">Teardowns:</div>

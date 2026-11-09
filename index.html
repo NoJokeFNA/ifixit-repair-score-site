@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>iFixit Repairability Scores — Dashboard</title>
+    <title>iFixit Repairability Scores - Dashboard</title>
     <meta name="description"
           content="Discover the interactive iFixit Repairability Dashboard: search, filter, and sort devices, analyze score distribution, and export data as CSV or JSON.">
     <link rel="canonical" href="/index.html">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="favicon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="iFixit Repairability Scores — Dashboard">
+    <meta name="twitter:title" content="iFixit Repairability Scores - Dashboard">
     <meta name="twitter:description" content="Explore repairability scores, filter by brand, and view teardowns.">
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="preload" href="assets/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -51,7 +51,7 @@
             <div class="flex items-start gap-2">
                 <span class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.85)]"></span>
                 <p class="header-info-text">
-                    Interactive dashboard for iFixit repairability — explore charts, search/sort/filter devices, and
+                    Interactive dashboard for iFixit repairability - explore charts, search/sort/filter devices, and
                     inspect teardown links labeled Featured, Community, and Archived.
                     <br/>
                     <a href="https://github.com/NoJokeFNA/ifixit-repair-score-site/" target="_blank"
@@ -85,7 +85,7 @@
                             </svg>
                         </button>
                         <div class="noscore-tooltip" role="tooltip" style="max-width: 360px;">
-                            The Repairability Score ranges from 0 to 10 — 10 = very repairable, 0 = very hard to repair.
+                            The Repairability Score ranges from 0 to 10 - 10 = very repairable, 0 = very hard to repair.
                             It is based on the “Repairability Scoring Rubric.” <span id="rubricVersionSummary">Rubric versions are listed below.</span>
                             Older devices may have been scored with earlier rubrics and are not always directly
                             comparable across versions.
@@ -105,7 +105,7 @@
                 <canvas id="repairabilityChart" class="w-full h-full"
                         aria-label="Histogram of repairability scores from 0 to 10 showing device counts per score"
                         role="img"></canvas>
-                <figcaption id="chartCaption" class="sr-only">Histogram of device repairability scores (0–10). Y-axis:
+                <figcaption id="chartCaption" class="sr-only">Histogram of device repairability scores (0-10). Y-axis:
                     device count.
                 </figcaption>
                 <div id="chartError" class="chart-error hidden" role="alert">Failed to load chart</div>
@@ -157,20 +157,20 @@
                     <ul class="difficulty-chips flex flex-wrap gap-3 tags-legend" role="list">
                         <li class="difficulty-item">
                             <span class="chip chip-featured"
-                                  title="Featured Guide — This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
-                            <p class="chip-desc">Featured Guide — This guide has been found to be exceptionally cool by the
+                                  title="Featured Guide - This guide has been found to be exceptionally cool by the iFixit staff.">Featured</span>
+                            <p class="chip-desc">Featured Guide - This guide has been found to be exceptionally cool by the
                                 iFixit staff.</p>
                         </li>
                         <li class="difficulty-item">
                             <span class="chip chip-community"
-                                  title="Community-Contributed Guide — An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
-                            <p class="chip-desc">Community-Contributed Guide — An awesome member of our community made this
+                                  title="Community-Contributed Guide - An awesome member of our community made this guide. It was not created by iFixit staff.">Community</span>
+                            <p class="chip-desc">Community-Contributed Guide - An awesome member of our community made this
                                 guide. It was not created by iFixit staff.</p>
                         </li>
                         <li class="difficulty-item">
                             <span class="chip chip-archived"
-                                  title="Archived Guide — This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
-                            <p class="chip-desc">Archived Guide — This guide is retained solely for historical purposes. Use
+                                  title="Archived Guide - This guide is retained solely for historical purposes. Use the updated version of the guide to perform your repair.">Archived</span>
+                            <p class="chip-desc">Archived Guide - This guide is retained solely for historical purposes. Use
                                 the updated version of the guide to perform your repair.</p>
                         </li>
                     </ul>

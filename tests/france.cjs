@@ -153,7 +153,7 @@ Object.assign(testDevice('iPhone 12'), {france_repairability_score: null, france
     await page.goto('http://site.test/');
     await page.waitForFunction(() => document.querySelector('#brandFilter').options.length > 1);
     await page.locator('#segAll').click();
-    assert.equal(await page.locator('#deviceTable tr td').nth(5).innerText(), '—');
+    assert.equal(await page.locator('#deviceTable tr td').nth(5).innerText(), '-');
     await page.locator('#moreOptionsToggle').click();
     await page.locator('#exportBtn').click();
     const menu = await page.getByRole('menu').boundingBox();

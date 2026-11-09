@@ -81,7 +81,7 @@ assert.match(chartVersion, /^\d+\.\d+\.\d+$/, 'Chart.js must stay pinned to an e
         await header.focus();
         await page.keyboard.press('Enter');
         const versions = await page.locator('#deviceTable .rubric-version').allTextContents();
-        const expected = [...versions].sort((a, b) => (a === '—' ? '' : a).localeCompare(b === '—' ? '' : b, undefined, {numeric: true}));
+        const expected = [...versions].sort((a, b) => (a === '-' ? '' : a).localeCompare(b === '-' ? '' : b, undefined, {numeric: true}));
         if (!ascending) expected.reverse();
         assert.deepEqual(versions, expected);
       }
