@@ -6,7 +6,7 @@
     "check:assets": "npm run build && git diff --exit-code -- styles.css assets"
   },
   "devDependencies": {
-    "@fontsource-variable/jetbrains-mono": "5.2.8",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
     "@tailwindcss/cli": "4.3.5",
     "chart.js": "4.6.1",
     "tailwindcss": "4.3.5"
