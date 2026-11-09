@@ -8,6 +8,7 @@ npm install --prefix /tmp/ifixit-browser-tools playwright
 NODE_PATH=/tmp/ifixit-browser-tools/node_modules node tests/browser.cjs
 NODE_PATH=/tmp/ifixit-browser-tools/node_modules node tests/rubric.cjs
 NODE_PATH=/tmp/ifixit-browser-tools/node_modules node tests/responsive.cjs
+NODE_PATH=/tmp/ifixit-browser-tools/node_modules node tests/data.cjs
 ```
 
 `CHROMIUM_PATH` defaults to `/usr/bin/chromium`; `WEB_TEST_OUTPUT` defaults to
@@ -34,3 +35,9 @@ trigger stays in place, and expandable controls remain accessible. Actual chart
 clicks test selection, same-bar cancellation, both clear buttons, URL/reload
 persistence, and Reset. Search/manufacturer filters must survive a chart click;
 other bars must remain available. No external asset request is allowed.
+
+`data.cjs` validates device field types, score ranges, links, rubric versions and
+unique names. It tests Fairphone manufacturer filtering and separate model names,
+CSV column/value alignment with one row per device, JSON export, and consistent
+scrollbar colors in both themes.
+The daily data workflow also runs this check before publishing generated data.

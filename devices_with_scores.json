@@ -1254,7 +1254,7 @@
     "title": "Fairphone_1",
     "repairability_score": 7,
     "scorecard_version": "1.0",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_1",
     "teardown_urls": [
       {
@@ -1273,7 +1273,7 @@
     "title": "Fairphone_2",
     "repairability_score": 10,
     "scorecard_version": "1.0",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_2",
     "teardown_urls": [
       {
@@ -1292,7 +1292,7 @@
     "title": "Fairphone_3",
     "repairability_score": 10,
     "scorecard_version": "1.0",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_3",
     "teardown_urls": [
       {
@@ -1311,7 +1311,7 @@
     "title": "Fairphone_4",
     "repairability_score": 10,
     "scorecard_version": "1.4",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_4",
     "teardown_urls": [],
     "france_repairability_score": 9.2
@@ -1321,7 +1321,7 @@
     "title": "Fairphone_5",
     "repairability_score": 10,
     "scorecard_version": "1.6",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_5",
     "teardown_urls": [],
     "france_repairability_score": 9.3
@@ -1331,7 +1331,7 @@
     "title": "Fairphone_6",
     "repairability_score": 10,
     "scorecard_version": "2.1",
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_6",
     "teardown_urls": [],
     "france_repairability_score": null
@@ -1340,7 +1340,7 @@
     "name": "Fairphone 6plus",
     "title": "Fairphone_6plus",
     "repairability_score": null,
-    "brand": null,
+    "brand": "Fairphone",
     "link": "https://www.ifixit.com/Device/Fairphone_6plus",
     "teardown_urls": [],
     "france_repairability_score": null

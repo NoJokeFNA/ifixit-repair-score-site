@@ -1769,3 +1769,30 @@ body.theme-light .table-section h2 { color: #6d28d9; }
 .more-options-toggle:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; border-radius: 3px; }
 .more-options-content { margin: -0.5rem 0 1rem; }
 .more-options-content[hidden] { display: none; }
+
+/* One scrollbar palette for the page, tables and detail dialogs. */
+:root {
+    --scrollbar-thumb: #0891b2;
+    --scrollbar-track: #1e293b;
+    color-scheme: dark;
+}
+:root:has(body.theme-light) {
+    --scrollbar-thumb: #0284c7;
+    --scrollbar-track: #e2e8f0;
+    color-scheme: light;
+}
+:is(html, .device-table-scroll, #rubricTableContainer, #rubricModal, .teardown-portal, .teardown-dropdown, .overflow-y-auto) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+:is(html, .device-table-scroll, #rubricTableContainer, #rubricModal, .teardown-portal, .teardown-dropdown, .overflow-y-auto)::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+:is(html, .device-table-scroll, #rubricTableContainer, #rubricModal, .teardown-portal, .teardown-dropdown, .overflow-y-auto)::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+:is(html, .device-table-scroll, #rubricTableContainer, #rubricModal, .teardown-portal, .teardown-dropdown, .overflow-y-auto)::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 8px;
+}

@@ -1441,8 +1441,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const rows = window.lastFiltered || getFilteredData();
         const header = ['name', 'brand', 'repairability_score', 'france_repairability_score', 'scoring_rubric', 'link'];
         const lines = [toCsvRow(header)];
-        rows.forEach(d => lines.push(toCsvRow([d.name, d.brand ?? '', d.repairability_score ?? '', d.link ?? ''])));
-        rows.forEach(d => lines.push(toCsvRow([d.name, d.brand ?? '', d.france_repairability_score ?? '', d.link ?? ''])));
+        rows.forEach(d => lines.push(toCsvRow([
+            d.name, d.brand ?? '', d.repairability_score ?? '',
+            d.france_repairability_score ?? '', d.scorecard_version ?? '', d.link ?? ''
+        ])));
         const blob = new Blob([lines.join('\r\n')], {type: 'text/csv;charset=utf-8;'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
