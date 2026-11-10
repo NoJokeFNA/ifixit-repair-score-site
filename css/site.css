@@ -10,7 +10,7 @@ html, body {
 .france-score-help { margin-top: 1rem; line-height: 1.6; }
 .france-score-help a { text-decoration: underline; }
 .france-score-trigger { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; white-space: nowrap; }
-.device-table .france-score-trigger { width: 100%; justify-content: center; }
+.device-table .france-score-trigger { width: 100%; justify-content: flex-start; }
 .france-score-result { display: inline-flex; align-items: center; justify-content: center; }
 .france-score-status { display: inline-flex; align-items: center; min-height: 1.625rem; padding: 0.1875rem 0.5rem; border: 1px solid transparent; border-radius: 6px; font-size: 0.6875rem; line-height: 1.5; }
 .france-status-not_found { color: #94a3b8; padding-inline: 0; }

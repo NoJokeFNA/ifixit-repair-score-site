@@ -87,14 +87,13 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
           assert((await page.locator('#franceScoreDescription').innerText()).includes(`All ${count} matching source entries report the same French score`));
           await page.keyboard.press('Escape');
         }
-        const mainCenters = [];
+        const headerLeft = await page.locator('[data-sort-key="france_repairability_score"]').evaluate(element => element.getBoundingClientRect().left + parseFloat(getComputedStyle(element).paddingLeft));
         for (const name of ['iPhone 12', 'iPhone 12 mini', 'iPhone 12 Pro', 'iPhone 12 Pro Max']) {
           const main = await franceCell(name).locator('.france-score-result > span').first().boundingBox();
           const ifixit = await row(name).locator('td').nth(4).locator('span').first().boundingBox();
-          mainCenters.push(main.x + main.width / 2);
+          assert(Math.abs(main.x - headerLeft) < 1, `${name}: French score is not aligned with its column heading`);
           assert(Math.abs(main.y + main.height / 2 - ifixit.y - ifixit.height / 2) < 1, `${name}: source caption shifted the main score vertically`);
         }
-        assert(Math.max(...mainCenters) - Math.min(...mainCenters) < 1, 'Different source captions shifted scores across the column');
         assert.equal(await page.getByText('Beta', {exact: true}).count(), 0);
         const trigger = franceCell('iPhone 12').locator('button');
         const rowHeight = (await row('iPhone 12').boundingBox()).height;
