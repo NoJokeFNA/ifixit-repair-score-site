@@ -47,7 +47,7 @@ jobs:
 
       - name: Retain import quality report
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: import-quality-report
           path: /tmp/data-quality-report.json
