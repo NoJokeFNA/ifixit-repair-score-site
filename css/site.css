@@ -10,6 +10,15 @@ html, body {
 .france-score-help { margin-top: 1rem; line-height: 1.6; }
 .france-score-help a { text-decoration: underline; }
 .france-score-trigger { display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; white-space: nowrap; }
+.device-table .france-score-trigger { width: 100%; justify-content: center; }
+.france-score-result { display: inline-flex; align-items: center; justify-content: center; }
+.france-score-status { display: inline-flex; align-items: center; min-height: 1.625rem; padding: 0.1875rem 0.5rem; border: 1px solid transparent; border-radius: 6px; font-size: 0.6875rem; line-height: 1.5; }
+.france-status-not_found { color: #94a3b8; padding-inline: 0; }
+.france-status-conflicting, .france-status-unverified { color: #fcd34d; border-color: #f59e0b55; background: #f59e0b0d; }
+.france-status-ambiguous { color: #c4b5fd; border-color: #a78bfa55; background: #a78bfa0d; }
+body.theme-light .france-status-not_found { color: #475569; }
+body.theme-light .france-status-conflicting, body.theme-light .france-status-unverified { color: #92400e; border-color: #d9770666; background: #fef3c7; }
+body.theme-light .france-status-ambiguous { color: #6d28d9; border-color: #8b5cf666; background: #f5f3ff; }
 .france-score-trigger:focus-visible, .france-dialog-close:focus-visible { outline: 2px solid #22d3ee; outline-offset: 4px; border-radius: 1rem; }
 .france-score-info { display: inline-grid; place-items: center; width: 0.875rem; height: 0.875rem; border: 1px solid currentColor; border-radius: 50%; color: #64748b; font-size: 0.625rem; }
 .france-score-trigger:hover .france-score-info { color: #22d3ee; }

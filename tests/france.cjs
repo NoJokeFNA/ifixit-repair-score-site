@@ -44,6 +44,13 @@ for (const name of ['iPhone SE', 'iPhone SE 2022']) {
 const evidence = (name, score) => ({name, score, url: 'https://www.indicereparabilite.fr/produit/test-fixture/', last_updated: '01/01/2025'});
 Object.assign(testDevice('iPhone SE 2020'), {france_repairability_score: 6.2, france_repairability: {status: 'matched', score: 6.2, sources: [evidence('iPhone SE 2020', 6.2)]}});
 Object.assign(testDevice('iPhone 12'), {france_repairability_score: null, france_repairability: {status: 'conflicting', score: null, sources: Array.from({length: 24}, (_, index) => evidence(`iPhone 12 variant ${index + 1}`, index % 2 ? 6.0 : 5.7))}});
+for (const [name, count] of [['iPhone 12 mini', 2], ['iPhone 12 Pro', 3], ['iPhone 12 Pro Max', 2]]) {
+  Object.assign(testDevice(name), {france_repairability_score: 6.0, france_repairability: {status: 'matched', score: 6.0, sources: Array.from({length: count}, (_, index) => evidence(`${name} variant ${index + 1}`, 6.0))}});
+}
+// An incorrectly marked cached match must never hide a source disagreement.
+Object.assign(testDevice('OnePlus 9 Pro'), {france_repairability_score: 6.0, france_repairability: {status: 'matched', score: 6.0, sources: [evidence('OnePlus 9 Pro A', 6.0), evidence('OnePlus 9 Pro B', 6.8)]}});
+// Existing source evidence is distinct from a missing source, even with inconsistent metadata.
+Object.assign(testDevice('OnePlus 9 5G'), {france_repairability_score: null, france_repairability: {status: 'not_found', score: null, sources: [evidence('OnePlus 9', 6.0)]}});
 Object.assign(testDevice('Google Pixel 4a 5G'), {france_repairability_score: null, france_repairability: {status: 'ambiguous', score: null, sources: [evidence('Google Pixel 4a', 6.3)]}});
 Object.assign(testDevice('Samsung Galaxy A52'), {france_repairability_score: 8.6, france_repairability: {status: 'matched', score: 8.6, match_method: 'model_number', model_numbers: ['SM-A525F'], model_reference_urls: ['https://www.samsung.com/ro/support/model/SM-A525FZWGEUE/'], sources: [{...evidence('Samsung Galaxy A52 4G', 8.6), model: 'SM-A525FZWGEUH'}]}});
 Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_repairability: {status: 'matched', score: 6.2, match_method: 'model_number', model_numbers: ['A2633'], model_reference_urls: ['https://www.ifixit.com/api/2.0/wikis/CATEGORY/iPhone_13/topic_variants'], sources: [{...evidence('iPhone 13', 6.2), model: 'A2633'}]}, model_identification: {variants: [{name: 'A2633 Global', model_numbers: ['A2633']}, {name: 'A2482 US', model_numbers: ['A2482']}]}});
@@ -72,6 +79,23 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
         await page.locator('#searchInput').fill('iPhone 12');
         await page.waitForTimeout(350);
         assert((await franceCell('iPhone 12').locator('button').getAttribute('title')).includes('different scores'));
+        assert.equal(await franceCell('iPhone 12').locator('.france-score-status').innerText(), 'Different scores');
+        for (const [name, count] of [['iPhone 12 mini', 2], ['iPhone 12 Pro', 3], ['iPhone 12 Pro Max', 2]]) {
+          assert((await franceCell(name).innerText()).includes('6/10'));
+          assert(!(await franceCell(name).innerText()).includes('source'), 'Source details must not expand the table row');
+          await franceCell(name).locator('button').click();
+          assert((await page.locator('#franceScoreDescription').innerText()).includes(`All ${count} matching source entries report the same French score`));
+          await page.keyboard.press('Escape');
+        }
+        const mainCenters = [];
+        for (const name of ['iPhone 12', 'iPhone 12 mini', 'iPhone 12 Pro', 'iPhone 12 Pro Max']) {
+          const main = await franceCell(name).locator('.france-score-result > span').first().boundingBox();
+          const ifixit = await row(name).locator('td').nth(4).locator('span').first().boundingBox();
+          mainCenters.push(main.x + main.width / 2);
+          assert(Math.abs(main.y + main.height / 2 - ifixit.y - ifixit.height / 2) < 1, `${name}: source caption shifted the main score vertically`);
+        }
+        assert(Math.max(...mainCenters) - Math.min(...mainCenters) < 1, 'Different source captions shifted scores across the column');
+        assert.equal(await page.getByText('Beta', {exact: true}).count(), 0);
         const trigger = franceCell('iPhone 12').locator('button');
         const rowHeight = (await row('iPhone 12').boundingBox()).height;
         const dialog = page.locator('#franceScoreModal');
@@ -79,6 +103,8 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
         await page.keyboard.press('Enter');
         assert(await dialog.isVisible());
         assert(await dialog.evaluate(element => element.matches(':modal')));
+        assert.equal(await dialog.locator('.france-dialog-score').count(), 0, 'Conflicting sources must not have an overall score');
+        assert((await dialog.innerText()).includes('Published source values: 5.7/10, 6/10'));
         assert(Math.abs((await row('iPhone 12').boundingBox()).height - rowHeight) < 1, 'Opening sources changed the table row height');
         assert.equal(popups.length, 0, 'Opening French evidence also opened the iFixit device page');
         assert.equal(await dialog.locator('.france-dialog-sources a').count(), testDevice('iPhone 12').france_repairability.sources.length);
@@ -104,9 +130,10 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
         await page.waitForTimeout(350);
         const ambiguous = franceCell('Google Pixel 4a 5G').locator('button');
         assert((await ambiguous.getAttribute('title')).includes('exact variant'));
+        assert.equal(await ambiguous.locator('.france-score-status').innerText(), 'Variant unclear');
         await ambiguous.click();
         assert((await dialog.innerText()).includes('Variant not verified'));
-        assert.equal(await dialog.locator('.france-dialog-score').innerText(), '-');
+        assert.equal(await dialog.locator('.france-dialog-score').count(), 0);
         await page.keyboard.press('Escape');
         await page.locator('#searchInput').fill('Samsung Galaxy A52');
         await page.waitForTimeout(350);
@@ -127,7 +154,7 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
         assert((await franceCell('iPhone SE 2020').innerText()).includes('6.2/10'));
         for (const name of ['iPhone SE', 'iPhone SE 2022']) {
           const missing = franceCell(name).locator('button');
-          assert.equal(await missing.locator('span').first().innerText(), '-');
+          assert.equal(await missing.locator('.france-score-status').innerText(), 'No data');
           assert((await missing.getAttribute('title')).includes('No verified French score'));
           await missing.click();
           assert((await dialog.innerText()).includes('No verified score found'));
@@ -138,13 +165,22 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
         await row('iPhone SE 2022').locator('input.cmp').check();
         await page.locator('#compareBtn').click();
         const compare = await page.locator('#compareModal').innerText();
-        assert(compare.includes('France:') && compare.includes('6.2/10'));
+        assert(compare.includes('France:') && compare.includes('6.2/10') && compare.includes('No data'));
         await page.locator('#compareModal [data-france-device="iPhone SE 2020"]').click();
         assert(await dialog.isVisible());
         assert((await dialog.innerText()).includes('Published French score'));
         await page.keyboard.press('Escape');
         await page.locator('#cmpClose').click();
         await page.locator('#clearCompare').click();
+        await page.locator('#searchInput').fill('OnePlus 9');
+        await page.waitForTimeout(350);
+        assert.equal(await franceCell('OnePlus 9 Pro').locator('.france-score-status').innerText(), 'Different scores');
+        assert.equal(await franceCell('OnePlus 9 5G').locator('.france-score-status').innerText(), 'Not verified');
+        assert(!(await franceCell('OnePlus 9 Pro').innerText()).includes('sources'));
+        await franceCell('OnePlus 9 Pro').locator('button').click();
+        assert((await dialog.innerText()).includes('Published source values: 6/10, 6.8/10'));
+        assert.equal(await dialog.locator('.france-dialog-score').count(), 0);
+        await page.keyboard.press('Escape');
         await page.locator('#searchInput').fill('');
         await page.waitForTimeout(350);
         const sort = page.locator('[data-sort-key="france_repairability_score"]');
@@ -189,7 +225,7 @@ Object.assign(testDevice('iPhone 13'), {france_repairability_score: 6.2, france_
     await page.waitForFunction(() => document.querySelector('#brandFilter').options.length > 1);
     await page.locator('#segAll').click();
     const cachedTrigger = page.locator('#deviceTable tr td').nth(5).locator('button');
-    assert.equal(await cachedTrigger.locator('span').first().innerText(), '-');
+    assert.equal(await cachedTrigger.locator('.france-score-status').innerText(), 'Not verified');
     assert((await cachedTrigger.getAttribute('title')).includes('saved score'));
     await cachedTrigger.click();
     assert((await page.locator('#franceScoreModal').innerText()).includes('Saved score not verified'));

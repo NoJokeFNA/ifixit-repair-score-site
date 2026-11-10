@@ -539,9 +539,14 @@ function franceScoreState(device) {
     const score = device.france_repairability_score;
     const verified = match?.status === 'matched' && Number.isFinite(score) && score >= 0 && score <= 10 &&
         match.score === score && sources.length > 0 && sources.every(source => source.score === score);
-    const status = verified ? 'matched' : ['not_found', 'ambiguous', 'conflicting'].includes(match?.status) ? match.status : 'unverified';
+    const values = [...new Set(sources.map(source => source.score).filter(value => Number.isFinite(value) && value >= 0 && value <= 10))].sort((a, b) => a - b);
+    // Existing evidence must not be presented as missing or reduced to a conflicting scalar.
+    const status = verified ? 'matched'
+        : match?.status === 'ambiguous' ? 'ambiguous'
+        : values.length > 1 || (match?.status === 'conflicting' && sources.length) ? 'conflicting'
+        : match?.status === 'not_found' && !sources.length ? 'not_found' : 'unverified';
     const explanation = {
-        matched: 'A verified French repairability score is available.',
+        matched: sources.length > 1 ? `All ${sources.length} matching source entries report the same French score.` : 'A verified French repairability score is available.',
         not_found: 'No verified French score was found for this model.',
         ambiguous: 'Available French listings do not identify this exact variant. No score has been assigned.',
         conflicting: 'French source entries have different scores for this model. No single score has been assigned.',
@@ -550,17 +555,21 @@ function franceScoreState(device) {
     if (status === 'ambiguous' && match.reason === 'model_identity_conflict') {
         explanation.ambiguous = 'The source model numbers and variant names do not agree. No score has been assigned.';
     }
-    return {match, sources, score, verified, status, explanation: explanation[status]};
+    return {match, sources, values, score, verified, status, explanation: explanation[status]};
 }
 
 function renderFranceScore(device) {
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
     const state = franceScoreState(device);
-    const label = state.verified ? `${state.score}/10` : '-';
+    const label = state.verified ? `${state.score}/10` : {
+        not_found: 'No data', ambiguous: 'Variant unclear', conflicting: 'Different scores', unverified: 'Not verified'
+    }[state.status];
     return `<button type="button" class="france-score-trigger" data-france-device="${escape(device.name)}"
-        title="${escape(state.explanation)}" aria-haspopup="dialog" aria-controls="franceScoreModal"
+        data-france-status="${state.status}" title="${escape(state.verified ? 'View the verified French score and its sources.' : state.explanation)}" aria-haspopup="dialog" aria-controls="franceScoreModal"
         aria-label="French score for ${escape(device.name)}: ${escape(label)}. ${escape(state.explanation)} Show details.">
-        <span class="${state.verified ? `px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(state.score)}` : 'france-score-missing'}">${escape(label)}</span>
+        <span class="france-score-result">
+            <span class="${state.verified ? `px-3 py-1 rounded-full text-white text-sm font-semibold ${badge(state.score)}` : `france-score-status france-status-${state.status}`}">${escape(label)}</span>
+        </span>
         <span class="france-score-info" aria-hidden="true">i</span>
     </button>`;
 }
@@ -569,7 +578,7 @@ function openFranceScoreDialog(device) {
     const modal = document.getElementById('franceScoreModal');
     const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]));
     const display = value => escape(String(value ?? '').replace(/[\u2013\u2014\u2212]/g, '-'));
-    const {match, sources, score, verified: matched, status, explanation} = franceScoreState(device);
+    const {match, sources, values, score, verified: matched, status, explanation} = franceScoreState(device);
     const matchedModels = Array.isArray(match?.model_numbers) ? match.model_numbers : [];
     const apiModels = device.model_identification;
     const models = matchedModels.length ? matchedModels : Array.isArray(apiModels?.model_numbers) ? apiModels.model_numbers : [];
@@ -596,9 +605,11 @@ function openFranceScoreDialog(device) {
             <button type="button" class="france-dialog-close" data-close-france aria-label="Close French score sources" autofocus>×</button>
         </header>
         <div class="france-dialog-overview">
-            <span class="france-dialog-score ${badge(matched ? score : null)}">${matched ? `${escape(score)}<small>/10</small>` : '-'}</span>
+            ${matched ? `<span class="france-dialog-score ${badge(score)}">${escape(score)}<small>/10</small></span>` : ''}
             <div><strong>${heading}</strong>
-            <p id="franceScoreDescription">${matched ? `${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr` : explanation}</p></div>
+            <p id="franceScoreDescription">${explanation}</p>
+            ${sources.length ? `<p>${sources.length} source ${sources.length === 1 ? 'entry' : 'entries'} · indicereparabilite.fr</p>` : ''}
+            ${!matched && values.length ? `<p>${status === 'ambiguous' ? 'Possible source values' : 'Published source values'}: ${values.map(value => `${escape(value)}/10`).join(', ')}</p>` : ''}</div>
         </div>
         ${models.length && references.length ? `
         <section class="france-dialog-identity" aria-label="Verified model identification">

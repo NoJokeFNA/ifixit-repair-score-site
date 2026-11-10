@@ -63,3 +63,8 @@ Run `node tests/chart.cjs` with the same Playwright environment to check the
 compact distribution on mobile and desktop in both themes. Fixed fixtures cover
 visible count labels, scored-only tooltip percentages, score zero, filtering,
 and empty selections without stale bars.
+
+French score statuses distinguish missing evidence, uncertain variants and conflicting
+values. A scalar score is shown only when every matching source agrees; its source
+count and agreement are shown in the source dialog. Fixtures cover agreeing iPhone
+variants and inconsistent cached match metadata, with no aggregate score for conflicts.
