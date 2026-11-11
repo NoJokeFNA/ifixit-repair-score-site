@@ -4,6 +4,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock
 
+from bs4 import BeautifulSoup
+
 from fetch_device_data import generate_rubric_json
 
 
@@ -15,11 +17,41 @@ def page(version, criterion="Design for Repair"):
     )
 
 
+def api_page(html):
+    soup = BeautifulSoup(html, "html.parser")
+    heading = soup.find("h1")
+    title = heading.get_text(" ") if heading else ""
+    return {"title": title, "contents_rendered": html}
+
+
 class RubricGenerationTests(unittest.TestCase):
+    def test_api_content_is_used_without_downloading_the_themed_webpage(self):
+        client = Mock()
+        client.get_wiki.side_effect = lambda namespace, title: (
+            api_page(page("2.4")) if title.endswith("v2.4") else api_page("<h1>Not found</h1>")
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "rubric.json"
+            generate_rubric_json(client, str(output))
+            self.assertEqual(json.loads(output.read_text())["versions"], ["2.4"])
+        client.get_wiki_page_html.assert_not_called()
+        self.assertTrue(all(call.args[0] == "WIKI" for call in client.get_wiki.call_args_list))
+
+    def test_invalid_api_response_preserves_previous_rubric(self):
+        client = Mock(get_wiki=Mock(return_value={"message": "bad response"}))
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "rubric.json"
+            output.write_text('{"versions":["2.4"]}')
+            with self.assertRaisesRegex(RuntimeError, "Invalid rubric API response"):
+                generate_rubric_json(client, str(output))
+            self.assertEqual(json.loads(output.read_text()), {"versions": ["2.4"]})
+
     def test_version_gaps_and_new_criteria(self):
         pages = {"1.0": page("1.0"), "2.5": page("2.5", "Battery Longevity"), "3.0": page("3.0")}
         client = Mock()
-        client.get_wiki_page_html.side_effect = lambda title: pages.get(title.split("_v")[-1], "<h1>Not found</h1>")
+        client.get_wiki.side_effect = lambda namespace, title: api_page(
+            pages.get(title.split("_v")[-1], "<h1>Not found</h1>")
+        )
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "rubric.json"
             generate_rubric_json(client, str(output))
@@ -34,7 +66,7 @@ class RubricGenerationTests(unittest.TestCase):
 
     def test_missing_previous_version_keeps_output(self):
         client = Mock()
-        client.get_wiki_page_html.return_value = "<h1>Not found</h1>"
+        client.get_wiki.return_value = api_page("<h1>Not found</h1>")
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "rubric.json"
             original = json.dumps({"versions": ["2.4"]})
@@ -45,7 +77,7 @@ class RubricGenerationTests(unittest.TestCase):
 
     def test_changed_source_markup_keeps_output(self):
         client = Mock()
-        client.get_wiki_page_html.return_value = "<h1>Repairability Scoring Rubric v1.0</h1><p>New layout</p>"
+        client.get_wiki.return_value = api_page("<h1>Repairability Scoring Rubric v1.0</h1><p>New layout</p>")
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "rubric.json"
             with self.assertRaisesRegex(ValueError, "scoring table"):
@@ -54,15 +86,15 @@ class RubricGenerationTests(unittest.TestCase):
 
     def test_changed_column_order_fails(self):
         client = Mock()
-        client.get_wiki_page_html.return_value = page("1.0").replace(
-            "<th>Weight</th><th>Note</th>", "<th>Note</th><th>Weight</th>"
+        client.get_wiki.return_value = api_page(
+            page("1.0").replace("<th>Weight</th><th>Note</th>", "<th>Note</th><th>Weight</th>")
         )
         with tempfile.TemporaryDirectory() as directory, self.assertRaisesRegex(ValueError, "columns changed"):
             generate_rubric_json(client, str(Path(directory) / "rubric.json"))
 
     def test_partial_fetch_cannot_remove_existing_version(self):
         client = Mock()
-        client.get_wiki_page_html.side_effect = lambda title: (
+        client.get_wiki.side_effect = lambda namespace, title: api_page(
             page("1.0") if title.endswith("v1.0") else "<h1>Not found</h1>"
         )
         with tempfile.TemporaryDirectory() as directory:
@@ -80,7 +112,9 @@ class RubricGenerationTests(unittest.TestCase):
             "<tr><td>Tools</td><td>Adjusted multipliers for combination tools</td></tr>"
             "<tr><td>Proxy Times</td><td>Adjusted thermal compound removal times</td></tr></table>"
         )
-        client.get_wiki_page_html.side_effect = lambda title: html if title.endswith("v2.4") else "<h1>Not found</h1>"
+        client.get_wiki.side_effect = lambda namespace, title: api_page(
+            html if title.endswith("v2.4") else "<h1>Not found</h1>"
+        )
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "rubric.json"
             generate_rubric_json(client, str(output))

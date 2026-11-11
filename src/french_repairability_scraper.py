@@ -4,6 +4,7 @@ import logging
 import math
 import re
 import unicodedata
+from html import unescape
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -16,6 +17,7 @@ from model_identification import model_numbers
 logger = logging.getLogger(__name__)
 BASE_URL = "https://www.indicereparabilite.fr"
 CATEGORY_URL = f"{BASE_URL}/appareils/smartphone/page/{{page}}/"
+STORE_API = f"{BASE_URL}/wp-json/wc/store/v1/products"
 _RE_MEMORY = re.compile(r"\b\d+\s*(?:go|gb|to|tb)\b", re.IGNORECASE)
 _RE_NETWORK = re.compile(r"(?<![a-z])([45])\s*g\b", re.IGNORECASE)
 # Remove presentation differences, never model suffixes such as Pro, Plus, Lite or Ultra.
@@ -204,7 +206,7 @@ class FrenchRepairabilityScraper:
             raise FrenchScoreError(f"Cannot fetch source page {page_number}")
         return await self.parse_smartphones(html)
 
-    async def get_french_repairability_scores(self) -> list[dict]:
+    async def get_html_repairability_scores(self) -> list[dict]:
         # Keep the last successful in-memory snapshot intact until every page is verified.
         async with aiohttp.ClientSession(trust_env=True) as session:
             first_html = await self.fetch_page(session, CATEGORY_URL.format(page=1))
@@ -236,6 +238,113 @@ class FrenchRepairabilityScraper:
             rows.sort(key=lambda row: row["name"].casefold())
             self.french_scores = rows
             logger.info("Verified %s French source products across %s pages", len(rows), pages)
+            return rows
+
+    async def fetch_api(self, session, url, params):
+        for attempt in range(3):
+            try:
+                async with session.get(url, params=params, timeout=aiohttp.ClientTimeout(total=30)) as response:
+                    response.raise_for_status()
+                    payload = await response.json()
+                    if not isinstance(payload, list):
+                        raise FrenchScoreError("French API did not return a product list")
+                    return payload, {key.lower(): value for key, value in response.headers.items()}
+            except (aiohttp.ClientError, TimeoutError, ValueError) as error:
+                if attempt == 2:
+                    raise FrenchScoreError(f"French API request failed: {url}") from error
+                await asyncio.sleep(attempt + 1)
+
+    def parse_api_products(self, products):
+        rows = []
+        for product in products:
+            try:
+                name = re.sub(r"^\s*Smartphone[\s\-]*", "", unescape(product["name"]), flags=re.IGNORECASE)
+                url = product["permalink"]
+                parsed = urlparse(url)
+                prices = product["prices"]
+                if (
+                    not name
+                    or parsed.scheme != "https"
+                    or parsed.netloc != "www.indicereparabilite.fr"
+                    or prices["currency_minor_unit"] != 2
+                    or prices["currency_code"] != "EUR"
+                    or not re.fullmatch(r"\d+", prices["price"])
+                    or not isinstance(product["short_description"], str)
+                ):
+                    raise ValueError("Invalid product identity or score encoding")
+                score = int(prices["price"]) / 100
+                if not 0 <= score <= 10:
+                    raise ValueError("Score outside 0–10")
+                description = BeautifulSoup(product["short_description"], "html.parser")
+
+                def field(index, description=description):
+                    element = description.select_one(f"table tbody tr:nth-child({index}) strong")
+                    return element.get_text(" ", strip=True) if element else None
+
+                model = field(2)
+                identity = f"{name} {model or ''}" if re.search(r"\biphone\s*se\b", name, re.IGNORECASE) else name
+                rows.append(
+                    {
+                        "name": name,
+                        "normalized_name": self.normalize_device_name(identity),
+                        "brand": field(1),
+                        "model": model,
+                        "last_updated": field(3),
+                        "repairability_score": score,
+                        "source_url": url,
+                    }
+                )
+            except (KeyError, TypeError, ValueError, AttributeError) as error:
+                raise FrenchScoreError("Invalid French API product; refusing a partial source snapshot") from error
+        return rows
+
+    async def get_french_repairability_scores(self) -> list[dict]:
+        async with aiohttp.ClientSession(trust_env=True) as session:
+            categories, _ = await self.fetch_api(
+                session, f"{STORE_API}/categories", {"per_page": 100, "_fields": "id,slug,count"}
+            )
+            matches = [row for row in categories if row.get("slug") == "smartphone"]
+            if len(matches) != 1 or not isinstance(matches[0].get("count"), int):
+                raise FrenchScoreError("Cannot verify French smartphone category")
+            category = matches[0]
+            params = {
+                "category": category["id"],
+                "per_page": 100,
+                "_fields": "id,name,permalink,short_description,prices",
+            }
+            first, headers = await self.fetch_api(session, STORE_API, {**params, "page": 1})
+            try:
+                total = int(headers["x-wp-total"])
+                pages = int(headers["x-wp-totalpages"])
+            except (KeyError, TypeError, ValueError) as error:
+                raise FrenchScoreError("French API pagination metadata is missing or invalid") from error
+            if total <= 0 or total != category["count"] or pages != math.ceil(total / 100):
+                raise FrenchScoreError("French API category count and pagination disagree")
+            semaphore = asyncio.Semaphore(5)
+
+            async def fetch(page):
+                async with semaphore:
+                    payload, metadata = await self.fetch_api(session, STORE_API, {**params, "page": page})
+                    if metadata.get("x-wp-total") != str(total) or metadata.get("x-wp-totalpages") != str(pages):
+                        raise FrenchScoreError("French API product count changed during pagination")
+                    return payload
+
+            results = [first, *await asyncio.gather(*(fetch(page) for page in range(2, pages + 1)))]
+            products = []
+            for index, payload in enumerate(results):
+                expected = min(100, total - index * 100)
+                if len(payload) != expected:
+                    raise FrenchScoreError("Incomplete French API product page")
+                products.extend(payload)
+            ids = [product.get("id") for product in products]
+            if any(type(value) is not int or value <= 0 for value in ids) or len(set(ids)) != total:
+                raise FrenchScoreError("French API returned missing or duplicate product IDs")
+            rows = self.parse_api_products(products)
+            if len({row["source_url"] for row in rows}) != total:
+                raise FrenchScoreError("French API returned duplicate source URLs")
+            rows.sort(key=lambda row: row["name"].casefold())
+            self.french_scores = rows
+            logger.info("Verified %s French source products across %s API pages", total, pages)
             return rows
 
     def match_device(self, device: dict) -> dict:

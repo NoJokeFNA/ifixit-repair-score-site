@@ -175,7 +175,7 @@ class FrenchScrapingTests(unittest.IsolatedAsyncioTestCase):
     async def test_missing_first_page_does_not_default_to_hardcoded_pages(self):
         self.scraper.fetch_page = AsyncMock(return_value=None)
         with self.assertRaises(FrenchScoreError):
-            await self.scraper.get_french_repairability_scores()
+            await self.scraper.get_html_repairability_scores()
 
     async def test_timeout_is_retried(self):
         session = MagicMock()
@@ -223,7 +223,7 @@ class FrenchScrapingTests(unittest.IsolatedAsyncioTestCase):
                     patch("french_repairability_scraper.asyncio.sleep", new_callable=AsyncMock),
                     self.assertRaises(FrenchScoreError),
                 ):
-                    await self.scraper.get_french_repairability_scores()
+                    await self.scraper.get_html_repairability_scores()
                 self.assertIs(self.scraper.french_scores, previous)
 
     async def test_complete_snapshot_succeeds(self):
@@ -232,7 +232,7 @@ class FrenchScrapingTests(unittest.IsolatedAsyncioTestCase):
         self.scraper.parse_smartphones = AsyncMock(return_value=rows[:16])
         self.scraper.get_smartphones_from_page = AsyncMock(return_value=rows[16:])
         with patch("french_repairability_scraper.asyncio.sleep", new_callable=AsyncMock):
-            self.assertEqual(len(await self.scraper.get_french_repairability_scores()), 17)
+            self.assertEqual(len(await self.scraper.get_html_repairability_scores()), 17)
 
     async def test_unknown_or_inconsistent_pagination_fails(self):
         for html in [FIXTURE, self.page_html(1000), self.page_html(0)]:

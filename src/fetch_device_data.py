@@ -387,6 +387,7 @@ def print_device_data(
     unique_devices = dedupe(devices)
     model_identifications = {}
     device_identities = {}
+    previous_by_name = {row["name"]: row for row in previous_devices or []}
     if not unique_devices:
         logger.warning("No devices provided.")
         return
@@ -396,17 +397,23 @@ def print_device_data(
     ) -> tuple[str, str, float | None, str | None, str | None, str | None]:
         ifixit_title = _DeviceDataUtils.to_ifixit_title(device_name)
         for attempt in range(max_retries):
+            fetching_device = True
             try:
                 if device_name in renamed:
                     data, namespace, ifixit_title, redirects, aliases = renamed[device_name]
                 else:
-                    data, namespace, ifixit_title, redirects = resolve_device(client, ifixit_title, limiter)
+                    previous_namespace = previous_by_name.get(device_name, {}).get("wiki_namespace", "CATEGORY")
+                    data, namespace, ifixit_title, redirects = resolve_device(
+                        client, ifixit_title, limiter, previous_namespace
+                    )
                     aliases = []
+                fetching_device = False
                 device_identities[device_name] = {
                     "wikiid": data["wikiid"],
                     "wiki_namespace": namespace,
                     "previous_names": aliases,
                     "redirects": redirects,
+                    "source_status": "verified",
                 }
                 repairability_score = data.get("repairability_score")
                 manufacturer = _DeviceDataUtils.device_brand(data)
@@ -439,6 +446,13 @@ def print_device_data(
                 if status_code in {429, 500, 502, 503, 504} and attempt < max_retries - 1:
                     time.sleep(sleep_s)
                     continue
+                if status_code == 404 and fetching_device:
+                    device_identities[device_name] = {
+                        "source_status": "not_found",
+                        "source_url": getattr(response, "url", None),
+                    }
+                    logger.warning("Device removed from source (HTTP 404): %s", device_name)
+                    return device_name, ifixit_title, None, None, None, None
                 logger.error(
                     "Failed to fetch repairability score",
                     exc_info=e,
@@ -589,8 +603,14 @@ def generate_rubric_json(
         try:
             if rate_limiter:
                 rate_limiter.acquire()
-            html = client.get_wiki_page_html(title)
-            return BeautifulSoup(html, "html.parser")
+            data = client.get_wiki("WIKI", title)
+            if not isinstance(data, dict) or not isinstance(data.get("contents_rendered"), str):
+                raise DataQualityError(f"Invalid rubric API response for {title}")
+            soup = BeautifulSoup(data["contents_rendered"], "html.parser")
+            heading = soup.new_tag("h1")
+            heading.string = data.get("display_title") or data.get("title") or ""
+            soup.insert(0, heading)
+            return soup
         except requests.RequestException as e:
             logger.error(f"Failed to fetch wiki page for version {version}: {e}")
             return None
@@ -866,6 +886,7 @@ async def main_async() -> None:
             write_report(args.quality_report, report)
             if report["errors"]:
                 raise DataQualityError("; ".join(report["errors"]))
+            candidate_devices = [row for row in candidate_devices if row.get("source_status") != "not_found"]
             outputs = [(args.french_scores_output, french_scores), (args.scores_output, candidate_devices)]
             if args.generate_rubric:
                 outputs.append((args.rubric_output, json.loads((stage / "rubric.json").read_text())))

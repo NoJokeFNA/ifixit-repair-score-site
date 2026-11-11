@@ -8,8 +8,9 @@ from data_quality import DataQualityError
 from utils import _DeviceDataUtils
 
 
-def resolve_device(client, title, limiter):
-    namespace = "CATEGORY"
+def resolve_device(client, title, limiter, namespace="CATEGORY"):
+    if namespace not in {"CATEGORY", "WIKI"}:
+        raise DataQualityError(f"Unsupported wiki namespace: {namespace}")
     visited = set()
     redirects = []
     for _ in range(6):
@@ -44,7 +45,9 @@ def resolve_previous_names(client, previous_devices, device_names, limiter):
             continue
         title = previous.get("title") or _DeviceDataUtils.to_ifixit_title(previous["name"])
         try:
-            data, namespace, canonical, redirects = resolve_device(client, title, limiter)
+            data, namespace, canonical, redirects = resolve_device(
+                client, title, limiter, previous.get("wiki_namespace", "CATEGORY")
+            )
         except requests.HTTPError as error:
             # The candidate may still be identifiable by a persisted wikiid.
             if error.response is not None and error.response.status_code == 404:
