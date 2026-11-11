@@ -10,6 +10,7 @@ from data_quality import DataQualityError, compare_snapshots
 from device_resolution import resolve_device, resolve_previous_names
 from fetch_device_data import print_device_data
 from french_repairability_scraper import FrenchRepairabilityScraper
+from utils import _DeviceDataUtils
 
 
 def page(title="New phone", wikiid=123, raw=""):
@@ -24,6 +25,13 @@ def http_error(status):
 
 
 class DeviceResolutionTests(unittest.TestCase):
+    def test_exact_source_title_preserves_repeated_spaces_and_special_characters(self):
+        self.assertEqual(_DeviceDataUtils.to_ifixit_title("Motorola One Fusion  Plus"), "Motorola_One_Fusion__Plus")
+        self.assertEqual(
+            _DeviceDataUtils.to_ifixit_title("Lenovo (VIBE) K6   K6 Power"), "Lenovo_%28VIBE%29_K6___K6_Power"
+        )
+        self.assertEqual(_DeviceDataUtils.to_ifixit_title("Phone + / édition"), "Phone_%2B_%2F_%C3%A9dition")
+
     def test_category_redirect_uses_canonical_title_and_id(self):
         client = Mock()
         client.get_wiki.side_effect = [page("Old phone", 1, "[redirect|Category:New phone]"), page()]
@@ -137,11 +145,11 @@ class DeviceImportTests(unittest.TestCase):
         report = compare_snapshots(sources, sources, before, after)
         self.assertEqual(report["metrics"]["devices"]["lost"], 0)
         self.assertEqual(report["metrics"]["regional_variants"]["lost"], 10)
-        self.assertEqual(report["status"], "blocked")
-        self.assertTrue(any("WIKI/Samsung_Galaxy_A20" in error for error in report["errors"]))
+        self.assertEqual(report["status"], "warning")
+        self.assertTrue(any("WIKI/Samsung_Galaxy_A20" in warning for warning in report["warnings"]))
 
     def test_device_and_variant_http_errors_are_explicit_import_errors(self):
-        for status, variants in [(404, False), (503, False), (503, True)]:
+        for status, variants in [(503, False), (404, True), (503, True)]:
             with self.subTest(status=status, variants=variants):
                 client = Mock()
                 if variants:
@@ -169,3 +177,23 @@ class DeviceImportTests(unittest.TestCase):
         client.get_category_variants.return_value = {"message": "temporarily unavailable"}
         row = self.collect(client, ["New phone"])[0]
         self.assertIn("Invalid model variants response", row["import_error"])
+
+    def test_next_import_remembers_a_verified_wiki_namespace_move(self):
+        client = Mock(get_wiki=Mock(return_value=page()))
+        previous = [{"name": "New phone", "wikiid": 123, "wiki_namespace": "WIKI"}]
+        row = self.collect(client, ["New phone"], previous)[0]
+        client.get_wiki.assert_called_once_with("WIKI", "New_phone")
+        self.assertEqual(row["source_status"], "verified")
+        self.assertEqual(row["link"], "https://www.ifixit.com/Wiki/New_phone")
+        client.get_category_variants.assert_not_called()
+
+    def test_confirmed_device_404_is_a_reported_removal_not_an_import_error(self):
+        client = Mock(get_wiki=Mock(side_effect=http_error(404)))
+        row = self.collect(client, ["New phone"])[0]
+        self.assertEqual(row["source_status"], "not_found")
+        self.assertNotIn("import_error", row)
+        sources = [{"source_url": "https://example.com/phone", "repairability_score": 7}]
+        other = {"name": "Intact phone"}
+        report = compare_snapshots(sources, sources, [row, other], [row, other])
+        self.assertEqual(report["status"], "warning")
+        self.assertEqual(report["source_removals"][0]["name"], "New phone")

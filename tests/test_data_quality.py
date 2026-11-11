@@ -83,6 +83,21 @@ class ImportComparisonTests(unittest.TestCase):
         after[0]["redirects"] = [{"wikiid": 123, "namespace": "CATEGORY", "title": "Model_0"}]
         self.assertEqual(compare_snapshots(sources(), sources(), before, after)["status"], "passed")
 
+    def test_verified_source_variant_removal_warns_but_fetch_failure_blocks(self):
+        before, after = devices(), devices()
+        before[0]["model_identification"] = {"variants": [{"name": f"Region {i}"} for i in range(5)]}
+        after[0].update(
+            {
+                "source_status": "verified",
+                "model_identification": {"variant_status": "empty", "variants": []},
+            }
+        )
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "warning")
+        self.assertEqual(report["metrics"]["regional_variants"]["lost"], 5)
+        after[0]["import_error"] = "variant endpoint failed: HTTP 503"
+        self.assertEqual(compare_snapshots(sources(), sources(), before, after)["status"], "blocked")
+
     def test_first_import_and_unchanged_snapshot_pass(self):
         for old_sources, old_devices in [(None, None), (sources(), devices())]:
             report = compare_snapshots(old_sources, sources(), old_devices, devices())
@@ -243,6 +258,23 @@ class StagedImportTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual((root / name).read_bytes(), content)
             report = json.loads((root / "quality.json").read_text())
             self.assertIn("HTTP 404", report["errors"][0])
+
+    async def test_confirmed_source_deletion_is_published_without_a_tombstone_device(self):
+        with tempfile.TemporaryDirectory() as directory:
+            candidate = devices()
+            candidate[0] = {
+                "name": "Model 0",
+                "source_status": "not_found",
+                "source_url": "https://www.ifixit.com/api/2.0/wikis/CATEGORY/Model_0",
+            }
+            root, _before, error = await self.run_import(directory, sources(), candidate)
+            self.assertIsNone(error)
+            published = json.loads((root / "devices.json").read_text())
+            self.assertEqual(len(published), 19)
+            self.assertFalse(any(row["name"] == "Model 0" for row in published))
+            report = json.loads((root / "quality.json").read_text())
+            self.assertEqual(report["status"], "warning")
+            self.assertIn("Source removals", summarize(report))
 
     async def test_other_generation_failure_also_preserves_outputs(self):
         with tempfile.TemporaryDirectory() as directory:

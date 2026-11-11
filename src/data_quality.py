@@ -36,17 +36,25 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
         "losses": {},
     }
 
-    def compare(label, old, new):
+    def compare(label, old, new, confirmed_removals=None):
         lost = sorted(old - new)
         report["metrics"][label] = {"previous": len(old), "candidate": len(new), "lost": len(lost)}
         report["losses"][label] = lost
         if lost:
             message = f"{label}: {len(lost)} of {len(old)} previously published entries disappeared"
-            if len(lost) >= max(1, math.ceil(len(old) * MAX_LOSS_RATIO)):
+            confirmed = set(lost) & (confirmed_removals or set())
+            if confirmed:
+                message += f" ({len(confirmed)} confirmed source removals)"
+            if len(set(lost) - confirmed) >= max(1, math.ceil(len(old) * MAX_LOSS_RATIO)):
                 report["errors"].append(message)
             else:
                 report["warnings"].append(message)
 
+    removed = [row for row in devices if row.get("source_status") == "not_found"]
+    report["source_removals"] = [{"name": row["name"], "source_url": row.get("source_url")} for row in removed]
+    removed_names = {row["name"] for row in removed}
+    report["warnings"].extend(f"{row['name']}: confirmed HTTP 404; removed from published devices" for row in removed)
+    devices = [row for row in devices if row.get("source_status") != "not_found"]
     if not sources or not devices:
         report["errors"].append("Candidate source and device snapshots must not be empty")
     source_ids = [row.get("source_url") for row in sources]
@@ -117,16 +125,18 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
     before_scored = {row["name"] for row in previous_devices or [] if row.get("france_repairability_score") is not None}
     before_ifixit = {row["name"] for row in previous_devices or [] if row.get("repairability_score") is not None}
     compare("source_products", before_sources, set(source_ids))
-    compare("devices", before_devices, {device_key(row) for row in devices})
+    compare("devices", before_devices, {device_key(row) for row in devices}, removed_names)
     compare(
         "french_scores",
         before_scored,
         {device_key(row) for row in devices if row.get("france_repairability_score") is not None},
+        removed_names,
     )
     compare(
         "ifixit_scores",
         before_ifixit,
         {device_key(row) for row in devices if row.get("repairability_score") is not None},
+        removed_names,
     )
 
     def identified(rows, key):
@@ -140,11 +150,26 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
             if variant.get("name")
         }
 
-    compare(
-        "model_identifications", identified(previous_devices, lambda row: row["name"]), identified(devices, device_key)
-    )
-    compare("regional_variants", variant_ids(previous_devices), variant_ids(devices, device_key))
     by_name = {device_key(row): row for row in devices}
+    verified_variant_changes = {
+        key
+        for key, row in by_name.items()
+        if row.get("source_status") == "verified"
+        and not row.get("import_error")
+        and (
+            (row.get("model_identification") or {}).get("variant_status") in {"available", "empty"}
+            or (row.get("wiki_namespace") == "WIKI" and row.get("redirects"))
+        )
+    }
+    confirmed = removed_names | verified_variant_changes
+    compare(
+        "model_identifications",
+        identified(previous_devices, lambda row: row["name"]),
+        identified(devices, device_key),
+        removed_names | {key for key in verified_variant_changes if by_name[key].get("wiki_namespace") == "WIKI"},
+    )
+    confirmed_variants = variant_ids([row for row in previous_devices or [] if row["name"] in confirmed])
+    compare("regional_variants", variant_ids(previous_devices), variant_ids(devices, device_key), confirmed_variants)
     for previous in previous_devices or []:
         old = variant_ids([previous])
         current = by_name.get(previous["name"])
@@ -153,7 +178,8 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
             detail = ""
             if current and current.get("wiki_namespace") == "WIKI":
                 detail = f"; redirected to WIKI/{current['title']}, which has no category variants endpoint"
-            report["errors"].append(f"{previous['name']}: {len(lost)} of {len(old)} named variants disappeared{detail}")
+            category = "warnings" if previous["name"] in confirmed else "errors"
+            report[category].append(f"{previous['name']}: {len(lost)} of {len(old)} named variants disappeared{detail}")
     if previous_sources and not before_sources:
         report["errors"].append("Previous source snapshot lacks stable source URLs; establish a reviewed baseline")
     # A small manufacturer outage must not disappear inside a large global total.
@@ -165,7 +191,7 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
         if row.get("brand") and row.get("france_repairability_score") is not None:
             new_brands[row["brand"]].add(device_key(row))
     for brand, old in old_brands.items():
-        lost = old - new_brands[brand]
+        lost = old - new_brands[brand] - removed_names
         if len(old) >= 3 and len(lost) >= math.ceil(len(old) * 0.5):
             report["errors"].append(f"{brand}: {len(lost)} of {len(old)} French scores disappeared")
     report["match_statuses"] = dict(
@@ -194,6 +220,9 @@ def summarize(report: dict) -> str:
     if report.get("renames"):
         lines += ["", "### Verified renames"]
         lines.extend(f"- {row['previous']} → {row['candidate']} (wikiid: {row['wikiid']})" for row in report["renames"])
+    if report.get("source_removals"):
+        lines += ["", "### Source removals (HTTP 404)"]
+        lines.extend(f"- {row['name']}: {row['source_url']}" for row in report["source_removals"])
     for label in ["errors", "warnings"]:
         if report.get(label):
             lines += ["", f"### {label.capitalize()}"]

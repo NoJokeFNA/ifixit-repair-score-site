@@ -1,0 +1,19 @@
+{
+  "id": 5320,
+  "name": "Smartphone Fairphone FP6",
+  "permalink": "https://www.indicereparabilite.fr/produit/smartphone-fairphone-fp6/",
+  "short_description": "<table width=\"410\">\n<tbody>\n<tr>\n<td colspan=\"2\" width=\"164\">Marque</td>\n<td colspan=\"3\" width=\"246\"><strong>Fairphone</strong></td>\n</tr>\n<tr>\n<td colspan=\"2\" width=\"164\">Référence du modèle</td>\n<td colspan=\"3\"><strong>FP6</strong></td>\n</tr>\n<tr>\n<td colspan=\"2\">Date du calcul</td>\n<td colspan=\"3\"><strong>24/06/2025</strong></td>\n</tr>\n</tbody>\n</table>",
+  "prices": {
+    "price": "930",
+    "regular_price": "930",
+    "sale_price": "930",
+    "price_range": null,
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "currency_minor_unit": 2,
+    "currency_decimal_separator": ",",
+    "currency_thousand_separator": ".",
+    "currency_prefix": "€",
+    "currency_suffix": ""
+  }
+}

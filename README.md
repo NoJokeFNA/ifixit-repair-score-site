@@ -16,6 +16,7 @@ Local run example:
 - python src/fetch_device_data.py --categories "iPhone" "Android Phone" --scores-output devices_with_scores.json
 
 Rubric maintenance:
+- Rubric tables are fetched from the wiki JSON API (`contents_rendered`), avoiding the themed HTML page and its inline CSS/scripts.
 - The daily build probes version numbers 1.0 through 10.9 (one minor digit), including gaps.
 - New criteria are added automatically when the source scoring table uses the existing layout.
 - Missing previously published versions or an unrecognized scoring table fail the build and preserve the previous rubric output.
@@ -23,6 +24,7 @@ Rubric maintenance:
 - Before publishing, the daily workflow runs browser checks for every generated version, including its details dialog, sorting, and a simulated future criterion. Changes to iFixit's URL scheme, version numbering, or table layout may require a parser update.
 
 French score matching:
+- Production fetches use the public WooCommerce Store API, selecting only product identity, description fields and score data. The current 601-product catalogue takes seven product pages of up to 100 items plus one category lookup, instead of 38 themed HTML pages. Product IDs, source URLs, category count and pagination totals are verified before replacement. The HTML reader remains available for independent parity checks.
 - The French index and iFixit's score use different methods; differences between them are expected and are never treated as conflicts.
 - Each category imports `/wikis/CATEGORY/{title}/topic_variants`, its local `model_number` fields, and explicit model labels in the identification section. Every named regional variant and variant ID is retained; an unnamed variant is not treated as a model identifier.
 - Exact model numbers take precedence when available. The French score records only the model numbers actually present in its source entries, not every region listed by iFixit. Network variants, hardware suffixes such as U/U1, and iPhone SE generations remain distinct. No fuzzy matching is used.
@@ -61,10 +63,11 @@ own Python client; updating the separate SDK alone does not update this collecto
 
 Import quality monitoring:
 - Generation uses temporary candidate files and compares them against the current output files before replacement. Parser failures or a rejected comparison retain the previous source, device, and rubric outputs.
-- Device and variant HTTP errors, including 404 responses, block publication and appear in the quality report. Failed requests are never treated as devices with successfully fetched, empty metadata.
+- Exact source titles retain repeated spaces and special characters when encoded as API URLs. Search-style normalization must not change a device's identity.
+- A confirmed device HTTP 404 is recorded in `source_removals` and removes the unavailable device from publication with a warning. Device/variant authentication errors, server failures, rate limits and malformed data still block publication. A variant-endpoint 404 must not be mistaken for deletion of the device.
 - Successful device reads store `wikiid`, `wiki_namespace`, and explicit redirect evidence. Renames are compared by a persisted wiki ID or a verified redirect from a previously published name; name similarity alone is insufficient. Redirect loops and conflicting identities are rejected.
-- A redirect to the `WIKI` namespace does not provide category variants. The report identifies this case, and previously published variants are never copied into the new snapshot to conceal missing source evidence. The variant-loss guard still applies to renamed devices.
-- A loss of at least 10% of previously published source URLs, devices, French scores, iFixit scores, model identifications, or named regional variants blocks the import. Added records cannot hide lost records. Smaller losses are recorded as warnings.
+- A redirect to the `WIKI` namespace does not provide category variants. The report identifies this case, and previously published variants are never copied into the new snapshot to conceal missing source evidence. Verified changes from successful variant responses, and explicit moves into `WIKI`, are reported as warnings rather than permanently blocking the daily job. Unexplained variant losses remain guarded.
+- An unexplained loss of at least 10% of previously published source URLs, devices, French scores, iFixit scores, model identifications, or named regional variants blocks the import. Confirmed device deletions and verified source variant changes are excluded from the blocking threshold but remain visible in losses and warnings. Added records cannot hide lost records. Smaller losses are recorded as warnings.
 - A manufacturer with at least three French scores losing half or more of them also blocks the import, even if its global share is small. A device with at least three named regional variants losing half or more of them is protected in the same way.
 - `--quality-report PATH` writes counts, exact lost identities, errors and warnings as JSON. The daily workflow adds a GitHub Actions summary and retains the report as an artifact for 30 days, including failed runs.
-- A legitimate large source removal requires reviewing the report and updating the baseline deliberately; the guard does not silently approve the loss.
+- Unexplained large losses require source review before deliberately changing a baseline; confirmed device deletions remain automatic, visible warnings.
