@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock
 
+import requests
 from bs4 import BeautifulSoup
 
 from fetch_device_data import generate_rubric_json
@@ -25,6 +26,19 @@ def api_page(html):
 
 
 class RubricGenerationTests(unittest.TestCase):
+    def test_http_failure_cannot_be_mistaken_for_an_unpublished_future_version(self):
+        response = requests.Response()
+        response.status_code = 503
+        client = Mock()
+        client.get_wiki.side_effect = [api_page(page("1.0")), requests.HTTPError(response=response)]
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "rubric.json"
+            original = '{"versions":["1.0"]}'
+            output.write_text(original)
+            with self.assertRaises(requests.HTTPError):
+                generate_rubric_json(client, str(output))
+            self.assertEqual(output.read_text(), original)
+
     def test_api_content_is_used_without_downloading_the_themed_webpage(self):
         client = Mock()
         client.get_wiki.side_effect = lambda namespace, title: (

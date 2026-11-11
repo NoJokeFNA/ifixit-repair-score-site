@@ -9,6 +9,27 @@ from urllib3 import Retry
 logger = logging.getLogger(__name__)
 
 
+class _CoordinatedRetry(Retry):
+    """Keep urllib3's bounded retries while sharing throttling across workers."""
+
+    def __init__(self, *args, rate_limiter=None, **kwargs):
+        self.rate_limiter = rate_limiter
+        super().__init__(*args, **kwargs)
+
+    def new(self, **kwargs):
+        return super().new(rate_limiter=self.rate_limiter, **kwargs)
+
+    def sleep(self, response=None):
+        if self.rate_limiter is not None and response is not None and response.status == 429:
+            delay = self.get_retry_after(response) or max(1.0, self.get_backoff_time())
+            self.rate_limiter.throttle(delay)
+            logger.warning("API throttled; shared cooldown %.1f seconds", delay)
+        else:
+            super().sleep(response)
+        if self.rate_limiter is not None:
+            self.rate_limiter.acquire()
+
+
 class IFixitAPIClient:
     """A Python client for the iFixit API v2.0.
 
@@ -53,6 +74,7 @@ class IFixitAPIClient:
         raise_for_status: bool = True,
         api_key: str | None = None,
         ca_bundle: str | None = None,
+        rate_limiter=None,
     ):
         """Initialize the client.
 
@@ -68,6 +90,7 @@ class IFixitAPIClient:
             allow_http: Allow HTTP requests when using a proxy.
             raise_for_status: Raise exceptions for HTTP error responses.
             proxy: Use proxy settings from environment variables.
+            rate_limiter: Optional shared API request budget, including retries.
         """
         if api_key and auth_token:
             raise ValueError("Use api_key or auth_token, not both")
@@ -78,18 +101,20 @@ class IFixitAPIClient:
         self.timeout = timeout
         self.proxy = proxy
         self.raise_for_status = raise_for_status
+        self.rate_limiter = rate_limiter
         logging.basicConfig(level=log_level)
 
         self.session = requests.Session()
         self.session.trust_env = bool(proxy)
-        retry_strategy = Retry(
+        retry_strategy = _CoordinatedRetry(
+            rate_limiter=rate_limiter,
             total=retries,
             backoff_factor=backoff_factor,
             status_forcelist=[429, 500, 502, 503, 504],
             allowed_methods=["HEAD", "GET", "OPTIONS"],
         )
 
-        adapter = HTTPAdapter(max_retries=retry_strategy)
+        adapter = HTTPAdapter(max_retries=retry_strategy, pool_maxsize=32 if rate_limiter is not None else 10)
         # Mount adapters for retries regardless of proxy usage
         self.session.mount("https://", adapter)
         self.session.mount("http://", adapter)
@@ -145,6 +170,8 @@ class IFixitAPIClient:
         logger.debug("Making %s request to %s", method, url)
 
         try:
+            if self.rate_limiter is not None:
+                self.rate_limiter.acquire()
             response = self.session.request(
                 method=method,
                 url=url,
@@ -157,6 +184,8 @@ class IFixitAPIClient:
             )
             if self.raise_for_status or response.status_code in {401, 403}:
                 response.raise_for_status()
+            if self.rate_limiter is not None and 200 <= response.status_code < 300:
+                self.rate_limiter.on_success()
             return response.json() if response.content else None
         except requests.exceptions.HTTPError as e:
             logger.error("HTTP error: %s", e.response.status_code)
