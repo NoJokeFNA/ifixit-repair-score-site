@@ -5,14 +5,8 @@ on:
     inputs:
       api_rate:
         description: Maximum iFixit API requests per second (automatically reduced on HTTP 429)
-        type: choice
-        default: "32"
-        options:
-          - "4"
-          - "8"
-          - "16"
-          - "32"
-          - "64"
+        type: number
+        default: 32
   schedule:
     - cron: "0 3 * * *"  # daily 03:00 UTC
 
@@ -49,7 +43,7 @@ jobs:
       - name: Build JSON files into gh-pages
         env:
           IFIXIT_TOKEN: ${{ secrets.IFIXIT_TOKEN }}
-          IFIXIT_API_RATE: ${{ inputs.api_rate || '32' }}
+          IFIXIT_API_RATE: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.api_rate) || '32' }}
         run: |
           python master/src/fetch_device_data.py --api-rate "$IFIXIT_API_RATE" --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --quality-report /tmp/data-quality-report.json
 

@@ -16,7 +16,7 @@ Local run example:
 - python src/fetch_device_data.py --categories "iPhone" "Android Phone" --scores-output devices_with_scores.json
 - iFixit API reads share one request budget across workers and retries, capped at 32 requests per second by default with up to 32 workers. Use `--api-rate 4` for the previous conservative ceiling, or select another ceiling such as 16 or 64. A 429 response applies `Retry-After` to all workers, halves the rate, and recovers gradually after successful responses. Every device and variant is still fetched on every import; no stale device cache is substituted.
 - The quality report includes API request counts, configured/current rate and observed throttling, so production timings can be compared with the actual request budget.
-- Manual runs of **Build JSON to gh-pages** offer a rate selector (4, 8, 16, 32 or 64). Scheduled runs use 32 as their ceiling, with the same automatic throttling response.
+- Manual runs of **Build JSON to gh-pages** accept a positive numeric rate ceiling, including 16, 32, 64 or 128. Scheduled runs use 32 as their ceiling, with the same automatic throttling response. Concurrency remains capped at 32 connections even for higher ceilings; the script rejects zero, negative and non-finite rates before contacting the source.
 - Correlated 429 replies from already-running requests cause one rate reduction per shared cooldown, rather than one reduction per thread. Recovery stays below the observed failing rate for the remainder of the import, avoiding repeated acceleration back into the same limit.
 
 Rubric maintenance:
