@@ -20057,9 +20057,43 @@
     },
     "model_identification": {
       "brand": "Apple",
-      "model_numbers": [],
-      "variants": [],
-      "variant_status": "empty",
+      "model_numbers": [
+        "A3472",
+        "A3713",
+        "A3714",
+        "A3715"
+      ],
+      "variants": [
+        {
+          "name": "A3472 US",
+          "variant_id": 575850,
+          "model_numbers": [
+            "A3472"
+          ]
+        },
+        {
+          "name": "A3713 CA/MX/JP/SA",
+          "variant_id": 575851,
+          "model_numbers": [
+            "A3713"
+          ]
+        },
+        {
+          "name": "A3714 Global",
+          "variant_id": 575852,
+          "model_numbers": [
+            "A3714"
+          ]
+        },
+        {
+          "name": "A3715 China",
+          "variant_id": 575853,
+          "model_numbers": [
+            "A3715"
+          ]
+        }
+      ],
+      "variant_status": "available",
       "reference_urls": [
         "https://www.ifixit.com/api/2.0/wikis/CATEGORY/iPhone_18_Pro/topic_variants"
       ]
@@ -20085,9 +20119,43 @@
     },
     "model_identification": {
       "brand": "Apple",
-      "model_numbers": [],
-      "variants": [],
-      "variant_status": "empty",
+      "model_numbers": [
+        "A3473",
+        "A3716",
+        "A3717",
+        "A3718"
+      ],
+      "variants": [
+        {
+          "name": "A3473 US",
+          "variant_id": 575854,
+          "model_numbers": [
+            "A3473"
+          ]
+        },
+        {
+          "name": "A3716 CA.MX/JP/SA",
+          "variant_id": 575855,
+          "model_numbers": [
+            "A3716"
+          ]
+        },
+        {
+          "name": "A3717 Global",
+          "variant_id": 575856,
+          "model_numbers": [
+            "A3717"
+          ]
+        },
+        {
+          "name": "A3718 China",
+          "variant_id": 575857,
+          "model_numbers": [
+            "A3718"
+          ]
+        }
+      ],
+      "variant_status": "available",
       "reference_urls": [
         "https://www.ifixit.com/api/2.0/wikis/CATEGORY/iPhone_18_Pro_Max/topic_variants"
       ]
@@ -21457,9 +21525,43 @@
     },
     "model_identification": {
       "brand": "Apple",
-      "model_numbers": [],
-      "variants": [],
-      "variant_status": "empty",
+      "model_numbers": [
+        "A3447",
+        "A3719",
+        "A3720",
+        "A3721"
+      ],
+      "variants": [
+        {
+          "name": "A3447 US",
+          "variant_id": 575846,
+          "model_numbers": [
+            "A3447"
+          ]
+        },
+        {
+          "name": "A3719 CA/MX/JP/SA",
+          "variant_id": 575847,
+          "model_numbers": [
+            "A3719"
+          ]
+        },
+        {
+          "name": "A3720 Global",
+          "variant_id": 575848,
+          "model_numbers": [
+            "A3720"
+          ]
+        },
+        {
+          "name": "A3721 China",
+          "variant_id": 575849,
+          "model_numbers": [
+            "A3721"
+          ]
+        }
+      ],
+      "variant_status": "available",
       "reference_urls": [
         "https://www.ifixit.com/api/2.0/wikis/CATEGORY/iPhone_Duo/topic_variants"
       ]
