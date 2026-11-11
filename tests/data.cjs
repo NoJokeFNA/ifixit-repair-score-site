@@ -16,7 +16,9 @@ for (const device of devices) {
     const value = device[field];
     assert(value === null || (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10), `${device.name}: invalid ${field}`);
   }
-  assert(device.link === null || device.link.startsWith('https://www.ifixit.com/Device/'));
+  const wikiPath = device.wiki_namespace === 'WIKI' ? 'Wiki' : 'Device';
+  assert(device.link === null || device.link.startsWith(`https://www.ifixit.com/${wikiPath}/`));
+  if (wikiPath === 'Wiki') assert(Number.isInteger(device.wikiid) && device.wikiid > 0, `${device.name}: missing verified wiki identity`);
   assert(!device.scorecard_version || rubric.versions.includes(device.scorecard_version));
   for (const teardown of device.teardown_urls) {
     assert(teardown.url.startsWith('https://www.ifixit.com/'));
