@@ -34,6 +34,33 @@ def devices(count=20):
 
 
 class ImportComparisonTests(unittest.TestCase):
+    def test_unique_complete_model_numbers_can_establish_a_rename(self):
+        before = devices()
+        before[0]["model_identification"] = {
+            "model_numbers": ["SM-A205F", "SM-A205FN"],
+            "reference_urls": ["https://www.ifixit.com/api/2.0/wikis/CATEGORY/Model_0/topic_variants"],
+        }
+        after = deepcopy(before)
+        after[0].update(name="Renamed model", source_status="verified", wikiid=123)
+        after[0]["model_identification"]["model_numbers"].reverse()
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "passed")
+        self.assertEqual(report["renames"][0]["matched_by"], "model_numbers")
+        for mode in ["different_brand", "partial_model_set", "no_evidence", "ambiguous"]:
+            with self.subTest(mode=mode):
+                candidate = deepcopy(after)
+                if mode == "different_brand":
+                    candidate[0]["brand"] = "Another manufacturer"
+                elif mode == "partial_model_set":
+                    candidate[0]["model_identification"]["model_numbers"].pop()
+                elif mode == "no_evidence":
+                    candidate[0]["model_identification"]["reference_urls"] = []
+                else:
+                    candidate[1]["model_identification"] = deepcopy(candidate[0]["model_identification"])
+                result = compare_snapshots(sources(), sources(), before, candidate)
+                self.assertEqual(result["renames"], [])
+                self.assertEqual(result["metrics"]["devices"]["lost"], 1)
+
     def test_wikiid_rename_preserves_metrics_but_real_variant_loss_still_blocks(self):
         before = devices()
         before[0].update(
@@ -82,6 +109,19 @@ class ImportComparisonTests(unittest.TestCase):
         self.assertEqual(report["status"], "blocked")
         after[0]["redirects"] = [{"wikiid": 123, "namespace": "CATEGORY", "title": "Model_0"}]
         self.assertEqual(compare_snapshots(sources(), sources(), before, after)["status"], "passed")
+
+    def test_recreated_wiki_can_retain_identity_with_complete_model_evidence(self):
+        before, after = devices(), devices()
+        for row in [before[0], after[0]]:
+            row["model_identification"] = {
+                "model_numbers": ["SM-A205F"],
+                "reference_urls": ["https://www.ifixit.com/api/2.0/wikis/CATEGORY/Model_0"],
+            }
+        before[0]["wikiid"], after[0]["wikiid"] = 123, 456
+        after[0]["source_status"] = "verified"
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "warning")
+        self.assertTrue(any("complete model-number identity verified" in warning for warning in report["warnings"]))
 
     def test_verified_source_variant_removal_warns_but_fetch_failure_blocks(self):
         before, after = devices(), devices()
@@ -187,6 +227,10 @@ class ImportComparisonTests(unittest.TestCase):
         self.assertIn("Import quality: blocked", summary)
         self.assertIn("| source_products | 20 | 18 | 2 |", summary)
         self.assertIn("Published data is retained", summary)
+
+    def test_summary_accepts_older_saved_rename_reports(self):
+        report = {"status": "warning", "renames": [{"previous": "Old name", "candidate": "New name", "wikiid": 123}]}
+        self.assertIn("Old name → New name", summarize(report))
 
 
 class StagedImportTests(unittest.IsolatedAsyncioTestCase):
