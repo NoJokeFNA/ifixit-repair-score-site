@@ -70,7 +70,24 @@ class RateLimiterTests(unittest.TestCase):
         self.assertEqual(limiter.rate, 5)
         for _ in range(320):
             limiter.on_success()
-        self.assertEqual(limiter.rate, 8)
+        self.assertEqual(limiter.rate, 6)
+        self.assertEqual(limiter.maximum, 8)
+
+    def test_one_congestion_burst_does_not_halve_the_rate_once_per_inflight_response(self):
+        clock = Clock()
+        limiter = _RateLimiter(32, clock=clock, sleep=clock.sleep)
+        for _ in range(16):
+            limiter.throttle(1)
+        self.assertEqual(limiter.rate, 16)
+        self.assertEqual(limiter.stats()["throttles"], 16)
+        self.assertEqual(limiter.recovery_ceiling, 24)
+        for _ in range(320):
+            limiter.on_success()
+        self.assertEqual(limiter.rate, 24)
+        clock.sleep(2)
+        limiter.throttle(1)
+        self.assertEqual(limiter.rate, 12)
+        self.assertEqual(limiter.recovery_ceiling, 18)
 
     def test_invalid_rates_are_rejected_and_slow_configurations_remain_bounded(self):
         for rate in [0, -1, float("nan"), float("inf")]:

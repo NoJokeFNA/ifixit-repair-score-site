@@ -23,7 +23,7 @@ class _CoordinatedRetry(Retry):
         if self.rate_limiter is not None and response is not None and response.status == 429:
             delay = self.get_retry_after(response) or max(1.0, self.get_backoff_time())
             self.rate_limiter.throttle(delay)
-            logger.warning("API throttled; shared cooldown %.1f seconds", delay)
+            logger.warning("API throttled; shared cooldown %.1f seconds; budget: %s", delay, self.rate_limiter.stats())
         else:
             super().sleep(response)
         if self.rate_limiter is not None:
