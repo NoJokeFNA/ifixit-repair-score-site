@@ -140,7 +140,7 @@ class APIModelIdentificationTests(unittest.TestCase):
 
         data = json.loads((FIXTURES / "iPhone_13.json").read_text())
         client = Mock()
-        client.get_category.return_value = {**data["category"], "repairability_score": 6}
+        client.get_wiki.return_value = {"wikiid": 123, **data["category"], "repairability_score": 6}
         client.get_category_variants.return_value = data["variants"]
         with (
             tempfile.TemporaryDirectory() as directory,

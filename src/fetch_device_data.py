@@ -19,6 +19,7 @@ import tqdm
 from bs4 import BeautifulSoup
 
 from data_quality import DataQualityError, compare_snapshots, read_snapshot, write_report
+from device_resolution import resolve_device, resolve_previous_names
 from french_repairability_scraper import FrenchRepairabilityScraper
 from ifixit_api_client import IFixitAPIClient
 from model_identification import collect_model_identification
@@ -373,6 +374,7 @@ def print_device_data(
     devices: list[str],
     french_scraper: FrenchRepairabilityScraper,
     output_file: str | None = None,
+    previous_devices: list[dict] | None = None,
 ) -> None:
     """Fetches and prints device repairability scores and guide URLs concurrently."""
     logger.info("Fetching teardown guides for matching...")
@@ -384,6 +386,7 @@ def print_device_data(
 
     unique_devices = dedupe(devices)
     model_identifications = {}
+    device_identities = {}
     if not unique_devices:
         logger.warning("No devices provided.")
         return
@@ -394,21 +397,32 @@ def print_device_data(
         ifixit_title = _DeviceDataUtils.to_ifixit_title(device_name)
         for attempt in range(max_retries):
             try:
-                limiter.acquire()
-                data = client.get_category(device_name=ifixit_title, params=None)
+                if device_name in renamed:
+                    data, namespace, ifixit_title, redirects, aliases = renamed[device_name]
+                else:
+                    data, namespace, ifixit_title, redirects = resolve_device(client, ifixit_title, limiter)
+                    aliases = []
+                device_identities[device_name] = {
+                    "wikiid": data["wikiid"],
+                    "wiki_namespace": namespace,
+                    "previous_names": aliases,
+                    "redirects": redirects,
+                }
                 repairability_score = data.get("repairability_score")
                 manufacturer = _DeviceDataUtils.device_brand(data)
-                try:
+                if namespace == "CATEGORY":
                     limiter.acquire()
                     variants = client.get_category_variants(ifixit_title)
-                except (requests.RequestException, ValueError):
-                    logger.warning("Model variants unavailable for %s", device_name)
+                    if not isinstance(variants, dict) or not isinstance(variants.get("topic_variants"), list):
+                        raise DataQualityError(f"Invalid model variants response for {device_name}")
+                else:
                     variants = None
                 model_identifications[device_name] = collect_model_identification(
-                    data, variants, manufacturer, ifixit_title
+                    data, variants, manufacturer, ifixit_title, namespace=namespace
                 )
 
-                repair_link = f"https://www.ifixit.com/Device/{ifixit_title}"
+                path = "Device" if namespace == "CATEGORY" else "Wiki"
+                repair_link = f"https://www.ifixit.com/{path}/{ifixit_title}"
                 return (
                     device_name,
                     ifixit_title,
@@ -419,14 +433,12 @@ def print_device_data(
                 )
             except Exception as e:
                 response = getattr(e, "response", None)
-                status_code = getattr(response, "status_code", None) if response else None
-                retry_after = getattr(response, "headers", {}).get("Retry-After") if response else None
+                status_code = getattr(response, "status_code", None) if response is not None else None
+                retry_after = getattr(response, "headers", {}).get("Retry-After") if response is not None else None
                 sleep_s = float(retry_after) if retry_after else base_backoff * (2**attempt)
                 if status_code in {429, 500, 502, 503, 504} and attempt < max_retries - 1:
                     time.sleep(sleep_s)
                     continue
-                if status_code == 404:
-                    return device_name, ifixit_title, None, None, None, str(e)
                 logger.error(
                     "Failed to fetch repairability score",
                     exc_info=e,
@@ -446,6 +458,7 @@ def print_device_data(
     max_workers = 8
     requests_per_second = 4
     limiter = _RateLimiter(rate_per_sec=requests_per_second)
+    renamed = resolve_previous_names(client, previous_devices, unique_devices, limiter)
 
     results: list[tuple[str, str, float | None, str | None, str | None, str | None]] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -508,6 +521,7 @@ def print_device_data(
             "france_repairability_score": french_match["score"],
             "france_repairability": french_match,
             "model_identification": model_identity,
+            **device_identities.get(name, {}),
         }
 
     print_outputs()
@@ -518,8 +532,11 @@ def print_device_data(
             # Start with all devices that returned data (including those with score=None)
             existing_keys = set()
             all_entries = []
-            for name, title, score, brand, link, _err in results:
-                all_entries.append(create_device_entry(name, title, score, brand, link, teardown_guides))
+            for name, title, score, brand, link, error in results:
+                entry = create_device_entry(name, title, score, brand, link, teardown_guides)
+                if error:
+                    entry["import_error"] = f"{name}: device fetch failed: {error}"
+                all_entries.append(entry)
                 existing_keys.add((name, title))
 
             # Also include devices that failed (e.g., 404) so they appear as well
@@ -822,7 +839,7 @@ async def main_async() -> None:
             api_key=os.getenv("IFIXIT_TOKEN") or None,
             proxy=os.getenv("IFIXIT_USE_PROXY", "").lower() in {"1", "true", "yes"},
             ca_bundle=os.getenv("IFIXIT_CA_BUNDLE") or None,
-            raise_for_status=False,
+            raise_for_status=True,
         )
         client.get_guides(params={"limit": 1})
         rate_limiter = _RateLimiter(rate_per_sec=4)
@@ -841,7 +858,7 @@ async def main_async() -> None:
             devices = list(dict.fromkeys(name for category in args.categories for name in child_map.get(category, [])))
             if not devices:
                 raise DataQualityError("No devices returned by iFixit; refusing to replace published data")
-            print_device_data(client, devices, french_scraper, str(stage / "devices.json"))
+            print_device_data(client, devices, french_scraper, str(stage / "devices.json"), previous_devices)
             candidate_devices = read_snapshot(stage / "devices.json")
             if candidate_devices is None:
                 raise DataQualityError("Device generation did not produce a candidate snapshot")

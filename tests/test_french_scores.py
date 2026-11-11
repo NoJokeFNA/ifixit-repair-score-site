@@ -119,7 +119,9 @@ class FrenchMatchingTests(unittest.TestCase):
 
         self.rows(("Fairphone 5", 9.3))
         client = Mock()
-        client.get_category.return_value = {
+        client.get_category_variants.return_value = {"topic_variants": []}
+        client.get_wiki.return_value = {
+            "wikiid": 123,
             "title": "Fairphone 5",
             "repairability_score": 10,
             "info": [{"name": "Device Brand", "value": "Fairphone"}],

@@ -22,8 +22,10 @@ def model_numbers(value, brand) -> set[str]:
     return set(pattern.findall(value.upper())) if pattern else set()
 
 
-def collect_model_identification(category: dict, variants_payload, brand: str | None, title: str) -> dict:
-    base_url = f"https://www.ifixit.com/api/2.0/wikis/CATEGORY/{title}"
+def collect_model_identification(
+    category: dict, variants_payload, brand: str | None, title: str, *, namespace: str = "CATEGORY"
+) -> dict:
+    base_url = f"https://www.ifixit.com/api/2.0/wikis/{namespace}/{title}"
     variants_url = f"{base_url}/topic_variants"
     payload_valid = isinstance(variants_payload, dict) and isinstance(variants_payload.get("topic_variants"), list)
     variants, numbers = [], set()

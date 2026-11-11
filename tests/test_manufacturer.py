@@ -37,7 +37,9 @@ class ManufacturerTests(unittest.TestCase):
 
     def test_generated_device_keeps_model_and_score_separate_from_brand(self):
         client = Mock()
-        client.get_category.return_value = {
+        client.get_category_variants.return_value = {"topic_variants": []}
+        client.get_wiki.return_value = {
+            "wikiid": 123,
             "title": "Fairphone 5",
             "repairability_score": 10,
             "info": [{"name": "Device Category", "value": "Phone"}],
