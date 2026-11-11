@@ -70,9 +70,13 @@ jobs:
         working-directory: gh-pages
         run: |
           npm install --prefix /tmp/browser-tools playwright@1.65.0
-          /tmp/browser-tools/node_modules/.bin/playwright install --with-deps chromium
           export NODE_PATH=/tmp/browser-tools/node_modules
-          export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
+          export CHROMIUM_PATH="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROMIUM_PATH" ]; then
+            /tmp/browser-tools/node_modules/.bin/playwright install --with-deps chromium
+            export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
+          fi
+          "$CHROMIUM_PATH" --version
           node tests/rubric.cjs
           node tests/data.cjs
           node tests/france.cjs
