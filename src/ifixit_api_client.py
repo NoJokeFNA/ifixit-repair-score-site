@@ -191,7 +191,7 @@ class IFixitAPIClient:
                 response.raise_for_status()
             return response.text
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error fetching wiki page {url}: {e.response.status_code} - {e.response.text}")
+            logger.error("HTTP error fetching wiki page %s: %s", url, e.response.status_code)
             raise
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed for wiki page {url}: {e!s}")
@@ -224,7 +224,7 @@ class IFixitAPIClient:
                 response.raise_for_status()
             return response.text
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error fetching repairability page {url}: {e.response.status_code} - {e.response.text}")
+            logger.error("HTTP error fetching repairability page %s: %s", url, e.response.status_code)
             raise
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed for repairability page {url}: {e!s}")

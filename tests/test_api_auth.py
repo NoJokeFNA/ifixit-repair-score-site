@@ -37,3 +37,20 @@ class APIAuthenticationTests(unittest.TestCase):
         client.get_wiki_page_html("Repairability_Scoring_Rubric_v2.4")
         self.assertNotIn("headers", client.session.get.call_args.kwargs)
         self.assertIs(client.session.get.call_args.kwargs["verify"], True)
+
+    def test_html_errors_log_status_and_url_without_response_body(self):
+        for method, args in [("get_wiki_page_html", ("Missing_rubric",)), ("get_repairability_page_html", ())]:
+            with self.subTest(method=method):
+                client = IFixitAPIClient()
+                response = requests.Response()
+                response.status_code = 404
+                response._content = b"<html><style>UNNECESSARY_CSS</style>Error page</html>"
+                response.raise_for_status = Mock(side_effect=requests.HTTPError(response=response))
+                client.session.get = Mock(return_value=response)
+                with self.assertLogs("ifixit_api_client", level="ERROR") as logs, self.assertRaises(requests.HTTPError):
+                    getattr(client, method)(*args)
+                message = "\n".join(logs.output)
+                self.assertIn("404", message)
+                self.assertIn("https://www.ifixit.com/", message)
+                self.assertNotIn("UNNECESSARY_CSS", message)
+                self.assertNotIn("<html>", message)
