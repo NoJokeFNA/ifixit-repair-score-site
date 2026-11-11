@@ -840,7 +840,7 @@ async def main_async() -> None:
         "--quality-report", default="data_quality_report.json", help="Path for the import quality report"
     )
     parser.add_argument(
-        "--api-rate", type=float, default=32, help="Maximum iFixit API requests per second (default: 32)"
+        "--api-rate", type=float, default=128, help="Maximum iFixit API requests per second (default: 128)"
     )
     args = parser.parse_args()
     report = {"checked_at": datetime.now(UTC).isoformat(), "status": "running", "errors": [], "warnings": []}
