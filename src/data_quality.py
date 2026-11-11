@@ -65,19 +65,55 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
         report["errors"].append("Candidate snapshots contain duplicate identities")
     previous_by_name = {row["name"]: row for row in previous_devices or []}
     previous_by_id = {row["wikiid"]: row for row in previous_devices or [] if row.get("wikiid") is not None}
+
+    def model_identity(row):
+        identity = row.get("model_identification") or {}
+        numbers = identity.get("model_numbers") or []
+        brand = row.get("brand") or identity.get("brand")
+        if (
+            not isinstance(brand, str)
+            or not brand.strip()
+            or not isinstance(numbers, list)
+            or not numbers
+            or not all(isinstance(number, str) and number for number in numbers)
+            or not identity.get("reference_urls")
+        ):
+            return None
+        return brand.strip().casefold(), tuple(sorted(set(numbers)))
+
+    previous_models = defaultdict(list)
+    for row in previous_devices or []:
+        if model_identity(row):
+            previous_models[model_identity(row)].append(row)
+    candidate_models = Counter(model_identity(row) for row in devices if model_identity(row))
     candidate_keys = {}
     report["renames"] = []
     for row in devices:
         if row.get("import_error"):
             report["errors"].append(row["import_error"])
         previous = previous_by_id.get(row.get("wikiid"))
+        matched_by = "wikiid"
         aliases = [name for name in row.get("previous_names", []) if name in previous_by_name]
         if len(aliases) > 1:
             report["errors"].append(f"Ambiguous previous device names: {row['name']}")
         if previous is None and len(aliases) == 1:
             previous = previous_by_name[aliases[0]]
+            matched_by = "redirect"
         elif previous is not None and aliases and previous["name"] not in aliases:
             report["errors"].append(f"Wiki ID and redirect disagree about previous device: {row['name']}")
+        model = model_identity(row)
+        if (
+            previous is None
+            and row["name"] not in previous_by_name
+            and row.get("source_status") == "verified"
+            and not row.get("import_error")
+            and model
+            and len(previous_models[model]) == 1
+            and candidate_models[model] == 1
+            and previous_models[model][0]["name"] not in device_ids
+        ):
+            previous = previous_models[model][0]
+            matched_by = "model_numbers"
         same_name = previous_by_name.get(row["name"])
         if (
             same_name
@@ -86,13 +122,28 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
             and same_name["wikiid"] != row["wikiid"]
             and not any(link.get("wikiid") == same_name["wikiid"] for link in row.get("redirects", []))
         ):
-            report["errors"].append(f"Wiki ID changed without a verified redirect: {row['name']}")
+            if (
+                row.get("source_status") == "verified"
+                and model
+                and model_identity(same_name) == model
+                and len(previous_models[model]) == candidate_models[model] == 1
+            ):
+                report["warnings"].append(f"Wiki ID changed; complete model-number identity verified: {row['name']}")
+            else:
+                report["errors"].append(f"Wiki ID changed without a verified redirect or model identity: {row['name']}")
         key = previous["name"] if previous else row["name"]
         candidate_keys[row["name"]] = key
         if key != row["name"]:
             if row["name"] in previous_by_name:
                 report["errors"].append(f"Device rename collides with existing device: {row['name']}")
-            report["renames"].append({"previous": key, "candidate": row["name"], "wikiid": row.get("wikiid")})
+            report["renames"].append(
+                {
+                    "previous": key,
+                    "candidate": row["name"],
+                    "wikiid": row.get("wikiid"),
+                    "matched_by": matched_by,
+                }
+            )
     wiki_ids = [row["wikiid"] for row in devices if row.get("wikiid") is not None]
     if len(set(wiki_ids)) != len(wiki_ids) or len(set(candidate_keys.values())) != len(devices):
         report["errors"].append("Candidate snapshots contain duplicate resolved device identities")
@@ -219,7 +270,11 @@ def summarize(report: dict) -> str:
         lines.append(f"| {key} | {values['previous']} | {values['candidate']} | {values['lost']} |")
     if report.get("renames"):
         lines += ["", "### Verified renames"]
-        lines.extend(f"- {row['previous']} → {row['candidate']} (wikiid: {row['wikiid']})" for row in report["renames"])
+        lines.extend(
+            f"- {row['previous']} → {row['candidate']} (wikiid: {row['wikiid']}; "
+            f"matched by {row.get('matched_by', 'source identity')})"
+            for row in report["renames"]
+        )
     if report.get("source_removals"):
         lines += ["", "### Source removals (HTTP 404)"]
         lines.extend(f"- {row['name']}: {row['source_url']}" for row in report["source_removals"])
