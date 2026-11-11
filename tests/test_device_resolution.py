@@ -35,7 +35,7 @@ class DeviceResolutionTests(unittest.TestCase):
     def test_category_redirect_uses_canonical_title_and_id(self):
         client = Mock()
         client.get_wiki.side_effect = [page("Old phone", 1, "[redirect|Category:New phone]"), page()]
-        data, namespace, title, redirects = resolve_device(client, "Old_phone", Mock())
+        data, namespace, title, redirects = resolve_device(client, "Old_phone")
         self.assertEqual((data["wikiid"], namespace, title), (123, "CATEGORY", "New_phone"))
         self.assertEqual(redirects, [{"namespace": "CATEGORY", "title": "Old_phone", "wikiid": 1}])
         self.assertEqual(client.get_wiki.call_args.args, ("CATEGORY", "New_phone"))
@@ -43,19 +43,19 @@ class DeviceResolutionTests(unittest.TestCase):
     def test_explicit_cross_namespace_redirect_is_followed(self):
         client = Mock()
         client.get_wiki.side_effect = [page("Old phone", 1, "[redirect|Wiki:New phone]"), page()]
-        self.assertEqual(resolve_device(client, "Old_phone", Mock())[1], "WIKI")
+        self.assertEqual(resolve_device(client, "Old_phone")[1], "WIKI")
         self.assertEqual(client.get_wiki.call_args.args, ("WIKI", "New_phone"))
 
     def test_loops_unsupported_targets_and_invalid_payloads_are_rejected(self):
         for payload in [page(raw="[redirect|Category:Old phone]"), page(raw="[redirect|User:Someone]"), {}]:
             with self.subTest(payload=payload), self.assertRaises(DataQualityError):
-                resolve_device(Mock(get_wiki=Mock(return_value=payload)), "Old_phone", Mock())
+                resolve_device(Mock(get_wiki=Mock(return_value=payload)), "Old_phone")
 
     def test_http_404_never_guesses_a_wiki_fallback(self):
         client = Mock()
         client.get_wiki.side_effect = http_error(404)
         with self.assertRaises(requests.HTTPError):
-            resolve_device(client, "New_phone", Mock())
+            resolve_device(client, "New_phone")
         client.get_wiki.assert_called_once_with("CATEGORY", "New_phone")
 
     def test_redirect_chain_is_bounded(self):
@@ -64,28 +64,28 @@ class DeviceResolutionTests(unittest.TestCase):
             page(f"Phone {i}", i + 1, f"[redirect|Category:Phone {i + 1}]") for i in range(6)
         ]
         with self.assertRaisesRegex(DataQualityError, "Too many device redirects"):
-            resolve_device(client, "Phone_0", Mock())
+            resolve_device(client, "Phone_0")
         self.assertEqual(client.get_wiki.call_count, 6)
 
     def test_old_name_is_accepted_only_with_explicit_redirect(self):
         client = Mock()
         before = [{"name": "Old phone", "title": "Old_phone"}]
         client.get_wiki.side_effect = [page("Old phone", 1, "[redirect|Wiki:New phone]"), page()]
-        resolved = resolve_previous_names(client, before, ["New phone"], Mock())
+        resolved = resolve_previous_names(client, before, ["New phone"])
         self.assertEqual(resolved["New phone"][-1], ["Old phone"])
         client.get_wiki.side_effect = None
         client.get_wiki.return_value = page("Old phone", 1)
-        self.assertEqual(resolve_previous_names(client, before, ["New phone"], Mock()), {})
+        self.assertEqual(resolve_previous_names(client, before, ["New phone"]), {})
 
     def test_removed_old_url_allows_later_wikiid_comparison_but_server_failure_blocks(self):
         before = [{"name": "Old phone", "wikiid": 123}]
         for status in (404, 503):
             client = Mock(get_wiki=Mock(side_effect=http_error(status)))
             if status == 404:
-                self.assertEqual(resolve_previous_names(client, before, ["New phone"], Mock()), {})
+                self.assertEqual(resolve_previous_names(client, before, ["New phone"]), {})
             else:
                 with self.assertRaises(requests.HTTPError):
-                    resolve_previous_names(client, before, ["New phone"], Mock())
+                    resolve_previous_names(client, before, ["New phone"])
 
 
 class DeviceImportTests(unittest.TestCase):
@@ -94,7 +94,6 @@ class DeviceImportTests(unittest.TestCase):
             tempfile.TemporaryDirectory() as directory,
             patch("fetch_device_data.fetch_teardown_guides", return_value={}),
             patch("fetch_device_data.get_rubric_versions_for_devices", return_value=[]),
-            patch("fetch_device_data._RateLimiter"),
             patch("fetch_device_data.time.sleep"),
         ):
             output = Path(directory) / "devices.json"

@@ -268,6 +268,15 @@ def summarize(report: dict) -> str:
     ]
     for key, values in report.get("metrics", {}).items():
         lines.append(f"| {key} | {values['previous']} | {values['candidate']} | {values['lost']} |")
+    if report.get("api"):
+        api = report["api"]
+        lines += [
+            "",
+            (
+                f"API requests: {api['requests']}; configured ceiling: {api['rate_limit']}/s; "
+                f"current rate: {api['current_rate']}/s; throttling responses: {api['throttles']}."
+            ),
+        ]
     if report.get("renames"):
         lines += ["", "### Verified renames"]
         lines.extend(

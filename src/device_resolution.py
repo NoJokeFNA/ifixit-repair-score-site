@@ -8,7 +8,7 @@ from data_quality import DataQualityError
 from utils import _DeviceDataUtils
 
 
-def resolve_device(client, title, limiter, namespace="CATEGORY"):
+def resolve_device(client, title, namespace="CATEGORY"):
     if namespace not in {"CATEGORY", "WIKI"}:
         raise DataQualityError(f"Unsupported wiki namespace: {namespace}")
     visited = set()
@@ -18,7 +18,6 @@ def resolve_device(client, title, limiter, namespace="CATEGORY"):
         if key in visited:
             raise DataQualityError(f"Redirect loop for {title}")
         visited.add(key)
-        limiter.acquire()
         data = client.get_wiki(namespace, title)
         if not isinstance(data, dict) or not isinstance(data.get("wikiid"), int) or not data.get("title"):
             raise DataQualityError(f"Invalid device response for {namespace}/{title}")
@@ -36,7 +35,7 @@ def resolve_device(client, title, limiter, namespace="CATEGORY"):
     raise DataQualityError(f"Too many device redirects for {title}")
 
 
-def resolve_previous_names(client, previous_devices, device_names, limiter):
+def resolve_previous_names(client, previous_devices, device_names):
     """Only an explicit redirect may connect a vanished baseline name to a new name."""
     current = {_DeviceDataUtils.to_ifixit_title(name): name for name in device_names}
     resolved = {}
@@ -46,7 +45,7 @@ def resolve_previous_names(client, previous_devices, device_names, limiter):
         title = previous.get("title") or _DeviceDataUtils.to_ifixit_title(previous["name"])
         try:
             data, namespace, canonical, redirects = resolve_device(
-                client, title, limiter, previous.get("wiki_namespace", "CATEGORY")
+                client, title, previous.get("wiki_namespace", "CATEGORY")
             )
         except requests.HTTPError as error:
             # The candidate may still be identifiable by a persisted wikiid.

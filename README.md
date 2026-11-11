@@ -14,6 +14,8 @@ Workflows:
 
 Local run example:
 - python src/fetch_device_data.py --categories "iPhone" "Android Phone" --scores-output devices_with_scores.json
+- iFixit API reads share one request budget across workers and retries, capped at 32 requests per second by default with up to 32 workers. Use `--api-rate 4` for the previous conservative ceiling, or select another ceiling such as 16 or 64. A 429 response applies `Retry-After` to all workers, halves the rate, and recovers gradually after successful responses. Every device and variant is still fetched on every import; no stale device cache is substituted.
+- The quality report includes API request counts, configured/current rate and observed throttling, so production timings can be compared with the actual request budget.
 
 Rubric maintenance:
 - Rubric tables are fetched from the wiki JSON API (`contents_rendered`), avoiding the themed HTML page and its inline CSS/scripts.

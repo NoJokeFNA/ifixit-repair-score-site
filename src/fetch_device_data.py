@@ -3,6 +3,7 @@ import asyncio
 import collections
 import json
 import logging
+import math
 import os
 import re
 import tempfile
@@ -275,7 +276,7 @@ def fetch_teardown_guides(client: IFixitAPIClient) -> dict[str, list[dict[str, o
             return page_results
         except Exception:
             logger.exception("Failed to fetch offset %d", page_offset)
-            return {}
+            raise
 
     def extend_map(dst: dict[str, list[dict[str, object]]], src: dict[str, list[dict[str, object]]]) -> None:
         for category, guides in src.items():
@@ -403,9 +404,7 @@ def print_device_data(
                     data, namespace, ifixit_title, redirects, aliases = renamed[device_name]
                 else:
                     previous_namespace = previous_by_name.get(device_name, {}).get("wiki_namespace", "CATEGORY")
-                    data, namespace, ifixit_title, redirects = resolve_device(
-                        client, ifixit_title, limiter, previous_namespace
-                    )
+                    data, namespace, ifixit_title, redirects = resolve_device(client, ifixit_title, previous_namespace)
                     aliases = []
                 fetching_device = False
                 device_identities[device_name] = {
@@ -418,7 +417,6 @@ def print_device_data(
                 repairability_score = data.get("repairability_score")
                 manufacturer = _DeviceDataUtils.device_brand(data)
                 if namespace == "CATEGORY":
-                    limiter.acquire()
                     variants = client.get_category_variants(ifixit_title)
                     if not isinstance(variants, dict) or not isinstance(variants.get("topic_variants"), list):
                         raise DataQualityError(f"Invalid model variants response for {device_name}")
@@ -469,10 +467,9 @@ def print_device_data(
         with_score.sort(key=lambda x: x[0])
         return with_score, without_score
 
-    max_workers = 8
-    requests_per_second = 4
-    limiter = _RateLimiter(rate_per_sec=requests_per_second)
-    renamed = resolve_previous_names(client, previous_devices, unique_devices, limiter)
+    budget = getattr(client, "rate_limiter", None)
+    max_workers = min(32, max(8, math.ceil(budget.maximum))) if isinstance(budget, _RateLimiter) else 8
+    renamed = resolve_previous_names(client, previous_devices, unique_devices)
 
     results: list[tuple[str, str, float | None, str | None, str | None, str | None]] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -584,9 +581,7 @@ def print_device_data(
             raise
 
 
-def generate_rubric_json(
-    client: IFixitAPIClient, output_file: str = "rubric.json", rate_limiter: _RateLimiter | None = None
-) -> None:
+def generate_rubric_json(client: IFixitAPIClient, output_file: str = "rubric.json") -> None:
     """
     Scrape iFixit wiki pages to generate rubric.json with version-specific criteria, weights, notes,
     factors not considered, and revisions.
@@ -594,15 +589,12 @@ def generate_rubric_json(
     Args:
         client: IFixitAPIClient instance for fetching wiki pages.
         output_file: Path to write the JSON output (default: 'rubric.json').
-        rate_limiter: Optional _RateLimiter instance for rate-limiting requests.
     """
 
     def fetch_page(version: str) -> BeautifulSoup | None:
         """Fetch and parse a wiki page for a given version using IFixitAPIClient."""
         title = f"Repairability_Scoring_Rubric_v{version}"
         try:
-            if rate_limiter:
-                rate_limiter.acquire()
             data = client.get_wiki("WIKI", title)
             if not isinstance(data, dict) or not isinstance(data.get("contents_rendered"), str):
                 raise DataQualityError(f"Invalid rubric API response for {title}")
@@ -612,6 +604,9 @@ def generate_rubric_json(
             soup.insert(0, heading)
             return soup
         except requests.RequestException as e:
+            response = getattr(e, "response", None)
+            if response is None or response.status_code != 404:
+                raise
             logger.error(f"Failed to fetch wiki page for version {version}: {e}")
             return None
 
@@ -844,6 +839,9 @@ async def main_async() -> None:
     parser.add_argument(
         "--quality-report", default="data_quality_report.json", help="Path for the import quality report"
     )
+    parser.add_argument(
+        "--api-rate", type=float, default=32, help="Maximum iFixit API requests per second (default: 32)"
+    )
     args = parser.parse_args()
     report = {"checked_at": datetime.now(UTC).isoformat(), "status": "running", "errors": [], "warnings": []}
     output_paths = [Path(args.scores_output).resolve(), Path(args.french_scores_output).resolve()]
@@ -854,15 +852,16 @@ async def main_async() -> None:
     try:
         previous_sources = read_snapshot(args.french_scores_output)
         previous_devices = read_snapshot(args.scores_output)
+        rate_limiter = _RateLimiter(rate_per_sec=args.api_rate)
         client = IFixitAPIClient(
             log_level=log_level,
             api_key=os.getenv("IFIXIT_TOKEN") or None,
             proxy=os.getenv("IFIXIT_USE_PROXY", "").lower() in {"1", "true", "yes"},
             ca_bundle=os.getenv("IFIXIT_CA_BUNDLE") or None,
             raise_for_status=True,
+            rate_limiter=rate_limiter,
         )
         client.get_guides(params={"limit": 1})
-        rate_limiter = _RateLimiter(rate_per_sec=4)
         french_scraper = FrenchRepairabilityScraper()
         french_scores = await french_scraper.get_french_repairability_scores()
         # Stage every generated file. A rejected candidate never touches the current outputs.
@@ -872,7 +871,7 @@ async def main_async() -> None:
                 old_rubric = Path(args.rubric_output)
                 if old_rubric.exists():
                     (stage / "rubric.json").write_bytes(old_rubric.read_bytes())
-                generate_rubric_json(client=client, output_file=str(stage / "rubric.json"), rate_limiter=rate_limiter)
+                generate_rubric_json(client=client, output_file=str(stage / "rubric.json"))
             exclude_subtrees = {"iPhone": {"iPhone Accessories"}}
             child_map = get_child_devices_for_categories(client, args.categories, exclude_subtrees)
             devices = list(dict.fromkeys(name for category in args.categories for name in child_map.get(category, [])))
@@ -883,6 +882,8 @@ async def main_async() -> None:
             if candidate_devices is None:
                 raise DataQualityError("Device generation did not produce a candidate snapshot")
             report = compare_snapshots(previous_sources, french_scores, previous_devices, candidate_devices)
+            report["api"] = rate_limiter.stats()
+            logger.info("API request statistics: %s", report["api"])
             write_report(args.quality_report, report)
             if report["errors"]:
                 raise DataQualityError("; ".join(report["errors"]))
