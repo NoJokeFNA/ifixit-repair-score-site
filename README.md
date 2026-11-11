@@ -61,6 +61,9 @@ own Python client; updating the separate SDK alone does not update this collecto
 
 Import quality monitoring:
 - Generation uses temporary candidate files and compares them against the current output files before replacement. Parser failures or a rejected comparison retain the previous source, device, and rubric outputs.
+- Device and variant HTTP errors, including 404 responses, block publication and appear in the quality report. Failed requests are never treated as devices with successfully fetched, empty metadata.
+- Successful device reads store `wikiid`, `wiki_namespace`, and explicit redirect evidence. Renames are compared by a persisted wiki ID or a verified redirect from a previously published name; name similarity alone is insufficient. Redirect loops and conflicting identities are rejected.
+- A redirect to the `WIKI` namespace does not provide category variants. The report identifies this case, and previously published variants are never copied into the new snapshot to conceal missing source evidence. The variant-loss guard still applies to renamed devices.
 - A loss of at least 10% of previously published source URLs, devices, French scores, iFixit scores, model identifications, or named regional variants blocks the import. Added records cannot hide lost records. Smaller losses are recorded as warnings.
 - A manufacturer with at least three French scores losing half or more of them also blocks the import, even if its global share is small. A device with at least three named regional variants losing half or more of them is protected in the same way.
 - `--quality-report PATH` writes counts, exact lost identities, errors and warnings as JSON. The daily workflow adds a GitHub Actions summary and retains the report as an artifact for 30 days, including failed runs.

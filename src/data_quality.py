@@ -55,6 +55,43 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
         report["errors"].append("Candidate entries require nonempty source URLs and device names")
     if len(set(source_ids)) != len(source_ids) or len(set(device_ids)) != len(device_ids):
         report["errors"].append("Candidate snapshots contain duplicate identities")
+    previous_by_name = {row["name"]: row for row in previous_devices or []}
+    previous_by_id = {row["wikiid"]: row for row in previous_devices or [] if row.get("wikiid") is not None}
+    candidate_keys = {}
+    report["renames"] = []
+    for row in devices:
+        if row.get("import_error"):
+            report["errors"].append(row["import_error"])
+        previous = previous_by_id.get(row.get("wikiid"))
+        aliases = [name for name in row.get("previous_names", []) if name in previous_by_name]
+        if len(aliases) > 1:
+            report["errors"].append(f"Ambiguous previous device names: {row['name']}")
+        if previous is None and len(aliases) == 1:
+            previous = previous_by_name[aliases[0]]
+        elif previous is not None and aliases and previous["name"] not in aliases:
+            report["errors"].append(f"Wiki ID and redirect disagree about previous device: {row['name']}")
+        same_name = previous_by_name.get(row["name"])
+        if (
+            same_name
+            and same_name.get("wikiid") is not None
+            and row.get("wikiid") is not None
+            and same_name["wikiid"] != row["wikiid"]
+            and not any(link.get("wikiid") == same_name["wikiid"] for link in row.get("redirects", []))
+        ):
+            report["errors"].append(f"Wiki ID changed without a verified redirect: {row['name']}")
+        key = previous["name"] if previous else row["name"]
+        candidate_keys[row["name"]] = key
+        if key != row["name"]:
+            if row["name"] in previous_by_name:
+                report["errors"].append(f"Device rename collides with existing device: {row['name']}")
+            report["renames"].append({"previous": key, "candidate": row["name"], "wikiid": row.get("wikiid")})
+    wiki_ids = [row["wikiid"] for row in devices if row.get("wikiid") is not None]
+    if len(set(wiki_ids)) != len(wiki_ids) or len(set(candidate_keys.values())) != len(devices):
+        report["errors"].append("Candidate snapshots contain duplicate resolved device identities")
+
+    def device_key(row):
+        return candidate_keys[row["name"]]
+
     for row in sources:
         value = row.get("repairability_score")
         if (
@@ -80,36 +117,43 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
     before_scored = {row["name"] for row in previous_devices or [] if row.get("france_repairability_score") is not None}
     before_ifixit = {row["name"] for row in previous_devices or [] if row.get("repairability_score") is not None}
     compare("source_products", before_sources, set(source_ids))
-    compare("devices", before_devices, set(device_ids))
+    compare("devices", before_devices, {device_key(row) for row in devices})
     compare(
         "french_scores",
         before_scored,
-        {row["name"] for row in devices if row.get("france_repairability_score") is not None},
+        {device_key(row) for row in devices if row.get("france_repairability_score") is not None},
     )
     compare(
-        "ifixit_scores", before_ifixit, {row["name"] for row in devices if row.get("repairability_score") is not None}
+        "ifixit_scores",
+        before_ifixit,
+        {device_key(row) for row in devices if row.get("repairability_score") is not None},
     )
 
-    def identified(rows):
-        return {row["name"] for row in rows or [] if (row.get("model_identification") or {}).get("model_numbers")}
+    def identified(rows, key):
+        return {key(row) for row in rows or [] if (row.get("model_identification") or {}).get("model_numbers")}
 
-    def variant_ids(rows):
+    def variant_ids(rows, key=lambda row: row["name"]):
         return {
-            f"{row['name']} :: {variant.get('variant_id') or variant['name']}"
+            f"{key(row)} :: {variant.get('variant_id') or variant['name']}"
             for row in rows or []
             for variant in (row.get("model_identification") or {}).get("variants", [])
             if variant.get("name")
         }
 
-    compare("model_identifications", identified(previous_devices), identified(devices))
-    compare("regional_variants", variant_ids(previous_devices), variant_ids(devices))
-    by_name = {row["name"]: row for row in devices}
+    compare(
+        "model_identifications", identified(previous_devices, lambda row: row["name"]), identified(devices, device_key)
+    )
+    compare("regional_variants", variant_ids(previous_devices), variant_ids(devices, device_key))
+    by_name = {device_key(row): row for row in devices}
     for previous in previous_devices or []:
         old = variant_ids([previous])
         current = by_name.get(previous["name"])
-        lost = old - variant_ids([current] if current else [])
+        lost = old - variant_ids([current] if current else [], device_key)
         if len(old) >= 3 and len(lost) >= math.ceil(len(old) * 0.5):
-            report["errors"].append(f"{previous['name']}: {len(lost)} of {len(old)} named variants disappeared")
+            detail = ""
+            if current and current.get("wiki_namespace") == "WIKI":
+                detail = f"; redirected to WIKI/{current['title']}, which has no category variants endpoint"
+            report["errors"].append(f"{previous['name']}: {len(lost)} of {len(old)} named variants disappeared{detail}")
     if previous_sources and not before_sources:
         report["errors"].append("Previous source snapshot lacks stable source URLs; establish a reviewed baseline")
     # A small manufacturer outage must not disappear inside a large global total.
@@ -119,7 +163,7 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
             old_brands[row["brand"]].add(row["name"])
     for row in devices:
         if row.get("brand") and row.get("france_repairability_score") is not None:
-            new_brands[row["brand"]].add(row["name"])
+            new_brands[row["brand"]].add(device_key(row))
     for brand, old in old_brands.items():
         lost = old - new_brands[brand]
         if len(old) >= 3 and len(lost) >= math.ceil(len(old) * 0.5):
@@ -147,6 +191,9 @@ def summarize(report: dict) -> str:
     ]
     for key, values in report.get("metrics", {}).items():
         lines.append(f"| {key} | {values['previous']} | {values['candidate']} | {values['lost']} |")
+    if report.get("renames"):
+        lines += ["", "### Verified renames"]
+        lines.extend(f"- {row['previous']} → {row['candidate']} (wikiid: {row['wikiid']})" for row in report["renames"])
     for label in ["errors", "warnings"]:
         if report.get(label):
             lines += ["", f"### {label.capitalize()}"]

@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from copy import deepcopy
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
@@ -33,6 +34,55 @@ def devices(count=20):
 
 
 class ImportComparisonTests(unittest.TestCase):
+    def test_wikiid_rename_preserves_metrics_but_real_variant_loss_still_blocks(self):
+        before = devices()
+        before[0].update(
+            {
+                "wikiid": 123,
+                "model_identification": {
+                    "model_numbers": ["SM-A205F"],
+                    "variants": [{"name": f"Region {i}", "variant_id": i + 1} for i in range(10)],
+                },
+            }
+        )
+        after = deepcopy(before)
+        after[0]["name"] = "Renamed model"
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "passed")
+        self.assertTrue(all(metric["lost"] == 0 for metric in report["metrics"].values()))
+        self.assertIn("Model 0 → Renamed model", summarize(report))
+        after[0]["model_identification"]["variants"] = []
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "blocked")
+        self.assertTrue(any("10 of 10 named variants disappeared" in error for error in report["errors"]))
+
+    def test_name_similarity_alone_does_not_establish_a_rename(self):
+        before, after = devices(), devices()
+        before[0]["name"] = "Samsung Galaxy A2000"
+        after[0]["name"] = "Samsung Galaxy A20"
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["metrics"]["devices"]["lost"], 1)
+        self.assertEqual(report["renames"], [])
+
+    def test_duplicate_wiki_ids_and_ambiguous_rename_claims_block_import(self):
+        for collision in ("wikiid", "previous_names"):
+            before, after = devices(), devices()
+            if collision == "wikiid":
+                after[0]["wikiid"] = after[1]["wikiid"] = 123
+            else:
+                after[0]["previous_names"] = ["Model 0", "Model 1"]
+            report = compare_snapshots(sources(), sources(), before, after)
+            self.assertEqual(report["status"], "blocked")
+
+    def test_same_name_cannot_hide_an_unverified_wikiid_change(self):
+        before, after = devices(), devices()
+        before[0]["wikiid"] = 123
+        after[0]["wikiid"] = 456
+        report = compare_snapshots(sources(), sources(), before, after)
+        self.assertEqual(report["status"], "blocked")
+        after[0]["redirects"] = [{"wikiid": 123, "namespace": "CATEGORY", "title": "Model_0"}]
+        self.assertEqual(compare_snapshots(sources(), sources(), before, after)["status"], "passed")
+
     def test_first_import_and_unchanged_snapshot_pass(self):
         for old_sources, old_devices in [(None, None), (sources(), devices())]:
             report = compare_snapshots(old_sources, sources(), old_devices, devices())
@@ -153,7 +203,7 @@ class StagedImportTests(unittest.IsolatedAsyncioTestCase):
                 raise ValueError("rubric parser failed")
             Path(output_file).write_text(json.dumps({"new": "rubric"}))
 
-        def build_devices(client, names, scraper, output_file):
+        def build_devices(client, names, scraper, output_file, previous_devices):
             Path(output_file).write_text(json.dumps(candidate_devices))
 
         with (
@@ -182,6 +232,17 @@ class StagedImportTests(unittest.IsolatedAsyncioTestCase):
             for name, content in before.items():
                 self.assertEqual((root / name).read_bytes(), content)
             self.assertEqual(json.loads((root / "quality.json").read_text())["status"], "blocked")
+
+    async def test_http_failure_preserves_all_published_outputs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            candidate = devices()
+            candidate[0]["import_error"] = "Model 0: device fetch failed: HTTP 404"
+            root, before, error = await self.run_import(directory, sources(), candidate)
+            self.assertIsInstance(error, DataQualityError)
+            for name, content in before.items():
+                self.assertEqual((root / name).read_bytes(), content)
+            report = json.loads((root / "quality.json").read_text())
+            self.assertIn("HTTP 404", report["errors"][0])
 
     async def test_other_generation_failure_also_preserves_outputs(self):
         with tempfile.TemporaryDirectory() as directory:
