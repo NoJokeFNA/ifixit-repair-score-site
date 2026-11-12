@@ -16,3 +16,8 @@ Pull Requests:
 Code style:
 - Python: linted with Ruff in CI.
 - JSON: must be valid UTF-8 JSON and pass workflow validation.
+
+Install the development tools with `python -m pip install -r requirements-dev.txt`.
+Run `ruff check --no-fix .` and `ruff format --check .` before opening a PR.
+Keep the Ruff version in `requirements-dev.txt` and `.pre-commit-config.yaml` in sync
+when reviewing Dependabot updates.
