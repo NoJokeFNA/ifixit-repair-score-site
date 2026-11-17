@@ -39,3 +39,8 @@ live device counts; data checks also validate the actual committed snapshot.
 The daily data workflow runs rubric/data/French checks against the newly generated
 candidate files before committing them. The complete suite also runs on frontend
 pushes and pull requests.
+
+`navigation.cjs` checks shared filter/comparison/rubric URLs, stable device identity
+across source reordering, back/forward and reload with an open dialog, malformed
+route parameters, missing/different rubric editions, and current/stale/unknown
+import timestamps.

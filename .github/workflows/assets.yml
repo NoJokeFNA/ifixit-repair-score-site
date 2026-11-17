@@ -1,0 +1,47 @@
+name: Rebuild local fonts and icons
+on:
+  push:
+    branches: [gh-pages]
+    paths: ['package.json', 'package-lock.json', 'scripts/vendor.mjs', 'css/**', '.github/workflows/assets.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+# Serialize generated-file commits with the daily importer on master.
+concurrency:
+  group: repair-data-import
+  cancel-in-progress: false
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Build assets from the locked npm packages
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Commit generated local files
+        run: |
+          git add styles.css assets/icons.js assets/mono.woff2 assets/licenses
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'chore(assets): rebuild local fonts, icons and CSS'
+            # Daily data imports can advance gh-pages while npm is building.
+            git pull --rebase origin gh-pages
+            git push origin HEAD:gh-pages
+          fi
+      # GITHUB_TOKEN commits do not automatically trigger the native Pages build.
+      - name: Publish the configured Pages branch
+        uses: actions/github-script@v8
+        with:
+          script: |
+            await github.rest.repos.requestPagesBuild({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });

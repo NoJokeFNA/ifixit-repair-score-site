@@ -53,3 +53,20 @@ correction is reused.
 
 The configured GitHub Pages branch build publishes `gh-pages` commits. The daily
 import explicitly requests that build after validated generated-data changes. No Sites hosting configuration or user/API credentials belong in this branch.
+
+## Links, freshness and dependency updates
+
+Filters, sorting, page size, page, selections, scoring-system tabs and rubric
+versions are encoded in the URL. Device links use the stable iFixit wiki title,
+so source ordering changes do not redirect an old link to another device.
+Back/forward restores the view; closing a device opened from the explorer returns
+to its filtered list. Device names are real links and support opening a new tab.
+
+`data-status.json` records the last successful import. Dates are displayed in UTC;
+snapshots older than 48 hours get a notice. Failed imports leave that timestamp
+unchanged. Source dates and calculation-grid check dates are separate values.
+
+Dependabot checks the locked npm packages weekly on `gh-pages`. PR browser checks
+build and test the proposed package versions. After merge, `assets.yml` rebuilds
+and commits the local fonts, icons, CSS and licences, then explicitly requests a
+Pages branch build. No manual generated-file commit is needed for package bumps.

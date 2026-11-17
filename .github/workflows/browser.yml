@@ -18,8 +18,8 @@ jobs:
           node-version: '24'
       - name: Install browser tools
         run: |
-          npm ci
-          npm run check:assets
+          npm ci --ignore-scripts
+          npm run build
           npm install --prefix /tmp/browser-tools playwright@1.65.0
           /tmp/browser-tools/node_modules/.bin/playwright install --with-deps chromium
       - name: Check dashboard and all rubric versions
@@ -34,3 +34,4 @@ jobs:
           node tests/data.cjs
           node tests/france.cjs
           node tests/images.cjs
+          node tests/navigation.cjs

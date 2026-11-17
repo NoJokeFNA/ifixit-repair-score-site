@@ -23,7 +23,7 @@ async function site(run, options = {}) {
     return route.fulfill({path: file});
   });
   try {
-    await page.goto('http://site.test/repair-scores/');
+    await page.goto('http://site.test/repair-scores/'+(options.query||''));
     await page.waitForFunction(() => /^\d/.test(document.querySelector('#result-count')?.textContent || ''));
     await run(page, context);
     assert.deepEqual(errors, [], 'Uncaught browser errors');
