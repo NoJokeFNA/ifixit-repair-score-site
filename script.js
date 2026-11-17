@@ -112,7 +112,7 @@ function applyRoute(){
   s.selected=[...new Set(p.getAll('compare'))].map(title=>data.find(d=>d.title===title)?.id).filter(Boolean).slice(0,3);
   s.compareMode=choice('mode',['devices','rubrics'],'devices');s.methodSystem=choice('method',['ifixit','french'],'ifixit');
   $('#search').value=s.query;$('#brand').value=s.brand;$('#page-size').value=String(s.pageSize);
-  if(rubric){for(const [key,id] of [['rubric','rubric-version'],['left','rubric-left'],['right','rubric-right']])if(rubric.versions.includes(p.get(key)))$('#'+id).value=p.get(key);}
+  if(rubric){for(const [key,id,fallback] of [['rubric','rubric-version',rubric.versions.at(-1)],['left','rubric-left',rubric.versions.includes('2.3')?'2.3':rubric.versions[Math.max(0,rubric.versions.length-2)]],['right','rubric-right',rubric.versions.includes('2.4')?'2.4':rubric.versions.at(-1)]])$('#'+id).value=rubric.versions.includes(p.get(key))?p.get(key):fallback;}
   render();view(choice('view',['explorer','comparison','method','about'],'explorer'),false);selectMethodSystem(s.methodSystem);
   const device=data.find(d=>d.title===p.get('device'));
   if(device)detail(device.id,false);else{activeDevice=null;if(detailDialog.open){ignoredDetailCloses++;detailDialog.close();}}

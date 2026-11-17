@@ -42,7 +42,7 @@ const params=page=>new URL(page.url()).searchParams;
  await site(async page=>{
   await page.locator('[data-chart-system="french"]').click();await page.locator('[data-scope="all"]').click();assert.equal(params(page).get('system'),'french');assert.equal(params(page).get('scope'),'all');
   await page.reload();await page.waitForFunction(()=>document.querySelector('#histogram').dataset.system==='french');assert.equal(await page.locator('[data-scope="all"]').getAttribute('aria-pressed'),'true');
-  await page.locator('[data-view="method"]').first().click();await page.locator('[data-method-system="french"]').first().click();
+  await page.locator('[data-view="method"]').first().click();const originalVersion=await page.locator('#rubric-version').inputValue();await page.locator('#rubric-version').selectOption('2.2');await page.goBack();assert.equal(await page.locator('#rubric-version').inputValue(),originalVersion);await page.locator('[data-method-system="french"]').first().click();
   assert.equal(params(page).get('method'),'french');await page.reload();await page.locator('#french-rubric-panel').waitFor();assert.equal(await page.locator('#ifixit-rubric-panel').isVisible(),false);
  },{overrides});
  await site(async page=>{
