@@ -2,13 +2,11 @@
   "name": "ifixit-repair-score-site",
   "private": true,
   "scripts": {
-    "build": "node scripts/vendor.mjs && tailwindcss -i css/input.css -o styles.css --minify",
-    "check:assets": "npm run build && git diff --exit-code -- styles.css assets"
+    "build": "node scripts/vendor.mjs",
+    "check:assets": "npm run build && git diff --exit-code -- styles.css assets/icons.js assets/mono.woff2 assets/licenses"
   },
   "devDependencies": {
     "@fontsource-variable/jetbrains-mono": "5.3.0",
-    "@tailwindcss/cli": "4.3.5",
-    "chart.js": "4.6.1",
-    "tailwindcss": "4.3.5"
+    "lucide": "0.468.0"
   }
 }

@@ -33,3 +33,4 @@ jobs:
           node tests/chart.cjs
           node tests/data.cjs
           node tests/france.cjs
+          node tests/images.cjs

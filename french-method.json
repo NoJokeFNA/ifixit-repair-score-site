@@ -1,0 +1,309 @@
+{
+  "id": "fr-smartphones-2020-12-29",
+  "name": "French smartphone repairability index",
+  "basis": "Order of 29 December 2020",
+  "effective_from": "2021-01-01",
+  "repealed_from": "2025-07-07",
+  "checked_on": "2026-11-17",
+  "sources": [
+    {
+      "label": "Original smartphone criteria (Légifrance)",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042838138"
+    },
+    {
+      "label": "Official criteria text (INERIS / AIDA)",
+      "url": "https://aida.ineris.fr/reglementation/arrete-291220-relatif-criteres-sous-criteres-systeme-notation-calcul-laffichage-1"
+    },
+    {
+      "label": "Ministry calculation guidance V3.0",
+      "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/Notice_indice_reparabilite_FR_V3.0.pdf"
+    },
+    {
+      "label": "Repealing order of 26 June 2025",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051849718"
+    },
+    {
+      "label": "EU smartphone label from 20 June 2025",
+      "url": "https://www.ecologie.gouv.fr/presse/telephones-tablettes-plus-durables-economes-reparables-france-renforce-linformation"
+    }
+  ],
+  "criteria": [
+    {
+      "id": "1",
+      "name": "Documentation",
+      "maximum": 20.0,
+      "weight": 20.0,
+      "description": "How long technical, repair, use and maintenance information is available free of charge to repairers and consumers.",
+      "subcriteria": [
+        {
+          "id": "1.1",
+          "name": "Duration of free technical documentation availability",
+          "coefficient": 2.0,
+          "source_name": "1.1 Durée de disponibilité de la documentation technique et relative aux conseils d'utilisation et d'entretien"
+        }
+      ],
+      "source_name": "CRITÈRE 1 : DOCUMENTATION"
+    },
+    {
+      "id": "2",
+      "name": "Disassembly, access, tools and fasteners",
+      "maximum": 20.0,
+      "weight": 20.0,
+      "description": "Access steps for priority parts, required tool types and whether fasteners can be removed and reused.",
+      "subcriteria": [
+        {
+          "id": "2.1",
+          "name": "Ease of disassembly of priority parts (list 2)",
+          "coefficient": 1.0,
+          "source_name": "2.1 Facilité de démontage des pièces de la liste 2*"
+        },
+        {
+          "id": "2.2",
+          "name": "Tools required for priority parts (list 2)",
+          "coefficient": 0.5,
+          "source_name": "2.2 Outils nécessaires (liste 2)"
+        },
+        {
+          "id": "2.3",
+          "name": "Fastener characteristics for parts in lists 1 and 2",
+          "coefficient": 0.5,
+          "source_name": "2.3 Caractéristiques des fixations entre les pièces de la liste 1** et de la liste 2"
+        }
+      ],
+      "source_name": "CRITÈRE 2 : DÉMONTABILITÉ, ACCÈS, OUTILS, FIXATIONS"
+    },
+    {
+      "id": "3",
+      "name": "Spare parts availability",
+      "maximum": 20.0,
+      "weight": 20.0,
+      "description": "Availability commitments and delivery lead times for priority and other essential spare parts.",
+      "subcriteria": [
+        {
+          "id": "3.1",
+          "name": "Availability period for priority parts (list 2)",
+          "coefficient": 1.0,
+          "source_name": "3.1 Durée de disponibilité des pièces de la liste 2"
+        },
+        {
+          "id": "3.2",
+          "name": "Availability period for other essential parts (list 1)",
+          "coefficient": 0.5,
+          "source_name": "3.2 Durée de disponibilité des pièces de la liste 1"
+        },
+        {
+          "id": "3.3",
+          "name": "Delivery time for priority parts (list 2)",
+          "coefficient": 0.3,
+          "source_name": "3.3 Délais de livraison des pièces de la liste 2"
+        },
+        {
+          "id": "3.4",
+          "name": "Delivery time for other essential parts (list 1)",
+          "coefficient": 0.2,
+          "source_name": "3.4 Délais de livraison des pièces de la liste 1"
+        }
+      ],
+      "source_name": "CRITÈRE 3 : DISPONIBILITÉ DES PIÈCES DÉTACHÉES"
+    },
+    {
+      "id": "4",
+      "name": "Spare parts prices",
+      "maximum": 20.0,
+      "weight": 20.0,
+      "description": "The price of priority replacement parts relative to the price of the new device.",
+      "subcriteria": [
+        {
+          "id": "4.1",
+          "name": "Priority-parts price relative to the price of the new device",
+          "coefficient": 2.0,
+          "source_name": "4. Rapport prix des pièces de la liste 2 sur prix de l’équipement neuf"
+        }
+      ],
+      "source_name": "CRITÈRE 4 : PRIX DES PIÈCES DÉTACHÉES"
+    },
+    {
+      "id": "5",
+      "name": "Smartphone-specific criteria",
+      "maximum": 20.0,
+      "weight": 20.0,
+      "description": "Information about software update types, free remote assistance and software reset options.",
+      "subcriteria": [
+        {
+          "id": "5.1",
+          "name": "Information about the nature of software updates",
+          "coefficient": 1.0,
+          "source_name": "5.1 Informations sur la nature des mises à jour"
+        },
+        {
+          "id": "5.2",
+          "name": "Free remote assistance",
+          "coefficient": 0.5,
+          "source_name": "5.2 Assistance à distance sans frais"
+        },
+        {
+          "id": "5.3",
+          "name": "Software reset capability",
+          "coefficient": 0.5,
+          "source_name": "5.3 Possibilité de réinitialisation logicielle"
+        }
+      ],
+      "source_name": "CRITÈRE 5 : CRITÈRE SPÉCIFIQUE"
+    }
+  ],
+  "history": [
+    {
+      "date": "1 January 2021",
+      "event": "The smartphone criteria in the order of 29 December 2020 enter into force."
+    },
+    {
+      "date": "20 June 2025",
+      "event": "The EU energy label applies to newly placed-on-market smartphones and tablets. Its repairability class is a separate system, not another version of this score out of 10."
+    },
+    {
+      "date": "7 July 2025",
+      "event": "The French smartphone criteria order is repealed following publication of the order of 26 June 2025 on 6 July."
+    }
+  ],
+  "maximum": 100.0,
+  "divisor": 10.0,
+  "grid_version": "2.0",
+  "grid_filename": "220524_Grille_réparabilité_smartphone_FR_V2.0.xlsm",
+  "grid_source": "https://www.indicereparabilite.fr/wp-content/uploads/2022/11/Grille_reparabilite_smartphone_FR.zip",
+  "grid_sha256": "12f06aed40e58515706c794a78463f171bee300d882d7bbcba11fc273be733a5",
+  "grid_revisions": [
+    {
+      "sha256": "12f06aed40e58515706c794a78463f171bee300d882d7bbcba11fc273be733a5",
+      "version": "2.0",
+      "observed_on": "2026-11-17",
+      "source_url": "https://www.indicereparabilite.fr/wp-content/uploads/2022/11/Grille_reparabilite_smartphone_FR.zip",
+      "filename": "220524_Grille_réparabilité_smartphone_FR_V2.0.xlsm",
+      "criteria": [
+        {
+          "id": "1",
+          "name": "Documentation",
+          "maximum": 20.0,
+          "weight": 20.0,
+          "description": "How long technical, repair, use and maintenance information is available free of charge to repairers and consumers.",
+          "subcriteria": [
+            {
+              "id": "1.1",
+              "name": "Duration of free technical documentation availability",
+              "coefficient": 2.0,
+              "source_name": "1.1 Durée de disponibilité de la documentation technique et relative aux conseils d'utilisation et d'entretien"
+            }
+          ],
+          "source_name": "CRITÈRE 1 : DOCUMENTATION"
+        },
+        {
+          "id": "2",
+          "name": "Disassembly, access, tools and fasteners",
+          "maximum": 20.0,
+          "weight": 20.0,
+          "description": "Access steps for priority parts, required tool types and whether fasteners can be removed and reused.",
+          "subcriteria": [
+            {
+              "id": "2.1",
+              "name": "Ease of disassembly of priority parts (list 2)",
+              "coefficient": 1.0,
+              "source_name": "2.1 Facilité de démontage des pièces de la liste 2*"
+            },
+            {
+              "id": "2.2",
+              "name": "Tools required for priority parts (list 2)",
+              "coefficient": 0.5,
+              "source_name": "2.2 Outils nécessaires (liste 2)"
+            },
+            {
+              "id": "2.3",
+              "name": "Fastener characteristics for parts in lists 1 and 2",
+              "coefficient": 0.5,
+              "source_name": "2.3 Caractéristiques des fixations entre les pièces de la liste 1** et de la liste 2"
+            }
+          ],
+          "source_name": "CRITÈRE 2 : DÉMONTABILITÉ, ACCÈS, OUTILS, FIXATIONS"
+        },
+        {
+          "id": "3",
+          "name": "Spare parts availability",
+          "maximum": 20.0,
+          "weight": 20.0,
+          "description": "Availability commitments and delivery lead times for priority and other essential spare parts.",
+          "subcriteria": [
+            {
+              "id": "3.1",
+              "name": "Availability period for priority parts (list 2)",
+              "coefficient": 1.0,
+              "source_name": "3.1 Durée de disponibilité des pièces de la liste 2"
+            },
+            {
+              "id": "3.2",
+              "name": "Availability period for other essential parts (list 1)",
+              "coefficient": 0.5,
+              "source_name": "3.2 Durée de disponibilité des pièces de la liste 1"
+            },
+            {
+              "id": "3.3",
+              "name": "Delivery time for priority parts (list 2)",
+              "coefficient": 0.3,
+              "source_name": "3.3 Délais de livraison des pièces de la liste 2"
+            },
+            {
+              "id": "3.4",
+              "name": "Delivery time for other essential parts (list 1)",
+              "coefficient": 0.2,
+              "source_name": "3.4 Délais de livraison des pièces de la liste 1"
+            }
+          ],
+          "source_name": "CRITÈRE 3 : DISPONIBILITÉ DES PIÈCES DÉTACHÉES"
+        },
+        {
+          "id": "4",
+          "name": "Spare parts prices",
+          "maximum": 20.0,
+          "weight": 20.0,
+          "description": "The price of priority replacement parts relative to the price of the new device.",
+          "subcriteria": [
+            {
+              "id": "4.1",
+              "name": "Priority-parts price relative to the price of the new device",
+              "coefficient": 2.0,
+              "source_name": "4. Rapport prix des pièces de la liste 2 sur prix de l’équipement neuf"
+            }
+          ],
+          "source_name": "CRITÈRE 4 : PRIX DES PIÈCES DÉTACHÉES"
+        },
+        {
+          "id": "5",
+          "name": "Smartphone-specific criteria",
+          "maximum": 20.0,
+          "weight": 20.0,
+          "description": "Information about software update types, free remote assistance and software reset options.",
+          "subcriteria": [
+            {
+              "id": "5.1",
+              "name": "Information about the nature of software updates",
+              "coefficient": 1.0,
+              "source_name": "5.1 Informations sur la nature des mises à jour"
+            },
+            {
+              "id": "5.2",
+              "name": "Free remote assistance",
+              "coefficient": 0.5,
+              "source_name": "5.2 Assistance à distance sans frais"
+            },
+            {
+              "id": "5.3",
+              "name": "Software reset capability",
+              "coefficient": 0.5,
+              "source_name": "5.3 Possibilité de réinitialisation logicielle"
+            }
+          ],
+          "source_name": "CRITÈRE 5 : CRITÈRE SPÉCIFIQUE"
+        }
+      ],
+      "maximum": 100.0,
+      "divisor": 10.0
+    }
+  ]
+}
