@@ -51,5 +51,5 @@ the last validated public data stays available. Previously reviewed calculation
 sheets are rechecked against their source attachment and content hash before a
 correction is reused.
 
-GitHub Pages deployment is triggered by interface, dataset, rubric, method or asset
-changes. No Sites hosting configuration or user/API credentials belong in this branch.
+The configured GitHub Pages branch build publishes `gh-pages` commits. The daily
+import explicitly requests that build after validated generated-data changes. No Sites hosting configuration or user/API credentials belong in this branch.
