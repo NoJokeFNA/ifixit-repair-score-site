@@ -13,7 +13,6 @@ on:
 permissions:
   contents: write
   pages: write
-  id-token: write
 
 concurrency:
   group: repair-data-import
@@ -119,23 +118,14 @@ jobs:
             echo "No changes to commit."
           fi
 
-      # A push using GITHUB_TOKEN does not trigger another Actions workflow.
-      # Upload and deploy the validated daily result explicitly.
-      - name: Upload refreshed site
-        uses: actions/upload-pages-artifact@v5
+      # GITHUB_TOKEN pushes do not trigger another workflow or a Pages build.
+      # The repository publishes the gh-pages branch (legacy Pages mode).
+      - name: Request the configured GitHub Pages branch build
+        uses: actions/github-script@v8
         with:
-          path: gh-pages
-
-  deploy:
-    needs: build-and-sync
-    runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy refreshed data
-        id: deployment
-        uses: actions/deploy-pages@v5
+          script: |
+            const result = await github.rest.repos.requestPagesBuild({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            core.info(`Pages branch build requested: ${result.data.status}`);

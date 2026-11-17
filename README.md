@@ -112,6 +112,7 @@ scalar score. Both catalogue and sheet values remain in the source evidence.
 Conflicting sources and unresolved configurations are never reduced to a minimum
 or average to manufacture an official device score.
 
-The daily import uploads and deploys its validated Pages artifact itself: pushes
-made with `GITHUB_TOKEN` do not trigger a second workflow. Frontend pushes have
-their own Pages workflow on `gh-pages`.
+The repository publishes directly from the `gh-pages` branch. After a validated
+daily update, the workflow explicitly requests its configured Pages branch build
+with the Pages API: pushes made with `GITHUB_TOKEN` do not trigger another build
+on their own. This preserves the existing gh-pages-only deployment policy.
