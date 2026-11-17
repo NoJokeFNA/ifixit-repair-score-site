@@ -38,7 +38,7 @@ jobs:
           fi
       # GITHUB_TOKEN commits do not automatically trigger the native Pages build.
       - name: Publish the configured Pages branch
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             await github.rest.repos.requestPagesBuild({
