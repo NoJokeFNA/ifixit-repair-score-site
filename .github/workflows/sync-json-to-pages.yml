@@ -50,7 +50,7 @@ jobs:
           IFIXIT_TOKEN: ${{ secrets.IFIXIT_TOKEN }}
           IFIXIT_API_RATE: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.api_rate) || '128' }}
         run: |
-          python master/src/fetch_device_data.py --api-rate "$IFIXIT_API_RATE" --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --french-method-output gh-pages/french-method.json --images-output gh-pages/images.json --quality-report /tmp/data-quality-report.json
+          python master/src/fetch_device_data.py --api-rate "$IFIXIT_API_RATE" --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --french-method-output gh-pages/french-method.json --images-output gh-pages/images.json --status-output gh-pages/data-status.json --quality-report /tmp/data-quality-report.json
 
       - name: Summarize import quality
         if: always()
@@ -85,7 +85,7 @@ jobs:
         run: |
           set -e
           # List of files to check
-          files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json" "french-method.json" "images.json")
+          files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json" "french-method.json" "images.json" "data-status.json")
           
           # Stage all files
           git add "${files[@]}" assets/devices || { echo "Error staging files"; exit 1; }

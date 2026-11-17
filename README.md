@@ -116,3 +116,10 @@ The repository publishes directly from the `gh-pages` branch. After a validated
 daily update, the workflow explicitly requests its configured Pages branch build
 with the Pages API: pushes made with `GITHUB_TOKEN` do not trigger another build
 on their own. This preserves the existing gh-pages-only deployment policy.
+
+The import also publishes `data-status.json` using `--status-output` only after
+all validated data files have been written. The frontend displays this timestamp
+and flags snapshots older than 48 hours. A failed import preserves the prior
+timestamp. Frontend npm updates are built and tested in their PR; the asset
+workflow on `gh-pages` rebuilds and commits the local fonts, icons and CSS after
+merge, then explicitly requests the configured Pages branch build.

@@ -28,7 +28,7 @@ updates:
       interval: "weekly"
     versioning-strategy: "increase"
     groups:
-      tailwind:
+      local-assets:
         patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
+          - "@fontsource*"
+          - "lucide"

@@ -127,7 +127,7 @@ class FrenchMethodTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            paths = {name: root / (name + ".json") for name in ("devices", "france", "method", "images")}
+            paths = {name: root / (name + ".json") for name in ("devices", "france", "method", "images", "status")}
             for name, path in paths.items():
                 path.write_text(json.dumps(self.seed if name == "method" else []))
             before = {name: path.read_bytes() for name, path in paths.items()}
@@ -141,6 +141,8 @@ class FrenchMethodTests(unittest.TestCase):
                 str(paths["method"]),
                 "--images-output",
                 str(paths["images"]),
+                "--status-output",
+                str(paths["status"]),
                 "--quality-report",
                 str(root / "quality.json"),
             ]
@@ -191,6 +193,8 @@ class FrenchMethodTests(unittest.TestCase):
                 str(root / "method.json"),
                 "--images-output",
                 str(root / "images.json"),
+                "--status-output",
+                str(root / "status.json"),
                 "--quality-report",
                 str(root / "quality.json"),
             ]
@@ -214,3 +218,9 @@ class FrenchMethodTests(unittest.TestCase):
             self.assertEqual(json.loads((root / "method.json").read_text())["grid_version"], "2.0")
             self.assertEqual(json.loads((root / "images.json").read_text()), {"Phone": {"image_id": 1}})
             self.assertEqual(json.loads((root / "quality.json").read_text())["status"], "passed")
+            status = json.loads((root / "status.json").read_text())
+            from datetime import datetime
+
+            self.assertIsNotNone(datetime.fromisoformat(status["updated_at"]).tzinfo)
+            self.assertEqual(status["devices"], 1)
+            self.assertEqual(status["french_sources"], 1)

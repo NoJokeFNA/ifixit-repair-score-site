@@ -850,12 +850,13 @@ async def main_async() -> None:
     )
     parser.add_argument("--french-method-output", help="Refresh the French smartphone criteria and grid history")
     parser.add_argument("--images-output", help="Write image metadata and cache new public thumbnails")
+    parser.add_argument("--status-output", help="Write the last successful import timestamp and record counts")
     args = parser.parse_args()
     report = {"checked_at": datetime.now(UTC).isoformat(), "status": "running", "errors": [], "warnings": []}
     output_paths = [Path(args.scores_output).resolve(), Path(args.french_scores_output).resolve()]
     if args.generate_rubric:
         output_paths.append(Path(args.rubric_output).resolve())
-    for optional in (args.french_method_output, args.images_output):
+    for optional in (args.french_method_output, args.images_output, args.status_output):
         if optional:
             output_paths.append(Path(optional).resolve())
     if len(set(output_paths)) != len(output_paths) or Path(args.quality_report).resolve() in output_paths:
@@ -934,6 +935,16 @@ async def main_async() -> None:
                 outputs.append((args.images_output, images))
             for target, payload in outputs:
                 write_json_atomic(target, payload)
+            # Publish freshness only after every validated dataset has been written.
+            if args.status_output:
+                write_json_atomic(
+                    args.status_output,
+                    {
+                        "updated_at": datetime.now(UTC).isoformat(),
+                        "devices": len(candidate_devices),
+                        "french_sources": len(french_scores),
+                    },
+                )
             logger.info(
                 "Import quality %s; published %d devices and %d French source entries",
                 report["status"],
