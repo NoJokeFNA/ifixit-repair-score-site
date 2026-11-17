@@ -26,6 +26,7 @@ jobs:
           npm ci --ignore-scripts
           npm run build
       - name: Commit generated local files
+        id: generated
         run: |
           git add styles.css assets/icons.js assets/mono.woff2 assets/licenses
           if ! git diff --cached --quiet; then
@@ -35,9 +36,11 @@ jobs:
             # Daily data imports can advance gh-pages while npm is building.
             git pull --rebase origin gh-pages
             git push origin HEAD:gh-pages
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
       # GITHUB_TOKEN commits do not automatically trigger the native Pages build.
       - name: Publish the configured Pages branch
+        if: steps.generated.outputs.changed == 'true'
         uses: actions/github-script@v9
         with:
           script: |
