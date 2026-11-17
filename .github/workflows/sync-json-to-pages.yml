@@ -121,7 +121,7 @@ jobs:
       # GITHUB_TOKEN pushes do not trigger another workflow or a Pages build.
       # The repository publishes the gh-pages branch (legacy Pages mode).
       - name: Request the configured GitHub Pages branch build
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const result = await github.rest.repos.requestPagesBuild({
