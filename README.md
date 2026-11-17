@@ -10,7 +10,7 @@ Python 3.13 project that builds a JSON with device repairability information fro
 Workflows:
 - build-json-to-pages.yml: builds devices_with_scores.json and commits it directly to the gh-pages branch (manual dispatch or daily at 03:00 UTC).
 - pages.yml: deploys the gh-pages branch to GitHub Pages when files there change.
-- ci.yml: runs Ruff (lint/format) on main.
+- ci.yml: runs Ruff and Python regression tests on master.
 
 Local run example:
 - python src/fetch_device_data.py --categories "iPhone" "Android Phone" --scores-output devices_with_scores.json
@@ -75,3 +75,43 @@ Import quality monitoring:
 - A manufacturer with at least three French scores losing half or more of them also blocks the import, even if its global share is small. A device with at least three named regional variants losing half or more of them is protected in the same way.
 - `--quality-report PATH` writes counts, exact lost identities, errors and warnings as JSON. The daily workflow adds a GitHub Actions summary and retains the report as an artifact for 30 days, including failed runs.
 - Unexplained large losses require source review before deliberately changing a baseline; confirmed device deletions remain automatic, visible warnings.
+
+## Explorer and French methodology publication
+
+`gh-pages` contains the redesigned English explorer. The daily import now also
+passes `--french-method-output gh-pages/french-method.json` and
+`--images-output gh-pages/images.json`. Device image metadata is read from the
+already fetched iFixit wiki response; no second device traversal or public API
+key is needed. New small public thumbnails are cached in `assets/devices/`.
+An old thumbnail is reused only for the same image ID, so a device cannot silently
+keep the previous image when its source changes.
+
+French criteria are refreshed from the smartphone calculation grid linked by
+`https://www.indicereparabilite.fr/grilles-de-calcul/`. The importer reads XML
+inside the published XLSM/XLSX file; it never executes macros. It discovers the
+current link, reads criterion/subcriterion labels, numeric coefficients and the
+final score divisor, and checks that they still describe a scale out of ten.
+Changes to the worksheet rules and declared workbook edition are archived in
+`grid_revisions`. English summaries are paired with the original source wording;
+new or changed wording is not silently assigned an old translation.
+
+The source workbook is currently V2.0. This is distinct from the legal smartphone
+criteria enacted by the order of 29 December 2020 and from the ministry's V3.0
+guidance document. No workbook edition is guessed for a device from its date.
+The 2025 transition to the EU energy label is documented separately from the
+legacy French index out of ten. Unknown source layouts or invalid coefficients
+block the import and preserve the previous published files. The quality-report
+artifact records the grid version, hash and source.
+
+`data/french_source_verifications.json` retains individually reviewed source
+discrepancies. For the iPhone 12 64GB RED, the catalogue field reports 4.8 while
+the attached calculation sheet reports 59.6/100, rounded to 6.0/10. The daily job
+rechecks the attachment and its reviewed content hash before reusing that result.
+A changed or detached sheet is marked for review and cannot yield a matched
+scalar score. Both catalogue and sheet values remain in the source evidence.
+Conflicting sources and unresolved configurations are never reduced to a minimum
+or average to manufacture an official device score.
+
+The daily import uploads and deploys its validated Pages artifact itself: pushes
+made with `GITHUB_TOKEN` do not trigger a second workflow. Frontend pushes have
+their own Pages workflow on `gh-pages`.

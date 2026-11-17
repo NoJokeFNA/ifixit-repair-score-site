@@ -19,9 +19,12 @@ import requests
 import tqdm
 from bs4 import BeautifulSoup
 
-from data_quality import DataQualityError, compare_snapshots, read_snapshot, write_report
+from data_quality import DataQualityError, compare_snapshots, read_object_snapshot, read_snapshot, write_report
+from device_images import build_image_manifest, device_image
 from device_resolution import resolve_device, resolve_previous_names
+from french_method import refresh_french_method
 from french_repairability_scraper import FrenchRepairabilityScraper
+from french_source_verification import verify_known_sources
 from ifixit_api_client import IFixitAPIClient
 from model_identification import collect_model_identification
 from rate_limiter import _RateLimiter
@@ -428,6 +431,9 @@ def print_device_data(
 
                 path = "Device" if namespace == "CATEGORY" else "Wiki"
                 repair_link = f"https://www.ifixit.com/{path}/{ifixit_title}"
+                image = device_image(data.get("image"), repair_link)
+                if image:
+                    device_identities[device_name]["image"] = image
                 return (
                     device_name,
                     ifixit_title,
@@ -842,11 +848,16 @@ async def main_async() -> None:
     parser.add_argument(
         "--api-rate", type=float, default=128, help="Maximum iFixit API requests per second (default: 128)"
     )
+    parser.add_argument("--french-method-output", help="Refresh the French smartphone criteria and grid history")
+    parser.add_argument("--images-output", help="Write image metadata and cache new public thumbnails")
     args = parser.parse_args()
     report = {"checked_at": datetime.now(UTC).isoformat(), "status": "running", "errors": [], "warnings": []}
     output_paths = [Path(args.scores_output).resolve(), Path(args.french_scores_output).resolve()]
     if args.generate_rubric:
         output_paths.append(Path(args.rubric_output).resolve())
+    for optional in (args.french_method_output, args.images_output):
+        if optional:
+            output_paths.append(Path(optional).resolve())
     if len(set(output_paths)) != len(output_paths) or Path(args.quality_report).resolve() in output_paths:
         raise DataQualityError("Data output paths and quality report path must be distinct")
     try:
@@ -864,9 +875,18 @@ async def main_async() -> None:
         client.get_guides(params={"limit": 1})
         french_scraper = FrenchRepairabilityScraper()
         french_scores = await french_scraper.get_french_repairability_scores()
+        await verify_known_sources(french_scores)
         # Stage every generated file. A rejected candidate never touches the current outputs.
         with tempfile.TemporaryDirectory(prefix="ifixit-import-") as directory:
             stage = Path(directory)
+            french_method = None
+            if args.french_method_output:
+                previous_method = read_object_snapshot(args.french_method_output)
+                if not isinstance(previous_method, dict):
+                    previous_method = json.loads(
+                        (Path(__file__).resolve().parent.parent / "data/french_method.json").read_text()
+                    )
+                french_method = refresh_french_method(previous_method)
             if args.generate_rubric:
                 old_rubric = Path(args.rubric_output)
                 if old_rubric.exists():
@@ -883,6 +903,18 @@ async def main_async() -> None:
                 raise DataQualityError("Device generation did not produce a candidate snapshot")
             report = compare_snapshots(previous_sources, french_scores, previous_devices, candidate_devices)
             report["api"] = rate_limiter.stats()
+            if french_method is not None:
+                report["french_method"] = {
+                    "grid_version": french_method.get("grid_version"),
+                    "sha256": french_method.get("grid_sha256"),
+                    "criteria": len(french_method["criteria"]),
+                    "source": french_method.get("grid_source"),
+                }
+            report["warnings"].extend(
+                f"French calculation sheet requires review: {row['source_url']}"
+                for row in french_scores
+                if row.get("verification") == "review_needed"
+            )
             logger.info("API request statistics: %s", report["api"])
             write_report(args.quality_report, report)
             if report["errors"]:
@@ -891,6 +923,15 @@ async def main_async() -> None:
             outputs = [(args.french_scores_output, french_scores), (args.scores_output, candidate_devices)]
             if args.generate_rubric:
                 outputs.append((args.rubric_output, json.loads((stage / "rubric.json").read_text())))
+            if french_method is not None:
+                outputs.append((args.french_method_output, french_method))
+            if args.images_output:
+                images = build_image_manifest(
+                    candidate_devices,
+                    read_object_snapshot(args.images_output),
+                    Path(args.images_output).resolve().parent,
+                )
+                outputs.append((args.images_output, images))
             for target, payload in outputs:
                 write_json_atomic(target, payload)
             logger.info(

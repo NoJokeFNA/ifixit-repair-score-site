@@ -12,6 +12,12 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: repair-data-import
+  cancel-in-progress: false
 
 jobs:
   build-and-sync:
@@ -45,7 +51,7 @@ jobs:
           IFIXIT_TOKEN: ${{ secrets.IFIXIT_TOKEN }}
           IFIXIT_API_RATE: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.api_rate) || '128' }}
         run: |
-          python master/src/fetch_device_data.py --api-rate "$IFIXIT_API_RATE" --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --quality-report /tmp/data-quality-report.json
+          python master/src/fetch_device_data.py --api-rate "$IFIXIT_API_RATE" --scores-output gh-pages/devices_with_scores.json --generate-rubric --rubric-output gh-pages/rubric.json --french-scores-output gh-pages/france_devices_with_scores.json --french-method-output gh-pages/french-method.json --images-output gh-pages/images.json --quality-report /tmp/data-quality-report.json
 
       - name: Summarize import quality
         if: always()
@@ -80,10 +86,10 @@ jobs:
         run: |
           set -e
           # List of files to check
-          files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json")
+          files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json" "french-method.json" "images.json")
           
           # Stage all files
-          git add "${files[@]}" || { echo "Error staging files"; exit 1; }
+          git add "${files[@]}" assets/devices || { echo "Error staging files"; exit 1; }
           
           # Check for changes and collect modified files
           modified_files=()
@@ -94,7 +100,7 @@ jobs:
           done
           
           # Commit and push if there are changes
-          if [ ${#modified_files[@]} -gt 0 ]; then
+          if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -104,7 +110,7 @@ jobs:
               commit_msg="chore(gh-pages): update ${modified_files[0]} $ts"
             else
               # Join file names with commas for readability
-              commit_msg="chore(gh-pages): update $(IFS=', '; echo "${modified_files[*]}") $ts"
+              commit_msg="chore(gh-pages): refresh verified data, criteria and images $ts"
             fi
           
             git commit -m "$commit_msg" || { echo "Commit failed"; exit 1; }
@@ -112,3 +118,24 @@ jobs:
           else
             echo "No changes to commit."
           fi
+
+      # A push using GITHUB_TOKEN does not trigger another Actions workflow.
+      # Upload and deploy the validated daily result explicitly.
+      - name: Upload refreshed site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: gh-pages
+
+  deploy:
+    needs: build-and-sync
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy refreshed data
+        id: deployment
+        uses: actions/deploy-pages@v5

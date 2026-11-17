@@ -397,6 +397,20 @@ class FrenchRepairabilityScraper:
                 "url": row.get("source_url"),
                 "last_updated": row.get("last_updated"),
                 "model": row.get("model"),
+                **{
+                    key: row[key]
+                    for key in (
+                        "catalogue_score",
+                        "calculation_sheet_url",
+                        "calculation_total",
+                        "criterion_scores",
+                        "verification",
+                        "review_reason",
+                        "score_origin",
+                        "verified_on",
+                    )
+                    if key in row
+                },
             }
             for row in candidates
         ]
@@ -405,7 +419,11 @@ class FrenchRepairabilityScraper:
             status = "not_found"
         elif ambiguous:
             status = "ambiguous"
-        elif len(values) != 1 or any(not self._valid_score(source["score"]) for source in sources):
+        elif (
+            any(source.get("verification") == "review_needed" for source in sources)
+            or len(values) != 1
+            or any(not self._valid_score(source["score"]) for source in sources)
+        ):
             status = "conflicting"
         else:
             status = "matched"

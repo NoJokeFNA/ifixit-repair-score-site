@@ -26,6 +26,16 @@ def read_snapshot(path: str | Path) -> list[dict] | None:
     return data
 
 
+def read_object_snapshot(path: str | Path) -> dict | None:
+    target = Path(path)
+    if not target.exists():
+        return None
+    data = json.loads(target.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise DataQualityError(f"Invalid previous object snapshot: {target.name}")
+    return data
+
+
 def compare_snapshots(previous_sources, sources, previous_devices, devices) -> dict:
     report = {
         "checked_at": datetime.now(UTC).isoformat(),
@@ -177,6 +187,12 @@ def compare_snapshots(previous_sources, sources, previous_devices, devices) -> d
     before_ifixit = {row["name"] for row in previous_devices or [] if row.get("repairability_score") is not None}
     compare("source_products", before_sources, set(source_ids))
     compare("devices", before_devices, {device_key(row) for row in devices}, removed_names)
+    compare(
+        "device_images",
+        {row["name"] for row in previous_devices or [] if (row.get("image") or {}).get("thumbnail")},
+        {device_key(row) for row in devices if (row.get("image") or {}).get("thumbnail")},
+        removed_names,
+    )
     compare(
         "french_scores",
         before_scored,
