@@ -13329,12 +13329,17 @@
       "model_numbers": [],
       "variants": [
         {
-          "name": "",
+          "name": "(China/PJW110)",
           "variant_id": 575611,
+          "model_numbers": []
+        },
+        {
+          "name": "(EU/CPH2629)",
+          "variant_id": 576409,
           "model_numbers": []
         }
       ],
-      "variant_status": "empty",
+      "variant_status": "available",
       "reference_urls": [
         "https://www.ifixit.com/api/2.0/wikis/CATEGORY/Oppo_RENO_12_Pro/topic_variants"
       ]
