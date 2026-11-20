@@ -63,7 +63,9 @@ dialog{margin:0 0 0 auto;border:0;border-left:1px solid var(--line);padding:0;ba
 #explorer-view .page-heading{margin-bottom:18px}
 .explorer-search{margin-bottom:18px}
 .explorer-search .search-field{min-height:46px;background:var(--surface)}
+.explorer-search .search-field:focus-within{outline:2px solid var(--blue);outline-offset:2px}
 .explorer-search input{font-size:16px}
+.explorer-search input:focus{outline:none}
 #explorer-view .overview{margin:24px 0 0}
 #theme{display:grid;place-items:center;width:36px;height:36px;border-radius:6px;background:transparent;color:var(--muted);flex-shrink:0}
 #theme:hover{background:var(--soft);color:var(--ink)}

@@ -3,6 +3,12 @@ const {site, json, device, assert} = require('./helpers.cjs');
   const devices = json('devices_with_scores.json');
   await site(async page => {
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    const search = page.getByRole('searchbox');
+    assert.equal(await search.getAttribute('autocomplete'), 'off');
+    await page.keyboard.press('/');
+    assert.equal(await search.evaluate(el => document.activeElement === el), true);
+    assert.equal(await search.evaluate(el => getComputedStyle(el).outlineStyle), 'none');
+    assert.equal(await page.locator('.search-field').evaluate(el => getComputedStyle(el).outlineWidth), '2px');
     assert.equal(await page.locator('#stat-all').innerText(), new Intl.NumberFormat('en-GB').format(devices.length));
     await page.locator('#page-size').selectOption('25');
     const scored = devices.filter(d => typeof d.repairability_score === 'number');
