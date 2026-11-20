@@ -34,7 +34,9 @@ const params=page=>new URL(page.url()).searchParams;
  },{query:'?q=Older&size=10&device=Older_Phone',overrides:{...overrides,'devices_with_scores.json':[...rows].reverse()}});
  await site(async page=>{
   assert.equal(await page.locator('#detail-dialog').isVisible(),false);assert.equal(await page.locator('#page-size').inputValue(),'8');assert.ok(!params(page).has('device'));assert.ok(!params(page).has('score'));
-  assert.ok((await page.locator('#dataset-freshness').innerText()).includes('48 hours'));
+  await page.waitForFunction(() => document.querySelector('#dataset-updated').dateTime === '2020-01-01T00:00:00.000Z');
+  assert.equal(await page.locator('#dataset-updated').textContent(),'Updated 1 Jan 2020');
+  assert.equal(await page.locator('#dataset-freshness').isVisible(),false);
  },{query:'?device=missing&size=999&page=-2&score=NaN&view=bad',overrides:{...overrides,'data-status.json':{updated_at:'2020-01-01T00:00:00Z'}}});
  await site(async page=>{
   await page.locator('#dataset-freshness').waitFor();assert.ok((await page.locator('#dataset-freshness').innerText()).includes('could not be verified'));
@@ -49,5 +51,5 @@ const params=page=>new URL(page.url()).searchParams;
   await page.locator('.row-select').first().check();await page.locator('.row-select').nth(1).check();await page.locator('#open-comparison').click();
   assert.ok((await page.locator('.comparison-context').innerText()).includes('missing'));
  },{overrides:{...overrides,'devices_with_scores.json':[rows[2],rows[1]]}});
- console.log('Stable share links, reload, history, comparison context, invalid routes and data freshness passed');
+ console.log('Stable share links, reload, history, comparison context, invalid routes and dataset timestamps passed');
 })().catch(error=>{console.error(error);process.exit(1);});

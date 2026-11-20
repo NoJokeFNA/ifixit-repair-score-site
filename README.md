@@ -62,9 +62,9 @@ so source ordering changes do not redirect an old link to another device.
 Back/forward restores the view; closing a device opened from the explorer returns
 to its filtered list. Device names are real links and support opening a new tab.
 
-`data-status.json` records the last successful import. Dates are displayed in UTC;
-snapshots older than 48 hours get a notice. Failed imports leave that timestamp
-unchanged. Source dates and calculation-grid check dates are separate values.
+`data-status.json` records the last published dataset change in UTC. The
+methodology snapshot has its own date. Daily check results are available in the
+[GitHub Actions run history](https://github.com/NoJokeFNA/ifixit-repair-score-site/actions/workflows/sync-json-to-pages.yml).
 
 Dependabot checks the locked npm packages weekly on `gh-pages`. PR browser checks
 build and test the proposed package versions. After merge, `assets.yml` rebuilds
