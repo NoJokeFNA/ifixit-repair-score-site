@@ -13,7 +13,14 @@ const sheet={...source('Reviewed source',6),catalogue_score:4.8,verification:'sh
 const rows=[device('Matched Phone',10,{status:'matched',score:9.3,sources:[source('Matching source',9.3)]}),device('Variant Phone',9,ambiguous),device('Conflict Phone',8,{status:'conflicting',score:null,sources:[sheet,source('Other source',5.7)]}),device('Missing Phone',7)];
 (async()=>{
  await site(async page=>{
-  await page.locator('#search').fill('Variant Phone');assert.ok((await page.locator('.variant-range').innerText()).includes('9.2 - 9.3'));await page.locator('.device-name').click();
+  for(const name of [
+   /French repairability index for Matched Phone: 9\.3 View source evidence/,
+   /French repairability index for Variant Phone: 9\.2 - 9\.3.*View source evidence/,
+   /French repairability index for Conflict Phone: Conflicting sources.*View source evidence/,
+   /French repairability index for Missing Phone: No data View source evidence/,
+  ])assert.equal(await page.getByRole('button',{name}).count(),1,name.source);
+  await page.locator('#search').fill('Variant Phone');assert.ok((await page.locator('.variant-range').innerText()).includes('9.2 - 9.3'));
+  await page.getByRole('button',{name:/French repairability index for Variant Phone/}).click();
   assert.equal(await page.locator('.variant-configurations>div').count(),2);
   assert.ok((await page.locator('.variant-explanation').innerText()).includes('RAM and storage'));
   await page.keyboard.press('Escape');await page.locator('#search').fill('Conflict Phone');await page.locator('.device-name').click();

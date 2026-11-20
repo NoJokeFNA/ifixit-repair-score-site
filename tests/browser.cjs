@@ -10,10 +10,13 @@ const {site, json, device, assert} = require('./helpers.cjs');
     await page.reload();
     await page.waitForFunction(() => /^\d/.test(document.querySelector('#result-count').textContent));
     assert.equal(await page.locator('#page-size').inputValue(), '25');
-    await page.locator('#brand').selectOption('Fairphone');
+    const manufacturer = page.getByRole('combobox', {name: 'Filter by manufacturer'});
+    const initialFilterWidth = (await manufacturer.boundingBox()).width;
+    await manufacturer.selectOption('Fairphone');
+    assert.equal((await manufacturer.boundingBox()).width, initialFilterWidth);
+    assert.equal(await manufacturer.evaluate(el => getComputedStyle(el).textAlign), 'center');
     const expected = scored.filter(d => d.brand === 'Fairphone');
     assert.equal(Number((await page.locator('#result-count').innerText()).replaceAll(',', '')), expected.length);
-    const manufacturer = page.getByRole('combobox', {name: 'Filter by manufacturer'});
     if (await page.evaluate(() => CSS.supports('appearance:base-select') && CSS.supports('selector(::picker(select))'))) {
       await manufacturer.focus();
       await page.keyboard.press('Space');
