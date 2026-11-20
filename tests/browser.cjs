@@ -13,6 +13,16 @@ const {site, json, device, assert} = require('./helpers.cjs');
     await page.locator('#brand').selectOption('Fairphone');
     const expected = scored.filter(d => d.brand === 'Fairphone');
     assert.equal(Number((await page.locator('#result-count').innerText()).replaceAll(',', '')), expected.length);
+    const manufacturer = page.getByRole('combobox', {name: 'Filter by manufacturer'});
+    if (await page.evaluate(() => CSS.supports('appearance:base-select') && CSS.supports('selector(::picker(select))'))) {
+      await manufacturer.focus();
+      await page.keyboard.press('Space');
+      await page.waitForFunction(() => document.querySelector('#brand').matches(':open'));
+      assert.equal(await manufacturer.evaluate(el => getComputedStyle(el, '::picker(select)').borderRadius), '8px');
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => !document.querySelector('#brand').matches(':open'));
+      assert.equal(await manufacturer.inputValue(), 'Fairphone');
+    }
     await page.locator('.device-name').first().click();
     await page.locator('#detail-dialog').waitFor({state: 'visible'});
     assert.ok(await page.locator('#detail-content a[href^="https://www.ifixit.com/"]').count());
