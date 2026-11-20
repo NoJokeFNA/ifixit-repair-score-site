@@ -19,7 +19,17 @@ const rows=[device('Matched Phone',10,{status:'matched',score:9.3,sources:[sourc
   await page.keyboard.press('Escape');await page.locator('#search').fill('Conflict Phone');await page.locator('.device-name').click();
   const evidence=await page.locator('.source-discrepancy').innerText();assert.ok(evidence.includes('4.8'));assert.ok(evidence.includes('59.6'));assert.ok(evidence.includes('6 / 10'));
   await page.locator('.device-french-breakdown summary').click();assert.equal(await page.locator('.device-french-breakdown>div').count(),5);
-  await page.keyboard.press('Escape');await page.locator('#search').fill('Matched Phone');await page.locator('.device-name').click();
+  // Hold the history traversal so a slow Back operation is reproducible.
+  await page.evaluate(()=>{
+   const back=history.back;
+   history.back=()=>{window.finishDetailBack=()=>{history.back=back;history.back();};};
+  });
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>typeof window.finishDetailBack==='function');
+  assert.equal(await page.locator('#detail-dialog').isVisible(),true);
+  await page.evaluate(()=>window.finishDetailBack());
+  await page.locator('#search').fill('Matched Phone');await page.locator('.device-name').click();
+  assert.equal(await page.locator('#detail-title').innerText(),'Matched Phone');
   assert.ok((await page.locator('.detail-scores').innerText()).includes('9.3'));await page.keyboard.press('Escape');
   await page.locator('#search').fill('Missing Phone');await page.locator('.device-name').click();assert.ok((await page.locator('#detail-content').innerText()).includes('No data'));
  },{overrides:{'devices_with_scores.json':rows,'images.json':{}}});
