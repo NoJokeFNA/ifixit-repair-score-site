@@ -81,8 +81,9 @@ dialog{margin:0 0 0 auto;border:0;border-left:1px solid var(--line);padding:0;ba
 .select-field svg{position:absolute;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--muted);pointer-events:none}
 .select-field svg:first-child{inset-inline-start:12px}
 .select-field svg:last-child{inset-inline-end:12px}
-#brand{appearance:none;width:100%;min-height:40px;padding:8px 36px;
- border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font-size:13px;cursor:pointer}
+#brand{appearance:none;width:100%;min-inline-size:11.5rem;min-height:40px;padding:8px 36px;
+ border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);
+ font-size:13px;line-height:1.5;text-align:center;align-items:center;justify-content:center;cursor:pointer}
 #brand:hover{background:var(--soft)}
 #brand:focus-visible{outline-offset:2px}
 
@@ -92,7 +93,7 @@ dialog{margin:0 0 0 auto;border:0;border-left:1px solid var(--line);padding:0;ba
  #brand::picker(select){
   margin-block:6px;padding:4px;min-inline-size:anchor-size(width);max-block-size:min(22rem,45dvh);
   overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:8px;
-  background:var(--surface);color:var(--ink);box-shadow:0 8px 24px #0003;
+  background:var(--surface);color:var(--ink);text-align:start;box-shadow:0 8px 24px #0003;
  }
  #brand option{min-block-size:34px;padding:6px 10px;border-radius:4px;cursor:pointer}
  #brand option:checked{background:var(--blue-soft);color:var(--ink);font-weight:600}
