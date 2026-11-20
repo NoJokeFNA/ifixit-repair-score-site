@@ -21,6 +21,8 @@ concurrency:
 jobs:
   build-and-sync:
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
     steps:
       - name: Checkout gh-pages
         uses: actions/checkout@v7
@@ -81,43 +83,63 @@ jobs:
           node tests/france.cjs
 
       - name: Commit to gh-pages if changed
+        id: publish
         working-directory: gh-pages
         run: |
-          set -e
-          # List of files to check
+          set -euo pipefail
           files=("devices_with_scores.json" "rubric.json" "france_devices_with_scores.json" "french-method.json" "images.json" "data-status.json")
-          
-          # Stage all files
-          git add "${files[@]}" assets/devices || { echo "Error staging files"; exit 1; }
-          
-          # Check for changes and collect modified files
+
+          comparable_json() {
+            jq --sort-keys --arg key "$1" 'del(.[$key])' "${@:2}"
+          }
+
+          # Keep the published method and its date until the method itself changes.
+          if git cat-file -e HEAD:french-method.json 2>/dev/null; then
+            previous_method=$(git show HEAD:french-method.json | comparable_json checked_on)
+            new_method=$(comparable_json checked_on french-method.json)
+            if [[ "$previous_method" == "$new_method" ]]; then
+              git restore -- french-method.json
+            fi
+          fi
+
+          git add -- "${files[@]}" assets/devices
+
+          # Keep the status timestamp until any published data or asset changes.
+          if git diff --cached --quiet -- . ':(exclude)data-status.json' &&
+             git cat-file -e HEAD:data-status.json 2>/dev/null; then
+            previous_status=$(git show HEAD:data-status.json | comparable_json updated_at)
+            new_status=$(comparable_json updated_at data-status.json)
+            if [[ "$previous_status" == "$new_status" ]]; then
+              git restore --source=HEAD --staged --worktree -- data-status.json
+              echo "No changes to publish."
+              exit 0
+            fi
+          fi
+
           modified_files=()
           for file in "${files[@]}"; do
-            if ! git diff --cached --quiet -- "$file" 2>/dev/null; then
+            if ! git diff --cached --quiet -- "$file"; then
               modified_files+=("$file")
             fi
           done
-          
-          # Commit and push if there are changes
-          if ! git diff --cached --quiet; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          
-            # Construct commit message dynamically
-            if [ ${#modified_files[@]} -eq 1 ]; then
-              commit_msg="chore(gh-pages): update ${modified_files[0]} $ts"
-            else
-              # Join file names with commas for readability
-              commit_msg="chore(gh-pages): refresh verified data, criteria and images $ts"
-            fi
-          
-            git commit -m "$commit_msg" || { echo "Commit failed"; exit 1; }
-            git push || { echo "Push failed"; exit 1; }
-          else
-            echo "No changes to commit."
-          fi
 
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          if [ ${#modified_files[@]} -eq 1 ]; then
+            commit_msg="chore(gh-pages): update ${modified_files[0]} $ts"
+          else
+            commit_msg="chore(gh-pages): refresh verified data, criteria and images $ts"
+          fi
+          git commit -m "$commit_msg"
+          git push
+          echo 'published=true' >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: build-and-sync
+    if: needs.build-and-sync.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
       # GITHUB_TOKEN pushes do not trigger another workflow or a Pages build.
       # The repository publishes the gh-pages branch (legacy Pages mode).
       - name: Request the configured GitHub Pages branch build
