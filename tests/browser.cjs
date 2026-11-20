@@ -1,4 +1,4 @@
-const {site, json, assert} = require('./helpers.cjs');
+const {site, json, device, assert} = require('./helpers.cjs');
 (async () => {
   const devices = json('devices_with_scores.json');
   await site(async page => {
@@ -29,5 +29,33 @@ const {site, json, assert} = require('./helpers.cjs');
     assert.equal(await page.locator('#about-view a[href*="xiongchiamiov"]').count(), 1);
     assert.equal(await page.locator('a[href="https://github.com/NoJokeFNA/ifixit-repair-score-site"]').count(), 1);
   });
-  console.log('Explorer, saved page size, device details, comparison and project credits passed');
+  const unscored = device('Galaxy S24 Ultra', null);
+  unscored.model_identification.model_numbers = ['SM-S928B'];
+  const phone = device('iPhone 15', 7);
+  const plus = device('iPhone 15 Plus', 8);
+  plus.model_identification.model_numbers = ['SM-S928B-PLUS'];
+  await site(async page => {
+    const search = page.locator('#search');
+    const names = page.locator('.device-name');
+    assert.equal(await page.locator('[data-scope="scored"]').getAttribute('aria-pressed'), 'true');
+    await search.fill('galaxy s24 ultra');
+    assert.equal(await names.innerText(), unscored.name);
+    assert.ok((await page.locator('#device-rows').innerText()).includes('Not scored'));
+    await page.getByRole('button', { name: 'Scored devices' }).click();
+    await page.reload();
+    await page.getByRole('button', { name: 'Search all devices' }).click();
+    assert.equal(await names.innerText(), unscored.name);
+    await search.fill('sm s928b');
+    assert.deepEqual(await names.allTextContents(), [unscored.name, plus.name]);
+    await search.fill('iphone15');
+    assert.deepEqual(await names.allTextContents(), [phone.name, plus.name]);
+    await search.fill('iphnoe 15');
+    await page.getByRole('button', { name: phone.name }).click();
+    assert.equal(await search.inputValue(), phone.name);
+    assert.equal(await names.first().innerText(), phone.name);
+    await page.locator('#reset').click();
+    assert.equal(await page.locator('[data-scope="scored"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await names.count(), 2);
+  }, {overrides: {'devices_with_scores.json': [unscored, phone, plus], 'images.json': {}}});
+  console.log('Explorer, device search, saved page size, details, comparison and project credits passed');
 })().catch(error => {console.error(error); process.exit(1);});
