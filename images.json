@@ -4778,6 +4778,15 @@
     "source": "https://www.ifixit.com/Device/infinix_note_12",
     "local": "assets/devices/2902755.jpg"
   },
+  "infinix_smart_6": {
+    "image_id": 2902755,
+    "thumbnail": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.thumbnail",
+    "detail": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.200x150",
+    "large": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.large",
+    "original": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.full",
+    "source": "https://www.ifixit.com/Device/infinix_smart_6",
+    "local": "assets/devices/2902755.jpg"
+  },
   "infnix_gt_20_pro": {
     "image_id": 4034821,
     "thumbnail": "https://guide-images.cdn.ifixit.com/igi/RGY1EqJnemrlqOHI.thumbnail",
@@ -5110,6 +5119,15 @@
     "original": "https://guide-images.cdn.ifixit.com/igi/CwuhUO1kZIFZRkp6.full",
     "source": "https://www.ifixit.com/Device/realmi_c12",
     "local": "assets/devices/3068736.jpg"
+  },
+  "redmagic_10_air": {
+    "image_id": 7146969,
+    "thumbnail": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.thumbnail",
+    "detail": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.200x150",
+    "large": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.large",
+    "original": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.full",
+    "source": "https://www.ifixit.com/Device/redmagic_10_air",
+    "local": "assets/devices/7146969.jpg"
   },
   "rephone": {
     "image_id": 3496574,

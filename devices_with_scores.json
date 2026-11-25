@@ -20254,6 +20254,42 @@
     }
   },
   {
+    "name": "infinix smart 6",
+    "title": "infinix_smart_6",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/infinix_smart_6",
+    "teardown_urls": [],
+    "france_repairability_score": null,
+    "france_repairability": {
+      "status": "not_found",
+      "score": null,
+      "sources": []
+    },
+    "model_identification": {
+      "brand": null,
+      "model_numbers": [],
+      "variants": [],
+      "variant_status": "empty",
+      "reference_urls": [
+        "https://www.ifixit.com/api/2.0/wikis/CATEGORY/infinix_smart_6/topic_variants"
+      ]
+    },
+    "wikiid": 655695,
+    "wiki_namespace": "CATEGORY",
+    "previous_names": [],
+    "redirects": [],
+    "source_status": "verified",
+    "image": {
+      "image_id": 2902755,
+      "thumbnail": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.thumbnail",
+      "detail": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.200x150",
+      "large": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.large",
+      "original": "https://guide-images.cdn.ifixit.com/igi/FQdGGs6XHt3X3OqE.full",
+      "source": "https://www.ifixit.com/Device/infinix_smart_6"
+    }
+  },
+  {
     "name": "infnix gt 20 pro",
     "title": "infnix_gt_20_pro",
     "repairability_score": null,
@@ -21617,6 +21653,42 @@
       "large": "https://guide-images.cdn.ifixit.com/igi/CwuhUO1kZIFZRkp6.large",
       "original": "https://guide-images.cdn.ifixit.com/igi/CwuhUO1kZIFZRkp6.full",
       "source": "https://www.ifixit.com/Device/realmi_c12"
+    }
+  },
+  {
+    "name": "redmagic 10 air",
+    "title": "redmagic_10_air",
+    "repairability_score": null,
+    "brand": null,
+    "link": "https://www.ifixit.com/Device/redmagic_10_air",
+    "teardown_urls": [],
+    "france_repairability_score": null,
+    "france_repairability": {
+      "status": "not_found",
+      "score": null,
+      "sources": []
+    },
+    "model_identification": {
+      "brand": null,
+      "model_numbers": [],
+      "variants": [],
+      "variant_status": "empty",
+      "reference_urls": [
+        "https://www.ifixit.com/api/2.0/wikis/CATEGORY/redmagic_10_air/topic_variants"
+      ]
+    },
+    "wikiid": 657019,
+    "wiki_namespace": "CATEGORY",
+    "previous_names": [],
+    "redirects": [],
+    "source_status": "verified",
+    "image": {
+      "image_id": 7146969,
+      "thumbnail": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.thumbnail",
+      "detail": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.200x150",
+      "large": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.large",
+      "original": "https://guide-images.cdn.ifixit.com/igi/dkVAoXLxqaERmOCq.full",
+      "source": "https://www.ifixit.com/Device/redmagic_10_air"
     }
   },
   {
