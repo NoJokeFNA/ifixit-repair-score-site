@@ -13580,12 +13580,22 @@
       "model_numbers": [],
       "variants": [
         {
-          "name": "",
+          "name": "RMX5055",
           "variant_id": 575599,
+          "model_numbers": []
+        },
+        {
+          "name": "RMX5056",
+          "variant_id": 576412,
+          "model_numbers": []
+        },
+        {
+          "name": "RMX5057",
+          "variant_id": 576411,
           "model_numbers": []
         }
       ],
-      "variant_status": "empty",
+      "variant_status": "available",
       "reference_urls": [
         "https://www.ifixit.com/api/2.0/wikis/CATEGORY/Oppo_Realme_14_Pro_5G/topic_variants"
       ]
